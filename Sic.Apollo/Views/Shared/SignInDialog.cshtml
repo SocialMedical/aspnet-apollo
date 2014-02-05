@@ -1,0 +1,54 @@
+﻿@model Sic.Apollo.Models.Security.SignIn
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForSignIn;
+}
+<div id='dlgSignIn'>
+    @if (ViewBag.LoginPopUp == null || ViewBag.LoginPopUp)
+    {
+        <h2>@Sic.Apollo.Resources.Resources.LabelForSignIn</h2>
+    }
+    else
+    {
+        <h2>@Sic.Apollo.Resources.Resources.LabelForImReturningCustomer</h2>
+    }   
+<script type="text/javascript">   
+    $(function () {       
+        $("#dlgSignIn").dialog({ 
+            modal: true,
+            autoOpen: false,
+            resizable: false, 
+            closeOnEscape: true,
+            show: "slide",//"slide", "explode", "puff"
+            hide: "slide",           
+            closeText : "@Sic.Apollo.Resources.Resources.LabelForClose",
+            buttons: [
+                {                    
+                    text : "@Sic.Apollo.Resources.Resources.LabelForSignIn",  
+                    click: function () {                        
+                        $.post("@Url.Action("SignIn", "Account")",
+                        {
+                            logonName: $('#LogonName').val(),
+                            password: $('#Password').val()
+                        },
+                        function (data, status, xhr) {
+                                if(data.Success){                            
+                                    $('#dlgSignIn').dialog("close");
+                                    $('#divSignInButton').load("@Url.Action("SignInButton", "Account")");
+                                    $('#divLinkMenu').load("@Url.Action("LinkMenu", "Account")");
+                                } else {                            
+                                    $('#divSignInMessage').load("@Url.Action("SignInErrorMessage", "Account")");
+                                }
+                            });
+                        }
+                },
+                {
+                    text: "@Sic.Apollo.Resources.Resources.LabelForCancel",
+                    click: function () {
+                        $(this).dialog("close");
+                        }
+                }
+            ]                        
+        });
+    });
+
+</script>

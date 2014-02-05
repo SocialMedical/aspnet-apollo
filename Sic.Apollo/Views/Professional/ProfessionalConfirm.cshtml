@@ -1,0 +1,30 @@
+﻿@model Sic.Apollo.Models.Pro.View.Professional
+
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForProfessionalConfirm;
+}
+
+@using (Html.BeginForm(new { professionalId = Model.ProfessionalId }))
+{
+    <h1>@Sic.Apollo.Resources.Resources.LabelForProfessionalConfirm</h1>
+
+    <table>
+    <tr>
+        <td> 
+            <p><b>@Sic.Apollo.Resources.Resources.LabelForProfessional: </b>@Model.FullName</p>           
+            <p><b>@Sic.Apollo.Resources.Resources.LabelForRegisterDate: </b>@Model.RegisterDate</p>           
+            <p>@Sic.Apollo.Resources.Resources.LegendForProfessionalConfirm</p>  
+            <p>
+                <input type="submit" value="@Sic.Apollo.Resources.Resources.LabelForProfessionalConfirm" />                
+            </p>          
+        </td>
+        <td>
+            @{ Html.RenderAction("ProfessionalCard", "Professional", new { professionalId = Model.ProfessionalId });}
+        </td>
+    </tr>
+    </table>                   
+}
+
+<div>
+    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalConfirmation, "ProfessionalConfirmation")
+</div>

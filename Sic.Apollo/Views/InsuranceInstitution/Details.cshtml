@@ -1,0 +1,45 @@
+﻿@model Sic.Apollo.Models.Pro.InsuranceInstitution
+
+@{
+    ViewBag.Title = @Sic.Apollo.Resources.Resources.LabelForDetails;
+}
+
+<h2>@Sic.Apollo.Resources.Resources.LabelForDetails</h2>
+
+<fieldset>
+    <legend>@Sic.Apollo.Resources.Resources.LabelForInsuranceInstitution</legend>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForFirstName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.FirstName)
+    </div>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForDefaultPhoneNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.PhoneNumber)
+    </div>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForEmail</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.Email)
+    </div>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForDefaultWebSite</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.WebSite)
+    </div>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForPriority</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Priority)
+    </div>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForActive</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForEdit, "Edit", new { id = Model.InstitutionId }) |
+    @Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForBackToList, "Index")
+</p>

@@ -1,0 +1,66 @@
+﻿@{
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    ViewBag.Title = Sic.Apollo.Resources.Resources.TitleForExpiredSession;
+}
+@section meta{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+@section Imports{
+    <link href="@Url.Content("~/Content/styles/simple_content.css")" rel="stylesheet" type="text/css" />
+}
+<div id="margintop_wrapper">
+</div>
+<div id="top_header">
+    <span class="txt_az_18">@Sic.Apollo.Resources.Resources.LegendForExpiredSession</span>
+</div>
+<div id="simple_content">
+    <div id="inner_simple_content">
+        <div id="form_content">
+            @if (!Sic.Web.Mvc.Session.IsLogged)
+            {
+                Sic.Apollo.Models.Security.SignIn signIn = new Sic.Apollo.Models.Security.SignIn() { LoginFor = Sic.Apollo.Models.Security.SignIn.LoginAction.ExpiredSession };
+
+                using (Html.BeginForm("LoginVerify", "Account", null, FormMethod.Post, new
+                {
+                    id = "LoginForm"
+                }))
+                {                        
+                <div>
+                    <span class="txt_az_18">@Sic.Apollo.Resources.Resources.LegendForExpiredSession</span>
+                </div>
+                <div class="textform_simple">@Sic.Apollo.Resources.Resources.LabelForLogonName</div>
+                <div>
+                    @Html.TextBoxFor(m => signIn.LogonName, new { id = "login_box_LogonName", @class = "box_login_form" })
+                    @Html.ValidationMessageFor(m => signIn.LogonName)
+                </div>
+                <div class="textform_simple">@Sic.Apollo.Resources.Resources.LabelForPassword</div>
+                <div>
+                    @Html.PasswordFor(m => signIn.Password, new { id = "login_box_Password", @class = "box_login_form" })
+                    @Html.ValidationMessageFor(m => signIn.Password)
+                    @Html.HiddenFor(model => signIn.LoginFor, new { id = "login_box_For" })<br />
+                </div>
+@* <div class="textform_book">
+                    <span><a href="#" class="txt_az_13">@Sic.Apollo.Resources.Resources.LabelForForgotYourPassword</a></span><br />
+                </div>*@
+                <div>
+                    <br />
+                    <input name="button" type="submit" class="btn_next" id="button" value="@Sic.Apollo.Resources.Resources.LabelForSignIn" />
+                </div>
+                <div>
+                    <label class="txt_az_15" id="loginMessage" />
+                </div>
+                    
+                }
+            }
+            else
+            {
+                <div>
+                    <span class="txt_az_18">@Html.Raw(Sic.Apollo.Resources.Resources.MessageForUnauthorizedUser)</span>
+                </div>                
+            }
+            <div style="margin-top: 30px;">
+                <a class="txt_az_18" href="/">@Sic.Apollo.Resources.Resources.LabelForGoToMainPage</a>
+            </div>
+        </div>
+    </div>
+</div>

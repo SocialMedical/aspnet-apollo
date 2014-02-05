@@ -1,0 +1,38 @@
+﻿@model Sic.Apollo.Models.General.ContactLocation           
+
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Description)
+    @Html.ValidationMessageFor(model => model.Description)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Street)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Street)
+    @Html.ValidationMessageFor(model => model.Street)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.References)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.References) 
+    @Html.ValidationMessageFor(model => model.References)
+</div>
+
+<p>
+    <input type="button" value="@Sic.Apollo.Resources.Resources.LabelForSave"  onClick="javascript:hidediv(@Model.ContactLocationId, @Model.ContactId);"/>
+    <input type="button" value="@Sic.Apollo.Resources.Resources.LabelForCancel" onClick="javascript:hidediv(@Model.ContactLocationId, @Model.ContactId);" />
+</p>
+
+<script>
+    function hidediv(id, professionalId) {
+        $('#divContactLocationEdit' + id).html("");        
+        $('#divContactLocationList').load("ContactLocationList?id=" + professionalId);      
+    }    
+</script>

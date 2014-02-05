@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalOffice>
+@{
+    string emptyPictureSource = "/Content/images/contactLocations/DefaultContactLocation.jpg";
+}
+<div class="content_tab2" id="divofficeList">
+    <a href="javascript:editOffice(0);">
+        <div class="add_office">@Sic.Apollo.Resources.Resources.LabelForAdd</div>
+    </a>
+    <!-- consultorio -->
+    <div class="content_office_map">
+        <div id="@Html.Encode("divoffice0")">
+        </div>
+        @foreach (var item in Model.Where(p=>p.Active).OrderBy(p=>p.MarkerIndex))
+        {
+            <div class="content_map_images">
+                <div class="content_header">
+                    <div id="icon_location">
+                        <strong>@item.MarkerIndex</strong></div>
+                    <br />
+                    <div class="text_header_map">
+                        @Html.HiddenFor(modelItem => item.ContactLocationId)
+                        @Html.DisplayFor(modelItem => item.Address) @String.Format("{0}", item.References)<br>
+                        @item.DefaultPhoneNumberDescription                        
+                        <div id="officeContentMessage@{@item.ContactLocationId}">
+                        </div>
+                    </div>                    
+                    <div class="content_edit_office_buttons">
+                        <div class="list_content_edit" style="cursor:pointer" onclick="javascript:editOffice(@item.ContactLocationId);">
+                            <div class="list_content_iconedit">
+                            </div>
+                            @Sic.Apollo.Resources.Resources.LabelForEdit
+                        </div>
+                        <div class="list_content_edit" style="cursor:pointer" onclick="javascript:openLocationDialog(@item.ContactLocationId,@item.MarkerIndex,@{@(item.Latitude == null ?-1:item.Latitude)},@{@(item.Longitude == null ? -1 : item.Longitude)});">
+                            <div class="list_content_iconlocation">
+                            </div>
+                            @Sic.Apollo.Resources.Resources.LabelForSetLocation
+                        </div>                       
+                    </div>
+                </div>
+                <!-- editar_consultorio -->
+                <div id="@Html.Encode("divoffice" + @item.ContactLocationId)">
+                </div>
+                <!-- editar_consultorio -->
+                <div class="content_images">
+                    @{ int imageIndex = 1; }                   
+
+                    @for (int i = imageIndex; i <= 9; i++)
+                    {
+                        <!-- editar_imagenes -->
+                        <div class="image_office">
+                            @using (Html.BeginForm("UploadContactLocationPictures", "Contact",
+                                new { contactLocationId = item.ContactLocationId, priority = i },
+                                FormMethod.Post,
+                            new
+                            {
+                                enctype = "multipart/form-data",
+                                id = "ImgForm" + item.ContactLocationId + "-" + i.ToString(),
+                                target = "UploadTarget",
+                                name = "ImgForm" + item.ContactLocationId + "-" + i.ToString()
+                            }))
+                            {
+                                <input style="display:none" type="file" name="file" onchange="UploadImage(@item.ContactLocationId,@i)"/>                                                                                                                                
+                            }
+                            @{string source = emptyPictureSource;
+                              string thum = emptyPictureSource;
+                              string description = string.Empty;
+                              if (item.ContactLocationPictures.Any(p => p.Priority == i))
+                              {
+                                  Sic.Apollo.Models.General.ContactLocationPicture picture = item.ContactLocationPictures.Single(p => p.Priority == i);
+                                  source = picture.Picture;
+                                  thum = picture.Thumbnail;
+                                  description = picture.PictureDescription;
+                              }
+                            }
+                            <div id="panelLoading@{@item.ContactLocationId}-@{@i}" style="display: none; width:55px;height:55px;">
+                                <img src="@Url.Content("~/Content/images/loader.gif")" style="padding-top:20px;padding-left:20px;" alt=""/>
+                            </div>                            
+                            <a id="picturelink@{@item.ContactLocationId}-@{@i}" href="@source" class="fancyboxpicture" data-fancybox-group="gallery-@{@item.ContactLocationId}+++">
+                            <img id="picture@{@item.ContactLocationId}-@{@i}" src="@thum" alt="@Sic.Apollo.Resources.Resources.LegendForAddOrReplacePicture" 
+                                height="55" width="55"/>
+                            </a>                                        
+                            <div class="box_edit_delete_images">
+                                <a href="javascript:selectImage(@{@item.ContactLocationId},@{@i})">
+                                    <div class="list_content_iconedit_one">
+                                    </div>
+                                </a><a href="javascript:deleteImage(@{@item.ContactLocationId},@{@i})">
+                                    <div class="list_content_icondelete_one">
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- editar_imagenes -->
+                    }
+                </div>
+                <!-- editar_horarios -->
+                <div class="content_schedules">
+                    <div class="txt_az_18">@Sic.Apollo.Resources.Resources.LabelForSchedulings</div>
+                    <a href="javascript:editOfficeSchedule(0,@{@item.ContactLocationId})"><div class="add_schedules">
+                    @Sic.Apollo.Resources.Resources.LabelForAdd</div></a>
+                    <div id="officeSchedule@{@item.ContactLocationId}-0">
+                    </div>
+                    <div id="officeScheduling@{@item.ContactLocationId}">
+                        @{Html.RenderPartial("OfficesScheduling", item.ProfessionalOfficeSchedules.Where(p => p.Active));}
+                    </div>
+                </div>
+                <!-- editar_horarios -->
+            </div>
+        }
+        <div id="content_map" class="content_map">        
+            @{ Html.RenderPartial("ProfessionalOfficesMapMarker", Model.Where(p => p.Latitude != null && p.Longitude != null)); }
+        </div>
+        <br />
+        <!--<div class="bar_opacity">
+        <div style="width:250px; margin:auto; height:30px; padding-top:7px; text-align:center;"><a href="#" class="txt_bl_13">Editar mapa</a> | <a href="#" class="txt_bl_13">Editar ubicacion</a></div>
+        </div>-->        
+    </div>
+    <!-- consultorio -->
+</div>
+<iframe id="UploadTarget" name="UploadTarget" onload="refreshPicture()" style="position: absolute;
+    left: -999em; top: -999em;"></iframe>
+<link href="@Url.Content("~/Scripts/fancy/jquery.fancybox.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/fancy/jquery.fancybox.pack.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Scripts/fancy/helpers/jquery.fancybox-thumbs.css")" rel="stylesheet"type="text/css" />
+<script src="@Url.Content("~/Scripts/fancy/helpers/jquery.fancybox-thumbs.js")" type="text/javascript"></script>
+<script> 
+  $(".fancyboxpicture").fancybox({
+        nextEffect: 'fade', // 'elastic', 'fade' or 'none'			       			       			       			       
+        prevEffect: 'fade', // 'elastic', 'fade' or 'none'
+        helpers: {
+            thumbs: {
+                width: 75,
+                height: 50
+            },
+            title: {
+                type: 'over'
+            }
+        }
+    });    
+</script>

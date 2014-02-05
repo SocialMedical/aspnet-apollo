@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.View.Professional>
+@{    
+    ViewBag.Title = String.Format("{0} - {1}", ViewBag.TitleForSearch, Sic.Apollo.Resources.Resources.LabelForApplicationName);
+    IEnumerable<Sic.Apollo.Models.Pro.Specialization> Specializations = (IEnumerable<Sic.Apollo.Models.Pro.Specialization>)ViewBag.Specializations;
+    IEnumerable<Sic.Apollo.Models.Pro.InsuranceInstitution> InsuranceInstitutions = (IEnumerable<Sic.Apollo.Models.Pro.InsuranceInstitution>)ViewBag.InsuranceInstitutions;
+}
+@section meta{
+    @if(ViewBag.IsDescriptionSearch)
+    {
+        <meta name="description" content="@string.Format(Sic.Apollo.Resources.Resources.DescriptionForProfessionalSearchResult, ViewBag.ProfessionName, ViewBag.CityName)"/>    
+    }
+    else
+    {
+        <meta name="robots" content="noindex"/>
+    }
+}
+@section Imports{
+<link href="@Url.ContentVersion("~/Content/styles/medical_profile.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.ContentVersion("~/Content/styles/calendar.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.ContentVersion("~/Content/styles/search_medical.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.ContentVersion("~/Scripts/jquery.tools/tooltip.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.ContentVersion("~/Scripts/jquery.tools/jquery.tools.tooltip.min.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/custom/select.js")" type="text/javascript"></script>
+<link href="@Url.ContentVersion("~/Content/styles/search_box.css")" rel="stylesheet" type="text/css" />
+}
+<!-- menuflotante-->
+<div id="toolbar" align="center" class="scr_esp_down">
+    <div class="content_floating">
+        <div class="content_floating_wrap">            
+            @{Html.RenderPartial("BoxHeaderProfessionalCalendar");}
+        </div>
+    </div>
+</div>
+<div id="margin_profile_medical">
+</div>
+<div id="content_header_search_medical">
+    <div id="content_search_medical">
+        @{ Html.RenderPartial("SearchCriteriaResult"); }
+        <!--Box_search_home-->
+    </div>
+    <div id="content_map_search_medical">
+        <div id="map_search_medical">
+            @{Html.RenderAction("ProfessionalOfficeMapSync", "Professional", new { professionals = Model }); }
+        </div>
+    </div>
+</div>
+<!--titulobusqueda-->
+<div id="content_title_search_medical">
+    <div>
+        <span class="txt_az_18">@string.Format(Sic.Apollo.Resources.Resources.TitlePageForSearchResult, ViewBag.ProfessionName, ViewBag.CityName)</span></div>
+    <div class="line_title_search_medical">
+    </div>
+    <div>
+        @Sic.Apollo.Resources.Resources.LegendForProfessionalSearchResult</div>
+</div>
+<!--titulobusqueda-->
+@{Html.RenderPartial("BoxProfessionalCalendar");}
+<!--list_medical-->
+<div id="service_footer_list">
+    <div id="services_box_footer1_list">
+        <span class="txt_az_18"><strong>@Sic.Apollo.Resources.Resources.LabelForSpecializations</strong></span><br />
+        <br />
+        <div class="column_more">
+            <ul class="txt_gr_13">
+                @foreach (var item in Specializations.OrderBy(p => p.Priority).Take(Specializations.Count() / 2))
+                {
+                    <li style="text-align:left">
+                        @Html.ActionLink(item.ProfessionInPlural, "SearchByDescription", "Professional",
+                                new { professionInPlural = item.ProfessionInPlural.ToUrlStringParameter() }, new { @class = "txt_gr_13" })
+                    </li>                
+                }
+            </ul>
+        </div>
+        <div class="column_more">
+            <ul class="txt_gr_13">
+                @foreach (var item in Specializations.OrderByDescending(p => p.Priority).Take(Specializations.Count() - Specializations.Count() / 2).OrderBy(p => p.Priority))
+                {
+                    <li style="text-align:left">
+                        @Html.ActionLink(item.ProfessionInPlural, "SearchByDescription", "Professional",
+                                new { professionInPlural = item.ProfessionInPlural.ToUrlStringParameter() }, new { @class = "txt_gr_13" })
+                    </li>                
+                }
+            </ul>
+            @*<span><a href="#" class="txt_az_13">ver más</a></span>*@
+        </div>
+    </div>
+    <div class="line_sep">
+    </div>
+    <div id="services_box_footer1_list">
+        <span class="txt_az_18"><strong>@Sic.Apollo.Resources.Resources.LabelForInsuranceInstitution</strong></span><br />
+        <br />
+        <div class="column_more">
+            <ul class="txt_gr_13">
+                @foreach (var item in InsuranceInstitutions.OrderBy(p => p.Priority).Take(InsuranceInstitutions.Count() / 2))
+                {
+                    <li style="text-align:left">
+                        @Html.ActionLink(item.Contact.FirstName, "SearchByDescription", "Professional",
+                                  new
+                                  {
+                                      professionInPlural = ((string)ViewBag.ProfessionName).ToUrlStringParameter(),
+                                      cityOrInsuranceInstitution = item.Contact.FirstName.ToUrlStringParameter()
+                                  }, new { @class = "txt_gr_13" })
+                    </li>                
+                }
+            </ul>
+        </div>
+        <div class="column_more">
+            <ul class="txt_gr_13">
+                @foreach (var item in InsuranceInstitutions.OrderByDescending(p => p.Priority).Take(InsuranceInstitutions.Count() - InsuranceInstitutions.Count() / 2).OrderBy(p => p.Priority))
+                {
+                    <li style="text-align:left">
+                        @Html.ActionLink(item.Contact.FirstName, "SearchByDescription", "Professional",
+                                  new
+                                  {
+                                      professionInPlural = ((string)ViewBag.ProfessionName).ToUrlStringParameter(),
+                                      cityOrInsuranceInstitution = item.Contact.FirstName.ToUrlStringParameter()
+                                  }, new { @class = "txt_gr_13" })
+                    </li>                
+                }
+            </ul>
+            @*<span><a href="#" class="txt_az_13">ver más</a></span>*@
+        </div>
+    </div>
+</div>
+<!--list_medical-->
+<script>        
+    @foreach (var item in Model)
+    {
+        <text>
+        $(".triggertooltip" + @item.ContactLocationId).tooltip({ effect: 'slide', position: 'top center', tip: '#tooltip' + @item.ContactLocationId });
+        </text>
+    }
+
+//    $(document).ready(function () {
+//        var specializationId = @Html.Raw(Json.Encode(ViewBag.SpecializationValue));
+//        if (($("#SpecializationId").val() == null || $("#SpecializationId").val() == "") && ($("#ProfessionalName").val() == "" || $("#ProfessionalName").val() == null)) {
+//            $("#SpecializationId").val(specializationId);
+//        }
+//    });
+
+     function mapMarkerClick(professionalId,contactLocationId,markerIndex){        
+        location.href = "/Professional/Presentation?professionalId="+professionalId+"&contactLocationId="+contactLocationId;
+    }
+</script>
+
+<script src="@Url.Content("~/Scripts/custom/scroll_toolbar.js")" type="text/javascript"></script>

@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientPhysicalExamination>
+@using Sic.Apollo
+@using Sic.Web.Mvc
+@using Sic
+@{    
+    DateTime currentDate = Sic.Web.Mvc.Session.CurrentDateTime.Date;
+}
+<h2>@Sic.Apollo.Resources.Resources.LabelForPhysicalExamination</h2>
+<div class="scrollTabs">
+    <div class="arrow_tab6">
+    </div>
+    <div id="physicalExaminationContentMessage">        
+    </div>
+    <div class="content_tab2">
+        <div class="txt_az_18">
+            @currentDate.ToDefaultDateFormat()
+        </div>
+        <br />
+        @foreach (var item in Model.Where(p => p.RecordDate.Date == currentDate).OrderBy(p => p.PhysicalExamination.Priority))
+        {
+            <div class="box_text_med">@item.PhysicalExamination.Name</div>
+            <div class="box_input_problem">
+                @Html.TextArea("physicalExaminationValue", item.Examination, new { @class = "area_text_problem", patientPhysicalExaminationId = item.PatientPhysicalExaminationId, physicalExaminationId = item.PhysicalExaminationId })
+            </div> 
+        }
+        <div class="center_save_button">
+            <center><input onclick="getPhysicalExaminationValues()" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></center>
+        </div>
+        <div id="vitalSignHistory">
+            <div class="txt_az_18">
+                @Sic.Apollo.Resources.Resources.LabelForHistory
+            </div>
+            <div class="line_med_sep">
+            </div>
+            @foreach (var physicalExamination in Model.Select(p => p.PhysicalExamination).OrderBy(p => p.Priority).Distinct())
+            {
+                <div class="title_vitalsign">
+                    @physicalExamination.Name
+                </div>
+                foreach (var patientPhyscialExamination in Model.Where(p => p.RecordDate.Date != currentDate && p.PhysicalExaminationId == physicalExamination.PhysicalExaminationId).OrderByDescending(p => p.RecordDate))
+                {                
+                <div class="row_vital_sign_list">
+                    <div class="box_text_three">@patientPhyscialExamination.RecordDate.ToDefaultDateFormat()</div>
+                    <div class="box_text_vitalsign">
+                        @patientPhyscialExamination.Examination
+                    </div>
+                </div>
+                }
+                <div class="line_med_sep">
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script>
+function getPhysicalExaminationValues() {
+        var values = "<physicalExamination>";
+        $.each($("textarea[name=physicalExaminationValue]"), function (i, val) {
+            values += '<vse id="' + $(val).attr("patientPhysicalExaminationId") + '"';
+            values += ' peid="' + $(val).attr("physicalExaminationId") + '"';            
+            values += ' val="' + $(val).val() + '"/>';
+        });
+        values += "</physicalExamination>";
+        
+        sicPost("@Url.Action("SavePhysicalExamination", "Patient")", { patientId : @{@ViewBag.PatientId}, physicalExaminatons: values} , 
+        function (data) {
+                $("#contentPanelMessage").appendTo("#physicalExaminationContentMessage");               
+                setMessage(data.Message, data.MessageType);
+                refreshResumeEpicrisis(patientId,'physicalExamination');
+        });
+    }
+</script>

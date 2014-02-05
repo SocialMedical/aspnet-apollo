@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForProfessionalSuspended;
+}
+<h1>@Sic.Apollo.Resources.Resources.LabelForProfessionalSuspended</h1>
+<table>
+    <tr>
+        <td>            
+            <p>@Sic.Apollo.Resources.Resources.LegendForProfessionalSuspended</p>            
+        </td> 
+         <td>            
+            @{ Html.RenderAction("ProfessionalCard", "Professional", new { professionalId = ViewBag.ProfessionalId });}           
+        </td>        
+    </tr>
+</table>
+
+<div>
+    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalConfirmation, "ProfessionalConfirmation")
+</div>

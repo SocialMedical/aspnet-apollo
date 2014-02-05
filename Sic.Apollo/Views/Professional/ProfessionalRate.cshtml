@@ -1,0 +1,34 @@
+﻿<div id="content_comments">
+    <span class="txt_grc_13"><strong>@Sic.Apollo.Resources.Resources.LabelForCustomersComments</strong></span><br />
+
+@{ Html.RenderAction("ProfessionalRateList", "Professional", new { professionalId = ViewBag.ProfessionalId, resume = true }); }
+
+</div>
+
+<input id="moreCommentsLoaded" type="hidden" value="0" />
+<div id = "moreComments"></div>
+
+<script>    
+    $('#moreComments').hide("slow");
+
+    function moreComments() {           
+      $("#moreCommentsLink").hide();           
+
+      if($('#moreCommentsLoaded').val() == "0"){       
+          sicGet("@Url.Action("", "", new { professionalId = ViewBag.ProfessionalId, resume = false })", null, function(data)
+          {
+            $('#moreComments').html(data);                
+            $('#moreComments').show("slow");  
+            $('#moreCommentsLoaded').val("1");
+          });           
+      }
+      else{      
+        $('#moreComments').show("slow");      
+      }
+    }                
+
+    function lessComments() {
+      $('#moreComments').hide("slow");
+      $("#moreCommentsLink").show();
+    }
+</script>

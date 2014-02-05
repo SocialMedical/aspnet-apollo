@@ -1,0 +1,148 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalCommunity
+@{
+    ViewBag.ProfessionalCommunityId = Model.ProfessionalCommunityId;
+    ViewBag.ProfessionalId = Model.ProfessionalId;
+    ViewBag.InstitutionId = Model.InstitutionId;
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="list_content_edit_box">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id = "editCommunityForm" }))
+    {
+        @Html.HiddenFor(model => model.InstitutionId)
+        @Html.HiddenFor(model => model.ProfessionalCommunityId)
+    
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.Name)</div>
+        <div class="edit_office_content_input">
+            @Html.TextAreaFor(model => model.Name, new { id = "CommunityName", @class = "area_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Name)</span>
+            </div>
+        </div>
+        <div>
+            <div class="edit_office_content_text">@Html.LabelFor(model => model.Description)</div>
+            <div class="edit_office_content_input">
+                @Html.TextAreaFor(model => model.Description, new { @class = "area_text medium_height" })
+                <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Description)</span>
+            </div>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.StartYear)</div>
+        <div class="edit_office_content_input">
+            @Html.DropDownYearListFor(model => model.StartYear, new { @class = "select_date" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.StartYear)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.EndYear)</div>
+        <div class="edit_office_content_input">
+            @Html.DropDownYearListFor(model => model.EndYear, new { @class = "select_date" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.EndYear)</span>
+            </div>
+        </div>
+        <div class="contet_buttons_edit">
+            <div class="center_buttons_edit">
+                @{
+        var labelButton = Model.ProfessionalCommunityId == 0 ? Sic.Apollo.Resources.Resources.LabelForAdd : Sic.Apollo.Resources.Resources.LabelForEdit;
+                }
+                <div class="buttons_edit">
+                    <input id="communitySave" type="button" class="button_save_orange" value="@labelButton" />
+                </div>
+                <div class="buttons_edit">
+                    <input id="communityCancel" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForCancel" />
+                </div>
+            </div>
+        </div>
+    
+@*<fieldset>
+        @Html.HiddenFor(model => model.InstitutionId)
+        @Html.HiddenFor(model => model.ProfessionalCommunityId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { id = "CommunityName"})
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownYearListFor(model => model.StartYear)
+            @Html.ValidationMessageFor(model => model.StartYear)            
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownYearListFor(model => model.EndYear)
+            @Html.ValidationMessageFor(model => model.EndYear)            
+        </div>
+        <p>
+            @{
+                var labelButton = Model.ProfessionalCommunityId == 0 ? Sic.Apollo.Resources.Resources.LabelForAdd: Sic.Apollo.Resources.Resources.LabelForEdit;
+            }
+            <input id="communitySave" type="button" value="@labelButton"/>
+            <input id="communityCancel" type="button" value="@Sic.Apollo.Resources.Resources.LabelForCancel"/>
+        </p>
+    </fieldset>*@
+    }
+</div>
+<script>       
+    $(function() {                
+        if ($("#CommunityName").val() == "" || $("#CommunityName").val() == null) {
+            $("#CommunityName").focus();
+        }
+        else {
+            $("#Description").focus();
+        }
+    });
+    function refreshCommunity() {    
+        sicGet("@Url.Action("CommunityIndex","Professional")", null, function(data){
+            $('#divcommunityList').html(data);
+            //$("#institutions").removeAttr("disabled");
+            //$('#institutions').val("");
+        });                
+    }    
+    $(function () {       
+     $("#communityCancel").click(function () {    
+            refreshCommunity();
+          });
+    });
+    $(function () {       
+        $("#communitySave").click(function () {           
+            if($('#editCommunityForm').valid() == false)   {
+                setMessage('@Sic.Apollo.Resources.Resources.MessageForVerifyIncorrectData', '@Sic.Constants.MessageType.Warning');
+                return;
+            }                       
+            var community = getCommunity();
+            if (community == null) {                     
+                return;
+            }             
+            sicPost("@Url.Action("EditCommunity", "Professional")", community, function (data) {                
+                refreshCommunity();
+                setMessage(data.Message, data.MessageType);
+            });
+        });
+    });
+    function getCommunity() {
+        var institutionId = @Html.Raw(Json.Encode(ViewBag.InstitutionId));
+        var professionalId = @Html.Raw(Json.Encode(ViewBag.ProfessionalId));
+        var professionalCommunityId = @Html.Raw(Json.Encode(ViewBag.ProfessionalCommunityId));
+        var name = $("#CommunityName").val();
+        var description = $("#Description").val();
+        var startYear = $("#StartYear").val();
+        var endYear = $("#EndYear").val();                            
+        return (name == "") ? null : { InstitutionId : institutionId, ProfessionalId: professionalId, ProfessionalCommunityId: professionalCommunityId, Name : name, Description: description, StartYear: startYear, EndYear: endYear } 
+    }   
+</script>

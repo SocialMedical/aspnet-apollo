@@ -1,0 +1,50 @@
+﻿@{
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    ViewBag.Title = string.Format("{0} - {1}",Sic.Apollo.Resources.Resources.TitleForRegister, Sic.Apollo.Resources.Resources.LabelForApplicationName);
+}
+@section meta{
+    <meta name="description" content="@Sic.Apollo.Resources.Resources.DescriptionForRegister"/>
+}
+@section Imports{
+    <link href="@Url.Content("~/Content/styles/register.css")" rel="stylesheet" type="text/css" />
+}
+
+<div id="margintop_wrapper"></div>
+<!--reservar cita-->
+<div id="top_register">
+<span class="txt_az_18">@Sic.Apollo.Resources.Resources.LabelForJoinUs</span>
+</div>
+
+<div id="content_register">
+<div class="box_register">
+<div class="img_register"><img src="/Content/images/style/registro_paciente.jpg" width="240" height="250" /></div>
+<div class="title_user">@Sic.Apollo.Resources.Resources.LabelForCustomer</div>
+<div class="description_user">@Sic.Apollo.Resources.Resources.LegendForRegisterCustomer</div>
+<div class="content_button_user">    
+    @*<div class="button_orange_register" onclick="window.location='/Account/RegisterCustomer'">@Sic.Apollo.Resources.Resources.LabelForJoin</div>*@       
+    <input type="button" class="button_orange_register" value="@Sic.Apollo.Resources.Resources.LabelForJoin" onclick="window.location='@Url.Action("RegisterCustomer","Account")'"/>    
+</div>
+</div>
+
+<div class="box_register">
+<div class="img_register"><img src="/Content/images/style/registro_medico2.jpg" width="240" height="250" /></div>
+<div class="title_user">@Sic.Apollo.Resources.Resources.LabelForProfessional</div>
+<div class="description_user">@Sic.Apollo.Resources.Resources.LegendForRegisterProfessional</div>
+<div class="content_button_user">    
+    @*<div class="button_orange_register" onclick="window.location='/Account/RegisterProfessional'">@Sic.Apollo.Resources.Resources.LabelForJoin</div>*@   
+    <input type="button" class="button_orange_register" value="@Sic.Apollo.Resources.Resources.LabelForJoin" onclick="window.location='@Url.Action("RegisterProfessional","Account")'"/>    
+</div>
+</div>
+
+</div>
+
+<!--reservar cita-->
+
+
+
+@*<h2>@Sic.Apollo.Resources.Resources.LabelForSignUp</h2>
+
+<p>@Sic.Apollo.Resources.Resources.LegendForRegisterCustomer</p>
+<p> @Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForCustomer, "RegisterCustomer", "Account")</p>
+<p>@Sic.Apollo.Resources.Resources.LegendForRegisterProfessional</p>
+<p> @Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForProfessional, "RegisterProfessional", "Account")</p>*@

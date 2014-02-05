@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AspNetSprites-WebFormsControl</id>
+    <version>0.4</version>
+    <title>AspNetSprites-WebFormsControl</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://aspnet.codeplex.com/license</licenseUrl>
+    <projectUrl>http://aspnet.codeplex.com/releases/view/65787</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The ASP.NET Sprite Web Forms control allows you to use sprites and image inlining in ASP.NET 4 Web Forms projects.</description>
+    <summary>The ASP.NET Sprite Web Forms control allows you to use sprites and image inlining in ASP.NET 4 Web Forms projects.</summary>
+    <tags>ASP.NET Sprite Optimization ImageOptimizationFramework</tags>
+    <dependencies>
+      <dependency id="AspNetSprites-Core" version="0.4" />
+    </dependencies>
+  </metadata>
+</package>

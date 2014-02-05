@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{89305C00-3655-4B5B-BD70-8D6FF754AB62}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sic.Apollo.Models</RootNamespace>
+    <AssemblyName>Sic.Apollo.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Appointment\Appointment.cs" />
+    <Compile Include="Appointment\AppointmentTransaction.cs" />
+    <Compile Include="Appointment\SpecializationAppointmentReason.cs" />
+    <Compile Include="Appointment\View\AppointmentBook.cs" />
+    <Compile Include="Appointment\View\AppointmentEntry.cs" />
+    <Compile Include="Appointment\View\AppointmentRate.cs" />
+    <Compile Include="Appointment\View\AppointmentTransaction.cs" />
+    <Compile Include="Appointment\View\ContactLocationAppointments.cs" />
+    <Compile Include="Appointment\View\CustomerAppointment.cs" />
+    <Compile Include="Appointment\View\DayOfWeek.cs" />
+    <Compile Include="Appointment\View\ProfessionalAppointment.cs" />
+    <Compile Include="Appointment\View\ProfessionalOfficeAppointments.cs" />
+    <Compile Include="Constants\Enums.cs" />
+    <Compile Include="DAL\Context.cs" />
+    <Compile Include="DAL\ContextService.cs" />
+    <Compile Include="DAL\Repositories\AppointmentRepository.cs" />
+    <Compile Include="DAL\Repositories\AppointmentTransactionRepository.cs" />
+    <Compile Include="DAL\Repositories\CustomerRepository.cs" />
+    <Compile Include="DAL\Repositories\InsuranceInstitutionRepository.cs" />
+    <Compile Include="DAL\Repositories\PatientRepository.cs" />
+    <Compile Include="DAL\Repositories\ProfessionalOfficeRepository.cs" />
+    <Compile Include="DAL\Repositories\ProfessionalRepository.cs" />
+    <Compile Include="DAL\Repositories\SpecializationAppointmentReasonRepository.cs" />
+    <Compile Include="DAL\Repositories\SpecializationRepository.cs" />
+    <Compile Include="DAL\Repositories\UserRepository.cs" />
+    <Compile Include="General\Area.cs" />
+    <Compile Include="General\City.cs" />
+    <Compile Include="General\Contact.cs" />
+    <Compile Include="General\ContactLocation.cs" />
+    <Compile Include="General\ContactLocationPicture.cs" />
+    <Compile Include="General\Country.cs" />
+    <Compile Include="General\State.cs" />
+    <Compile Include="General\View\Person.cs" />
+    <Compile Include="IContactLocation.cs" />
+    <Compile Include="IPicture.cs" />
+    <Compile Include="Medical\MedicalCare.cs" />
+    <Compile Include="Medical\MedicalCareMedication.cs" />
+    <Compile Include="Medical\MedicalProblem.cs" />
+    <Compile Include="Medical\Patient.cs" />
+    <Compile Include="Medical\MedicalHistory.cs" />
+    <Compile Include="Medical\PatientInsuranceInstitution.cs" />
+    <Compile Include="Medical\PatientPhysicalExamination.cs" />
+    <Compile Include="Medical\PatientVitalSign.cs" />
+    <Compile Include="Medical\PhysicalExamination.cs" />
+    <Compile Include="Medical\ProfessionalPatient.cs" />
+    <Compile Include="Medical\ProfessionalVademecum.cs" />
+    <Compile Include="Medical\Vademecum.cs" />
+    <Compile Include="Medical\View\MedicationPrint.cs" />
+    <Compile Include="Medical\View\Patient.cs" />
+    <Compile Include="Medical\View\Vademecum.cs" />
+    <Compile Include="Medical\VitalSign.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pro\Customer.cs" />
+    <Compile Include="Pro\CustomerProfessional.cs" />
+    <Compile Include="Pro\Institution.cs" />
+    <Compile Include="Pro\InsuranceInstitution.cs" />
+    <Compile Include="Pro\InsuranceInstitutionPlan.cs" />
+    <Compile Include="Pro\Professional.cs" />
+    <Compile Include="Pro\ProfessionalCommunity.cs" />
+    <Compile Include="Pro\ProfessionalExperience.cs" />
+    <Compile Include="Pro\ProfessionalInsuranceInstitutionPlan.cs" />
+    <Compile Include="Pro\ProfessionalOffice.cs" />
+    <Compile Include="Pro\ProfessionalOfficeSchedule.cs" />
+    <Compile Include="Pro\ProfessionalSchool.cs" />
+    <Compile Include="Pro\ProfessionalSpecialization.cs" />
+    <Compile Include="Pro\ProfessionalSpecializationService.cs" />
+    <Compile Include="Pro\ProfessionalTeam.cs" />
+    <Compile Include="Pro\Specialization.cs" />
+    <Compile Include="Pro\SpecializationService.cs" />
+    <Compile Include="Pro\View\AssignedInsuranceInstitutionPlan.cs" />
+    <Compile Include="Pro\View\Customer.cs" />
+    <Compile Include="Pro\View\Professional.cs" />
+    <Compile Include="Pro\View\ProfessionalAppointment.cs" />
+    <Compile Include="Pro\View\ProfessionalOffice.cs" />
+    <Compile Include="Pro\View\ProfessionalScore.cs" />
+    <Compile Include="Pro\View\ProfessionalSummary.cs" />
+    <Compile Include="Security\User.cs" />
+    <Compile Include="Security\View\ChangePassword.cs" />
+    <Compile Include="Security\View\EditUserContact.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sic.Apollo.Resources\Sic.Apollo.Resources.csproj">
+      <Project>{E09DABAC-AB25-4C22-BE01-15A920393F02}</Project>
+      <Name>Sic.Apollo.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sic.Core\Sic.Core.csproj">
+      <Project>{C0510130-68F0-4637-B3DE-5BE92DDCF67B}</Project>
+      <Name>Sic.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sic.Web.Mvc\Sic.Web.Mvc.csproj">
+      <Project>{A9368BED-4421-4A6E-93FA-A609A90BFA08}</Project>
+      <Name>Sic.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

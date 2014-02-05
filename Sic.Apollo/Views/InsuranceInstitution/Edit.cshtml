@@ -1,0 +1,74 @@
+﻿@model Sic.Apollo.Models.Pro.InsuranceInstitution
+
+@{
+    ViewBag.Title = @Sic.Apollo.Resources.Resources.LabelForEdit;
+}
+
+<h2> @Sic.Apollo.Resources.Resources.LabelForEdit</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend> @Sic.Apollo.Resources.Resources.LabelForInsuranceInstitution</legend>
+
+        @Html.HiddenFor(model => model.InstitutionId)
+        @Html.HiddenFor(model => model.Contact.ContactId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.FirstName)
+            @Html.ValidationMessageFor(model => model.Contact.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.Contact.PhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.Email)
+            @Html.ValidationMessageFor(model => model.Contact.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.WebSite)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.WebSite)
+            @Html.ValidationMessageFor(model => model.Contact.WebSite)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Priority)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Priority)
+            @Html.ValidationMessageFor(model => model.Priority)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Active)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </div>
+
+        <p>
+            <input type="submit" value=" @Sic.Apollo.Resources.Resources.LabelForSave" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForBackToList, "Index")
+</div>

@@ -1,0 +1,235 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOfficeSchedule              
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm("EditOfficeSchedule", "Professional", FormMethod.Post, new { id = "formScheduleEdit" }))
+{
+    <div class="content_edit_schedules">
+        <div id="officeScheduleContentMessage@{@Model.ProfessionalOfficeScheduleId}"></div>
+        <div class="txt_az_15">
+            @Sic.Apollo.Resources.Resources.LegendForScheduleSelectDayOfWeek</div>
+        <!--dias-->
+        <div>
+            @Html.HiddenFor(p => p.ProfessionalOfficeScheduleId, new { id = "scheduleProfessionalOfficeScheduleId" })
+            @Html.HiddenFor(p => p.ContactLocationId, new { id = "scheduleContactLocationId" })
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px 0px;"></span>*@
+                @Html.CheckBoxFor(model => model.Monday, new { id = "day1" })
+                @Html.LabelFor(model => model.Monday)
+            </div>
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px -38px;"></span>*@
+                @Html.CheckBoxFor(model => model.Tuesday, new { id = "day2" })
+                @Html.LabelFor(model => model.Tuesday)
+            </div>
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px -38px;"></span>*@
+                @Html.CheckBoxFor(model => model.Wednesday, new { id = "day3" })
+                @Html.LabelFor(model => model.Wednesday)
+            </div>
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px -38px;"></span>*@
+                @Html.CheckBoxFor(model => model.Thursday, new { id = "day4" })
+                @Html.LabelFor(model => model.Thursday)
+            </div>
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px -38px;"></span>*@
+                @Html.CheckBoxFor(model => model.Friday, new { id = "day5" })
+                @Html.LabelFor(model => model.Friday)
+            </div>
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px -38px;"></span>*@
+                @Html.CheckBoxFor(model => model.Saturday, new { id = "day6" })
+                @Html.LabelFor(model => model.Saturday)
+            </div>
+            <div class="day_select_schedules">
+                @*<span class="checkbox" style="background-position: 0px -38px;"></span>*@
+                @Html.CheckBoxFor(model => model.Sunday, new {  id = "day0" })
+                @Html.LabelFor(model => model.Sunday)
+            </div>
+        </div>
+        <!--dias-->
+        <div class="section_edit_schedules">
+            <div class="edit_office_content_input_ext">
+                @Html.LabelFor(model => model.ForEachWeek)
+                @Html.TextBoxFor(model => model.ForEachWeek, new { id = "scheduleForEachWeek", @class = "input_text_small" })                
+                @Sic.Apollo.Resources.Resources.LabelForWeek
+                <div><span class="error_field">@Html.ValidationMessageFor(model => model.ForEachWeek)</span></div>
+            </div>
+        </div>
+        <div class="section_edit_schedules">
+            <div>
+                <span class="txt_az_15">@Sic.Apollo.Resources.Resources.LegendForScheduleSelectRangeTime</span></div>
+            <div>
+                @Sic.Apollo.Resources.Resources.LegendForScheduleStartTime</div>
+            <div>
+                @Html.DropDownTimeFor(model => model.StartTime)
+                <div><span class="error_field">@Html.ValidationMessageFor(model => model.StartTime)</span></div>
+            </div>
+            <div>
+                @Sic.Apollo.Resources.Resources.LegendForScheduleEndTime</div>
+            <div>
+                @Html.DropDownTimeFor(model => model.EndTime)
+                <div><span class="error_field">@Html.ValidationMessageFor(model => model.EndTime)</span></div>
+            </div>
+        </div>
+        <div class="section_edit_schedules">
+            <div>
+                <span class="txt_az_15">@Sic.Apollo.Resources.Resources.LegendForScheduleDuration</span></div>
+            <div>
+                @Html.DropDownDurationFor(model => model.AppointmentDuration, new { id = "scheduleAppointmentDuration" })
+            </div>
+            <div>
+                @Sic.Apollo.Resources.Resources.LegendForScheduleValidityDate</div>
+            <div>
+                @Sic.Apollo.Resources.Resources.LabelForScheduleStartDate
+            </div>
+            <div>
+                @Html.TextBoxFor(model => model.ValidityStartDateString, new { id = "scheduleValidityStartDate", @class = "datefield input_text_small" })
+                <div><span class="error_field">@Html.ValidationMessageFor(model => model.ValidityStartDateString)</span></div>
+            </div>
+            <div>
+                @Html.CheckBoxFor(model => model.IndefiniteEndDate, new { id = "scheduleIndefiniteEndDate", onclick = " indefiniteChange();"}) @Sic.Apollo.Resources.Resources.LegendForIndefiniteEndSchedule              
+            </div>
+            <div id="divValidityEndDate">
+                <div>
+                    @Sic.Apollo.Resources.Resources.LabelForScheduleEndDate
+                </div>
+                <div>
+                    @Html.TextBoxFor(model => model.ValidityEndDateString, new { id = "scheduleValidityEndDate", @class = "datefield input_text_small" })
+                    <div><span class="error_field">@Html.ValidationMessageFor(model => model.ValidityEndDateString)</span></div>
+                </div>
+            </div>
+            <div class="contet_buttons_edit">
+                <div class="center_buttons_edit">
+                    <div class="buttons_edit">
+                        @{
+                            var labelButton = Model.ProfessionalOfficeScheduleId == 0 ? Sic.Apollo.Resources.Resources.LabelForAdd : Sic.Apollo.Resources.Resources.LabelForEdit;
+                        }
+                        <input id="officeScheduleSave" onclick="postSchedule()" type="button" class="button_save_orange" value="@labelButton" />
+                        </div>
+                        <div class="buttons_edit">
+                            <input id="officeScheduleCancel" onclick="cancelSchedule(@Model.ContactLocationId)" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForCancel" /></div>
+                    </div>
+            </div>            
+        </div>
+    </div>
+}
+<!--editar horario-->
+@*
+@using (Html.BeginForm("EditOfficeSchedule", "Professional", FormMethod.Post, new { onsubmit = "return Validation()" }))
+{
+    @Html.HiddenFor(p => p.ProfessionalOfficeScheduleId)
+    @Html.HiddenFor(p => p.ContactLocationId)
+    <table>
+        <tr>
+            @Html.ValidationSummary()
+        </tr>
+        <tr>
+            <td style="vertical-align: top">
+                <div style="vertical-align: top">
+                    <p>
+                        @Sic.Apollo.Resources.Resources.LegendForScheduleSelectDayOfWeek
+                    </p>
+                    <p>
+                        @Html.CheckBoxFor(model => model.Monday, new { id = "day1", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Monday)
+                        @Html.CheckBoxFor(model => model.Tuesday, new { id = "day2", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Tuesday)
+                        @Html.CheckBoxFor(model => model.Wednesday, new { id = "day3", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Wednesday)
+                        @Html.CheckBoxFor(model => model.Thursday, new { id = "day4", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Thursday)
+                        @Html.CheckBoxFor(model => model.Friday, new { id = "day5", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Friday)
+                        @Html.CheckBoxFor(model => model.Saturday, new { id = "day6", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Saturday)
+                        @Html.CheckBoxFor(model => model.Sunday, new { id = "day0", onclick = "schedulePreview()" })
+                        @Html.LabelFor(model => model.Sunday)
+                    </p>
+                    <p>
+                        @Html.LabelFor(model => model.ForEachWeek)
+                    </p>
+                    <p>
+                        @Html.TextBoxFor(model => model.ForEachWeek, new { onchange = "schedulePreview()" })
+                        @Sic.Apollo.Resources.Resources.LabelForWeek
+                        @Html.ValidationMessageFor(model => model.ForEachWeek)
+                    </p>
+                    <p>
+                        @Sic.Apollo.Resources.Resources.LegendForScheduleSelectRangeTime
+                    </p>
+                    <p>
+                        @Sic.Apollo.Resources.Resources.LegendForScheduleStartTime
+                    </p>
+                    <p>
+                        @Html.DropDownTimeFor(model => model.StartTime, new { onchange = "schedulePreview()" })
+                        @Html.ValidationMessageFor(model => model.StartTime)
+                    </p>
+                    <p>
+                        @Sic.Apollo.Resources.Resources.LegendForScheduleEndTime
+                    </p>
+                    <p>
+                        @Html.DropDownTimeFor(model => model.EndTime, new { onchange = "schedulePreview()" })
+                        @Html.ValidationMessageFor(model => model.EndTime)
+                    </p>
+                    <p>
+                        @Sic.Apollo.Resources.Resources.LegendForScheduleDuration
+                    </p>
+                    <p>
+                        @Html.DropDownDurationFor(model => model.AppointmentDuration, new { onchange = "schedulePreview()" })
+                    </p>
+                    <p>
+                        @Sic.Apollo.Resources.Resources.LegendForScheduleValidityDate
+                    </p>
+                    @Sic.Apollo.Resources.Resources.LabelForScheduleStartDate
+                    @Html.TextBoxFor(model => model.ValidityStartDateString, new { @class = "datefield" })
+                    @Html.ValidationMessageFor(model => model.ValidityStartDateString)
+                    @Sic.Apollo.Resources.Resources.LegendForIndefiniteEndSchedule
+                    @Html.CheckBoxFor(model => model.IndefiniteEndDate, new { id = "IndefiniteEndDate", onchange = "schedulePreview()" })
+                    <div id="divValidityEndDate">
+                        @Sic.Apollo.Resources.Resources.LabelForScheduleEndDate
+                        @Html.TextBoxFor(model => model.ValidityEndDateString, new { @class = "datefield" })
+                        @Html.ValidationMessageFor(model => model.ValidityEndDateString)
+                    </div>
+                    <p>
+                        <input id="save" type="submit" value="@Sic.Apollo.Resources.Resources.LabelForSave"/>
+                    </p>
+                </div>
+            </td>
+            <td style="vertical-align: top">
+                <table style="vertical-align: top">
+                    <tr>
+                        <td style="vertical-align: top">
+                            <div id="divdaysofweek" style="vertical-align: top">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top">
+                            <div id="appointment@{ @Model.ContactLocationId }" style="vertical-align: top">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+}
+@{Html.RenderAction("SchedulePreview", "Appointment", new { contactLocationId = Model.ContactLocationId, professionalOfficeScheduleId = Model.ProfessionalOfficeScheduleId });}
+*@
+<script>          
+    $(function () {            
+//        $("#ValidityStartDateString").change(function(){
+//            schedulePreview();
+//        });
+//        $("#ValidityEndDateString").change(function(){
+//            schedulePreview();
+//        });               
+        @if (Model.IndefiniteEndDate)
+        {
+            <text>$("#divValidityEndDate").hide();</text>
+        }
+        $(".datefield").datepicker({ dateFormat: 'dd/mm/yy' });
+        //schedulePreview();        
+    });
+</script>

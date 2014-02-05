@@ -1,0 +1,44 @@
+﻿@model Sic.Apollo.Models.Pro.View.ProfessionalProfile
+
+@Html.HiddenFor(model => model.Professional.ProfessionalId)
+
+<h2>@Sic.Apollo.Resources.Resources.LabelForOffice</h2>
+                   
+<table>
+@foreach (var item in Model.Professional.Contact.ContactLocations)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>                   
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.ContactLocationId }) |                
+        @Html.ActionLink("Delete", "Delete", new { id = item.ContactLocationId })*@
+
+        @*<a href='javascript:RefreshPartialContactLocationEdit(@item.ContactLocationId);'>@Sic.Apollo.Resources.Resources.LabelForEdit</a>*@
+    </td>
+
+</tr>            
+@*<tr>
+    <td>
+        <div id= @Html.Encode("divContactLocationEdit" + @item.ContactLocationId) />
+    </td>
+</tr> *@  
+
+       
+}
+</table>
+        
+@*<a href='javascript:RefreshPartialContactLocationAdd(@Model.ProfessionalId);'>@Sic.Apollo.Resources.Resources.LabelForAdd</a>
+
+<div id="divContactLocationAdd"/>                
+
+<script>
+    function RefreshPartialContactLocationAdd(id) {
+        $('#divContactLocationAdd').load("ContactLocationAdd?id="+id);
+    }
+
+    function RefreshPartialContactLocationEdit(id) {        
+        $("#divContactLocationEdit"+id).load("ContactLocationEdit?id="+id);
+    }
+</script>*@

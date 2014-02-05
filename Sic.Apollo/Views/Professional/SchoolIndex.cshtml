@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalSchool>             
+<div class="content_tab3" id="divschoolList">
+    @*@Html.TextBox("institutions")*@
+    <div class="add_office" style="cursor:pointer;" onclick="javascript:editSchool(0,0,'');">
+        @Sic.Apollo.Resources.Resources.LabelForAdd
+    </div>
+    <div id="@Html.Encode("divschool0")">
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="list_content">
+            <div class="list_content_text">
+                @String.Format("{0} {1} {2}", item.Name, item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " : "") + item.EndYear.ToString() : "")
+                <br /><br />@item.Description
+            </div>
+            <div class="list_content_edit"  style="cursor:pointer" onclick="javascript:editSchool(@item.ProfessionalSchoolId,0,'');">
+                <div class="list_content_iconedit">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForEdit
+            </div>
+            <div class="list_content_delete" style="cursor:pointer" onclick="javascript:deleteSchool(@item.ProfessionalSchoolId);">
+                <div class="list_content_icondelete">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForDelete
+            </div>
+        </div>
+        <div id="@Html.Encode("divschool" + @item.ProfessionalSchoolId)">
+        </div>
+    }
+</div>
+                 
+@*<div id="divschoolList">
+    <table>
+         <tr>
+            <td>                               
+                <div id="@Html.Encode("divschool0")">
+                </div>
+            </td>
+        </tr>        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @String.Format("{0} {1} {2}", item.Name, item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " :  "") +item.EndYear.ToString() : "")
+                </td>
+                <td>
+                    <a href='javascript:editSchool(@item.ProfessionalSchoolId,0,"");'>@Sic.Apollo.Resources.Resources.LabelForEdit</a>
+                    <a href='javascript:deleteSchool(@item.ProfessionalSchoolId);'>@Sic.Apollo.Resources.Resources.LabelForDelete</a>
+                </td>
+            </tr>                        
+            <tr>
+                <td>
+                    <div id="@Html.Encode("divschool" + @item.ProfessionalSchoolId)">
+                    </div>
+                </td>
+            </tr>
+        }       
+    </table>
+</div>*@
+
+

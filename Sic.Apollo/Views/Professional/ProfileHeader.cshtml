@@ -1,0 +1,29 @@
+﻿@model Sic.Apollo.Models.Pro.Professional
+<div class="bar_navigation_edit">
+    <div class="nav_edit">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfile, "Profile") </div>
+    <div class="nav_edit">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalOffices, "Offices")</div>
+    <div class="nav_edit">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForShortProfessionalInsurances, "InsuranceInstitutionPlans")</div>
+    <div class="nav_edit">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalSchools, "Schools")</div>
+    <div class="nav_edit">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalCommunities, "Communities")</div>
+    <div class="nav_edit">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalExperiences, "Experiences")</div>
+    <div class="nav_edit" style="width:auto">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForViewMyProfile, "Presentation", new { professional = Model.UrlParameter })</div>
+</div>
+@*<h2>
+    @Model.DescriptionName
+</h2>
+
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfile, "Profile") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalOffices, "Offices") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalOfficesScheduling, "OfficesScheduling") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalInsurances, "InsuranceInstitutionPlans") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalSchools, "Schools") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalCommunities, "Communities") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalExperiences, "Experiences") |
+@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForViewMyProfile, "Presentation", new { professional = Model.UrlParameter })*@

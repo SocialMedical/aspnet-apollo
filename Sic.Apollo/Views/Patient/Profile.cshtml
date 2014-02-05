@@ -1,0 +1,157 @@
+﻿@model Sic.Apollo.Models.Medical.Patient
+<h2>@Sic.Apollo.Resources.Resources.LabelForProfile</h2>
+
+<div class="scrollTabs">
+    <div class="arrow_tab2">
+    </div>    
+    <div id="profileContentMessage">
+        @{Html.RenderPartial("NotificationMessages");}
+    </div>
+    <div class="content_tab1">
+        @using (Html.BeginForm("Epicrisis", "Patient", new { patientId = Model.PatientId },FormMethod.Post,
+            new { id = "patientProfileForm", onSubmit = "return patientFormValidate()" } ))
+        {
+            @Html.HiddenFor(model => model.PatientId)
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.FirstName)</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.FirstName, new { @class = "input_text", id = "patientFirstName" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.FirstName, null, new { data_valmsg_for = "patientFirstName" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.MiddleName) @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.MiddleName, new { @class = "input_text", id = "patientMiddleName" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.MiddleName, null, new { data_valmsg_for = "patientMiddleName" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.LastName)</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.LastName, new { @class = "input_text", id = "patientLastName" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.LastName, null, new { data_valmsg_for = "patientLastName" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.SecondLastName) @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.SecondLastName, new { @class = "input_text", id = "patientSecondLastName" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.SecondLastName, null, new { data_valmsg_for = "patientSecondLastName" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Sic.Apollo.Resources.Resources.LabelForComments</div>
+            <div class="box_input_form">
+                @Html.TextAreaFor(model => model.Comments, new { @class = "area_text", id = "patientComments" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Comments, null, new { data_valmsg_for = "patientComments" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.Gender)</div>
+            <div class="box_input_form">
+                @Html.DropDownListFor(m => m.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male), new { @class = "select_input_form", id = "patientGender" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.Gender, null, new { data_valmsg_for = "patientGender" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Sic.Apollo.Resources.Resources.LabelForBloodGroup</div>
+            <div class="box_input_form">
+                @Html.DropDownListFor(m => m.BloodGroup, Extensions.ToSelectList(Sic.BloodGroup.Unspecified), new { @class = "select_input_form", id = "patientBloodGroup" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.BloodGroup, null, new { data_valmsg_for = "patientBloodGroup" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.BirthDate)</div>
+            <div class="box_input_form">
+                <div class="content_select_date">
+                    @Html.DropDownDayOfMonthListFor(model => model.Contact.BirthDateDay, new { @class = "select_date", id = "patientBirthDateDay" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDateDay, null, new { data_valmsg_for = "patientBirthDateDay" })</span>
+                    </div>
+                </div>
+                <div class="content_select_date">
+                    @Html.DropDownMonthListFor(model => model.Contact.BirthDateMonth, new { @class = "select_date", id = "patientBirthDateMonth" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDateMonth, null, new { data_valmsg_for = "patientBirthDateMonth" })</span>
+                    </div>
+                </div>
+                <div class="content_select_date">
+                    @Html.DropDownYearListFor(model => model.Contact.BirthDateYear, new { @class = "select_date", id = "patientBirthDateYear" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDateYear, null, new { data_valmsg_for = "patientBirthDateYear" })</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDate)</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.BirthPlace)</div>
+            <div class="box_input_form">
+                @Html.TextAreaFor(model => model.Contact.BirthPlace, new { @class = "area_text", id = "patientBirthPlace" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthPlace, null, new { data_valmsg_for = "patientBirthPlace" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.Address)</div>
+            <div class="box_input_form">
+                @Html.TextAreaFor(model => model.Contact.Address, new { @class = "area_text", id = "patientAddress" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.Address, null, new { data_valmsg_for = "patientAddress" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.PhoneNumber)</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.PhoneNumber, new { @class = "input_text", id = "patientPhoneNumber" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.PhoneNumber, null, new { data_valmsg_for = "patientPhoneNumber" })</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.CellPhone)</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.CellPhone, new { @class = "input_text", id = "patientCellPhone" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.CellPhone, null, new { data_valmsg_for = "patientCellPhone" })</span>
+                </div>
+            </div>
+            
+            
+            foreach (var insurance in Model.PatientInsuranceInstitutions.OrderBy(p => p.Priority))
+            {
+                int i = Model.PatientInsuranceInstitutions.IndexOf(insurance);
+                var list = ((IEnumerable<Sic.Apollo.Models.Pro.InsuranceInstitution>)ViewBag.InsuranceInstitutions).
+                    ToSelectList(selected: p => p.InstitutionId == Model.PatientInsuranceInstitutions[i].InsuranceInstitutionId);                
+            @Html.HiddenFor(model => model.PatientInsuranceInstitutions[i].PatientId)
+            @Html.HiddenFor(model => model.PatientInsuranceInstitutions[i].Priority)
+            @Html.HiddenFor(model => model.PatientInsuranceInstitutions[i].PatientInsuranceInstitutionId)
+            <div class="box_text_form">@Sic.Apollo.Resources.Resources.LabelForInsurance</div>            
+            <div class="box_input_form">
+                @Html.DropDownListFor(model => model.PatientInsuranceInstitutions[i].InsuranceInstitutionId,
+                                    list, Sic.Apollo.Resources.Resources.LabelForNoneSelect, new { @class = "select_input_form", })
+            </div>
+            <div class="box_text_form">
+                @Sic.Apollo.Resources.Resources.LabelForInsurancePlan</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.PatientInsuranceInstitutions[i].InsuranceInstitutionPlanName, new { @class = "input_text" })
+            </div>
+            <div class="box_text_form">
+                @Sic.Apollo.Resources.Resources.LabelForInsuranceRegistrationCode</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.PatientInsuranceInstitutions[i].RegistrationCode, new { @class = "input_text" })
+            </div>  
+            }      
+                                                      
+            <div class="center_save_button">
+                <center><input type="submit" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></center>
+            </div>
+        }
+    </div>
+</div>
+<script>
+    function patientFormValidate() {
+        if ($("#patientProfileForm").valid() == true)
+            return true;
+        else
+            return false;
+    }    
+
+</script>

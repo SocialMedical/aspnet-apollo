@@ -1,0 +1,22 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOfficeSchedule
+<!--horario-->
+<div class="schedules_list">
+    <div class="text_schedules_list">@Model.Description</div>
+    <div class="content_edit_schedules_buttons">
+        <div class="list_content_edit">
+            <a href="javascript:editOfficeSchedule(@{@Model.ProfessionalOfficeScheduleId},@{@Model.ContactLocationId})">
+                <div class="list_content_iconedit">
+                </div>@Sic.Apollo.Resources.Resources.LabelForEdit
+            </a>
+        </div>
+        <div class="list_content_delete">
+            <a href="javascript:deleteOfficeSchedule(@{@Model.ContactLocationId},@{@Model.ProfessionalOfficeScheduleId})">
+                <div class="list_content_icondelete">
+                </div>@Sic.Apollo.Resources.Resources.LabelForDelete
+                </a>
+        </div>
+    </div>
+    <div id="officeSchedule@{@Model.ContactLocationId}-@{@Model.ProfessionalOfficeScheduleId}">
+    </div>
+</div>
+<!--horario-->

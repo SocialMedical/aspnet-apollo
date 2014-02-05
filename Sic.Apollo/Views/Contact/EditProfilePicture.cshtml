@@ -1,0 +1,38 @@
+﻿@model Sic.Apollo.Models.General.Contact           
+           
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.TitleForProfilePicture;
+}
+
+@using (Html.BeginForm("UploadProfilePicture", "Contact", FormMethod.Post,
+	new { enctype = "multipart/form-data", id="ImgForm", target="UploadTarget", 
+		name="ImgForm"}))
+{	
+	<input type="file" name="file" onchange="UploadImage()"/> 	    
+}
+<h4><label id="Message"></label></h4>
+<img id="panelLoading" src="../../Content/images/loading.gif" alt=""/>
+
+<iframe id="UploadTarget" name="UploadTarget" onload="refreshPicture()" style="position: absolute; left: -999em; top: -999em;"></iframe>
+@{Html.RenderPartial("ProfilePicture", Model);}
+
+<script type="text/javascript">
+    $("#panelLoading").hide();
+
+    function refreshPicture() {
+        sicGet("@Url.Action("ProfilePicture","Contact")", null, function (data) {
+            $("#profilePicture").html(data);
+        });
+        
+        $("#imageprofile").hide();
+        $("#imageprofile").fadeIn(500, null);
+        $("#panelLoading").hide();
+
+        var newImg = $.parseJSON($("#UploadTarget").contents().find("#jsonResult")[0].innerHTML);
+        $("#Message").text(newImg.Message);
+    }
+    function UploadImage() {
+        $("#panelLoading").show();
+        $("#ImgForm").submit();
+    }   
+</script>

@@ -1,0 +1,918 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16888472-23F7-484D-B66D-901F9AA0744A}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sic.Apollo</RootNamespace>
+    <AssemblyName>Sic.Apollo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Samples.ImageOptimizationFramework">
+      <HintPath>..\packages\AspNetSpriteBinaries\Microsoft.Web.Samples.ImageOptimizationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Samples.ImageSprite">
+      <HintPath>..\packages\AspNetSpriteBinaries\Microsoft.Web.Samples.ImageSprite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Samples.SpriteHelper">
+      <HintPath>..\packages\AspNetSpriteBinaries\Microsoft.Web.Samples.SpriteHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebMatrix.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\favicon.png" />
+    <Content Include="Content\images\style\icons_edit.png" />
+    <Content Include="Content\images\style\print.png" />
+    <Content Include="Content\styles\base_medical_profile.css" />
+    <Content Include="Content\styles\evolution.css" />
+    <Content Include="Content\styles\medicalcare.css" />
+    <Content Include="Content\styles\medicationprint.css" />
+    <Content Include="Content\styles\patient_list.css" />
+    <Compile Include="Reports\DataSource\ApolloDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApolloDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AppointmentController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstitutionController.cs" />
+    <Compile Include="Controllers\InsuranceInstitutionController.cs" />
+    <Compile Include="Controllers\MedicalController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Controllers\ProfessionalController.cs" />
+    <Compile Include="Controllers\SpecializationController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Content\images\data\banner_1.jpg" />
+    <Content Include="Content\images\data\banner_2.jpg" />
+    <Content Include="Content\images\loader.gif" />
+    <Content Include="Content\images\style\arrow_left_right_tooltip.png" />
+    <Content Include="Content\images\style\arrow_left_tooltip.png" />
+    <Content Include="Content\images\style\arrow_login_box.png" />
+    <Content Include="Content\images\style\arrow_more_information.png" />
+    <Content Include="Content\images\style\arrow_select_list_small.jpg" />
+    <Content Include="Content\images\style\arrow_top_tooltip.png" />
+    <Content Include="Content\images\style\bg_book_medical.jpg" />
+    <Content Include="Content\images\style\bg_grid_hours.gif" />
+    <Content Include="Content\images\style\bg_grid_hours.jpg" />
+    <Content Include="Content\images\style\bg_grid_hours_agenda.jpg" />
+    <Content Include="Content\images\style\bg_grid_medical_hours.jpg" />
+    <Content Include="Content\images\style\bg_grid_medical_hours2.jpg" />
+    <Content Include="Content\images\style\bg_select_menu_list.jpg" />
+    <Content Include="Content\images\style\bg_select_menu_list.png" />
+    <Content Include="Content\images\style\bg_select_menu_list_small1.jpg" />
+    <Content Include="Content\images\style\bg_select_menu_list_small2.jpg" />
+    <Content Include="Content\images\style\botom_car_medical.png" />
+    <Content Include="Content\images\style\bottom_calendar.jpg" />
+    <Content Include="Content\images\style\calendar_icon_medical.png" />
+    <Content Include="Content\images\style\check_img.png" />
+    <Content Include="Content\images\style\circle_count.png" />
+    <Content Include="Content\images\style\destacado1.jpg" />
+    <Content Include="Content\images\style\foto_profile.jpg" />
+    <Content Include="Content\images\style\galery.jpg" />
+    <Content Include="Content\images\style\icons_navigation_medical.png" />
+    <Content Include="Content\images\style\icons_notifications.png" />
+    <Content Include="Content\images\style\icon_add.png" />
+    <Content Include="Content\images\style\icon_close_tooltip.png" />
+    <Content Include="Content\images\style\icon_especials_medical.png" />
+    <Content Include="Content\images\style\icon_like_opinion.png" />
+    <Content Include="Content\images\style\icon_location.png" />
+    <Content Include="Content\images\style\ico_mail.png" />
+    <Content Include="Content\images\style\ico_ok.png" />
+    <Content Include="Content\images\style\ico_phone.png" />
+    <Content Include="Content\images\style\img_destacado1.jpg" />
+    <Content Include="Content\images\style\img_destacado2.jpg" />
+    <Content Include="Content\images\style\img_destacado3.jpg" />
+    <Content Include="Content\images\style\larry_bird.jpg" />
+    <Content Include="Content\images\style\line_footer.jpg" />
+    <Content Include="Content\images\style\logo_social.png" />
+    <Content Include="Content\images\style\map_test.png" />
+    <Content Include="Content\images\style\medico_icon.jpg" />
+    <Content Include="Content\images\style\noticia1.jpg" />
+    <Content Include="Content\images\style\noticia2.jpg" />
+    <Content Include="Content\images\style\noticia3.jpg" />
+    <Content Include="Content\images\style\ok_reservar_cita.png" />
+    <Content Include="Content\images\style\photo_small_example.jpg" />
+    <Content Include="Content\images\style\redes_sociales.png" />
+    <Content Include="Content\images\style\registro_medico.jpg" />
+    <Content Include="Content\images\style\registro_medico2.jpg" />
+    <Content Include="Content\images\style\registro_paciente.jpg" />
+    <Content Include="Content\images\style\ribbon_free.png" />
+    <Content Include="Content\images\style\services.jpg" />
+    <Content Include="Content\images\style\shadow_calendar_medical.png" />
+    <Content Include="Content\images\style\shadow_card_medical.png" />
+    <Content Include="Content\images\style\shadow_profile_medical.png" />
+    <Content Include="Content\images\style\share_redes.jpg" />
+    <Content Include="Content\images\style\sprite_medical_book.png" />
+    <Content Include="Content\images\style\sprite_next_prev_calendar.png" />
+    <Content Include="Content\images\style\sprite_next_prev_calendar2.png" />
+    <Content Include="Content\images\style\sprite_numbers_location.png" />
+    <Content Include="Content\images\style\sprite_progress_reservar.png" />
+    <Content Include="Content\images\style\sprite_star.png" />
+    <Content Include="Content\images\style\top_icon_medical.png" />
+    <Content Include="Content\styles\calendar.css" />
+    <Content Include="Content\styles\dialog.css" />
+    <Content Include="Content\styles\edit_profile_medical.css" />
+    <Content Include="Content\styles\medical_calendar_book.css" />
+    <Content Include="Content\styles\medical_profile.css" />
+    <Content Include="Content\images\style\border-radius.htc" />
+    <Content Include="Content\styles\fonts\Lato-Bla-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-BlaIta-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-Bol-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-BolIta-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-Hai-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-HaiIta-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-Lig-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-LigIta-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-Reg-webfont.svg" />
+    <Content Include="Content\styles\fonts\Lato-RegIta-webfont.svg" />
+    <Content Include="Content\styles\fonts\stylesheet.css" />
+    <Content Include="Content\styles\form.css" />
+    <Content Include="Content\styles\home.css" />
+    <Content Include="Content\images\style\ie-css3.htc" />
+    <Content Include="Content\styles\book_appointment_flow.css" />
+    <Content Include="Content\styles\professionalteam.css" />
+    <Content Include="Content\styles\register.css" />
+    <Content Include="Content\styles\search_box.css" />
+    <Content Include="Content\styles\search_medical.css" />
+    <Content Include="Content\styles\simple_content.css" />
+    <Content Include="Content\styles\style.css" />
+    <Content Include="Content\styles\tabs.css" />
+    <Content Include="Scripts\apollo\professionalBook.js" />
+    <Content Include="Scripts\apollo\home.js" />
+    <Content Include="Scripts\apollo\professionalProfile.js" />
+    <Content Include="Scripts\custom\cropimage.js" />
+    <Content Include="Scripts\custom\hint.css" />
+    <Content Include="Scripts\custom\infoBubble.js" />
+    <Content Include="Scripts\custom\jquery.hint.js" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Utils\FilterAttribute\AuthorizeAttribute.cs" />
+    <Compile Include="Utils\Mail.cs" />
+    <Compile Include="Utils\Session.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Content Include="Content\images\tooltip\white_arrow.png" />
+    <Content Include="Scripts\custom\jquery.localscroll.js" />
+    <Content Include="Scripts\custom\jquery.scrollTo.js" />
+    <Content Include="Scripts\custom\locationdialog.js" />
+    <Content Include="Scripts\custom\login.css" />
+    <Content Include="Scripts\custom\login.js" />
+    <Content Include="Scripts\custom\message.js" />
+    <Content Include="Scripts\custom\modernizr.custom.57295.js" />
+    <Content Include="Scripts\custom\scroll_toolbar.js" />
+    <Content Include="Scripts\custom\select.js" />
+    <Content Include="Scripts\custom\tabber.js" />
+    <Content Include="Scripts\jquery.printThis\jquery.PrintArea.js" />
+    <Content Include="Scripts\jquery.printThis\PrintArea.css" />
+    <Content Include="Scripts\jquery.printThis\printThis.js" />
+    <Content Include="Scripts\jquery.tools\tooltip.css" />
+    <Content Include="Content\images\contactLocations\DefaultContactLocation.jpg" />
+    <Content Include="Content\images\mail\letter\btm.png" />
+    <Content Include="Content\images\mail\letter\top.png" />
+    <Content Include="Content\templates\mail\letter.html" />
+    <Content Include="Facebook\Docs\content\images\FBCoreSettings.png" />
+    <Content Include="Facebook\Docs\content\images\FBCreateApplication.png" />
+    <Content Include="Facebook\Docs\content\images\webx-bkg.png" />
+    <Content Include="Facebook\Docs\content\images\webx-content-bkg.jpg" />
+    <Content Include="Facebook\Docs\content\images\webx-icon.png" />
+    <Content Include="Facebook\Docs\content\images\wm-mysite-settings.png" />
+    <Content Include="Facebook\Docs\content\images\wm-site-settings.png" />
+    <Content Include="Facebook\Docs\content\Site.css" />
+    <Content Include="Facebook\Docs\reference.htm" />
+    <Content Include="Facebook\Docs\startHere.htm" />
+    <Content Include="Scripts\ad-gallery\ad_next.png" />
+    <Content Include="Scripts\ad-gallery\ad_prev.png" />
+    <Content Include="Scripts\ad-gallery\ad_scroll_back.png" />
+    <Content Include="Scripts\ad-gallery\ad_scroll_forward.png" />
+    <Content Include="Scripts\ad-gallery\jquery.ad-gallery.css" />
+    <Content Include="Scripts\ad-gallery\jquery.ad-gallery.js" />
+    <Content Include="Scripts\ad-gallery\jquery.ad-gallery.min.js" />
+    <Content Include="Scripts\ad-gallery\loader.gif" />
+    <Content Include="Scripts\ad-gallery\opa75.png" />
+    <Content Include="Scripts\ad-gallery\trans.gif" />
+    <Content Include="Scripts\custom\datetime.js" />
+    <Content Include="Scripts\datefield\datePickerReady.js" />
+    <Content Include="Scripts\jquery.rotate\jQueryRotateCompressed.2.2.js" />
+    <Content Include="Scripts\sic\core.js" />
+    <Content Include="Scripts\sic\modernizer.js" />
+    <Content Include="Scripts\sic\security.js" />
+    <Content Include="Scripts\tapmodo-jcrop\Jcrop.gif" />
+    <Content Include="Scripts\tapmodo-jcrop\jquery.color.js" />
+    <Content Include="Scripts\tapmodo-jcrop\jquery.Jcrop.css" />
+    <Content Include="Scripts\tapmodo-jcrop\jquery.Jcrop.js" />
+    <Content Include="Scripts\tapmodo-jcrop\jquery.Jcrop.min.css" />
+    <Content Include="Scripts\tapmodo-jcrop\jquery.Jcrop.min.js" />
+    <Content Include="Views\Appointment\AppointmentBookItem.cshtml" />
+    <Content Include="Views\Appointment\AppointmentBookItemForNew.cshtml" />
+    <Content Include="Views\Shared\NotificationMessages.cshtml" />
+    <Content Include="Views\Patient\Create.cshtml" />
+    <Content Include="Views\Shared\PatientSearch.cshtml" />
+    <Content Include="Views\Patient\Epicrisis.cshtml" />
+    <Content Include="Views\Patient\Profile.cshtml" />
+    <Content Include="Views\Patient\MedicalCares.cshtml" />
+    <Content Include="Views\Patient\EditMedicalCare.cshtml" />
+    <Content Include="Views\Patient\MedicalCare.cshtml" />
+    <Content Include="Views\Patient\VitalSigns.cshtml" />
+    <Content Include="Views\Patient\MedicalHistory.cshtml" />
+    <Content Include="Views\Patient\Resume.cshtml" />
+    <Content Include="Views\Account\ExpiredSession.cshtml" />
+    <Content Include="Views\Patient\List.cshtml" />
+    <Content Include="Views\Professional\OfficeSchedule.cshtml" />
+    <Content Include="Views\Shared\CropImage.cshtml" />
+    <Content Include="Views\Patient\PrescriptionEntryEdit.cshtml" />
+    <Content Include="Views\Shared\Dialog.cshtml" />
+    <Content Include="Views\Patient\MedicationPrint.cshtml" />
+    <None Include="Properties\PublishProfiles\BackCore.pubxml" />
+    <None Include="Reports\DataSource\ApolloDataSet.xsc">
+      <DependentUpon>ApolloDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DataSource\ApolloDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ApolloDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\DataSource\ApolloDataSet.xss">
+      <DependentUpon>ApolloDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Scripts\jquery.printThis\printThis.jquery.json" />
+    <Content Include="Views\Professional\Team.cshtml" />
+    <Content Include="Views\Professional\User.cshtml" />
+    <Content Include="Views\Professional\EditUser.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Patient\PhysicalExamination.cshtml" />
+    <Content Include="Views\Professional\ProfessionalOfficesMapMarker.cshtml" />
+    <Content Include="Views\Patient\VitalSignHistory.cshtml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.WebData.xml" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.WebData.dll" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.Data.xml" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.Data.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Administration.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
+    <None Include="_bin_deployableAssemblies\NuGet.Core.dll" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.xml" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\images\cancel.png" />
+    <Content Include="Content\images\contacts\DefaultCustomer.jpg" />
+    <Content Include="Content\images\contacts\DefaultProfessional.jpg" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\App_Sprites\markers\number_0.png" />
+    <Content Include="Content\App_Sprites\markers\number_1.png" />
+    <Content Include="Content\App_Sprites\markers\number_10.png" />
+    <Content Include="Content\App_Sprites\markers\number_100.png" />
+    <Content Include="Content\App_Sprites\markers\number_11.png" />
+    <Content Include="Content\App_Sprites\markers\number_12.png" />
+    <Content Include="Content\App_Sprites\markers\number_13.png" />
+    <Content Include="Content\App_Sprites\markers\number_14.png" />
+    <Content Include="Content\App_Sprites\markers\number_15.png" />
+    <Content Include="Content\App_Sprites\markers\number_16.png" />
+    <Content Include="Content\App_Sprites\markers\number_17.png" />
+    <Content Include="Content\App_Sprites\markers\number_18.png" />
+    <Content Include="Content\App_Sprites\markers\number_19.png" />
+    <Content Include="Content\App_Sprites\markers\number_2.png" />
+    <Content Include="Content\App_Sprites\markers\number_20.png" />
+    <Content Include="Content\App_Sprites\markers\number_21.png" />
+    <Content Include="Content\App_Sprites\markers\number_22.png" />
+    <Content Include="Content\App_Sprites\markers\number_23.png" />
+    <Content Include="Content\App_Sprites\markers\number_24.png" />
+    <Content Include="Content\App_Sprites\markers\number_25.png" />
+    <Content Include="Content\App_Sprites\markers\number_26.png" />
+    <Content Include="Content\App_Sprites\markers\number_27.png" />
+    <Content Include="Content\App_Sprites\markers\number_28.png" />
+    <Content Include="Content\App_Sprites\markers\number_29.png" />
+    <Content Include="Content\App_Sprites\markers\number_3.png" />
+    <Content Include="Content\App_Sprites\markers\number_30.png" />
+    <Content Include="Content\App_Sprites\markers\number_31.png" />
+    <Content Include="Content\App_Sprites\markers\number_32.png" />
+    <Content Include="Content\App_Sprites\markers\number_33.png" />
+    <Content Include="Content\App_Sprites\markers\number_34.png" />
+    <Content Include="Content\App_Sprites\markers\number_35.png" />
+    <Content Include="Content\App_Sprites\markers\number_36.png" />
+    <Content Include="Content\App_Sprites\markers\number_37.png" />
+    <Content Include="Content\App_Sprites\markers\number_38.png" />
+    <Content Include="Content\App_Sprites\markers\number_39.png" />
+    <Content Include="Content\App_Sprites\markers\number_4.png" />
+    <Content Include="Content\App_Sprites\markers\number_40.png" />
+    <Content Include="Content\App_Sprites\markers\number_41.png" />
+    <Content Include="Content\App_Sprites\markers\number_42.png" />
+    <Content Include="Content\App_Sprites\markers\number_43.png" />
+    <Content Include="Content\App_Sprites\markers\number_44.png" />
+    <Content Include="Content\App_Sprites\markers\number_45.png" />
+    <Content Include="Content\App_Sprites\markers\number_46.png" />
+    <Content Include="Content\App_Sprites\markers\number_47.png" />
+    <Content Include="Content\App_Sprites\markers\number_48.png" />
+    <Content Include="Content\App_Sprites\markers\number_49.png" />
+    <Content Include="Content\App_Sprites\markers\number_5.png" />
+    <Content Include="Content\App_Sprites\markers\number_50.png" />
+    <Content Include="Content\App_Sprites\markers\number_51.png" />
+    <Content Include="Content\App_Sprites\markers\number_52.png" />
+    <Content Include="Content\App_Sprites\markers\number_53.png" />
+    <Content Include="Content\App_Sprites\markers\number_54.png" />
+    <Content Include="Content\App_Sprites\markers\number_55.png" />
+    <Content Include="Content\App_Sprites\markers\number_56.png" />
+    <Content Include="Content\App_Sprites\markers\number_57.png" />
+    <Content Include="Content\App_Sprites\markers\number_58.png" />
+    <Content Include="Content\App_Sprites\markers\number_59.png" />
+    <Content Include="Content\App_Sprites\markers\number_6.png" />
+    <Content Include="Content\App_Sprites\markers\number_60.png" />
+    <Content Include="Content\App_Sprites\markers\number_61.png" />
+    <Content Include="Content\App_Sprites\markers\number_62.png" />
+    <Content Include="Content\App_Sprites\markers\number_63.png" />
+    <Content Include="Content\App_Sprites\markers\number_64.png" />
+    <Content Include="Content\App_Sprites\markers\number_65.png" />
+    <Content Include="Content\App_Sprites\markers\number_66.png" />
+    <Content Include="Content\App_Sprites\markers\number_67.png" />
+    <Content Include="Content\App_Sprites\markers\number_68.png" />
+    <Content Include="Content\App_Sprites\markers\number_69.png" />
+    <Content Include="Content\App_Sprites\markers\number_7.png" />
+    <Content Include="Content\App_Sprites\markers\number_70.png" />
+    <Content Include="Content\App_Sprites\markers\number_71.png" />
+    <Content Include="Content\App_Sprites\markers\number_72.png" />
+    <Content Include="Content\App_Sprites\markers\number_73.png" />
+    <Content Include="Content\App_Sprites\markers\number_74.png" />
+    <Content Include="Content\App_Sprites\markers\number_75.png" />
+    <Content Include="Content\App_Sprites\markers\number_76.png" />
+    <Content Include="Content\App_Sprites\markers\number_77.png" />
+    <Content Include="Content\App_Sprites\markers\number_78.png" />
+    <Content Include="Content\App_Sprites\markers\number_79.png" />
+    <Content Include="Content\App_Sprites\markers\number_8.png" />
+    <Content Include="Content\App_Sprites\markers\number_80.png" />
+    <Content Include="Content\App_Sprites\markers\number_81.png" />
+    <Content Include="Content\App_Sprites\markers\number_82.png" />
+    <Content Include="Content\App_Sprites\markers\number_83.png" />
+    <Content Include="Content\App_Sprites\markers\number_84.png" />
+    <Content Include="Content\App_Sprites\markers\number_85.png" />
+    <Content Include="Content\App_Sprites\markers\number_86.png" />
+    <Content Include="Content\App_Sprites\markers\number_87.png" />
+    <Content Include="Content\App_Sprites\markers\number_88.png" />
+    <Content Include="Content\App_Sprites\markers\number_89.png" />
+    <Content Include="Content\App_Sprites\markers\number_9.png" />
+    <Content Include="Content\App_Sprites\markers\number_90.png" />
+    <Content Include="Content\App_Sprites\markers\number_91.png" />
+    <Content Include="Content\App_Sprites\markers\number_92.png" />
+    <Content Include="Content\App_Sprites\markers\number_93.png" />
+    <Content Include="Content\App_Sprites\markers\number_94.png" />
+    <Content Include="Content\App_Sprites\markers\number_95.png" />
+    <Content Include="Content\App_Sprites\markers\number_96.png" />
+    <Content Include="Content\App_Sprites\markers\number_97.png" />
+    <Content Include="Content\App_Sprites\markers\number_98.png" />
+    <Content Include="Content\App_Sprites\markers\number_99.png" />
+    <Content Include="Content\images\rate\cancel-off.png" />
+    <Content Include="Content\images\rate\cancel-on.png" />
+    <Content Include="Content\images\rate\star-half.png" />
+    <Content Include="Content\images\rate\star-off.png" />
+    <Content Include="Content\images\rate\star-on.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\themes\base\chosen\chosen-sprite.png" />
+    <Content Include="Content\themes\base\chosen\chosen.css" />
+    <Content Include="Scripts\chosen\chosen.jquery.js" />
+    <Content Include="Scripts\chosen\chosen.jquery.min.js" />
+    <Content Include="Scripts\custom\customvalidation.js" />
+    <Content Include="Scripts\custom\jquery.raty.js" />
+    <Content Include="Scripts\fancy\blank.gif" />
+    <Content Include="Scripts\fancy\fancybox_loading.gif" />
+    <Content Include="Scripts\fancy\fancybox_sprite.png" />
+    <Content Include="Scripts\fancy\helpers\fancybox_buttons.png" />
+    <Content Include="Scripts\fancy\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Scripts\fancy\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Scripts\fancy\helpers\jquery.fancybox-media.js" />
+    <Content Include="Scripts\fancy\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Scripts\fancy\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Scripts\fancy\jquery.fancybox.css" />
+    <Content Include="Scripts\fancy\jquery.fancybox.js" />
+    <Content Include="Scripts\fancy\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.2.js" />
+    <Content Include="Scripts\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.21.custom.min.js" />
+    <Content Include="Scripts\jquery.tools\jquery.tools.tooltip.min.js" />
+    <Content Include="Scripts\jquery.ui.core.js" />
+    <Content Include="Scripts\jquery.ui.core.min.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.js" />
+    <Content Include="Scripts\jquery.ui.datepicker.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\jquery.tooltip\jquery.tooltip.css" />
+    <Content Include="Scripts\jquery.tooltip\jquery.tooltip.js" />
+    <Content Include="Scripts\jquery.tooltip\jquery.tooltip.min.js" />
+    <Content Include="Scripts\jquery.tooltip\jquery.tooltip.pack.js" />
+    <Content Include="Scripts\slider\arrows.gif" />
+    <Content Include="Scripts\slider\bullet - copia.png" />
+    <Content Include="Scripts\slider\bullet.png" />
+    <Content Include="Scripts\slider\slider.js" />
+    <Content Include="Scripts\slider\shadow.png" />
+    <Content Include="Scripts\slider\slider.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\Profile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sic.Apollo.Models\Sic.Apollo.Models.csproj">
+      <Project>{89305C00-3655-4B5B-BD70-8D6FF754AB62}</Project>
+      <Name>Sic.Apollo.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sic.Apollo.Resources\Sic.Apollo.Resources.csproj">
+      <Project>{E09DABAC-AB25-4C22-BE01-15A920393F02}</Project>
+      <Name>Sic.Apollo.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sic.Core\Sic.Core.csproj">
+      <Project>{C0510130-68F0-4637-B3DE-5BE92DDCF67B}</Project>
+      <Name>Sic.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sic.Security\Sic.Security.csproj">
+      <Project>{2DD72841-6FA3-4498-B676-20A17ABE9DB8}</Project>
+      <Name>Sic.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sic.Web.Mvc\Sic.Web.Mvc.csproj">
+      <Project>{A9368BED-4421-4A6E-93FA-A609A90BFA08}</Project>
+      <Name>Sic.Web.Mvc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Specialization\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Specialization\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Specialization\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Specialization\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Specialization\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InsuranceInstitution\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InsuranceInstitution\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InsuranceInstitution\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InsuranceInstitution\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\InsuranceInstitution\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\RegisterProfessional.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\RegisterCustomer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoginButton.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SignInDialog.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\DayOfWeek.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ChangeCulture.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SearchCriteria.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\EditOffice.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\OfficeIndex.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\SpecializationList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ProfessionalCard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\Horary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\PersonalAppointment.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\Start.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\Offices.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\themes\base\ad-gallery\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\SignIn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\NewCustomer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\Finished.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\SelectUserType.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\CustomerMyAppointments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\ProfileHeader.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\Specializations.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\Schools.cshtml" />
+    <Content Include="Views\Professional\EditSchool.cshtml" />
+    <Content Include="Views\Appointment\CustomerCanceled.cshtml" />
+    <Content Include="Views\Professional\SchoolIndex.cshtml" />
+    <Content Include="Views\Appointment\CustomerCancel.cshtml" />
+    <Content Include="Views\Appointment\CustomerMyAppointmentsList.cshtml" />
+    <Content Include="Views\Appointment\PendingConfirmToAttention.cshtml" />
+    <Content Include="Views\Appointment\PendingConfirmToAttentionList.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalCanceled.cshtml" />
+    <Content Include="Views\Professional\CommunityIndex.cshtml" />
+    <Content Include="Views\Professional\Communities.cshtml" />
+    <Content Include="Views\Professional\EditCommunity.cshtml" />
+    <Content Include="Views\Professional\ProfessionalOfficeMapSync.cshtml" />
+    <Content Include="Views\Professional\Experiences.cshtml" />
+    <Content Include="Views\Professional\ExperienceIndex.cshtml" />
+    <Content Include="Views\Professional\EditExperience.cshtml" />
+    <Content Include="Views\Professional\InsuranceInstitutionPlans.cshtml" />
+    <Content Include="Views\Professional\InsuranceInstitutionIndex.cshtml" />
+    <Content Include="Views\Appointment\ConfirmAttendancePending.cshtml" />
+    <Content Include="Views\Appointment\ConfirmAttendancePendingIndex.cshtml" />
+    <Content Include="Views\Contact\EditProfilePicture.cshtml" />
+    <Content Include="Views\Shared\ProfilePicture.cshtml" />
+    <Content Include="Views\Professional\ProfessionalProfilePicture.cshtml" />
+    <Content Include="Views\Appointment\ConfirmAttended.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalAttended.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalConfirmNotAttended.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalNotAttended.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalAppointmentsHistorial.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalAppointmentsHistorialList.cshtml" />
+    <Content Include="Views\Appointment\CustomerPendingRatings.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\Customer\ProfileHeader.cshtml" />
+    <Content Include="Views\Customer\ProfilePicture.cshtml" />
+    <Content Include="Views\Professional\Presentation.cshtml" />
+    <Content Include="Views\Appointment\CustomerRate.cshtml" />
+    <Content Include="Views\Shared\Scorer.cshtml" />
+    <Content Include="Views\Appointment\CustomerRated.cshtml" />
+    <Content Include="Views\Professional\EditInsuranceInstitutionPlans.cshtml" />
+    <Content Include="Views\Professional\OfficesScheduling.cshtml" />
+    <Content Include="Views\Professional\EditOfficeSchedule.cshtml" />
+    <Content Include="Views\Appointment\CustomerReschedule.cshtml" />
+    <Content Include="Views\Professional\ProfessionalConfirmation.cshtml" />
+    <Content Include="Views\Professional\ProfessionalConfirm.cshtml" />
+    <Content Include="Views\Professional\ProfessionalConfirmed.cshtml" />
+    <Content Include="Views\Professional\ProfessionalSuspend.cshtml" />
+    <Content Include="Views\Professional\ProfessionalSuspended.cshtml" />
+    <Content Include="Views\Appointment\CustomerRescheduled.cshtml" />
+    <Content Include="Views\Appointment\CustomerRescheduleConfirmation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\EditProfessionalOfficeMap.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\SchedulePreview.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\SetLocation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\ProfessionalRate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\TwitterGoodies.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\TwitterProfile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\ProfessionalRateList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditContactLocationPictures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\OfficePictures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Gallery.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Facebook\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Code\Facebook.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\OfficePresentation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ThumbnailPictures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Professional\PresentationTip.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\ProfessionalBook.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\ProfessionalBookDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoginPopup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_SimpleLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\AccessDenied.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\AppointmentTip.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\ResourceNotFound.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\NotAvailable.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ExpiredSession.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Appointment\CustomerMaximumAllowedExceeded.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\images\style\.DS_Store" />
+    <None Include="Content\styles\.DS_Store" />
+    <None Include="Content\styles\fonts\Lato-Bla-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-Bla-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-Bla-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-BlaIta-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-BlaIta-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-BlaIta-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-Bol-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-Bol-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-Bol-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-BolIta-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-BolIta-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-BolIta-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-Hai-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-Hai-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-Hai-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-HaiIta-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-HaiIta-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-HaiIta-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-Lig-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-Lig-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-Lig-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-LigIta-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-LigIta-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-LigIta-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-Reg-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-Reg-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-Reg-webfont.woff" />
+    <None Include="Content\styles\fonts\Lato-RegIta-webfont.eot" />
+    <None Include="Content\styles\fonts\Lato-RegIta-webfont.ttf" />
+    <None Include="Content\styles\fonts\Lato-RegIta-webfont.woff" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <None Include="Content\styles\sprite_prev_next.psd" />
+    <Content Include="Views\Shared\BoxCalendar.cshtml" />
+    <Content Include="Views\Shared\BoxProfessionalCalendar.cshtml" />
+    <Content Include="Views\Shared\SearchCriteriaResult.cshtml" />
+    <Content Include="Views\Shared\BoxHeaderProfessionalCalendar.cshtml" />
+    <Content Include="Views\Appointment\ProfessionalInfoCard.cshtml" />
+    <Content Include="Views\Shared\_ProfessionalProfileLayout.cshtml" />
+    <Content Include="Views\Professional\ProfileOptions.cshtml" />
+    <Content Include="Views\Shared\BoxCalendarAppointmentBook.cshtml" />
+    <Content Include="Views\Appointment\Login.cshtml" />
+    <Content Include="Views\Appointment\CustomerBook.cshtml" />
+    <Content Include="Views\Appointment\CustomerMyAppointmentsBook.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\PatientMedication.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>2734</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

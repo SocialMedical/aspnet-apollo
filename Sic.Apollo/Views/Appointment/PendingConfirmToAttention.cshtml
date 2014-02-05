@@ -1,0 +1,265 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.ProfessionalOfficeAppointment>
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForAppointmentPendingConfirmation;
+}
+<h1>@Sic.Apollo.Resources.Resources.LabelForAppointmentPendingConfirmation</h1>
+<h5><label id="appMessage"></label></h5>
+
+<div id="dialogAppContainerNotAttend" style="background-color: #FFFFFF; display: none;">
+    <h1>@Sic.Apollo.Resources.Resources.LabelForAppointmentCancel</h1>
+    <input type="hidden" id="dialogCancelId"/>
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForCustomer:</b><span id="appCustomerNameCancel"></span></p>           
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForDate: </b><span id="appDateCancel"></span></p>           
+    <p><b><span>@Sic.Apollo.Resources.Resources.LegendForProfessionalAppointmentCancelConfirmation</span></b></p>
+    <p><textarea id="appnotesCancel"></textarea></p>
+    <p>
+    <button onclick="postConfirmAppToNotAttend()">@Sic.Apollo.Resources.Resources.LabelForYes</button>
+    <button onclick="closeDialogCancel()">@Sic.Apollo.Resources.Resources.LabelForNo</button>
+    </p>            
+</div>
+
+<div id="dialogAppContainerAttend" style="background-color: #FFFFFF; display: none;">
+    <h1>@Sic.Apollo.Resources.Resources.LabelForAppointmentConfirm</h1>
+    <input type="hidden" id="dialogConfirmId"/>
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForCustomer:</b><span id="appCustomerNameConfirm"></span></p>           
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForDate: </b><span id="appDateConfirm"></span></p>           
+    <p><b><span>@Sic.Apollo.Resources.Resources.LegendForProfessionalAppointmentConfirmation</span></b></p>
+    <p><textarea id="appnotesConfirm"></textarea></p>
+    <p>
+    <button onclick="postConfirmAppToAttend()">@Sic.Apollo.Resources.Resources.LabelForYes</button>
+    <button onclick="closeDialogConfirm()">@Sic.Apollo.Resources.Resources.LabelForNo</button>
+    </p>            
+</div>
+
+<div id="dialogAllAppContainerAttend" style="background-color: #FFFFFF; display: none;">
+    <h1>@Sic.Apollo.Resources.Resources.LabelForAppointmentConfirm</h1>    
+    <p><b><span>@Sic.Apollo.Resources.Resources.LegendForProfessionalAllAppointmentConfirmation</span></b></p>
+    <p><textarea id="appnotesAllConfirm"></textarea></p>
+    <p>
+    <button onclick="postAllConfirmAppToAttend()">@Sic.Apollo.Resources.Resources.LabelForYes</button>
+    <button onclick="closeAllDialogConfirm()">@Sic.Apollo.Resources.Resources.LabelForNo</button>
+    </p>            
+</div>
+
+<div id="dialogAllAppContainerNotAttend" style="background-color: #FFFFFF; display: none;">
+    <h1>@Sic.Apollo.Resources.Resources.LabelForAppointmentCancel</h1>    
+    <p><b><span>@Sic.Apollo.Resources.Resources.LegendForProfessionalAllAppointmentCancelConfirmation</span></b></p>
+    <p><textarea id="appnotesAllCancel"></textarea></p>
+    <p>
+    <button onclick="postAllConfirmAppToNotAttend()">@Sic.Apollo.Resources.Resources.LabelForYes</button>
+    <button onclick="closeAllDialogCancel()">@Sic.Apollo.Resources.Resources.LabelForNo</button>
+    </p>            
+</div>
+
+
+@foreach (var item in Model)
+{
+    <h2>@item.Description</h2>
+
+    if (item.ProfessionalAppointments.Count() > 0)
+    {
+        { Html.RenderPartial("PendingConfirmToAttentionList", item.ProfessionalAppointments.OrderByDescending(p => p.StartDate)); }
+    }
+    else
+    {
+    <p>@Sic.Apollo.Resources.Resources.LegendForNoOfficeAppointments</p>
+    }
+}
+<script>
+    var select = false;
+    function selectAll()
+    {
+        $.each($("input[name=selectApp]"), function(i, val)
+        {   
+            if(select==false)
+            {
+                $(val).attr('checked','checked')                             
+            }
+            else
+            {
+                $(val).removeAttr('checked')                
+            }
+        });  
+        
+        if(select==true)
+            {                
+                select = false;                
+                $("#buttonSelectCheck").text('@Html.Raw(Sic.Apollo.Resources.Resources.LabelForCheckAll)');
+            }
+            else
+            {
+                select = true;
+                $("#buttonSelectCheck").text('@Html.Raw(Sic.Apollo.Resources.Resources.LabelForUnCheckAll)');                                                
+            }                      
+    }
+
+    function refreshPendingConfirm(appointmentTransactionId, message) {
+        $("#buttons"+appointmentTransactionId).hide();
+        $("#message"+appointmentTransactionId).text(message);
+        $("#checkFor"+appointmentTransactionId).hide();
+    }     
+
+    function postAllConfirmAppToAttend() {
+        var notes = $("#appnotesAllConfirm").val();                
+        var appointmentTransactionId = "";
+        var array = new Array();
+        $.each($("input:checked[name=selectApp]"), function(i, val)
+        {        
+            array.push($(val).attr('value'));
+            appointmentTransactionId +=  $(val).attr('value') + ",";
+            refreshPendingConfirm($(val).attr('value'),'@Html.Raw(Sic.Apollo.Resources.Resources.LabelForSaving)');            
+        });                        
+                       
+        closeAllDialogConfirm();
+
+        sicPost("@Url.Action("ConfirmAllToAttention", "Appointment")", { appointmentTransactionId : appointmentTransactionId, confirmToAttentionNotes: notes} , 
+        function (data) {
+            $('#appMessage').text(data.Message);
+            $.each(array, function(i, val)
+            {                        
+                refreshPendingConfirm(val, data.ShortMessage);
+            });                           
+        });
+    }
+
+    function postAllConfirmAppToNotAttend() {
+        var notes = $("#appnotesAllCancel").val();                
+        var appointmentTransactionId = "";
+        var array = new Array();
+        $.each($("input:checked[name=selectApp]"), function(i, val)
+        {        
+            array.push($(val).attr('value'));
+            appointmentTransactionId +=  $(val).attr('value') + ",";
+            refreshPendingConfirm($(val).attr('value'),'@Html.Raw(Sic.Apollo.Resources.Resources.LabelForSaving)');            
+        });                        
+                       
+        closeAllDialogCancel();
+
+        sicPost("@Url.Action("CancelAllToAttention", "Appointment")", { appointmentTransactionId : appointmentTransactionId, confirmToAttentionNotes: notes} , 
+        function (data) {
+            $('#appMessage').text(data.Message);
+            $.each(array, function(i, val)
+            {                        
+                refreshPendingConfirm(val, data.ShortMessage);
+            });                           
+        });
+    }
+
+    function postConfirmAppToAttend() {    
+        var appointmentTransactionId = $("#dialogConfirmId").val();
+        var notes = $("#appnotesConfirm").val();        
+
+        closeDialogConfirm();
+        refreshPendingConfirm(appointmentTransactionId,'@Html.Raw(Sic.Apollo.Resources.Resources.LabelForSaving)');        
+
+        sicPost("@Url.Action("ConfirmToAttention", "Appointment")", { appointmentTransactionId : appointmentTransactionId, confirmToAttentionNotes : notes } , 
+        function (data) {
+            refreshPendingConfirm(appointmentTransactionId,data.ShortMessage);
+            $('#appMessage').text(data.Message);
+        });
+    }
+
+    function postConfirmAppToNotAttend() {
+        var appointmentTransactionId = $("#dialogCancelId").val();        
+        var notes = $("#appnotesCancel").val();
+
+        closeDialogCancel();
+        refreshPendingConfirm(appointmentTransactionId,'@Html.Raw(Sic.Apollo.Resources.Resources.LabelForSaving)');                
+
+        sicPost("@Url.Action("CancelToAttention", "Appointment")", { appointmentTransactionId : appointmentTransactionId, confirmToAttentionNotes : notes } , 
+        function (data) {
+            refreshPendingConfirm(appointmentTransactionId,data.ShortMessage);            
+            $('#appMessage').text(data.Message);
+        });
+    }    
+
+    function closeAllDialogConfirm(){
+        $("#dialogAllAppContainerAttend").dialog("close");
+    }
+
+    function closeAllDialogCancel(){
+        $("#dialogAllAppContainerNotAttend").dialog("close");
+    }
+
+    function closeDialogConfirm(){
+        $("#dialogAppContainerAttend").dialog("close");
+    }
+
+    function closeDialogCancel(){
+        $("#dialogAppContainerNotAttend").dialog("close");
+    }
+    
+    function dialogAllIniConfirm(){
+        $("#appnotesAllConfirm").val('');
+         $("#dialogAllAppContainerAttend").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			close: function() {				
+			}});	
+
+        $( "#dialogAllAppContainerAttend" ).dialog( "open" );
+    }
+
+    function dialogAllIniCancel(){
+        $("#appnotesAllCancel").val('');
+         $("#dialogAllAppContainerNotAttend").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			close: function() {				
+			}});	
+
+        $( "#dialogAllAppContainerNotAttend" ).dialog( "open" );
+    }
+
+    function dialogIniConfirm(appointmentTransactionId){
+        var customerName = $("#customerName" + appointmentTransactionId).text();         
+        var appDate = $("#startDate"+appointmentTransactionId).text();
+        $("#dialogConfirmId").val(appointmentTransactionId);        
+
+        $("#appCustomerNameConfirm").text(customerName);
+        $("#appDateConfirm").text(appDate);        
+        $("#appnotesConfirm").val('');
+
+        $("#dialogAppContainerAttend").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			close: function() {				
+			}});		        
+
+        $( "#dialogAppContainerAttend" ).dialog( "open" );
+    }
+
+    function dialogIniCancel(appointmentTransactionId){
+        var customerName = $("#customerName" + appointmentTransactionId).text();         
+        var appDate = $("#startDate"+appointmentTransactionId).text();
+        $("#dialogCancelId").val(appointmentTransactionId);        
+
+        $("#appCustomerNameCancel").text(customerName);
+        $("#appDateCancel").text(appDate);        
+        $("#appnotesCancel").val('');
+
+        $("#dialogAppContainerNotAttend").dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			close: function() {				
+			}});		        
+
+        $( "#dialogAppContainerNotAttend" ).dialog( "open" );
+    }
+
+    function confirmAppAttend(appointmentTransactionId) {                        
+        dialogIniConfirm(appointmentTransactionId);        
+    }
+
+    function confirmAppNotAttend(appointmentTransactionId) {                        
+        dialogIniCancel(appointmentTransactionId);        
+    }
+</script>

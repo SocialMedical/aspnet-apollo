@@ -1,0 +1,1629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LabelForActive" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="LabelForArea" xml:space="preserve">
+    <value>Sector</value>
+  </data>
+  <data name="LabelForBirthDate" xml:space="preserve">
+    <value>Fecha de Nacimiento</value>
+  </data>
+  <data name="LabelForCity" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="LabelForCountry" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="LabelForDefaultCellphone" xml:space="preserve">
+    <value>Celular</value>
+  </data>
+  <data name="LabelForDefaultEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LabelForDefaultPhoneNumber" xml:space="preserve">
+    <value>Teléfono Principal</value>
+  </data>
+  <data name="LabelForDefaultWebSite" xml:space="preserve">
+    <value>Página Web</value>
+  </data>
+  <data name="LabelForDescriptionAddress" xml:space="preserve">
+    <value>Descripción del Lugar</value>
+  </data>
+  <data name="LabelForEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LabelForExtensionPhoneNumber" xml:space="preserve">
+    <value>Ext.</value>
+  </data>
+  <data name="LabelForFirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LabelForFullName" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
+  <data name="LabelForGender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="LabelForID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="LabelForIntersectionStreet" xml:space="preserve">
+    <value>Intersección</value>
+  </data>
+  <data name="LabelForLastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="LabelForLatitudePoint" xml:space="preserve">
+    <value>Latitud</value>
+  </data>
+  <data name="LabelForLongitudePoint" xml:space="preserve">
+    <value>Longitud</value>
+  </data>
+  <data name="LabelForMiddleName" xml:space="preserve">
+    <value>Segundo Nombre</value>
+  </data>
+  <data name="LabelForName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="LabelForPhoneNumber" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="LabelForPOBox" xml:space="preserve">
+    <value>Casilla</value>
+  </data>
+  <data name="LabelForPostalCode" xml:space="preserve">
+    <value>Código Postal</value>
+  </data>
+  <data name="LabelForPriority" xml:space="preserve">
+    <value>Prioridad</value>
+  </data>
+  <data name="LabelForReferenceAddress" xml:space="preserve">
+    <value>Referencia</value>
+  </data>
+  <data name="LabelForSecondLastName" xml:space="preserve">
+    <value>Segundo Apellido</value>
+  </data>
+  <data name="LabelForState" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="LabelForStreet" xml:space="preserve">
+    <value>Calle</value>
+  </data>
+  <data name="LabelNumberInStreet" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="ValidationFieldRequired" xml:space="preserve">
+    <value>Información requerida</value>
+  </data>
+  <data name="LabelForCreateNew" xml:space="preserve">
+    <value>Crear Nuevo</value>
+  </data>
+  <data name="LabelForDelete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="LabelForDetails" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="LabelForEdit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="LabelForIndex" xml:space="preserve">
+    <value>Índice</value>
+  </data>
+  <data name="LabelForSpecialization" xml:space="preserve">
+    <value>Especialización</value>
+  </data>
+  <data name="LabelForBackToList" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="MessageDeleteConfirmation" xml:space="preserve">
+    <value>Está seguro de eliminar esta información?</value>
+  </data>
+  <data name="ValidationFieldForDataType" xml:space="preserve">
+    <value>Valor Incorrecto</value>
+  </data>
+  <data name="LabelForSave" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="LabelForType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="LabelForInsuranceInstitution" xml:space="preserve">
+    <value>Institución de Seguro</value>
+  </data>
+  <data name="LabelForPhoto" xml:space="preserve">
+    <value>Foto</value>
+  </data>
+  <data name="LabelForCustomer" xml:space="preserve">
+    <value>Paciente</value>
+  </data>
+  <data name="LabelForUserState" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="LabelForLogonName" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="LabelForPassword" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="LabelForUserType" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="LabelForProfessional" xml:space="preserve">
+    <value>Médico</value>
+  </data>
+  <data name="LabelForFemale" xml:space="preserve">
+    <value>Femenino</value>
+  </data>
+  <data name="LabelForMale" xml:space="preserve">
+    <value>Masculino</value>
+  </data>
+  <data name="LabelForAdministrator" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="LabelForInsurance" xml:space="preserve">
+    <value>Seguro Médico</value>
+  </data>
+  <data name="LabelForEmptySearchCity" xml:space="preserve">
+    <value>Búsqueda por Ciudad</value>
+  </data>
+  <data name="LabelForEmptySearchSpecialization" xml:space="preserve">
+    <value>Búsqueda por Especialización</value>
+  </data>
+  <data name="LabelForSearchProfessional" xml:space="preserve">
+    <value>Buscar Doctor u Odontólogo</value>
+  </data>
+  <data name="LabelForInactive" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
+  <data name="LabelForPendingConfirmation" xml:space="preserve">
+    <value>Por Confirmar</value>
+  </data>
+  <data name="LabelForSuspended" xml:space="preserve">
+    <value>Suspendido</value>
+  </data>
+  <data name="LabelForEmptySearchInsuranceInstitution" xml:space="preserve">
+    <value>Búsqueda por Seguro Médico</value>
+  </data>
+  <data name="LabelForEmptySearchProfessionalName" xml:space="preserve">
+    <value>Nombre del médico</value>
+  </data>
+  <data name="LabelForHome" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="LabelForProfile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="LabelForSignOut" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="MessageIncorrectData" xml:space="preserve">
+    <value>Datos incorrectos</value>
+  </data>
+  <data name="LabelForSignIn" xml:space="preserve">
+    <value>Ingresar</value>
+  </data>
+  <data name="LabelForCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="LabelForRegisterCustomer" xml:space="preserve">
+    <value>Crear Perfil</value>
+  </data>
+  <data name="LabelForRegisterProfessional" xml:space="preserve">
+    <value>Crear Perfil de Doctor</value>
+  </data>
+  <data name="LabelForRememberMe" xml:space="preserve">
+    <value>Recordarme</value>
+  </data>
+  <data name="LabelForAccountInformation" xml:space="preserve">
+    <value>Información de Cuenta</value>
+  </data>
+  <data name="LabelForOffice" xml:space="preserve">
+    <value>Consultorio</value>
+  </data>
+  <data name="LabelForChangeCountry" xml:space="preserve">
+    <value>Seleccione un País</value>
+  </data>
+  <data name="LabelForSearchNameProfessionalSugestion" xml:space="preserve">
+    <value>Busque por el nombre del Doctor u Odontólogo</value>
+  </data>
+  <data name="LabelForBack" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="LabelForAdd" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="LabelForAddOffice" xml:space="preserve">
+    <value>Agregar Consultorio</value>
+  </data>
+  <data name="LabelForBookOnline" xml:space="preserve">
+    <value>Reservar Cita en Línea</value>
+  </data>
+  <data name="LabelForAppointmentStart" xml:space="preserve">
+    <value>Realiza tu cita Online</value>
+  </data>
+  <data name="TitleForAppointmentStart" xml:space="preserve">
+    <value>Información de la Cita</value>
+  </data>
+  <data name="LabelForAppointmentReason" xml:space="preserve">
+    <value>Razón de la Visita</value>
+  </data>
+  <data name="LabelForAppointmentReasonQuestion" xml:space="preserve">
+    <value>¿Cuál es la razón de su visita?</value>
+  </data>
+  <data name="LabelForNumberInStreet" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="LabelForAppointmentEndDate" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="LabelForAppointmentStartDate" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="LabelForAppointmentState" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="LabelForAppointmentUseInsurance" xml:space="preserve">
+    <value>Usaré un Seguro Médico</value>
+  </data>
+  <data name="LabelForFirstAppointmentWithProfessional" xml:space="preserve">
+    <value>Primera Visita con el Médico</value>
+  </data>
+  <data name="LabelForNewCustomers" xml:space="preserve">
+    <value>Nuevos Pacientes</value>
+  </data>
+  <data name="LabelForContinue" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="LabelForCreateUser" xml:space="preserve">
+    <value>Crear Usuario</value>
+  </data>
+  <data name="LabelForImNewHere" xml:space="preserve">
+    <value>Soy nuevo aquí!</value>
+  </data>
+  <data name="LabelForImReturningCustomer" xml:space="preserve">
+    <value>Soy un usuario recurrente.</value>
+  </data>
+  <data name="LegendForNewCustomer" xml:space="preserve">
+    <value>El consultorio necesista su email para notificarle sobre cambios en su cita.</value>
+  </data>
+  <data name="LegendForReturningCustomer" xml:space="preserve">
+    <value>Nosotros usaremos la información de tu última visita.</value>
+  </data>
+  <data name="LabelForFinished" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="LabelForBookYourAppointment" xml:space="preserve">
+    <value>Reserva tu cita</value>
+  </data>
+  <data name="LegendForAppointmentBooked" xml:space="preserve">
+    <value>Tu cita está reservada!</value>
+  </data>
+  <data name="LegendForContactNumber" xml:space="preserve">
+    <value>Número de teléfono donde el doctor pueda contactarlo</value>
+  </data>
+  <data name="LegendForCustomerNotes" xml:space="preserve">
+    <value>Alguna nota para el consultorio del doctor?</value>
+  </data>
+  <data name="LegendForSendMeReminder" xml:space="preserve">
+    <value>Recordarme unas horas antes de mi cita</value>
+  </data>
+  <data name="LegendForAppointmentBookedContact" xml:space="preserve">
+    <value>Si tiene alguna pregunta, por favor contacte al consultorio del doctor directamente al </value>
+  </data>
+  <data name="LabelForConfirmed" xml:space="preserve">
+    <value>Confirmado</value>
+  </data>
+  <data name="LabelForPending" xml:space="preserve">
+    <value>Pendiente</value>
+  </data>
+  <data name="LabelForSignUp" xml:space="preserve">
+    <value>Regístrate</value>
+  </data>
+  <data name="LegendForRegisterCustomer" xml:space="preserve">
+    <value>Busca hacer una cita con uno de nuestros médicos u odontólogos en su área?</value>
+  </data>
+  <data name="LegendForRegisterProfessional" xml:space="preserve">
+    <value>¿Busca convertirse en un miembro de nuestra red de médicos? Regístrese para empezar a coordinar citas.</value>
+  </data>
+  <data name="LabelForMyAppointments" xml:space="preserve">
+    <value>Mis citas</value>
+  </data>
+  <data name="LabelForViewAppointments" xml:space="preserve">
+    <value>Ver citas</value>
+  </data>
+  <data name="LabelForAddress" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="LabelForPastAppointments" xml:space="preserve">
+    <value>Citas pasadas</value>
+  </data>
+  <data name="LabelForUpcomingAppointments" xml:space="preserve">
+    <value>Próximas citas</value>
+  </data>
+  <data name="LabelForDate" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="LabelForReasonForVisit" xml:space="preserve">
+    <value>Razón para la visita</value>
+  </data>
+  <data name="LabelForYourInsurance" xml:space="preserve">
+    <value>Tú Seguro Médico</value>
+  </data>
+  <data name="LegendForNoPastAppointments" xml:space="preserve">
+    <value>No tiene citas pasadas...</value>
+  </data>
+  <data name="LegendForNoUpcomingAppointments" xml:space="preserve">
+    <value>No tiene citas pendientes...</value>
+  </data>
+  <data name="LabelForProfessionalCommunities" xml:space="preserve">
+    <value>Comunidades</value>
+  </data>
+  <data name="LabelForProfessionalExperiences" xml:space="preserve">
+    <value>Experiencia</value>
+  </data>
+  <data name="LabelForProfessionalInsurances" xml:space="preserve">
+    <value>Seguros Afiliados</value>
+  </data>
+  <data name="LabelForProfessionalOffices" xml:space="preserve">
+    <value>Consultorios</value>
+  </data>
+  <data name="LabelForProfessionalSchools" xml:space="preserve">
+    <value>Educación</value>
+  </data>
+  <data name="LabelForProfessionalSpecializations" xml:space="preserve">
+    <value>Especializaciones Médicas</value>
+  </data>
+  <data name="LabelForDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="LabelForEndYear" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="LabelForPeriod" xml:space="preserve">
+    <value>Periodo</value>
+  </data>
+  <data name="LabelForSchool" xml:space="preserve">
+    <value>Institución de Estudios</value>
+  </data>
+  <data name="LabelForStartYear" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="LabelForAppointmentCanceled" xml:space="preserve">
+    <value>Cita Cancelada</value>
+  </data>
+  <data name="LegendForAppointmentCanceled" xml:space="preserve">
+    <value>Su cita ha sido cancelada</value>
+  </data>
+  <data name="LabelForReschedule" xml:space="preserve">
+    <value>Reprogramar</value>
+  </data>
+  <data name="LabelForCanceled" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="LabelForAppointmentCancel" xml:space="preserve">
+    <value>Cancelar Cita</value>
+  </data>
+  <data name="LegendForProfessionalAppointmentCancelConfirmation" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar esta cita?</value>
+  </data>
+  <data name="LabelForAppointmentPendingConfirmation" xml:space="preserve">
+    <value>Citas por confirmar</value>
+  </data>
+  <data name="LegendForNoOfficeAppointments" xml:space="preserve">
+    <value>No tiene citas en este consultorio</value>
+  </data>
+  <data name="LabelForConfirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="LabelForAppointmentConfirm" xml:space="preserve">
+    <value>Confirmar cita</value>
+  </data>
+  <data name="LegendForProfessionalAppointmentConfirmation" xml:space="preserve">
+    <value>¿Está seguro que desea confirmar esta cita?</value>
+  </data>
+  <data name="LabelForAppointmentConfirmed" xml:space="preserve">
+    <value>Cita confirmada</value>
+  </data>
+  <data name="LegendForAppointmentConfirmed" xml:space="preserve">
+    <value>La cita ha sido confirmada correctamente</value>
+  </data>
+  <data name="ValidationFieldComparer" xml:space="preserve">
+    <value>{0} debe ser {2} a {1}</value>
+  </data>
+  <data name="LabelForAfter" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="LabelForBefore" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="LabelForNext" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="HintForSpecializations" xml:space="preserve">
+    <value>Seleccione una o varias especializaciones...</value>
+  </data>
+  <data name="LegendForNotSearchProfessionalResult" xml:space="preserve">
+    <value>¡Lo sentimos!. No tenemos doctores registrados con los criterios seleccionados</value>
+  </data>
+  <data name="LabelForProfessionalExperience" xml:space="preserve">
+    <value>Mis Experiencias</value>
+  </data>
+  <data name="LabelForClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="LabelForAppointmentsCalendar" xml:space="preserve">
+    <value>Calendario de citas</value>
+  </data>
+  <data name="LabelForProfilePicture" xml:space="preserve">
+    <value>Imagen de Perfil</value>
+  </data>
+  <data name="LabelForEmptyChooseInsuranceInstitution" xml:space="preserve">
+    <value>Elija un Seguro Médico</value>
+  </data>
+  <data name="LabelForUseInsurance" xml:space="preserve">
+    <value>Usa Seguro Médico</value>
+  </data>
+  <data name="LabelForContactPhoneNumber" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="LabelForCustomerNotes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="LabelForAttended" xml:space="preserve">
+    <value>Asistió</value>
+  </data>
+  <data name="LabelForNotAttended" xml:space="preserve">
+    <value>No Asistió</value>
+  </data>
+  <data name="LabelForRated" xml:space="preserve">
+    <value>Calificada</value>
+  </data>
+  <data name="LabelForAttentionNotes" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="LabelForConfirmAttended" xml:space="preserve">
+    <value>Confirmar Asistencia</value>
+  </data>
+  <data name="LabelForConfirmedAttended" xml:space="preserve">
+    <value>Asistencia confirmada</value>
+  </data>
+  <data name="LabelForConfirmedNotAttended" xml:space="preserve">
+    <value>Inasistencia confirmada</value>
+  </data>
+  <data name="LabelForConfirmNotAttended" xml:space="preserve">
+    <value>Confirmar Inasistencia</value>
+  </data>
+  <data name="LegendForConfirmAttended" xml:space="preserve">
+    <value>Está seguro que desea confirmar la asistencia de esta cita?</value>
+  </data>
+  <data name="LegendForConfirmedAttended" xml:space="preserve">
+    <value>La asistencia ha sido confirmada</value>
+  </data>
+  <data name="LegendForConfirmedNotAttended" xml:space="preserve">
+    <value>La inasistencia ha sido confirmada</value>
+  </data>
+  <data name="LegendForConfirmNotAttended" xml:space="preserve">
+    <value>Está seguro que desea confirma la inasistenia de esta cita?</value>
+  </data>
+  <data name="LabelForAppointmentsHistorial" xml:space="preserve">
+    <value>Historial de citas</value>
+  </data>
+  <data name="LabelForPendingRatings" xml:space="preserve">
+    <value>Calificaciones pendientes</value>
+  </data>
+  <data name="LabelForRate" xml:space="preserve">
+    <value>Calificar</value>
+  </data>
+  <data name="LegendForNoAppointmentPendingRatings" xml:space="preserve">
+    <value>No tiene citas pendientes de calificar</value>
+  </data>
+  <data name="LabelForAppointmentRate" xml:space="preserve">
+    <value>Calificar cita</value>
+  </data>
+  <data name="LabelForRateComments" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="LabelForRateScore1" xml:space="preserve">
+    <value>Opinión General</value>
+  </data>
+  <data name="LabelForRateScore2" xml:space="preserve">
+    <value>Trato al paciente</value>
+  </data>
+  <data name="LabelForRateScore3" xml:space="preserve">
+    <value>Tiempo de Espera</value>
+  </data>
+  <data name="LabelForBad" xml:space="preserve">
+    <value>Malo</value>
+  </data>
+  <data name="LabelForGood" xml:space="preserve">
+    <value>Bueno</value>
+  </data>
+  <data name="LabelForGorgeous" xml:space="preserve">
+    <value>Excelente</value>
+  </data>
+  <data name="LabelForPoor" xml:space="preserve">
+    <value>Pobre</value>
+  </data>
+  <data name="LabelForRegular" xml:space="preserve">
+    <value>Regular</value>
+  </data>
+  <data name="LegendForAppointmentRated" xml:space="preserve">
+    <value>Ha calificado su cita correctamente</value>
+  </data>
+  <data name="LabelForAppointmentRated" xml:space="preserve">
+    <value>Cita calificada</value>
+  </data>
+  <data name="LabelForFriday" xml:space="preserve">
+    <value>Viernes</value>
+  </data>
+  <data name="LabelForMonday" xml:space="preserve">
+    <value>Lunes</value>
+  </data>
+  <data name="LabelForSunday" xml:space="preserve">
+    <value>Domingo</value>
+  </data>
+  <data name="LabelForThursday" xml:space="preserve">
+    <value>Jueves</value>
+  </data>
+  <data name="LabelForTuesday" xml:space="preserve">
+    <value>Martes</value>
+  </data>
+  <data name="LabelForWednesday" xml:space="preserve">
+    <value>Miércoles</value>
+  </data>
+  <data name="LabelForSaturday" xml:space="preserve">
+    <value>Sábado</value>
+  </data>
+  <data name="LabelForAppointmentDuration" xml:space="preserve">
+    <value>Duración por Cita</value>
+  </data>
+  <data name="LabelForEach" xml:space="preserve">
+    <value>Cada</value>
+  </data>
+  <data name="LabelForIndifiniteEndDate" xml:space="preserve">
+    <value>Con terminación Indefinida</value>
+  </data>
+  <data name="LabelForScheduleEndDate" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="LabelForScheduleEndTime" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="LabelForScheduleStartDate" xml:space="preserve">
+    <value>A partir de</value>
+  </data>
+  <data name="LabelForScheduleStartTime" xml:space="preserve">
+    <value>Desde</value>
+  </data>
+  <data name="LabelForWeek" xml:space="preserve">
+    <value>Semana</value>
+  </data>
+  <data name="LegendForScheduleEndTime" xml:space="preserve">
+    <value>Mi Jornada termina a las</value>
+  </data>
+  <data name="LegendForScheduleSelectDayOfWeek" xml:space="preserve">
+    <value>Elija los días de la semana que atenderá en este consultorio</value>
+  </data>
+  <data name="LegendForScheduleSelectRangeTime" xml:space="preserve">
+    <value>Elija el horario de atención</value>
+  </data>
+  <data name="LegendForScheduleStartTime" xml:space="preserve">
+    <value>Mi Jornada empieza a las</value>
+  </data>
+  <data name="LegendForScheduleDuration" xml:space="preserve">
+    <value>¿Cuál es la duración de cada cita?</value>
+  </data>
+  <data name="LabelForAppointmentReschedule" xml:space="preserve">
+    <value>Reprogramar cita</value>
+  </data>
+  <data name="LabelForProfessionalConfirmation" xml:space="preserve">
+    <value>Confirmación de Doctores u Odontólogos</value>
+  </data>
+  <data name="LabelForRegisterDate" xml:space="preserve">
+    <value>Fecha de Registro</value>
+  </data>
+  <data name="LabelForSuspend" xml:space="preserve">
+    <value>Suspender</value>
+  </data>
+  <data name="LabelForProfessionalConfirm" xml:space="preserve">
+    <value>Confirmar Doctor u Odontólogo</value>
+  </data>
+  <data name="LabelForProfessionalConfirmed" xml:space="preserve">
+    <value>Doctor u Odontólogo confirmado</value>
+  </data>
+  <data name="LabelForProfessionalSuspend" xml:space="preserve">
+    <value>Suspender Doctor u Odontólogo</value>
+  </data>
+  <data name="LabelForProfessionalSuspended" xml:space="preserve">
+    <value>Doctor u Odontólogo suspendido</value>
+  </data>
+  <data name="LegendForProfessionalConfirm" xml:space="preserve">
+    <value>¿Está seguro que desea confirmar este doctor u Odontólogo?</value>
+  </data>
+  <data name="LegendForProfessionalConfirmed" xml:space="preserve">
+    <value>El Doctor u Odontólogo ha sido confirmado</value>
+  </data>
+  <data name="LegendForProfessionalSuspend" xml:space="preserve">
+    <value>Está seguro que desea suspender este doctor u odontólogo?</value>
+  </data>
+  <data name="LegendForProfessionalSuspended" xml:space="preserve">
+    <value>El Doctor u Odontólogo ha sido suspendido</value>
+  </data>
+  <data name="LabelForLess" xml:space="preserve">
+    <value>Menos</value>
+  </data>
+  <data name="LabelForMore" xml:space="preserve">
+    <value>Más</value>
+  </data>
+  <data name="LegendForScheduleValidityDate" xml:space="preserve">
+    <value>Este horario estará vigente</value>
+  </data>
+  <data name="LabelForAppointmentRescheduled" xml:space="preserve">
+    <value>Cita reprogramada</value>
+  </data>
+  <data name="LegendForAppointmentRescheduleConfirmation" xml:space="preserve">
+    <value>Está seguro de reprogramar esta cita?</value>
+  </data>
+  <data name="LegendForAppointmentRescheduled" xml:space="preserve">
+    <value>Su cita ha sido reprogramada</value>
+  </data>
+  <data name="LabelForMap" xml:space="preserve">
+    <value>Mapa</value>
+  </data>
+  <data name="LabelForSetLocation" xml:space="preserve">
+    <value>Ubicación</value>
+  </data>
+  <data name="LegendForSetLocationInstructions" xml:space="preserve">
+    <value>Arrastre el marcador hasta el lugar donde se encuentra ubicado su consultorio</value>
+  </data>
+  <data name="LabelForPreviewVisualization" xml:space="preserve">
+    <value>Visualización Previa</value>
+  </data>
+  <data name="TitleForOfficesScheduling" xml:space="preserve">
+    <value>Horarios por Consultorio</value>
+  </data>
+  <data name="LegendForEmptyOffices" xml:space="preserve">
+    <value>No tiene Consultorios Asociados</value>
+  </data>
+  <data name="LegendForEmptyOfficeSchedule" xml:space="preserve">
+    <value>No tiene programaciones para este consultorio</value>
+  </data>
+  <data name="LabelForProfessionalOfficesScheduling" xml:space="preserve">
+    <value>Horarios</value>
+  </data>
+  <data name="LabelForFrom" xml:space="preserve">
+    <value>De</value>
+  </data>
+  <data name="LabelForOccurs" xml:space="preserve">
+    <value>Ocurre</value>
+  </data>
+  <data name="LabelForStarting" xml:space="preserve">
+    <value>Empezando</value>
+  </data>
+  <data name="LabelForUntil" xml:space="preserve">
+    <value>Hasta</value>
+  </data>
+  <data name="LegendForScheduleDescription" xml:space="preserve">
+    <value>Ocurre el(los) día(s) {0} de {1:t} a {2:t} de cada {3} semana(s). Empezando el {4:dd/MMM/yyyy} {5} {6:dd/MMM/yyyy}</value>
+  </data>
+  <data name="ValidationForScheduleValidityEndDate" xml:space="preserve">
+    <value>La fecha de Vigencia Hasta es Requerida cuando la programación no es Indefinida</value>
+  </data>
+  <data name="LabelForProfessionalDescription" xml:space="preserve">
+    <value>Presentación Profesional</value>
+  </data>
+  <data name="LabelForViewMyProfile" xml:space="preserve">
+    <value>Ver mi Perfil</value>
+  </data>
+  <data name="TitleForHome" xml:space="preserve">
+    <value>Encuentra un doctor o dentista por Especialidad, Ciudad, Seguro Médico | Ver Comentarios y Calificaciones de Doctores | Sistema de Agenda e Historias Clínicas | Reserva una cita en línea. Gratis!</value>
+  </data>
+  <data name="LabelForCustomersComments" xml:space="preserve">
+    <value>Comentarios de Pacientes</value>
+  </data>
+  <data name="LabelForBy" xml:space="preserve">
+    <value>por</value>
+  </data>
+  <data name="LabelForApplicationName" xml:space="preserve">
+    <value>Social Medical</value>
+  </data>
+  <data name="LegendForProfessionalTweetText" xml:space="preserve">
+    <value>{0} @{1}</value>
+  </data>
+  <data name="LabelForFacebookAccount" xml:space="preserve">
+    <value>Facebook</value>
+  </data>
+  <data name="LabelForGooglePlusAccount" xml:space="preserve">
+    <value>Google+</value>
+  </data>
+  <data name="LabelForTwitterAccount" xml:space="preserve">
+    <value>Twitter</value>
+  </data>
+  <data name="LabelForNoRateComments" xml:space="preserve">
+    <value>No tiene comentarios de pacientes</value>
+  </data>
+  <data name="LegendForReadLessComments" xml:space="preserve">
+    <value>Leer menos comentarios...</value>
+  </data>
+  <data name="LegendForReadMoreComments" xml:space="preserve">
+    <value>Leer más comentarios..</value>
+  </data>
+  <data name="LegendForNoFoundProfessional" xml:space="preserve">
+    <value>!Lo sentimos!. En estos momentos no tenemos profesionales disponibles bajo los criterios seleccionados.</value>
+  </data>
+  <data name="LabelForDevelopedBy" xml:space="preserve">
+    <value>Desarrollado por</value>
+  </data>
+  <data name="LabelForOrganizationName" xml:space="preserve">
+    <value>Social Intelligence</value>
+  </data>
+  <data name="LabelForOrganizationUrl" xml:space="preserve">
+    <value>http://www.socialintelligence.com</value>
+  </data>
+  <data name="LabelForError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="LegendForError" xml:space="preserve">
+    <value>Lo sentimos, ha ocurrido un error mientras procesabamos su requerimiento</value>
+  </data>
+  <data name="LabelForPictures" xml:space="preserve">
+    <value>Imágenes</value>
+  </data>
+  <data name="TitleForProfilePicture" xml:space="preserve">
+    <value>Asignar una Foto a mi perfil</value>
+  </data>
+  <data name="LegendForAddOrReplacePicture" xml:space="preserve">
+    <value>Agregue o Reemplace una Foto</value>
+  </data>
+  <data name="MessageForDeletePictureFailure" xml:space="preserve">
+    <value>La foto no se ha podido eliminar</value>
+  </data>
+  <data name="MessageForDeletePictureOk" xml:space="preserve">
+    <value>La foto ha sido eliminada</value>
+  </data>
+  <data name="MessageForNotPictureThatDelete" xml:space="preserve">
+    <value>No existe una fotografía para borrar</value>
+  </data>
+  <data name="MessageForPictureMaxSizeValidation" xml:space="preserve">
+    <value>El tamaño de la fotografía es muy grande. Elija otro archivo. Solo se permiten {0} MB por fotografía.</value>
+  </data>
+  <data name="MessageForPictureRequired" xml:space="preserve">
+    <value>Se requiere una Fotografía</value>
+  </data>
+  <data name="MessageForPictureUploadedFailure" xml:space="preserve">
+    <value>No se pudo cargar la fotografía</value>
+  </data>
+  <data name="MessageForPictureUploadedOk" xml:space="preserve">
+    <value>Fotografía subida con éxito.</value>
+  </data>
+  <data name="MessageForSaveOk" xml:space="preserve">
+    <value>Se guardaron los datos con éxito.</value>
+  </data>
+  <data name="TitleForOfficePictures" xml:space="preserve">
+    <value>Imagenes de la Oficina</value>
+  </data>
+  <data name="LabelForFieldOptional" xml:space="preserve">
+    <value>(Opcional)</value>
+  </data>
+  <data name="LegendForIndefiniteEndSchedule" xml:space="preserve">
+    <value>Siempre utilizaré este horario</value>
+  </data>
+  <data name="MessageForSaveFailure" xml:space="preserve">
+    <value>Ocurrió un Error al intentar guardar los datos. Intente realizar la operación en otro momento</value>
+  </data>
+  <data name="MessageForVerifyIncorrectData" xml:space="preserve">
+    <value>Por favor verifique que los datos esten completos y sean ingresados correctamente</value>
+  </data>
+  <data name="TitleForEditOfficesSchedule" xml:space="preserve">
+    <value>Horario para Consultorio: {0}</value>
+  </data>
+  <data name="TitleForProfessionalOffices" xml:space="preserve">
+    <value>Consultorios</value>
+  </data>
+  <data name="TitleForProfessionalProfile" xml:space="preserve">
+    <value>Mi Perfil</value>
+  </data>
+  <data name="ValidationForAnyPhoneNumber" xml:space="preserve">
+    <value>Ingrese un Número de Teléfono o Celular</value>
+  </data>
+  <data name="ValidationForRequiredProfessionalSpecializations" xml:space="preserve">
+    <value>Seleccione su(s) especialidad(es)</value>
+  </data>
+  <data name="LabelForMoreInformation" xml:space="preserve">
+    <value>Más Información</value>
+  </data>
+  <data name="MessageForOfficeScheduleInformation" xml:space="preserve">
+    <value>Un horario determina el tiempo disponible para la atención de sus pacientes. Puede crear varios horarios por cada consultorio. Ejemplo: Horario de Lunes a Viernes, Horario de Fin de Semana, Horario Nocturno.</value>
+  </data>
+  <data name="ValidationForDuplicateAccountLogonName" xml:space="preserve">
+    <value>Cuenta de Usuario ya existe</value>
+  </data>
+  <data name="LabelForApplicationFacebookPage" xml:space="preserve">
+    <value>www.facebook.com/socialmedicalec</value>
+  </data>
+  <data name="LabelForApplicationTwitterAccount" xml:space="preserve">
+    <value>@socialmedicalec</value>
+  </data>
+  <data name="LabelForApplicationUrl" xml:space="preserve">
+    <value>www.socialmedical.com.ec</value>
+  </data>
+  <data name="LegendForAppointmentBookedTweetText" xml:space="preserve">
+    <value>He separado mi cita en {0} con el(la) Dr(a). {1}. {2}</value>
+  </data>
+  <data name="LegendForAppointmentRatedTweetText" xml:space="preserve">
+    <value>He calificado mi cita en {0} con el(la) Dr(a). {1} con: {2} estrellas. {3}</value>
+  </data>
+  <data name="LabelForAppointmentBookedTweetText" xml:space="preserve">
+    <value>Publica tu cita en Twitter</value>
+  </data>
+  <data name="LabelForAppointmentRatedTweetText" xml:space="preserve">
+    <value>Publica tu calificación en Twitter</value>
+  </data>
+  <data name="LabelForAll" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="MailForWelcomeCustomerBody" xml:space="preserve">
+    <value>Le damos la bienvenida a &lt;b&gt;{0}&lt;/b&gt;, su sitio en el cual usted podrá encontrar el doctor u odontólogo que necesita y separar citas con él, de una manera rápida y sencilla.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForWelcomeProfessionalBody" xml:space="preserve">
+    <value>Le damos la bienvenida a &lt;b&gt;{0}&lt;/b&gt;, su sitio en el cual más pacientes podrán saber de usted y separar sus citas, de una manera rápida y sencilla.&lt;br&gt;&lt;br&gt;Pronto nos comunicaremos con usted para confirmar sus datos, a partir de lo cual, podrá comenzar a tomar citas.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForCustomerHeader" xml:space="preserve">
+    <value>{1} {0}</value>
+  </data>
+  <data name="MailForProfessionalHeader" xml:space="preserve">
+    <value>{2} {1} {0}</value>
+  </data>
+  <data name="MailForWelcomeCustomerSubject" xml:space="preserve">
+    <value>Bienvenido a {0}</value>
+  </data>
+  <data name="MailForWelcomeProfessionalSubject" xml:space="preserve">
+    <value>Bienvenido a {0}</value>
+  </data>
+  <data name="LabelForConfirmedPassword" xml:space="preserve">
+    <value>Confirmación de Contraseña</value>
+  </data>
+  <data name="LabelForRegister" xml:space="preserve">
+    <value>Registrar</value>
+  </data>
+  <data name="ValidationForComparePassword" xml:space="preserve">
+    <value>Las contraseñas no coinciden</value>
+  </data>
+  <data name="ValidationForMaximunLength" xml:space="preserve">
+    <value>El campo {0} debe tener {1} dígitos como máximo</value>
+  </data>
+  <data name="ValidationForMinimunLength" xml:space="preserve">
+    <value>El campo {0} debe tener {1} dígitos como mínimo</value>
+  </data>
+  <data name="MailForProfessionalConfirmedBody" xml:space="preserve">
+    <value>Su información ha sido confirmada por &lt;b&gt;{0}&lt;/b&gt;; ahora ya puede empezar a tomar citas.&lt;br&gt;&lt;br&gt;Asegurese de llenar su información como: consultorios, horarios, estudios, etc., mientras más información coloque, más podrán saber sus pacientes de usted.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForProfessionalConfirmedSubject" xml:space="preserve">
+    <value>Su información ha sido confirmada por {0}</value>
+  </data>
+  <data name="LegendForRequiredPhoneNumberRegister" xml:space="preserve">
+    <value>(Necesario para confirmar su registro)</value>
+  </data>
+  <data name="MailForAppointmentBookedCustomerBody" xml:space="preserve">
+    <value>Ha &lt;b&gt;separado&lt;/b&gt; una cita con {8} &lt;b&gt;{7} {2}&lt;/b&gt; para el &lt;b&gt;{3:dddd}, {3:g}&lt;/b&gt;, en el consultorio ubicado en &lt;b&gt;{5}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Dentro de poco el doctor confirmará su cita; para mayor información puede comunicarse con el consultorio del doctor al &lt;b&gt;{6}&lt;b/&gt;.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForAppointmentBookedCustomerSubject" xml:space="preserve">
+    <value>Ha separado una cita con {3} {2} {0} para el {1:dddd}, {1:g}</value>
+  </data>
+  <data name="MailForAppointmentBookedProfessionalBody" xml:space="preserve">
+    <value>&lt;b&gt;{2}&lt;/b&gt; ha &lt;b&gt;separado&lt;/b&gt; una cita con usted para el &lt;b&gt;{3:dddd}, {3:g}&lt;/b&gt; con una duración estimada de &lt;b&gt;{4} minutos&lt;/b&gt;, en su consultorio ubicado en &lt;b&gt;{5}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Debe confirmar esta cita dentro del sitio lo antes posible, para que quede programada en su agenda.&lt;br&gt;&lt;br&gt;Le recomendamos comunicarse con el paciente al &lt;b&gt;{6}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForAppointmentBookedProfessionalSubject" xml:space="preserve">
+    <value>{0} ha separado una cita con usted para el {1:dddd}, {1:g}, se requiere su confirmación</value>
+  </data>
+  <data name="LabelForLogin" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="LabelForLoginFailed" xml:space="preserve">
+    <value>Usuario y/o contraseña incorrecto</value>
+  </data>
+  <data name="LabelForReadComments" xml:space="preserve">
+    <value>Leer comentarios</value>
+  </data>
+  <data name="HintForProfessionalNameSearch" xml:space="preserve">
+    <value>Nombre del Doctor u Odontólogo</value>
+  </data>
+  <data name="ValidationForDateRangeInvalid" xml:space="preserve">
+    <value>Periodo de Fechas Inválido</value>
+  </data>
+  <data name="LabelForSearch" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="LegendForFindProfessional" xml:space="preserve">
+    <value>Encuentra un Doctor u Odontólogo</value>
+  </data>
+  <data name="LegendForBookYourFree" xml:space="preserve">
+    <value>¡RESERVA TU CITA GRATIS!</value>
+  </data>
+  <data name="MessageForAccesDenied" xml:space="preserve">
+    <value>Acceso Restringido para sus Miembros</value>
+  </data>
+  <data name="MessageForUnauthorizedUser" xml:space="preserve">
+    <value>Acceso Restringido&lt;br&gt; No cuenta con los privilegios Necesarios.</value>
+  </data>
+  <data name="LegendForResourceNotFound" xml:space="preserve">
+    <value>Lo sentimos no pudimos encontrar lo que estabas búscando</value>
+  </data>
+  <data name="TitleForResourceNotFound" xml:space="preserve">
+    <value>¡Ups! Recurso no encontrado</value>
+  </data>
+  <data name="LabelForOffices" xml:space="preserve">
+    <value>Consultorios</value>
+  </data>
+  <data name="LegendForAppointmentNotAvailable" xml:space="preserve">
+    <value>¡Lo sentimos!. Esta cita ya no esta disponible.</value>
+  </data>
+  <data name="TitleForAppointmentNotAvailable" xml:space="preserve">
+    <value>Cita no disponible</value>
+  </data>
+  <data name="LabelForDearFemale" xml:space="preserve">
+    <value>Estimada</value>
+  </data>
+  <data name="LabelForDearMale" xml:space="preserve">
+    <value>Estimado</value>
+  </data>
+  <data name="LabelForProfessionalFemaleShort" xml:space="preserve">
+    <value>Dra.</value>
+  </data>
+  <data name="LabelForProfessionalMaleShort" xml:space="preserve">
+    <value>Dr.</value>
+  </data>
+  <data name="LabelForShe" xml:space="preserve">
+    <value>ella</value>
+  </data>
+  <data name="LabelForHe" xml:space="preserve">
+    <value>el</value>
+  </data>
+  <data name="MailForAppointmentCanceledCustomerBody" xml:space="preserve">
+    <value>Su cita ha sido &lt;b&gt;cancelada&lt;/b&gt; por {8} &lt;b&gt;{7} {2}&lt;/b&gt; para el &lt;b&gt;{3:dddd}, {3:g}&lt;/b&gt;, en el consultorio ubicado en &lt;b&gt;{5}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Para mayor información puede comunicarse con el consultorio del doctor al &lt;b&gt;{6}&lt;b/&gt;.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForAppointmentCanceledCustomerSubject" xml:space="preserve">
+    <value>Su cita ha sido cancelada por {3} {2} {0} para el {1:dddd}, {1:g}</value>
+  </data>
+  <data name="MailForAppointmentCanceledProfessionalBody" xml:space="preserve">
+    <value>Ha &lt;b&gt;cancelado&lt;/b&gt; una cita con &lt;b&gt;{2}&lt;/b&gt; para el &lt;b&gt;{3:dddd}, {3:g}&lt;/b&gt; con una duración estimada de &lt;b&gt;{4} minutos&lt;/b&gt;, en su consultorio ubicado en &lt;b&gt;{5}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Puede comunicarse con el paciente al &lt;b&gt;{6}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForAppointmentCanceledProfessionalSubject" xml:space="preserve">
+    <value>Ha cancelado una cita con {0} para el {1:dddd}, {1:g}</value>
+  </data>
+  <data name="MailForAppointmentConfirmedCustomerBody" xml:space="preserve">
+    <value>Su cita ha sido &lt;b&gt;confirmada&lt;/b&gt; por {8} &lt;b&gt;{7} {2}&lt;/b&gt; para el &lt;b&gt;{3:dddd}, {3:g}&lt;/b&gt;, en el consultorio ubicado en &lt;b&gt;{5}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Para mayor información puede comunicarse con el consultorio del doctor al &lt;b&gt;{6}&lt;b/&gt;.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForAppointmentConfirmedCustomerSubject" xml:space="preserve">
+    <value>Su cita ha sido confirmada por {3} {2} {0} para el {1:dddd}, {1:g}</value>
+  </data>
+  <data name="MailForAppointmentConfirmedProfessionalBody" xml:space="preserve">
+    <value>Ha &lt;b&gt;confirmado&lt;/b&gt; una cita con &lt;b&gt;{2}&lt;/b&gt; para el &lt;b&gt;{3:dddd}, {3:g}&lt;/b&gt; con una duración estimada de &lt;b&gt;{4} minutos&lt;/b&gt;, en su consultorio ubicado en &lt;b&gt;{5}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Puede comunicarse con el paciente al &lt;b&gt;{6}&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Saludos,&lt;br&gt;{0}&lt;br&gt;{1}</value>
+  </data>
+  <data name="MailForAppointmentConfirmedProfessionalSubject" xml:space="preserve">
+    <value>Ha confirmado una cita con {0} para el {1:dddd}, {1:g}</value>
+  </data>
+  <data name="LegendForSuggestChooseAvailableAppointment" xml:space="preserve">
+    <value>Si lo desea, puede seleccionar una de las siguientes horarios disponibles.</value>
+  </data>
+  <data name="LabelForGoToMainPage" xml:space="preserve">
+    <value>Ir a la Página Principal</value>
+  </data>
+  <data name="LegendForExpiredSession" xml:space="preserve">
+    <value>Su sesión ha terminado. Por favor vuelva a iniciar sesión e intentelo de nuevo.</value>
+  </data>
+  <data name="TitleForExpiredSession" xml:space="preserve">
+    <value>Su Sesión a Terminado</value>
+  </data>
+  <data name="LegendForCustomerMaximumAppointmentAllowedExceeded" xml:space="preserve">
+    <value>Lo sentimos. Ha excedido el número de citas permitidas para la fecha seleccionada.</value>
+  </data>
+  <data name="TitleForCustomerMaximumAppointmentAllowedExceeded" xml:space="preserve">
+    <value>Excedió el número de citas permitidas.</value>
+  </data>
+  <data name="LabelForAccept" xml:space="preserve">
+    <value>Que acepte</value>
+  </data>
+  <data name="LabelForLocatedAt" xml:space="preserve">
+    <value>Ubicado en</value>
+  </data>
+  <data name="LabelForSearchBy" xml:space="preserve">
+    <value>Búsqueda por</value>
+  </data>
+  <data name="LabelForSpecialistIn" xml:space="preserve">
+    <value>Especialista en</value>
+  </data>
+  <data name="LabelForStartYourSearch" xml:space="preserve">
+    <value>Empieza tu búsqueda</value>
+  </data>
+  <data name="LegendForSlogan" xml:space="preserve">
+    <value>Confiable en todo momento</value>
+  </data>
+  <data name="LabelForInsurances" xml:space="preserve">
+    <value>Seguros Médicos</value>
+  </data>
+  <data name="LabelForSpecializations" xml:space="preserve">
+    <value>Especialidades</value>
+  </data>
+  <data name="LegendForProfessionalJoinUs" xml:space="preserve">
+    <value>{0} es la mejor oportunidad para darte a conocer y ganar nuevos pacientes. Únete ahora y forma parte de nuestra inovadora red de profesionales médicos donde gozaras de constantes beneficios.</value>
+  </data>
+  <data name="TitleForProfessionalJoinUs" xml:space="preserve">
+    <value>¿Médico Sobresaliente?</value>
+  </data>
+  <data name="LabelForEnrollNow" xml:space="preserve">
+    <value>Inscríbete ahora</value>
+  </data>
+  <data name="LabelForSearchProfessionalByName" xml:space="preserve">
+    <value>Por nombre del médico</value>
+  </data>
+  <data name="LabelForAppointmentBook" xml:space="preserve">
+    <value>Agenda</value>
+  </data>
+  <data name="LabelForCustomerHome" xml:space="preserve">
+    <value>Mis Citas</value>
+  </data>
+  <data name="LabelForMyAppointmentBook" xml:space="preserve">
+    <value>Mi Agenda</value>
+  </data>
+  <data name="LabelForProfessionalHome" xml:space="preserve">
+    <value>Mis Consultorios</value>
+  </data>
+  <data name="LabelForINotWillAttendThisAppointment" xml:space="preserve">
+    <value>No atenderé esta cita</value>
+  </data>
+  <data name="LabelForIWillAttendThisAppointment" xml:space="preserve">
+    <value>Atenderé esta cita</value>
+  </data>
+  <data name="MessageForConfirmToAttention" xml:space="preserve">
+    <value>La cita con {0} para el {1} ha sido confirmada.</value>
+  </data>
+  <data name="StringFormatForDefaultDateTime" xml:space="preserve">
+    <value>{0:dd/MMM/yyyy HH:mm}</value>
+  </data>
+  <data name="LabelForDoNothing" xml:space="preserve">
+    <value>No hacer nada</value>
+  </data>
+  <data name="LabelForNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="LabelForYes" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="LabelForGeneralOpinion" xml:space="preserve">
+    <value>Opinión General</value>
+  </data>
+  <data name="LabelForViewInformation" xml:space="preserve">
+    <value>Ver información</value>
+  </data>
+  <data name="LabelForGallery" xml:space="preserve">
+    <value>Galería</value>
+  </data>
+  <data name="LabelForBookProfessionalAppointment" xml:space="preserve">
+    <value>Reservar Cita</value>
+  </data>
+  <data name="StringFormatForDefaultDate" xml:space="preserve">
+    <value>{0:dd/MMM/yyyy}</value>
+  </data>
+  <data name="MessageForCancelToAttention" xml:space="preserve">
+    <value>La cita con {0} para el {1} ha sido cancelada.</value>
+  </data>
+  <data name="MessageForShortLabelCancelToAttention" xml:space="preserve">
+    <value>CITA CANCELADA</value>
+  </data>
+  <data name="MessageForShortLabelConfirmToAttention" xml:space="preserve">
+    <value>CITA CONFIRMADA</value>
+  </data>
+  <data name="LabelForSaving" xml:space="preserve">
+    <value>Guardando...</value>
+  </data>
+  <data name="MessageForAllCancelAppointmentToAttention" xml:space="preserve">
+    <value>Todas las citas seleccionadas fueron canceladas.</value>
+  </data>
+  <data name="MessageForAllConfirmAppointmentToAttention" xml:space="preserve">
+    <value>Todas las citas seleccionadas fueron confirmadas.</value>
+  </data>
+  <data name="LegendForProfessionalAllAppointmentCancelConfirmation" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar todas las citas seleccionadas?</value>
+  </data>
+  <data name="LegendForProfessionalAllAppointmentConfirmation" xml:space="preserve">
+    <value>¿Está seguro que desea confirmar todas las citas seleccionadas?</value>
+  </data>
+  <data name="LabelForSelectionCancelToAttention" xml:space="preserve">
+    <value>Cancelar los Seleccionados</value>
+  </data>
+  <data name="LabelForSelectionConfirmToAttention" xml:space="preserve">
+    <value>Confirmar los Seleccionados</value>
+  </data>
+  <data name="LabelForCheckAll" xml:space="preserve">
+    <value>Seleccionar Todo</value>
+  </data>
+  <data name="LabelForUnCheckAll" xml:space="preserve">
+    <value>DesmarcarTodo</value>
+  </data>
+  <data name="LegendForNoAppointmentAvailable" xml:space="preserve">
+    <value>No tiene citas disponibles por el momento.</value>
+  </data>
+  <data name="LegendForProfessionalSearchResult" xml:space="preserve">
+    <value>Ubique el medico apropiado y seleccione el horario en que desea ser atendido</value>
+  </data>
+  <data name="TitlePageForSearchResult" xml:space="preserve">
+    <value>{0} en {1}</value>
+  </data>
+  <data name="LabelForReadMore" xml:space="preserve">
+    <value>Leer más...</value>
+  </data>
+  <data name="LabelForDateAndHour" xml:space="preserve">
+    <value>Fecha y Hora</value>
+  </data>
+  <data name="LabelForInfoCustomer" xml:space="preserve">
+    <value>Info Paciente</value>
+  </data>
+  <data name="LabelForInfoVisit" xml:space="preserve">
+    <value>Info Visita</value>
+  </data>
+  <data name="LabelForFinish" xml:space="preserve">
+    <value>Finalizar</value>
+  </data>
+  <data name="LabelForPayCash" xml:space="preserve">
+    <value>Pagaré en efectivo</value>
+  </data>
+  <data name="LabelForForgotYourPassword" xml:space="preserve">
+    <value>Olvidó su contraseña?</value>
+  </data>
+  <data name="LabelForJoinUs" xml:space="preserve">
+    <value>Forma parte de nuestra red</value>
+  </data>
+  <data name="LabelForJoin" xml:space="preserve">
+    <value>Únete</value>
+  </data>
+  <data name="LabelForComments" xml:space="preserve">
+    <value>Comentarios</value>
+  </data>
+  <data name="LabelForCustomers" xml:space="preserve">
+    <value>Pacientes</value>
+  </data>
+  <data name="LabelForDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="LabelForEditProfile" xml:space="preserve">
+    <value>Editar Perfil</value>
+  </data>
+  <data name="LabelForApplicationGooglePlusPage" xml:space="preserve">
+    <value>www.plus.google.com/socialmedicalec</value>
+  </data>
+  <data name="LabelForApplicationTwitterPage" xml:space="preserve">
+    <value>www.twitter.com/socialmedicalec</value>
+  </data>
+  <data name="LabelForAboutUs" xml:space="preserve">
+    <value>Sobre Nosotros</value>
+  </data>
+  <data name="LabelForApplicationEmail" xml:space="preserve">
+    <value>info@socialmedical.com.ec</value>
+  </data>
+  <data name="LabelForCallUs" xml:space="preserve">
+    <value>Llámanos 0994478826 o escríbenos</value>
+  </data>
+  <data name="LabelForCopyright" xml:space="preserve">
+    <value>Copyright © 2012, Social Medical</value>
+  </data>
+  <data name="LabelForFollowUs" xml:space="preserve">
+    <value>Síguenos en</value>
+  </data>
+  <data name="LabelForNeedHelp" xml:space="preserve">
+    <value>¿Necesitas ayuda?</value>
+  </data>
+  <data name="LabelForPrivacyPolicy" xml:space="preserve">
+    <value>Políticas de Privacidad</value>
+  </data>
+  <data name="LabelForTermsAndConditions" xml:space="preserve">
+    <value>Términos y Condiciones</value>
+  </data>
+  <data name="LabelForProfessionals" xml:space="preserve">
+    <value>Médicos</value>
+  </data>
+  <data name="LabelForMyDoctors" xml:space="preserve">
+    <value>Mis médicos</value>
+  </data>
+  <data name="LabelForObsoleteAppointment" xml:space="preserve">
+    <value>Obsoleta</value>
+  </data>
+  <data name="MessageForConfirmAttended" xml:space="preserve">
+    <value>La cita con {0} para el {1} ha sido confirmada como Atendida.</value>
+  </data>
+  <data name="MessageForConfirmUnAttended" xml:space="preserve">
+    <value>La cita con {0} para el {1} ha sido confirmada como No Atendida.</value>
+  </data>
+  <data name="MessageForNewAppointmentCreated" xml:space="preserve">
+    <value>Ha separado una cita con {0} para el {1}</value>
+  </data>
+  <data name="LabelForNewPatient" xml:space="preserve">
+    <value>Nuevo Paciente</value>
+  </data>
+  <data name="LabelForOnlySave" xml:space="preserve">
+    <value>Solo Guardar</value>
+  </data>
+  <data name="LabelForSaveAndContinueFill" xml:space="preserve">
+    <value>Guardar y Continuar</value>
+  </data>
+  <data name="LegendForSaveNewPatientAs" xml:space="preserve">
+    <value>Guardar como nuevo paciente (Nombre Apellido)</value>
+  </data>
+  <data name="LabelForOverTurn" xml:space="preserve">
+    <value>Sobreturno</value>
+  </data>
+  <data name="LabelForDontHaveInsurance" xml:space="preserve">
+    <value>No tiene seguros asociados</value>
+  </data>
+  <data name="LabelForSchedulings" xml:space="preserve">
+    <value>Horarios</value>
+  </data>
+  <data name="LabelForInsurancePlan" xml:space="preserve">
+    <value>Plan</value>
+  </data>
+  <data name="LabelForInsuranceRegistrationCode" xml:space="preserve">
+    <value>No. Afiliado</value>
+  </data>
+  <data name="LabelForNoneSelect" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="LabelForMedicalHistories" xml:space="preserve">
+    <value>Evoluciones</value>
+  </data>
+  <data name="LabelForMedicalHistory" xml:space="preserve">
+    <value>Antecedentes</value>
+  </data>
+  <data name="LegendForEmptyPreviousMedicalHistory" xml:space="preserve">
+    <value>No tiene más evoluciones pasadas</value>
+  </data>
+  <data name="LegendForPreviousMedicalHistory" xml:space="preserve">
+    <value>Evoluciones Pasadas</value>
+  </data>
+  <data name="LabelForPatientVitalSigns" xml:space="preserve">
+    <value>Signos Vitales</value>
+  </data>
+  <data name="LabelForBeatsPerMinuteSymbol" xml:space="preserve">
+    <value>latidos/ min</value>
+  </data>
+  <data name="LabelForBreathsPerMinuteSymbol" xml:space="preserve">
+    <value>respiros/ min</value>
+  </data>
+  <data name="LabelForCelsiusSymbol" xml:space="preserve">
+    <value>°C</value>
+  </data>
+  <data name="LabelForCentimenterSymbol" xml:space="preserve">
+    <value>cm</value>
+  </data>
+  <data name="LabelForKilogramSymbol" xml:space="preserve">
+    <value>kg</value>
+  </data>
+  <data name="LabelForMercuryMillimetersSymbol" xml:space="preserve">
+    <value>mmHg</value>
+  </data>
+  <data name="LabelForMinuteSymbol" xml:space="preserve">
+    <value>min</value>
+  </data>
+  <data name="LabelForMedicalCareEvolution" xml:space="preserve">
+    <value>Evolución</value>
+  </data>
+  <data name="LabelForMedicalCareReason" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="LabelForFamilyProblem" xml:space="preserve">
+    <value>Antecedentes Familiares</value>
+  </data>
+  <data name="LabelForNoPathologicalProblem" xml:space="preserve">
+    <value>Hábitos</value>
+  </data>
+  <data name="LabelForObstetricGynecologyProblem" xml:space="preserve">
+    <value>Antecedentes Gineco Obstetricos</value>
+  </data>
+  <data name="LabelForPathologicalProblem" xml:space="preserve">
+    <value>Antecedentes Patológicos</value>
+  </data>
+  <data name="LabelForResume" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="LabelForPatients" xml:space="preserve">
+    <value>Pacientes</value>
+  </data>
+  <data name="LabelForSearchPatient" xml:space="preserve">
+    <value>Buscar Paciente</value>
+  </data>
+  <data name="LabelForPatientList" xml:space="preserve">
+    <value>Listado de Pacientes</value>
+  </data>
+  <data name="MessageForSelectAtLeastOneDay" xml:space="preserve">
+    <value>Seleccione al menos un día</value>
+  </data>
+  <data name="ValidationFieldDataTypeNameFor" xml:space="preserve">
+    <value>Valor Incorrecto para {0}</value>
+  </data>
+  <data name="LabelForPhotoCrop" xml:space="preserve">
+    <value>Ajuste de Fotografia</value>
+  </data>
+  <data name="LabelForShortProfessionalInsurances" xml:space="preserve">
+    <value>Seguros</value>
+  </data>
+  <data name="LabelForViewPatient" xml:space="preserve">
+    <value>Paciente</value>
+  </data>
+  <data name="LabelForAttendedAndGoPatient" xml:space="preserve">
+    <value>Si Asistió e Ir al Paciente</value>
+  </data>
+  <data name="LabelForIWillAttendThisAppointmentAndGoPatient" xml:space="preserve">
+    <value>Atenderé esta Cita e Ir al Paciente</value>
+  </data>
+  <data name="LabelForAge" xml:space="preserve">
+    <value>Edad</value>
+  </data>
+  <data name="LabelForPatientLastModification" xml:space="preserve">
+    <value>Última Modificación</value>
+  </data>
+  <data name="LabelForPatientNextAppointment" xml:space="preserve">
+    <value>Próxima Cita</value>
+  </data>
+  <data name="LabelForMedicine" xml:space="preserve">
+    <value>Medicina</value>
+  </data>
+  <data name="LabelForPosology" xml:space="preserve">
+    <value>Posología</value>
+  </data>
+  <data name="LabelForQuantity" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="LabelForHistory" xml:space="preserve">
+    <value>Historial</value>
+  </data>
+  <data name="LabelForMedication" xml:space="preserve">
+    <value>Tratamiento</value>
+  </data>
+  <data name="LabelForSaveAndPrint" xml:space="preserve">
+    <value>Guardar e Imprimir</value>
+  </data>
+  <data name="MessageForDeleteMedicalCareConfirmation" xml:space="preserve">
+    <value>¿Está seguro de eliminar la evolución seleccionada?</value>
+  </data>
+  <data name="LabelForPrint" xml:space="preserve">
+    <value>Imprimir</value>
+  </data>
+  <data name="MessageForSelectOfficePrintMedication" xml:space="preserve">
+    <value>Seleccione el consultorio con el que desea imprimir la receta</value>
+  </data>
+  <data name="LabelForIndications" xml:space="preserve">
+    <value>Indicaciones</value>
+  </data>
+  <data name="LabelForUnspecified" xml:space="preserve">
+    <value>No especificado</value>
+  </data>
+  <data name="LabelForBloodGroup" xml:space="preserve">
+    <value>Grupo Sanguíneo</value>
+  </data>
+  <data name="LabelForProfession" xml:space="preserve">
+    <value>Profesión</value>
+  </data>
+  <data name="LabelForProfessionHelp" xml:space="preserve">
+    <value>Ayuda</value>
+  </data>
+  <data name="MessageForDeletePatientConfirmation" xml:space="preserve">
+    <value>¿Esta seguro de eliminar el paciente seleccionado?</value>
+  </data>
+  <data name="MessageForDeletePatientSuccess" xml:space="preserve">
+    <value>Paciente Eliminado con éxito</value>
+  </data>
+  <data name="LabelForProfessionalTeam" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="MessageForDeleteProfessionalTeamConfirmation" xml:space="preserve">
+    <value>¿Esta seguro de eliminar el usuario seleccionado?</value>
+  </data>
+  <data name="LabelForAssistant" xml:space="preserve">
+    <value>Asistente</value>
+  </data>
+  <data name="LabelForEditUser" xml:space="preserve">
+    <value>Editar Usuario</value>
+  </data>
+  <data name="LabelForProfessionalOfficeHome" xml:space="preserve">
+    <value>Consultorio</value>
+  </data>
+  <data name="LabelForNewPassword" xml:space="preserve">
+    <value>Nueva Contraseña</value>
+  </data>
+  <data name="LableForConfirmNewPassword" xml:space="preserve">
+    <value>Confirmar Nueva Contraseña</value>
+  </data>
+  <data name="LegendForChangePassword" xml:space="preserve">
+    <value>Por favor ingrese la siguiente información para cambiar su contraseña</value>
+  </data>
+  <data name="TitleForChangePassword" xml:space="preserve">
+    <value>Cambiar Constraseña</value>
+  </data>
+  <data name="LabelForIncorrectPassword" xml:space="preserve">
+    <value>Password Incorrecto</value>
+  </data>
+  <data name="LabelForChangePassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
+  <data name="TitleForProfessionalSearchResult" xml:space="preserve">
+    <value>Médicos {0}. ¡Reserva una Cita en línea Gratis!. Direcciones y Horarios de doctores.</value>
+  </data>
+  <data name="TitleForRegisterCustomer" xml:space="preserve">
+    <value>Registrarse como Paciente | Realice citas online Gratis | Acceso a comentarios y calificaciones de Doctores</value>
+  </data>
+  <data name="TitleForRegisterProfessional" xml:space="preserve">
+    <value>Registrarse como Doctor/Odontólogo | Obtenga acceso al Sistema de Agenda e Historias Clínicas | Gane nuevos Pacientes</value>
+  </data>
+  <data name="TitlePageForHome" xml:space="preserve">
+    <value>Encuentra un médico y reserva tu cita en línea. Gratis!</value>
+  </data>
+  <data name="DescriptionForHome" xml:space="preserve">
+    <value>¡Encuentra un Doctor o dentista y reserva tus citas en línea al instante!. ¡Es gratis!. Si eres un doctor o dentista destacado únete a nuestra red para empezar a ganar pacientes y aumentar tu productividad con los Sistemas de Agenda e Historias Clínicas Online que te ofrecemos.</value>
+  </data>
+  <data name="DescriptionForProfessionalPresentation" xml:space="preserve">
+    <value>{0} está en {1}. Realiza citas al instante. Ver Fotografías, Consultorios, Horarios de Atención, Currículum, Comentarios y Calificaciones.</value>
+  </data>
+  <data name="DescriptionForProfessionalSearchResult" xml:space="preserve">
+    <value>Médicos {0} en {1}. Selecione el horario en que desea ser atendido y Reserve una cita en línea al instante. Comentarios, Calificaciones, Fotografías disponibles.</value>
+  </data>
+  <data name="DescriptionForRegister" xml:space="preserve">
+    <value>¿Eres un paciente que busca un doctor o eres un doctor que quiere ganar más pacientes?</value>
+  </data>
+  <data name="DescriptionForRegisterCustomer" xml:space="preserve">
+    <value>Seleccione el mejor médico acorde a sus necesidades, reserve citas en línea al instante y realice comentarios y calificaciones.</value>
+  </data>
+  <data name="DescriptionForRegisterProfessional" xml:space="preserve">
+    <value>Acceda a los múltiples Beneficios de Social Medical. Gane más pacientes, Organice su agenda de turnos y maneje historías clínicas electrónicas desde cualquier lugar.</value>
+  </data>
+  <data name="TitleForRegister" xml:space="preserve">
+    <value>Registro. Reserva de Citas en línea y Sistemas de Agenda e Historias Clínicas</value>
+  </data>
+  <data name="LabelForMedicalCareDiagnostic" xml:space="preserve">
+    <value>Diagnóstico</value>
+  </data>
+  <data name="LabelForMedicalCareTreatment" xml:space="preserve">
+    <value>Tratamiento</value>
+  </data>
+  <data name="LabelForPhysicalExamination" xml:space="preserve">
+    <value>Examen Físico</value>
+  </data>
+  <data name="LegendForInformationHasNotYetRegistered" xml:space="preserve">
+    <value>No ha registrado información</value>
+  </data>
+  <data name="MessageForAppointmentDeleted" xml:space="preserve">
+    <value>La cita fue eliminada correctamente</value>
+  </data>
+  <data name="LabelForAppointmentDelete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="LegendForProfessionalAppointmentDeleteConfirmation" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar esta cita?</value>
+  </data>
+  <data name="LabelForInstitution" xml:space="preserve">
+    <value>Institución</value>
+  </data>
+  <data name="LabelForDetail" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="LabelForBirthPlace" xml:space="preserve">
+    <value>Lugar de Nacimiento</value>
+  </data>
+</root>

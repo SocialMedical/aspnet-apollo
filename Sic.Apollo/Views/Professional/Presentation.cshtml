@@ -1,0 +1,278 @@
+﻿@model Sic.Apollo.Models.Pro.Professional
+@{
+    ViewBag.Title = string.Format("{0} - {1}", Model.DescriptionName, Sic.Apollo.Resources.Resources.LabelForApplicationName);
+}
+@section meta{
+    <meta name="description" content="@string.Format(Sic.Apollo.Resources.Resources.DescriptionForProfessionalPresentation, Model.DescriptionName, Sic.Apollo.Resources.Resources.LabelForApplicationName)"/>
+}
+@section Imports{
+    <link href="@Url.Content("~/Content/styles/medical_profile.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/styles/calendar.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/custom/jquery.localscroll.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/custom/jquery.scrollTo.js")" type="text/javascript"></script>
+}
+<div id="margin_profile_medical">
+</div>
+<!--medical_profile-->
+<div id="content_profile">
+    <div id="box_profile">
+        <div id="box_info_medico">
+            <div id="content_photo_profile">
+                <div id="photo_profile">
+                    <a href="@Model.Contact.Picture" data-fancybox-group="gallery" title="@Model.Contact.FullName" class = "fancyboxpictureProfile">
+                        @Html.Image(string.IsNullOrEmpty(Model.Contact.PictureMedium) ? Sic.Apollo.Constants.EmptyContactPicture : Model.Contact.PictureMedium, Model.Contact.FullName, new { height = 190, width = 130 })</a>
+                </div>
+            </div>
+            <div id="content_info_profile">
+                <div id="navigation">
+                    <div>
+                        <span class="txt_az_18">@Model.DescriptionName</span>
+                    </div>
+                    <div>
+                        <span class="txt_gris_12">@Model.ProfessionalDescription</span><br />
+                        @*<a href="#" class="txt_az_12_medico_profile">@Sic.Apollo.Resources.Resources.LabelForReadMore</a><br />*@
+                        <a href="#professionalRates" class="txt_az_12_medico_profile">@Sic.Apollo.Resources.Resources.LabelForReadComments</a>
+                    </div>
+                    <div>
+                        <br />
+                        <center>
+                        <span > <a href="#appointments" class="button_orange">@Sic.Apollo.Resources.Resources.LabelForBookProfessionalAppointment</a></span>
+  </center>
+                    </div>
+                </div>
+            </div>
+            <div id="share_social_profile">
+                <a href="mailto:@Model.Contact.Email" target="_blank">
+                    <img src="../../Content/images/style/ico_mail.png" width="34" height="29" alt="@Sic.Apollo.Resources.Resources.LabelForEmail"/></a>
+                @if (!String.IsNullOrEmpty(Model.Contact.TwitterAccount))
+                {
+                    @TwitterGoodies.FollowButton(Model.Contact.TwitterAccount, followStyle: TwitterGoodies.FollowStyles.Twitter);
+                    @TwitterGoodies.TweetButton(dataCount: TwitterGoodies.DataCount.None,
+                    tweetText: String.Format("{0} @{1}", Sic.Apollo.Resources.Resources.LabelForApplicationTwitterAccount, Model.Contact.TwitterAccount),
+                    language: TwitterGoodies.Languages.Spanish);
+                }
+                @if (!String.IsNullOrEmpty(Model.Contact.FacebookAccount))
+                {
+                    @Facebook.LikeButton(href: String.Format("www.facebook.com/{0}", Model.Contact.FacebookAccount), buttonLayout: "button_count");
+                }
+@*<img src="../../Content/images/style/share_redes.jpg" width="265" height="28" alt="" />*@
+            </div>
+        </div>
+        <div id="box_shadow_info_medico">
+        </div>
+    </div>
+    <div id="box_specialties">
+        <div id="box_specialties_one">
+            <div class="especial_icon">
+                <span class="txt_grv_13"><strong>@Sic.Apollo.Resources.Resources.LabelForProfessionalSpecializations</strong></span>
+            </div>
+            <div class="contenet_list_especialities">
+                <ul class="txt_gr_13">
+                    @foreach (var item in Model.ProfessionalSpecializations)
+                    {                                
+                        <li>@Html.ActionLink(item.Specialization.Name, "Details", "Specialization", new { id = item.SpecializationId }, new { @class = "txt_gr_13" })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div id="box_specialties_two">
+            <div class="opinion_icon">
+                <span class="txt_grv_13"><strong>@Sic.Apollo.Resources.Resources.LabelForGeneralOpinion</strong></span>
+            </div>
+            <center><div class="content_star_ranking">
+            <div class="star_all"> 
+    @{ Html.RenderPartial("Scorer", Model.RateScore ?? 0); }
+    </div>
+ </div></center>
+        </div>
+    </div>
+    <div id="box_map">
+        @*<div id="map">*@
+        @{ Html.RenderAction("ProfessionalOfficeMapSync", "Professional", new { professionals = ViewBag.ListMap, size = 2 }); }
+        @*</div>*@
+    </div>
+</div>
+<!--medical_profile-->
+<!--content_calendar-->
+<a name="appointments"></a>
+<div id="content_calendar">
+    @if (Model.ProfessionalOffices.Any())
+    {
+        foreach (var office in Model.ProfessionalOffices.OrderBy(p => p.MarkerIndex))
+        {                        
+        <div class="box_select_location">
+            <div id="icon_location">
+                <strong>@office.MarkerIndex</strong>
+            </div>
+            <div>
+                <strong><span class="txt_grc_13"><a href="javascript:viewOfficePresentation(@office.ContactLocationId,@office.MarkerIndex);">@office.Address</a></span>
+                </strong>
+                <br />
+                <span class="txt_az_12_medico_profile"><a href="javascript:viewOfficePresentation(@office.ContactLocationId,@office.MarkerIndex);" class="txt_az_12_medico_profile">@Sic.Apollo.Resources.Resources.LabelForViewInformation</a></span>
+            </div>
+        </div>
+        }
+
+    }
+    <div id="line_medical_location">
+    </div>
+    @if (Model.ProfessionalOffices.Any())
+    {
+        Html.RenderAction("OfficePresentation", new
+           {
+               contactLocationId = ViewBag.ContactLocationId,
+               marker = 1,
+               specializationId = ViewBag.SpecializationId
+           });
+    }
+</div>
+<!--content_calendar-->
+<!--coments_moreinformation-->
+<div id="content_more_information">
+    <div id="content_more_medical">
+        @if (Model.ProfessionalSchools.Any())
+        {
+            <strong><span class="txt_grc_13">@Sic.Apollo.Resources.Resources.LabelForProfessionalSchools</span></strong><br />
+            <ul>
+                @foreach (var item in Model.ProfessionalSchools)
+                {       
+                    <li class="txt_gr_12_medico_profile">
+
+                        @{
+                            var institutionName = item.Name;
+                            if (item.Institution != null)
+                            {
+                                institutionName = item.Institution.Contact.FirstName;
+                                    <a href="#" class="txt_gr_12_medico_profile">@institutionName</a>
+                            }
+                            else
+                            {
+                                    @:@institutionName
+                            }
+                        }
+                        @String.Format("{0} {1}", item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " : "") + item.EndYear.ToString() : "")
+                        @if (!string.IsNullOrWhiteSpace(item.Description))
+                        {
+                            @:<br />@item.Description
+                        }
+                    </li>        
+                }
+            </ul>
+        }
+        @if (Model.ProfessionalExperiences.Any())
+        {
+            <strong><span class="txt_grc_13">@Sic.Apollo.Resources.Resources.LabelForProfessionalExperiences</span></strong><br />
+            <ul>
+                @foreach (var item in Model.ProfessionalExperiences)
+                {       
+                    <li class="txt_gr_12_medico_profile">
+                        @{
+                    var institutionName = item.Name;
+                    if (item.Institution != null)
+                    {
+                        institutionName = item.Institution.Contact.FirstName;
+                            <a href="#" class="txt_gr_12_medico_profile">@institutionName</a>
+                    }
+                    else
+                    {
+                            @:@institutionName
+                    }
+                        }
+                        @String.Format("{0} {1}", item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " : "") + item.EndYear.ToString() : "")
+                        @if (!string.IsNullOrWhiteSpace(item.Description))
+                        {
+                            @:<br />@item.Description
+                        }
+                    </li>        
+                }
+            </ul>
+        }
+        @if (Model.ProfessionalCommunities.Any())
+        {
+            <strong><span class="txt_grc_13">@Sic.Apollo.Resources.Resources.LabelForProfessionalCommunities</span></strong><br />
+            <ul>
+                @foreach (var item in Model.ProfessionalCommunities)
+                {       
+                    <li class="txt_gr_12_medico_profile">
+                        @{
+                    var institutionName = item.Name;
+                    if (item.Institution != null)
+                    {
+                        institutionName = item.Institution.Contact.FirstName;
+                            <a href="#" class="txt_gr_12_medico_profile">@institutionName</a>
+                    }
+                    else
+                    {
+                            @:@institutionName
+            }
+                        }
+                        @String.Format("{0} {1}", item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " : "") + item.EndYear.ToString() : "")
+                        @if (!string.IsNullOrWhiteSpace(item.Description))
+                        {
+                            @:<br />@item.Description
+                        }
+                    </li>        
+                }
+            </ul>
+        }
+        @if (Model.ProfessionalInsuranceInstitutionPlans.Any())
+        {
+            <strong><span class="txt_grc_13">@Sic.Apollo.Resources.Resources.LabelForProfessionalInsurances</span></strong><br />
+            <ul>
+                @{ string insuranceInstitutionName = String.Empty; }
+                @foreach (var item in Model.ProfessionalInsuranceInstitutionPlans.OrderBy(p => p.InsuranceInstitution.Contact.FirstName).ThenBy(p => p.InsuranceInstitutionPlan.DescriptionName))
+                {
+                    //if (item.InsuranceInstitution.Contact.FirstName != insuranceInstitutionName)
+                    //{
+                    <li class="txt_gr_12_medico_profile">@item.InsuranceInstitution.Contact.FirstName
+                        @*- @item.InsuranceInstitutionPlan.DescriptionName*@
+                    </li>
+                    insuranceInstitutionName = item.InsuranceInstitution.Contact.FirstName;
+                    //}
+                        
+@*<li style='padding-left: 3em' class="txt_gr_12_medico_profile">@item.InsuranceInstitutionPlan.DescriptionName</li>         *@
+                }
+            </ul>                    
+        }
+    </div>
+    <a name="professionalRates"></a>
+    @{ Html.RenderAction("ProfessionalRate", "Professional", new { professionalId = Model.ProfessionalId }); }
+</div>
+<link href="@Url.Content("~/Scripts/fancy/jquery.fancybox.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/fancy/jquery.fancybox.pack.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Scripts/fancy/helpers/jquery.fancybox-thumbs.css")" rel="stylesheet"type="text/css" />
+<script src="@Url.Content("~/Scripts/fancy/helpers/jquery.fancybox-thumbs.js")" type="text/javascript"></script>
+<script>
+    $(document).ready(function() {
+        $('#navigation').localScroll({duration:1000});
+    });
+    
+    $(".fancyboxpictureProfile").fancybox();
+    $(".fancyboxpicture").fancybox({
+        nextEffect: 'fade', // 'elastic', 'fade' or 'none'			       			       			       			       
+        prevEffect: 'fade', // 'elastic', 'fade' or 'none'
+        helpers : {
+            thumbs : {
+                width: 75,
+                height: 50
+            },
+            title : {
+                type : 'over'
+            }
+        }                    
+    });    
+
+    function viewOfficePresentation(contactLocationId, marker) {
+        $("#presentationOffice").hide();
+        var specializationId = @{@ViewBag.SpecializationId;};
+        sicGet("@Url.Action("OfficePresentation", "Professional")",{contactLocationId:contactLocationId,specializationId:specializationId,
+            marker:marker}, function(data){
+                $("#presentationOffice").html(data);
+                $("#presentationOffice").slideDown('slow');
+            });        
+    }
+
+    function mapMarkerClick(professionalId,contactLocationId,markerIndex){
+        viewOfficePresentation(contactLocationId,markerIndex);        
+    }
+</script>

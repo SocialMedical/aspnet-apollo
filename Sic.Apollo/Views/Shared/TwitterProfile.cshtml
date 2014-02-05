@@ -1,0 +1,6 @@
+﻿@model string
+<p>@TwitterGoodies.Profile(@Model)</p> 
+@*<p>@TwitterGoodies.Search("@socialmedicalec")</p>*@
+<p>@TwitterGoodies.TweetButton(dataCount: TwitterGoodies.DataCount.None, 
+        tweetText: String.Format(Sic.Apollo.Resources.Resources.LegendForProfessionalTweetText, Sic.Apollo.Resources.Resources.LabelForApplicationTwitterAccount, @Model), 
+        language: TwitterGoodies.Languages.Spanish)</p>

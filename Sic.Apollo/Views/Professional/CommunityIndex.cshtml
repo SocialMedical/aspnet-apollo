@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalCommunity>      
+           
+<div class="content_tab3" id="divcommunityList">
+    @*@Html.TextBox("institutions")*@
+    <div class="add_office" style="cursor:pointer;" onclick="javascript:editCommunity(0,0,'');">
+        @Sic.Apollo.Resources.Resources.LabelForAdd
+    </div>
+    <div id="@Html.Encode("divcommunity0")">
+    </div>
+    @foreach (var item in Model)
+    {
+        <div class="list_content">
+            <div class="list_content_text">
+                @String.Format("{0} {1} {2}", item.Name, item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " : "") + item.EndYear.ToString() : "")
+                <br /><br />@item.Description
+            </div>
+            <div class="list_content_edit"  style="cursor:pointer" onclick="javascript:editCommunity(@item.ProfessionalCommunityId,0,'');">
+                <div class="list_content_iconedit">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForEdit
+            </div>
+            <div class="list_content_delete" style="cursor:pointer" onclick="javascript:deleteCommunity(@item.ProfessionalCommunityId);">
+                <div class="list_content_icondelete">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForDelete
+            </div>
+        </div>
+        <div id="@Html.Encode("divcommunity" + @item.ProfessionalCommunityId)">
+        </div>
+    }
+</div>           
+           
+                          
+@*<div id="divcommunityList">
+    <table>
+         <tr>
+            <td>                               
+                <div id="@Html.Encode("divcommunity0")">
+                </div>
+            </td>
+        </tr>        
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @String.Format("{0} {1} {2}", item.Name, item.StartYear, item.EndYear.HasValue ? (item.StartYear.HasValue ? " - " :  "") +item.EndYear.ToString() : "")
+                </td>
+                <td>
+                    <a href='javascript:editCommunity(@item.ProfessionalCommunityId,0,"");'>@Sic.Apollo.Resources.Resources.LabelForEdit</a>
+                    <a href='javascript:deleteCommunity(@item.ProfessionalCommunityId);'>@Sic.Apollo.Resources.Resources.LabelForDelete</a>
+                </td>
+            </tr>                        
+            <tr>
+                <td>
+                    <div id="@Html.Encode("divcommunity" + @item.ProfessionalCommunityId)">
+                    </div>
+                </td>
+            </tr>
+        }       
+    </table>
+</div>*@

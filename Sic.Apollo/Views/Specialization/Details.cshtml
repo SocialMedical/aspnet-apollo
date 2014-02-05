@@ -1,0 +1,37 @@
+﻿@model Sic.Apollo.Models.Pro.Specialization
+
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForDetails;
+}
+@section meta{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<h2>@Sic.Apollo.Resources.Resources.LabelForDetails</h2>
+
+<fieldset>
+    <legend>@Sic.Apollo.Resources.Resources.LabelForSpecialization</legend>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForPriority</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Priority)
+    </div>
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForProfession</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Profession)
+    </div>
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForProfessionHelp</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Help)
+    </div>
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForActive</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+<p>    
+    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForBackToList, "Index")
+</p>

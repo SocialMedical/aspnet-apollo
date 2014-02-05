@@ -1,0 +1,21 @@
+﻿<div id='MenuSection'>     
+@if (Sic.Web.Mvc.Session.IsLogged != null && Sic.Web.Mvc.Session.IsLogged)
+{
+    if (Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Professional)
+    {        
+
+    }
+    if(Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Customer)
+    {
+        <li>@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfile, "Profile", "Customer")</li>
+    }
+    @*<li>@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForMyAppointments, "CustomerMyAppointments", "Appointment")</li>    *@
+    <li>@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForPendingRatings, "CustomerPendingRatings", "Appointment")</li>    
+    if (Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Administrator)
+    {
+        <li>@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalConfirmation, "ProfessionalConfirmation", "Professional")</li>
+        <li>@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForSpecialization, "Index", "Specialization")</li>        
+        <li>@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForInsuranceInstitution, "Index", "InsuranceInstitution")</li>
+    }
+}    
+</div>

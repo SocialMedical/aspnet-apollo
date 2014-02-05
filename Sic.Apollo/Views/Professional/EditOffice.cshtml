@@ -1,0 +1,122 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOffice
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@{    
+    ViewBag.ProfessionalId = Model.ProfessionalId;
+    ViewBag.ContactLocationId = Model.ContactLocationId;    
+}
+@Html.HiddenFor(model => model.ContactLocationId)
+@Html.HiddenFor(model => model.ProfessionalId)
+
+    @using (Html.BeginForm("EditOffice", "Professional", FormMethod.Post, new { id = "editOfficeForm" }))
+    {    
+        <div class="edit_office_content">
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.CityId)</div>
+        <div class="edit_office_content_input">
+            @Html.DropDownListFor(model => model.CityId, (SelectList)ViewBag.CitiesSelectedList)
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.CityId)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.Address)</div>
+        <div class="edit_office_content_input">
+            @Html.TextAreaFor(model => model.Address, new { @class = "area_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Address)</span>
+            </div>
+        </div>        
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.References)</div>
+        <div class="edit_office_content_input">
+            @Html.TextBoxFor(model => model.References, new { @class = "input_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.References)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.DefaultPhoneNumber)</div>
+        <div class="edit_office_content_input">
+            @Html.TextBoxFor(model => model.DefaultPhoneNumber, new { @class = "input_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.DefaultPhoneNumber)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text_ext">@Html.LabelFor(model => model.DefaultPhoneExtension)</div>
+        <div class="edit_office_content_input_ext">
+            @Html.TextBoxFor(model => model.DefaultPhoneExtension, new { @class = "input_text_small" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.DefaultPhoneExtension)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.PhoneNumber01) @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+        <div class="edit_office_content_input">
+            @Html.TextBoxFor(model => model.PhoneNumber01, new { @class = "input_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.PhoneNumber01)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text_ext">@Html.LabelFor(model => model.PhoneExtension01)</div>
+        <div class="edit_office_content_input_ext">
+            @Html.TextBoxFor(model => model.PhoneExtension01, new { @class = "input_text_small" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.PhoneExtension01)</span>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.Description) @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+        <div class="edit_office_content_input">
+            @Html.TextAreaFor(model => model.Description, new { @class = "area_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Description)</span>
+            </div>
+        </div>
+        <div class="contet_buttons_edit">
+            <div class="center_buttons_edit">
+                <div class="buttons_edit">
+                    @{
+        var labelButton = Model.ContactLocationId == 0 ? Sic.Apollo.Resources.Resources.LabelForAdd : Sic.Apollo.Resources.Resources.LabelForEdit;
+                    }
+                    <input id="officeSave" type="button" class="button_save_orange" value="@labelButton" /></div>
+                <div class="buttons_edit">
+                    <input id="officeCancel" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForCancel" /></div>
+            </div>
+        </div>
+        </div>
+    }
+
+<script>       
+    
+    $(function () {       
+     $("#officeCancel").click(function () {    
+            refreshOffice();               
+          });
+    });
+    $(function () {       
+        $("#officeSave").click(function () {    
+            $("#contentPanelMessage").appendTo("#officeContentMessage");        
+            if($('#editOfficeForm').valid() == false)   {                
+                setMessage('@Sic.Apollo.Resources.Resources.MessageForVerifyIncorrectData', '@Sic.Constants.MessageType.Warning');
+                return;                
+            }                              
+            var office = getOffice();
+            if (office == null) {                     
+                return;
+            }           
+            // take the data and post it via json
+            sicPost("@Url.Action("EditOffice", "Professional")", office, function (data) {                                      
+                setMessage(data.Message, data.MessageType);                
+                refreshOffice();
+            });
+        });
+    });
+    function getOffice() {
+        var professionalId = @Html.Raw(Json.Encode(ViewBag.ProfessionalId));
+        var contactLocationId = @Html.Raw(Json.Encode(ViewBag.ContactLocationId));
+        var address = $("#Address").val();        
+        var description = $("#Description").val();
+        var cityId = $("#CityId").val();
+        var references = $("#References").val(); 
+        var defaultPhoneNumber = $("#DefaultPhoneNumber").val();
+        var defaultPhoneExtension = $("#DefaultPhoneExtension").val();               
+        return { ContactLocationId: contactLocationId, ProfessionalId: professionalId,        
+        Description: description, Address: address, References: references, 
+        CityId: cityId, DefaultPhoneNumber: defaultPhoneNumber, DefaultPhoneExtension: defaultPhoneExtension } 
+    }   
+</script>

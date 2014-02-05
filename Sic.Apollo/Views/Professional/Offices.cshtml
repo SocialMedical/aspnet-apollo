@@ -1,0 +1,284 @@
+﻿@model Sic.Apollo.Models.Pro.Professional           
+@{    
+    Layout = "~/Views/Shared/_ProfessionalProfileLayout.cshtml";
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForOffice;
+    ViewBag.OptionTitle = Sic.Apollo.Resources.Resources.LabelForEditProfile;
+    string emptyPictureSource = "/Content/images/contactLocations/DefaultContactLocation.jpg";
+}
+@section Imports{
+<script src="@Url.ContentVersion("~/Scripts/custom/tabber.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/styles/edit_profile_medical.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/styles/tabs.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.core.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.datepicker.css")" rel="stylesheet"  type="text/css" />
+<link href="@Url.Content("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" /><script src="@Url.Content("~/Scripts/jquery.ui.core.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" type="text/javascript"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places&language=@System.Threading.Thread.CurrentThread.CurrentUICulture.Name"></script>
+<script src="@Url.ContentVersion("~/Scripts/custom/locationdialog.js")" type="text/javascript"></script>
+
+<style>
+      input {
+        border: 1px solid  rgba(0, 0, 0, 0.5);
+      }
+      input.notfound {
+        border: 2px solid  rgba(255, 0, 0, 0.4);
+      }
+      .pac-container
+      {
+          z-index:10000 !important;
+      }
+    </style>
+}
+<!--tabs edicion-->
+<div id="content_tabs_edit">
+    @{Html.RenderPartial("ProfileHeader");}
+    <div class="content_box_edit">
+        <div class="profile_arrow_tab2">
+        </div>
+        <div id="officeContentMessage">        
+            @{Html.RenderPartial("NotificationMessages");}
+        </div>        
+        @{ Html.RenderPartial("OfficeIndex", Model.ProfessionalOffices); }
+    </div>
+    <div id="setLocationDialog" style="display:none">  </div>
+</div>
+<!--fin tabs edicion-->
+<script>
+var divScheduleExpandex = ''; 
+var divOfficeExpandex = '';
+
+function refreshOffice() {
+        var professionalId = @Html.Raw(Json.Encode(ViewBag.ProfessionalId));
+        sicGet("@Url.Action("OfficeIndex","Professional")", {professionalId:professionalId}, function(data){
+            $('#divofficeList').html(data);
+        });        
+    }    
+
+function openLocationDialog(contactLocationId,markerIndex,latitude,longitude){
+    setLocationDialog(contactLocationId, markerIndex, "@Html.Raw(Sic.Apollo.Resources.Resources.LabelForSetLocation)", 
+    latitude, longitude, 850, 530);
+}
+
+function refreshSchedule(contactLocationId) {        
+        sicGet("@Url.Action("OfficesScheduling","Professional")", {contactLocationId:contactLocationId}, function(data){
+            $("#officeScheduling" + contactLocationId).html(data);
+         });           
+}    
+function cancelSchedule(contactLocationId){ 
+        $(divScheduleExpandex).empty();
+        divScheduleExpandex = '';               
+        refreshSchedule(contactLocationId);
+    }
+function ValidationSchedule() {
+        if(selectedWeekDays() == "")
+        {
+            alert("@Html.Raw(Sic.Apollo.Resources.Resources.MessageForSelectAtLeastOneDay)");
+            return false;
+        }        
+        return true;        
+    }
+    function postSchedule()
+    {    
+        if(ValidationSchedule() && $('#formScheduleEdit').valid()==true)
+        {                        
+            var schedule = getOfficeScheduleSave();               
+            sicPost("@Url.Action("EditOfficeSchedule", "Professional")", schedule, function(data){                    
+                if(data.Success)
+                {
+                    $("#contentPanelMessage").appendTo("#officeContentMessage");
+                    setMessage(data.Message, data.MessageType);
+                    refreshSchedule(schedule.ContactLocationId);
+                    $(divScheduleExpandex).empty();
+                    divScheduleExpandex = '';
+                }
+                else
+                {
+                    $("#contentPanelMessage").appendTo("#officeScheduleContentMessage" + schedule.ProfessionalOfficeScheduleId);
+                    setMessage(data.Message, data.MessageType);
+                }                
+            });
+        }        
+    }
+    function selectedWeekDays()
+    {
+        var weekDays = "";
+        if ($("#day0").is(':checked') == true) { weekDays += "0|";}
+        if ($("#day1").is(':checked') == true) { weekDays += "1|";}
+        if ($("#day2").is(':checked') == true) { weekDays += "2|";}
+        if ($("#day3").is(':checked') == true) { weekDays += "3|";}
+        if ($("#day4").is(':checked') == true) { weekDays += "4|";}
+        if ($("#day5").is(':checked') == true) { weekDays += "5|";}
+        if ($("#day6").is(':checked') == true) { weekDays += "6|";}
+        return weekDays;
+    }    
+
+    function getOfficeScheduleSave(){
+        var contactLocationId = $("#scheduleContactLocationId").val();
+        var professionalOfficeScheduleId = $("#scheduleProfessionalOfficeScheduleId").val();
+        var indefiniteEndDate = false;
+        var day1 = false;
+        var day2 = false;
+        var day3 = false;
+        var day4 = false;
+        var day5 = false;
+        var day6 = false;
+        var day7 = false;
+        if ($("#scheduleIndefiniteEndDate").is(':checked') == true) indefiniteEndDate = true;
+        if ($("#day0").is(':checked') == true) day7 = true;
+        if ($("#day1").is(':checked') == true) day1 = true;
+        if ($("#day2").is(':checked') == true) day2 = true;
+        if ($("#day3").is(':checked') == true) day3 = true;
+        if ($("#day4").is(':checked') == true) day4 = true;
+        if ($("#day5").is(':checked') == true) day5 = true;
+        if ($("#day6").is(':checked') == true) day6 = true;
+        var eachWeek = $("#scheduleForEachWeek").val();          
+        var validityStartDateString = $("#scheduleValidityStartDate").val();
+        var validityEndDateString = $("#scheduleValidityEndDate").val();
+        var startTimeOfDay = getTicks(new Date($("#StartTime").val()));                  
+        var endTimeOfDay = getTicks(new Date($("#EndTime").val()));
+        var appointmentDuration = $("#scheduleAppointmentDuration").val();                        
+        var startDate = getTicks(new Date(getDateFromFormat($("#scheduleValidityStartDate").val(),'dd/MM/y')));                                                           
+        var endDate = null;                     
+        if($("#scheduleValidityEndDate").val()!=null && $("#scheduleValidityEndDate").val() != ""){
+                    endDate = getTicks(new Date(getDateFromFormat($("#scheduleValidityEndDate").val(),'dd/MM/y')));
+                }
+        var schedule = {ProfessionalOfficeScheduleId:professionalOfficeScheduleId,ContactLocationId:contactLocationId,Monday:day1,Tuesday:day2,Wednesday:day3,Thursday:day4,Friday:day5,Saturday:day6,Sunday:day7,
+                ForEachWeek:eachWeek,StartTimeTicks:startTimeOfDay,EndTimeTicks:endTimeOfDay,
+                AppointmentDuration:appointmentDuration,IndefiniteEndDate:indefiniteEndDate,
+                ValidityStartDateTicks:startDate,ValidityEndDateTicks:endDate,
+                ValidityStartDateString:validityStartDateString,ValidityEndDateString:validityEndDateString}
+        return schedule;
+    }
+
+    function getOfficeSchedule()
+    {
+        var contactLocationId = $("#scheduleContacLocationId").val();
+        var weekDays = selectedWeekDays();
+        var startTimeOfDay = getTicks(new Date($("#StartTime").val()));                  
+        var endTimeOfDay = getTicks(new Date($("#EndTime").val()));
+        var appointmentDuration = $("#scheduleAppointmentDuration").val();                        
+        var startDate = getTicks(new Date(getDateFromFormat($("#scheduleValidityStartDate").val(),'dd/MM/y')));                                                           
+        var endDate = null;
+        var eachWeek = $("#scheduleForEachWeek").val();            
+        var startConfiguration = startDate;
+        if($("#scheduleValidityEndDate").val()!=null && $("#scheduleValidityEndDate").val() != ""){
+                    endDate = getTicks(new Date(getDateFromFormat($("#scheduleValidityEndDate").val(),'dd/MM/y')));
+                }
+        var schedule = {contactLocationId:contactLocationId,weekDays:weekDays,
+                startTimeOfDay:startTimeOfDay,endTimeOfDay:endTimeOfDay,appointmentDuration:appointmentDuration,
+                startDate:startDate,endDate:endDate,eachWeek:eachWeek,startConfiguration:startConfiguration}
+        return schedule;
+    }
+
+    function schedulePreview(){
+        if($('formScheduleEdit').valid()==true)
+        {
+            var schedule = getOfficeSchedule();                    
+            sicGet("@Url.Action("SchedulePreview", "Appointment")", schedule ,
+                function(data){
+                    $('#divappointments').html(data); 
+                });
+        }
+    }
+    function indefiniteChange() {
+        if ($("#scheduleIndefiniteEndDate").is(':checked') == true) {  
+            $("#scheduleValidityEndDate").val("");
+            $("#divValidityEndDate").hide("slow");
+        }
+        else {
+            $("#divValidityEndDate").show("slow");
+        }
+    }
+function editOfficeSchedule(professionalOfficeScheduleId,contactLocationId){
+    if(divScheduleExpandex!='')    
+        $(divScheduleExpandex).html("");         
+    if(professionalOfficeScheduleId==0)
+    {                              
+        divScheduleExpandex = '#officeSchedule' + contactLocationId + '-0';         
+        sicGet("@Url.Action("EditOfficeSchedule","Professional")",{ contactLocationId: contactLocationId },function(data){
+            $(divScheduleExpandex).html(data);
+        });
+    }
+    else 
+    { 
+        divScheduleExpandex = '#officeSchedule' + contactLocationId + '-' + professionalOfficeScheduleId;         
+        sicGet("@Url.Action("EditOfficeSchedule", "Professional")", {professionalOfficeScheduleId : professionalOfficeScheduleId}, function(data){
+            $(divScheduleExpandex).html(data);
+        });
+    }
+}
+function deleteOfficeSchedule(contactLocationId,professionalOfficeScheduleId){
+    sicPost("@Url.Action("DeleteOfficeSchedule", "Professional")", {professionalOfficeScheduleId:professionalOfficeScheduleId}, function(data){                    
+                $("#contentPanelMessage").appendTo("#officeContentMessage");
+                if(data.Success)
+                {                    
+                    setMessage(data.Message, data.MessageType);
+                    refreshSchedule(contactLocationId);                    
+                }
+                else
+                {                    
+                    setMessage(data.Message, data.MessageType);
+                }                
+            });
+}
+function editOffice(contactLocationId)
+{ 
+    if(divOfficeExpandex != '') 
+    { 
+        $(divOfficeExpandex).html(""); 
+    } 
+    if (contactLocationId == 0)
+    { 
+        var professionalId = @Html.Raw(Json.Encode(ViewBag.ProfessionalId));                        
+        divOfficeExpandex = '#divoffice0'; 
+        sicGet("@Url.Action("EditOffice", "Professional")",{professionalId:professionalId}, function(data){
+            $(divOfficeExpandex).html(data);    
+        });        
+    } 
+    else 
+    { 
+        divOfficeExpandex = '#divoffice'+contactLocationId;         
+        sicGet("@Url.Action("EditOffice", "Professional")", {contactLocationId:contactLocationId}, function(data){
+            $(divOfficeExpandex).html(data);
+        });        
+    }
+ } 
+     function selectImage(contactLocationId,priority){
+        $("#ImgForm" + contactLocationId + "-" + priority + " input:file").click();
+     }
+         
+     function saveDescription(contactLocationId, priority) {
+        var descriptionValue = $("#description" + priority).val();
+        sicPost("@Url.Action("ContactLocationPictureSaveDescription", "Contact")",
+         { ContactLocationId: contactLocationId, Priority: priority, PictureDescription: descriptionValue }, function (data) {             
+         });
+     }
+     function deleteImage(contactLocationId, priority) {         
+         sicPost("@Url.Action("ContactLocationPictureDelete", "Contact")",
+         { ContactLocationId: contactLocationId, Priority: priority }, function (data) {             
+             var img = document.getElementById("picture" + contactLocationId + "-" + priority);
+             img.src = "@{@emptyPictureSource}";
+         });
+     }
+    function refreshPicture() {
+        var newImg = $.parseJSON($("#UploadTarget").contents().find("#jsonResult")[0].innerHTML);        
+        if (newImg.IsValid == true) 
+        {            
+            var img = document.getElementById("picture" + newImg.ContactLocationId + "-" + newImg.Priority);            
+            img.src = newImg.ThumbnailImagePath;
+            $("#picturelink" + newImg.ContactLocationId + "-" + newImg.Priority).attr('href',newImg.ImagePath);
+                                 
+            $("#picture" + newImg.ContactLocationId + "-" + newImg.Priority).hide();
+            $("#picture" + newImg.ContactLocationId + "-" + newImg.Priority).fadeIn(500, null);
+        }                        
+        $("#panelLoading" + newImg.ContactLocationId + "-" + newImg.Priority).hide();                
+        $("#contentPanelMessage").appendTo("#officeContentMessage" + newImg.ContactLocationId);               
+        setMessage(newImg.Message, newImg.MessageType);        
+    }
+
+    function UploadImage(contactLocationId,priority) {
+        $("#panelLoading" + contactLocationId + "-" + priority).show();
+        $("#picture" + contactLocationId + "-" + priority).hide();
+        $("#ImgForm" + contactLocationId + "-" + priority).submit();        
+    }   
+</script>

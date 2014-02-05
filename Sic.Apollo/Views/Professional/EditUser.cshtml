@@ -1,0 +1,78 @@
+﻿@model Sic.Apollo.Models.Security.View.EditUserContact
+@{
+    Layout = "~/Views/Shared/_ProfessionalProfileLayout.cshtml";
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForEditUser;
+    ViewBag.OptionTitle = Sic.Apollo.Resources.Resources.LabelForEditUser;
+}
+@section Imports
+{
+    <link href="@Url.Content("~/Content/styles/edit_profile_medical.css")" rel="stylesheet" type="text/css" />
+}
+<div class="content_box">    
+    @using (Html.BeginForm())
+    {        
+        Html.RenderPartial("NotificationMessages");
+        @Html.HiddenFor(model => model.ProfessionalTeamId);
+        @Html.HiddenFor(model => model.UserId);
+        <div class="content_tab1">            
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.FirstName)</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.FirstName, new { @class = "input_text" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.FirstName)</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.MiddleName) @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.MiddleName, new { @class = "input_text" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.MiddleName)</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.LastName)</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.LastName, new { @class = "input_text" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.LastName)</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.SecondLastName) @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.Contact.SecondLastName, new { @class = "input_text" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.SecondLastName)</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Html.LabelFor(model => model.Contact.Gender)</div>
+            <div class="box_input_form">
+                @Html.DropDownListFor(model => model.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male), new { @class = "select_input_form" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.Gender)</span>
+                </div>
+            </div>
+            <div class="box_text_form">@Sic.Apollo.Resources.Resources.LabelForUserType</div>
+            <div class="box_input_form">
+                @Html.DropDownListFor(model => model.Type, Extensions.ToSelectList(Sic.ProfessionalTeamUserType.Assistant), new { @class = "select_input_form" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Type)</span>
+                </div>
+            </div>            
+            <div class="box_text_form">@Sic.Apollo.Resources.Resources.LabelForEmail</div>
+            <div class="box_input_form">
+                @Html.TextBoxFor(model => model.LogonName, new { @class = "input_text" })
+                <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.LogonName)</span>
+                </div>
+            </div>                           
+            <div class="center_save_button">
+                <center><input type="submit" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" />
+                <input type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForCancel" onclick="cancelProfessionalTeam()" /></center>
+            </div>
+        </div>                     
+    }
+</div>
+<script>
+    function cancelProfessionalTeam() {
+        location.href = "@Url.Action("Team","Professional")";
+    }
+</script>

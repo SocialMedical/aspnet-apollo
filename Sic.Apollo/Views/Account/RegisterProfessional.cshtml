@@ -1,0 +1,221 @@
+﻿@model Sic.Apollo.Models.Security.User
+@{
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    ViewBag.Title = string.Format("{0} - {1}", Sic.Apollo.Resources.Resources.TitleForRegisterProfessional, Sic.Apollo.Resources.Resources.LabelForApplicationName);
+}
+@section meta{
+    <meta name="description" content="@Sic.Apollo.Resources.Resources.DescriptionForRegisterProfessional"/>
+}
+@section Imports
+{
+<link href="@Url.ContentVersion("~/Content/styles/register.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.ContentVersion("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/custom/customvalidation.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/custom/select.js")" type="text/javascript"></script>
+}
+<div id="margintop_wrapper">
+</div>
+<!--reservar cita-->
+<div id="top_register">
+    <span class="txt_az_18">@Sic.Apollo.Resources.Resources.LabelForJoinUs</span>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)    
+    <div id="content_register">
+        <div class="box_register">
+            <div class="img_register"><img src="/Content/images/style/registro_medico2.jpg" width="240" height="250" /></div>
+            <div class="title_user">@Sic.Apollo.Resources.Resources.LabelForProfessional</div>
+            <div class="description_user">@Sic.Apollo.Resources.Resources.LegendForRegisterProfessional</div>
+            <div class="content_button_user"></div>
+        </div>
+        <div id="box_register_patient">
+            <div>@Html.LabelFor(model => model.Contact.FirstName)</div>
+            <div>
+                @Html.TextBoxFor(model => model.Contact.FirstName, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.FirstName)</span>
+            </div>
+            <div>@Html.LabelFor(model => model.Contact.MiddleName)</div>
+            <div class="box_forms">
+                @Html.TextBoxFor(model => model.Contact.MiddleName, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.MiddleName)</span>
+            </div>
+            <div>@Html.LabelFor(model => model.Contact.LastName)</div>
+            <div class="box_forms">
+                @Html.TextBoxFor(model => model.Contact.LastName, new { @class = "input_text" })                
+            </div>
+            <div><span class="error_field">@Html.ValidationMessageFor(model => model.Contact.LastName)</span>
+            </div>
+            <div>@Html.LabelFor(model => model.Contact.SecondLastName)</div>
+            <div class="box_forms">
+                @Html.TextBoxFor(model => model.Contact.SecondLastName, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.SecondLastName)</span></div>
+            <div>@Html.LabelFor(model => model.Contact.Gender)</div>
+            <div class="box_forms">
+                @Html.DropDownListFor(m => m.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male), new { @class = "styled" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.Gender)</span></div>
+            <div>@Html.LabelFor(model => model.Contact.BirthDate)</div>
+            <!--dia-->
+            <div class="box_input_form">
+            <div class="box_date">
+                @*<input name="" type="text" class="input_text_short" value="DD" />*@
+                @Html.DropDownDayOfMonthListFor(model => model.Contact.BirthDateDay, new { @class="select_date"})
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDateDay)</span></div>
+            <!--dia-->
+            <!--mes-->
+            <div class="box_date">
+                @*<input name="" type="text" class="input_text_short" value="MM" />*@
+                @Html.DropDownMonthListFor(model => model.Contact.BirthDateMonth, new { @class = "select_date" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDateMonth)</span></div>
+            <!--mes-->
+            <!--anio-->
+            <div class="box_date">
+                @*<input name="" type="text" class="input_text_short" value="AAA" />*@
+                @Html.DropDownYearListFor(model => model.Contact.BirthDateYear, new { @class = "select_date" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDateYear)</span></div>
+            <!--anio-->
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.BirthDate)</span></div>
+            </div>
+            <div>@Html.LabelFor(model => model.Contact.PhoneNumber) @Sic.Apollo.Resources.Resources.LegendForRequiredPhoneNumberRegister</div>
+            <div class="box_forms">
+                @Html.TextBoxFor(model => model.Contact.PhoneNumber, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.PhoneNumber)</span></div>
+            <div>@Sic.Apollo.Resources.Resources.LabelForEmail</div>
+            <div class="box_forms">
+                @Html.TextBoxFor(model => model.LogonName, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.LogonName)</span></div>            
+            <div>@Html.LabelFor(model => model.Password)</div>
+            <div class="box_forms">
+                @Html.PasswordFor(model => model.Password, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Password)</span></div>
+            <div>@Html.LabelFor(model => model.ConfirmedPassword)</div>
+            <div class="box_forms">
+                @Html.PasswordFor(model => model.ConfirmedPassword, new { @class = "input_text" })
+            </div>
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.ConfirmedPassword)</span></div>
+        </div>
+        <div class="box_button_register">
+            <input type="submit" class="button_orange_register" value="@Sic.Apollo.Resources.Resources.LabelForRegister" />
+            @*<div class="button_orange_register">
+                Registrar</div>*@
+        </div>
+    </div>
+}
+@*
+<h2>@Sic.Apollo.Resources.Resources.LabelForSignUp</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>@Sic.Apollo.Resources.Resources.LabelForProfessional</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.FirstName)
+            @Html.ValidationMessageFor(model => model.Contact.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.MiddleName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.MiddleName)
+            @Html.ValidationMessageFor(model => model.Contact.MiddleName)
+        </div>        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.LastName)
+            @Html.ValidationMessageFor(model => model.Contact.LastName)
+        </div>        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.SecondLastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.SecondLastName)
+            @Html.ValidationMessageFor(model => model.Contact.SecondLastName)
+        </div>
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.Gender)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male))
+            @Html.ValidationMessageFor(model => model.Contact.Gender)
+        </div>    
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.BirthDate)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownDayOfMonthListFor(model => model.Contact.BirthDateDay)
+            @Html.DropDownMonthListFor(model => model.Contact.BirthDateMonth)
+            @Html.DropDownYearListFor(model => model.Contact.BirthDateYear)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDateDay)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDateMonth)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDateYear)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDate)
+        </div>
+        <div class="editor-label">
+            @Sic.Apollo.Resources.Resources.LabelForEmail
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LogonName)
+            @Html.ValidationMessageFor(model => model.LogonName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.PhoneNumber) @Sic.Apollo.Resources.Resources.LegendForRequiredPhoneNumberRegister
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.Contact.PhoneNumber)
+        </div>         
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>         
+         <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmedPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmedPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmedPassword)
+        </div>
+        
+       
+        <p>
+            <input type="submit" value="@Sic.Apollo.Resources.Resources.LabelForRegister" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForBackToList, "Index", "Home")
+</div>*@

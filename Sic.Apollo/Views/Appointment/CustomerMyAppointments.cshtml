@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.CustomerAppointment>
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForMyAppointments;
+}
+
+@{  
+   var nextAppointments = Model.Where(p =>         
+        (p.State != (int)Sic.AppointmentState.Canceled && p.State != (int)Sic.AppointmentState.Attended && p.State != (int)Sic.AppointmentState.NotAttended && p.State != (int)Sic.AppointmentState.Rated)
+        && p.StartDate.Date >= Sic.Web.Mvc.Session.CurrentDateTime.Date);
+        
+   var pastAppointments = Model.Where(p =>
+        p.State == (int)Sic.AppointmentState.Canceled || p.State == (int)Sic.AppointmentState.Attended || p.State == (int)Sic.AppointmentState.NotAttended || p.State == (int)Sic.AppointmentState.Rated
+        || p.StartDate.Date < Sic.Web.Mvc.Session.CurrentDateTime.Date);
+}
+
+<h2>@Sic.Apollo.Resources.Resources.LabelForUpcomingAppointments</h2>
+
+@if (nextAppointments.Count() > 0)
+{
+    ViewBag.NextAppoinment = true;
+    { Html.RenderPartial("CustomerMyAppointmentsList", nextAppointments.OrderByDescending(p => p.StartDate)); }
+}
+else 
+{
+    <p>@Sic.Apollo.Resources.Resources.LegendForNoUpcomingAppointments</p>
+}
+
+<h2>@Sic.Apollo.Resources.Resources.LabelForPastAppointments</h2>
+
+@if(pastAppointments.Count() > 0)
+{
+    ViewBag.NextAppoinment = false;
+    {
+        Html.RenderPartial("CustomerMyAppointmentsList", pastAppointments.OrderByDescending(p => p.StartDate));
+    }
+}
+else 
+{
+    <p>@Sic.Apollo.Resources.Resources.LegendForNoPastAppointments</p>
+}

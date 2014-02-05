@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.WeekAppointment>
+@{
+    var addDays = 0;
+}
+
+<table>
+<tr>
+<td rowspan="2">
+    @if (Model.First().Date != DateTime.Now.Date)
+    {        
+        @:[ <a href='javascript:weekChange(@Model.First().Date.AddDays(-7).Ticks);'>Before</a> ]
+        @*Html.ActionLink("Before", "WeekAppointment", "Appointment", new { startDate = Model.First().Date.AddDays(-7) }, null)*@
+    }
+</td>
+@foreach (var item in Model)
+{
+    <td>
+        @item.DayName
+    </td>
+}
+<td rowspan="2">
+      [ <a href='javascript:weekChange(@Model.First().Date.AddDays(7).Ticks);'>Next</a> ]
+</td>
+</tr>
+<tr>
+@foreach (var item in Model)
+{
+    <td>
+        @item.Date.ToShortDateString()
+    </td>    
+}
+</tr>
+</table>
+
+<script type="text/javascript">
+    function weekChange(ticks) {
+        $('#divappointment').load("/Appointment/Search?cityId=@ViewBag.CityId&ticks=" + ticks);
+            }
+</script>

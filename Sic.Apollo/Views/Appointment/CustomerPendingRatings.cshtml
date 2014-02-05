@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.CustomerAppointment>
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForPendingRatings;
+}
+
+<h2>@Sic.Apollo.Resources.Resources.LabelForPendingRatings</h2>
+
+@if (Model.Count() > 0)
+{
+    <table>
+        <tr>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForDate
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForProfessional
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForYourInsurance
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForReasonForVisit
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.HiddenFor(model => item.AppointmentId)
+                @Html.HiddenFor(model => item.AppointmentTransactionId)
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>      
+                     @{ Html.RenderAction("ProfessionalCard", "Professional", new { professionalId = item.ProfessionalId, contactLocationId = item.ContactLocationId });}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceInstitution)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReasonForVisit)
+                </td>
+                <td>                               
+                    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForRate, "CustomerRate", item)                                 
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{ 
+    <p>@Sic.Apollo.Resources.Resources.LegendForNoAppointmentPendingRatings</p>
+}

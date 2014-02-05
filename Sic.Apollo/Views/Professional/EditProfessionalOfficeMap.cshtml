@@ -1,0 +1,174 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOffice
+@using System.Threading;
+@using System.Globalization;
+@using System.Web.Script.Serialization
+@{           
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+    string mapSelector = "editMap";
+
+    ViewBag.MapWidth = "800px";
+    ViewBag.MapHeight = "310px";
+
+    if (ViewBag.SetClientLocation == null)
+    {
+        ViewBag.SetClientLocation = false;
+    }
+}
+<script>      
+    var googleMapEdit = null;            
+
+    function initializeMapEdit() { 
+        
+        var bounds = new google.maps.LatLngBounds();    
+        var options = {        
+            zoom : 15,        
+            scrollwheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            mapTypeControl: true
+        };
+    
+        googleMapEdit = new google.maps.Map($("#@{@mapSelector}")[0],options);               
+        var point = null;
+      
+
+            @if (ViewBag.SetClientLocation)
+            {
+                <text>            
+                if (navigator.geolocation) {                
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var latitude = position.coords.latitude;
+                        var longitude = position.coords.longitude;                    
+                        point = new google.maps.LatLng(latitude, longitude);
+        //                var mapOptions = {
+        //                    zoom: 15,
+        //                    center: coords,
+        //                    mapTypeControl: true,
+        //                    navigationControlOptions: {
+        //                        style: google.maps.NavigationControlStyle.SMALL
+        //                    },
+        //                    mapTypeId: google.maps.MapTypeId.ROADMAP
+        //                };                                   
+ 
+                        googleMapEdit.setCenter(new google.maps.LatLng(latitude,longitude));
+                    });                
+                } 
+                else {                               
+                    point = new google.maps.LatLng(@Sic.Web.Mvc.Session.DefaultLatitude, @Sic.Web.Mvc.Session.DefaultLongitude);                                                                            
+                    googleMapEdit.setCenter(new google.maps.LatLng(@Sic.Web.Mvc.Session.DefaultLatitude, @Sic.Web.Mvc.Session.DefaultLongitude));                
+                }        
+                </text>
+            }
+            else
+            {            
+                @:point = new google.maps.LatLng(@Model.Latitude, @Model.Longitude);                        
+            }
+        
+    //        bounds.extend(point);      
+
+            var size = new google.maps.Size(30, 42, "px", "px");
+            var origin = new google.maps.Point(@{ @Model.MarkerStart }, 0);
+            var image = new google.maps.MarkerImage("/Content/images/style/sprite_numbers_location.png", size, origin);
+
+            var marker = new google.maps.Marker({
+                position: point,
+                map: googleMapEdit,                            
+                title: '@Model.Address',            
+                icon: image,//'/App_Sprites/markers/number_1.png',
+                zIndex: @{ @Model.MarkerZIndex } ,           
+                draggable: true               
+            });
+
+            //googleMap.fitBounds(bounds);                    
+
+                google.maps.event.addListener(marker, "dragend", function () {                
+                    placeMarker(marker.getPosition(),  marker);                                         
+                });  
+
+                google.maps.event.addListener(googleMapEdit, "click", function(event) {
+                    placeMarker(event.latLng, marker);
+                });
+
+                function placeMarker(pos, marker) {
+                    marker.setPosition(pos);  
+                    $('#LatitudeString').val(pos.lat());
+                    $('#LongitudeString').val(pos.lng());                   
+                }                    
+
+        @if (!ViewBag.SetClientLocation)
+        {      
+            @:googleMapEdit.setCenter(new google.maps.LatLng(@Model.Latitude, @Model.Longitude));                 
+        }
+           
+             
+           var input = (document.getElementById('searchTextField'));
+           var autocomplete = new google.maps.places.Autocomplete(input);       
+
+           autocomplete.bindTo('bounds', googleMapEdit);
+           var infowindow = new google.maps.InfoWindow();
+                         
+           google.maps.event.addDomListener(input, 'keydown', function(e) { 
+                if (e.keyCode == 13) { 
+                    e.preventDefault(); 
+                }
+            }); 
+           
+           google.maps.event.addListener(autocomplete, 'place_changed', function() { changeTextSearch(); }); 
+
+           function changeTextSearch() {                                           
+                infowindow.close();
+        
+                marker.setVisible(false);
+
+                //input.className = '';
+                var place = autocomplete.getPlace();
+
+                if (!place.geometry) {
+                  // Inform the user that the place was not found and return.
+                  input.className = 'notfound';
+                  return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                  googleMapEdit.fitBounds(place.geometry.viewport);
+                } else {
+                  googleMapEdit.setCenter(place.geometry.location);
+                  googleMapEdit.setZoom(17);  // Why 17? Because it looks good.
+                }
+       
+            //    marker.setIcon(({
+            //      url: place.icon,
+            //      size: new google.maps.Size(71, 71),
+            //      origin: new google.maps.Point(0, 0),
+            //      anchor: new google.maps.Point(17, 34),
+            //      scaledSize: new google.maps.Size(35, 35)
+            //    }));
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+                
+                var address = '';
+                if (place.address_components) {
+                  address = [
+                    (place.address_components[0] && place.address_components[0].short_name || ''),
+                    (place.address_components[1] && place.address_components[1].short_name || ''),
+                    (place.address_components[2] && place.address_components[2].short_name || '')
+                  ].join(' ');
+                }
+
+                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+                infowindow.open(googleMapEdit, marker);
+           
+
+              }                   
+
+    }
+</script>
+ <div id="panel">
+<input id="searchTextField" type="text" size="100">
+</div>
+<div id="@{@mapSelector}" style="margin-top:10px; width: @ViewBag.MapWidth; height: @ViewBag.MapHeight;"/>
+<script>
+    $(function () {
+        initializeMapEdit();
+    });
+</script>

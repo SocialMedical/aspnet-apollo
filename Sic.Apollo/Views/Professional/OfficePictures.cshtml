@@ -1,0 +1,12 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOffice
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.TitleForOfficePictures;
+}
+
+@{Html.RenderPartial("ProfileHeader");}
+
+<h2>@Sic.Apollo.Resources.Resources.TitleForOfficePictures</h2>
+
+<h2>@Model.Address</h2>    
+
+@{ Html.RenderPartial("EditContactLocationPictures", Model); }

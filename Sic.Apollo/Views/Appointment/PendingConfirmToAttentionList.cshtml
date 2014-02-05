@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.ProfessionalAppointment>
+@using Sic.Apollo
+@{
+    int id = 0;
+    if (Model.FirstOrDefault() != null)
+    {
+        id = Model.FirstOrDefault().ContactLocationId;
+    }
+}
+<div id="pendingAppList@{@id}">
+    <table>
+        <tr>
+            <th>                
+                <div>
+                    <button onclick="javascript:dialogAllIniConfirm()">@Sic.Apollo.Resources.Resources.LabelForSelectionConfirmToAttention</button>                    
+                </div>
+                <div>
+                    <button onclick="javascript:dialogAllIniCancel()">@Sic.Apollo.Resources.Resources.LabelForSelectionCancelToAttention</button>
+                </div>
+                <div>
+                    <button id="buttonSelectCheck" onclick="javascript:selectAll()">@Sic.Apollo.Resources.Resources.LabelForCheckAll</button>                    
+                </div>
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForDate
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForCustomer
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForInsurance
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForReasonForVisit
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForContactPhoneNumber
+            </th>
+            <th>
+                @Sic.Apollo.Resources.Resources.LabelForCustomerNotes
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.HiddenFor(model => item.AppointmentId)
+                @Html.HiddenFor(model => item.AppointmentTransactionId, new { id = "appointmentTransactionId" + item.AppointmentTransactionId })
+                <td>
+                    <div id="checkFor@{@item.AppointmentTransactionId}">
+                        <input name="selectApp" type="checkbox" value="@item.AppointmentTransactionId"/>
+                    </div>
+                </td>
+                <td>
+                    <span id="startDate@{@item.AppointmentTransactionId}">@item.StartDate.ToDefaultDateTimeFormat()</span>
+                </td>
+                <td>
+                    <span id="customerName@{@item.AppointmentTransactionId}">@item.FullName</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceInstitution, null, "insuranceInstitutionName" + item.AppointmentTransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReasonForVisit, null, "reasonForVisitName" + item.AppointmentTransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactPhoneNumber, null, "contactPhoneNumber" + item.AppointmentTransactionId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerNotes, null, "customerNotes" + item.AppointmentTransactionId)
+                </td>
+                <td>
+                    <div>
+                        <div id="buttons@{@item.AppointmentTransactionId}">
+                            <button class="buttonConfirmation" onclick="confirmAppAttend(@item.AppointmentTransactionId)">@Sic.Apollo.Resources.Resources.LabelForIWillAttendThisAppointment</button>
+                            <button class="buttonConfirmation" onclick="confirmAppNotAttend(@item.AppointmentTransactionId)">@Sic.Apollo.Resources.Resources.LabelForINotWillAttendThisAppointment</button>
+                        </div>
+                        <label id="message@{@item.AppointmentTransactionId}">
+                        </label>
+                    </div>                   
+                </td>
+            </tr>
+        }
+    </table>
+</div>

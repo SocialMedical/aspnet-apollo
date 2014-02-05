@@ -1,0 +1,78 @@
+﻿@model Sic.Apollo.Models.Pro.View.AssignedInsuranceInstitutionPlan
+@{
+    Layout = "~/Views/Shared/_ProfessionalProfileLayout.cshtml";
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForProfessionalInsurances;
+    ViewBag.OptionTitle = Sic.Apollo.Resources.Resources.LabelForEditProfile;
+}
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/custom/tabber.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Content/styles/edit_profile_medical.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/styles/tabs.css")" rel="stylesheet" type="text/css" />
+
+<div id="content_tabs_edit">
+    @{Html.RenderPartial("ProfileHeader", Model.Professional);}
+
+    @using (Html.BeginForm())
+    {
+        <div class="content_box_edit">
+            <div class="arrow_tab3">
+            </div>
+            <div class="buttons_edit_right"><input type="submit" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></div>
+            @{
+                
+            var listInsurances = Model.AssignedInsuranceInstitutionPlans.OrderBy(p => p.InsuranceInstitutionPlan.InsuranceInstitution.DescriptionName).Select(p => p.InsuranceInstitutionPlan.InsuranceInstitution).Distinct();
+            }
+            @foreach (var institution in listInsurances)
+            {
+                    <div class="content_insurance_plans">
+                        <div class="txt_grv_13"><strong>@institution.Contact.FirstName</strong></div>
+                        @{ 
+                            var listPlans = Model.AssignedInsuranceInstitutionPlans.Where(p => p.InsuranceInstitutionPlan.InstitutionId == institution.InstitutionId);
+                        }
+                        @foreach (var plan in listPlans)
+                        {                                                        
+                            <div class="insurance_select_plan">
+                                <input type="checkbox" @*class="styled"*@ name="assignedPlans" value="@plan.InsuranceInstitutionPlan.InsuranceInstitutionPlanId" @(Html.Raw(plan.Assigned ? "checked=\"checked\"" : "")) />
+                                @plan.InsuranceInstitutionPlan.Name</div>
+                        }
+                    </div>
+                   
+            }   
+            <div class="buttons_edit_right"><input type="submit" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></div>
+            @*<table>
+                <tr>
+                    <td>
+                        <input class="button_save_orange" type="submit" value="@Sic.Apollo.Resources.Resources.LabelForSave" />
+                    </td>
+                </tr>
+                @{
+                    var listInsurances = Model.AssignedInsuranceInstitutionPlans.OrderBy(p => p.InsuranceInstitutionPlan.InsuranceInstitution.DescriptionName).Select(p => p.InsuranceInstitutionPlan.InsuranceInstitution).Distinct();
+                }
+                @foreach (var institution in listInsurances)
+                {
+                    <tr>
+                        <td>
+                            @institution.Contact.FirstName
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul>
+                                @{ 
+                                    var listPlans = Model.AssignedInsuranceInstitutionPlans.Where(p => p.InsuranceInstitutionPlan.InstitutionId == institution.InstitutionId);
+                                }
+                                @foreach (var plan in listPlans)
+                                {
+                                    <li>
+                                        <input type="checkbox" name="assignedPlans" value="@plan.InsuranceInstitutionPlan.InsuranceInstitutionPlanId" @(Html.Raw(plan.Assigned ? "checked=\"checked\"" : "")) />                                        
+                                        @plan.InsuranceInstitutionPlan.Name
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                }
+            </table>*@
+        </div>
+    }
+</div>

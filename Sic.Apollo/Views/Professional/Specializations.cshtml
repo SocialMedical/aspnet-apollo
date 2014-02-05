@@ -1,0 +1,23 @@
+﻿@*model Sic.Apollo.Models.Pro.ProfessionalSpecialization*@
+@{
+    ViewBag.Title = "Specializations";
+}
+
+<script src="../../Scripts/jquery.ui.autocomplete.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.ui.widget.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.ui.core.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.ui.position.min.js" type="text/javascript"></script>
+
+
+@{Html.RenderPartial("ProfileHeader");}
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <div class="editor-label">
+            Autocompletar
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("tags")
+        </div>
+    </fieldset>       
+}

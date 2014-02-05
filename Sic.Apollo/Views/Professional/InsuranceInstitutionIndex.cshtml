@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalInsuranceInstitutionPlan>
+<div id="divinsuranceList">
+
+    @if (Model.Any())
+    {
+        foreach (var item in Model.Select(p => p.InsuranceInstitution).Distinct().OrderBy(p => p.DescriptionName))
+        {                    
+            <div class="content_list_insurance">
+                <span class="txt_grv_13">@item.Contact.FirstName</span>
+                <ul>
+                    @{
+                        System.Text.StringBuilder plans = new System.Text.StringBuilder(); 
+                        foreach (var insurancePlan in Model.Where(p => p.InstitutionId == item.InstitutionId).OrderBy(p => p.DescriptionName)) 
+                        {                                                         
+                            <li class="content_list_insurance_li"><span class="txt_az_13"><strong>@insurancePlan.InsuranceInstitutionPlan.Name</strong></span></li>
+                        }
+                    }
+                </ul>
+            </div>                     
+        }
+    }
+    else
+    {
+        <span class="txt_grv_13">@Sic.Apollo.Resources.Resources.LabelForDontHaveInsurance</span>
+    }
+
+    <div class="buttons_edit_right">
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForEdit, "EditInsuranceInstitutionPlans", null, new { @class ="button_save_orange" })        
+    </div>
+
+</div>
+
+
+@*
+<div class="list_content_edit" style="cursor:pointer">
+    <div class="list_content_iconedit">
+    </div>
+   @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForEdit, "EditInsuranceInstitutionPlans")
+</div>
+
+<div id="divinsuranceList">
+    @if (Model.Any())
+    {   
+
+        <table>
+            @foreach (var item in Model.Select(p => p.InsuranceInstitution).Distinct().OrderBy(p => p.DescriptionName))
+            {
+                System.Text.StringBuilder plans = new System.Text.StringBuilder();
+                foreach (var insurancePlan in Model.Where(p => p.InstitutionId == item.InstitutionId).OrderBy(p => p.DescriptionName))
+                {
+                    if (plans.Length > 0)
+                    {
+                        plans.Append(", ");
+                    }
+
+                    plans.Append(insurancePlan.InsuranceInstitutionPlan.Name);
+                }
+            
+                <tr>
+                    <td>
+                        @String.Format("{0} {1}", item.Contact.FirstName, plans.Length > 0 ? ": " + plans.ToString() : string.Empty)
+                    </td>
+                </tr>            
+            }
+        </table>
+    }
+    else
+    {
+        <p>
+            No tiene Seguros Asociados</p>
+    }
+</div>*@ 

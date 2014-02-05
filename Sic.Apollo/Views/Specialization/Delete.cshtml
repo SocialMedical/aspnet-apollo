@@ -1,0 +1,36 @@
+﻿@model Sic.Apollo.Models.Pro.Specialization
+
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForDelete;
+}
+@section meta{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<h2>@Sic.Apollo.Resources.Resources.LabelForDelete</h2>
+
+<h3>@Sic.Apollo.Resources.Resources.MessageDeleteConfirmation</h3>
+<fieldset>
+    <legend>@Sic.Apollo.Resources.Resources.LabelForSpecialization</legend>
+
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+    <div class="editor-label">
+            @Html.LabelFor(model => model.Priority)
+        </div>
+        <div class="editor-field">
+            @Html.DisplayFor(model => model.Priority)
+            @Html.ValidationMessageFor(model => model.Priority)
+        </div>
+    <div class="display-label">@Sic.Apollo.Resources.Resources.LabelForActive</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Active)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="@Sic.Apollo.Resources.Resources.LabelForDelete" />
+        @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForBackToList, "Index")
+    </p>
+}

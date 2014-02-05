@@ -1,0 +1,40 @@
+﻿<div id="login">
+    <div id="login_box">
+        @*<div id="LoginSection">*@
+        @if (Sic.Web.Mvc.Session.IsLogged)
+        {       
+            string ProfileRoute = string.Empty;
+            @*<text> <a class="txt_gr_12" href="@Url.Action("Index", "Home")">@Sic.Apollo.Resources.Resources.LabelForCustomerHome</a></text>  *@
+            if (Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Professional 
+                || Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Assistant)
+            {                
+                <text> <span class="txt_bl_13"></span> <a class="txt_gr_12" href="@Url.Action(Sic.Apollo.Controllers.AppointmentController.DefaultProfessionalAction, "Appointment")">@Sic.Apollo.Resources.Resources.LabelForProfessionalOfficeHome</a>
+                <span class="txt_bl_13">|</span></text>
+            }
+            
+            switch((Sic.UserType)Sic.Web.Mvc.Session.UserType)
+            {
+                case Sic.UserType.Professional:
+                case Sic.UserType.Assistant:
+                    ProfileRoute = Url.Action("Profile", "Professional");
+                    break;
+                default:
+                    ProfileRoute = Url.Action("Profile", "Customer");
+                    break;                                        
+            }                                                    
+            <text> <a class="txt_gr_12" href="@ProfileRoute">@Sic.Web.Mvc.Session.FullName</a>                   
+                   <span class="txt_bl_13">|                   
+                   </span> 
+                   <a id="logoutButton" class="txt_gr_12" href="@Url.Action("Logout", "Account")">@Sic.Apollo.Resources.Resources.LabelForSignOut</a>                   
+                   </text>            
+        }
+        else
+        { 
+            <text><a id="loginButton" href="#" class="txt_gr_12">@Sic.Apollo.Resources.Resources.LabelForLogin</a>
+            <span class="txt_bl_13">|</span> @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForSignUp, "SelectUserType", "Account", null, new { @class = "txt_gr_12" })
+            </text>
+        }
+        @*</div>    *@
+        @{ Html.RenderAction("LoginPopUp", "Account"); }
+    </div>
+</div>

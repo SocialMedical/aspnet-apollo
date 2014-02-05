@@ -1,0 +1,98 @@
+﻿@model Sic.Apollo.Models.Appointment.View.AppointmentTransaction
+@{    
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+    ViewBag.Title = @Sic.Apollo.Resources.Resources.LabelForBookYourAppointment;
+}
+@section meta{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<link href="@Url.Content("~/Content/styles/book_appointment_flow.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/custom/customvalidation.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/custom/select.js")" type="text/javascript"></script>
+<!--reservar cita-->
+<div id="margintop_wrapper">
+</div>
+<div id="top_book">
+    <span class="txt_az_18">@Sic.Apollo.Resources.Resources.LabelForBookYourAppointment</span>
+</div>
+@using (Html.BeginForm("Start", "Appointment"))
+{
+    @Html.HiddenFor(model => model.AppointmentId)
+    @Html.HiddenFor(model => model.CustomerId)
+    @Html.HiddenFor(model => model.ProfessionalId)
+    @Html.HiddenFor(model => model.SpecializationId)
+    @Html.HiddenFor(model => model.ContactLocationId)
+
+    <div id="content_book">
+        <div id="info_book">
+            <div id="progres_proces1">
+            </div>
+            <div class="content_text_progress1">
+                <span class="txt_grv_13"><strong>@Sic.Apollo.Resources.Resources.LabelForInfoVisit</strong></span></div>
+            <div class="content_text_progress2">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForInfoCustomer</strong></div>
+            <div class="content_text_progress3">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForFinish</strong></div>
+            <div id="form_book">
+                <div class="textform_book">
+                    <span class="txt_az_13"><strong>@Sic.Apollo.Resources.Resources.LabelForAppointmentReasonQuestion</strong></span>
+                </div>
+                <div>
+                    <div class="boxsform">
+                        @Html.DropDownListFor(model => model.SpecializationAppointmentReasonId, (SelectList)ViewBag.SpecializationAppointmentReasonList, new { @class = "styled" })
+                        @Html.ValidationMessageFor(model => model.SpecializationAppointmentReasonId)
+                    </div>
+                </div>
+                <div class="textform_book">
+                    <span class="txt_az_15">
+                        @*@Html.CheckBoxFor(model => model.UseInsurance, new { @class = "styled" })*@
+                        @Html.CheckBoxFor(model => model.UseInsurance)
+                        <strong class="txt_az_13">@Sic.Apollo.Resources.Resources.LabelForAppointmentUseInsurance</strong>
+                    </span>
+                </div>
+                <div>
+                    <div id="InsuranceInstitution">
+                        <div class="textform_book">
+                            <span class="txt_az_13"><strong>@Sic.Apollo.Resources.Resources.LabelForInsuranceInstitution</strong></span>
+                        </div>
+                        <div class="boxsform">
+                            @Html.DropDownListFor(model => model.InsuranceInstitutionId, (SelectList)ViewBag.InsuranceInstitutionList, Sic.Apollo.Resources.Resources.LabelForEmptyChooseInsuranceInstitution, new { @class = "styled" })
+                            @Html.ValidationMessageFor(model => model.InsuranceInstitutionId)
+                        </div>
+                    </div>
+                </div>
+                <div class="textform_book">
+                    <input name="button" type="submit" class="btn_next" id="button" value="@Sic.Apollo.Resources.Resources.LabelForContinue" />
+                </div>
+            </div>
+        </div>
+        @{ Html.RenderPartial("ProfessionalInfoCard", Model);}
+    </div>
+}
+<script>
+    @if (!Model.UseInsurance)
+    {
+    <text>
+        $('#InsuranceInstitution').hide()
+    </text>
+    }
+    else
+    {
+    <text>
+        $('#InsuranceInstitution').show()
+    </text>
+    }
+
+    $("#UseInsurance").click(function () {
+        if ($(this).is(':checked')) {
+            $('#InsuranceInstitution').show("slow");
+        }
+        else {
+            $('#InsuranceInstitution').hide("slow");
+            $('#InsuranceInstitutionId').val('');
+        }
+    });
+    
+</script>

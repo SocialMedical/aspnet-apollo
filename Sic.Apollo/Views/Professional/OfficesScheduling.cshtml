@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalOfficeSchedule>
+
+@foreach (var schedule in Model.OrderBy(p => p.ValidityStartDate))
+{
+    Html.RenderPartial("OfficeSchedule", schedule);
+}
+
+@*@{Html.RenderPartial("ProfileHeader", Model );}
+
+<h4>@Sic.Apollo.Resources.Resources.MessageForOfficeScheduleInformation <a href="#">@Sic.Apollo.Resources.Resources.LabelForMoreInformation</a></h4>
+<table>
+    <tr>
+        <td>
+            <table>
+            @if(!Model.ProfessionalOffices.Any())
+            {
+                    <tr>
+                        <td>
+                            @Sic.Apollo.Resources.Resources.LegendForEmptyOffices
+                             @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForProfessionalOffices,"Offices")
+                        </td>
+                    </tr>
+            }
+            else
+            {
+                foreach(var item in Model.ProfessionalOffices)
+                {
+                    <tr>
+                        <td>
+                            <h4>
+                            @item.Address @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForAdd, "EditOfficeSchedule", new { contactLocationId = item.ContactLocationId })
+                            </h4>
+                            <section>
+                                @if(!item.ProfessionalOfficeSchedules.Any(p=>p.Active))
+                            {
+                                    @Sic.Apollo.Resources.Resources.LegendForEmptyOfficeSchedule
+                            }
+                            else                                
+                            {                                
+                                    <ul>
+                                        @foreach(var schedule in item.ProfessionalOfficeSchedules.Where(p=>p.Active).OrderBy(p=>p.ValidityStartDate))
+                                    {
+                                            <li>
+                                                <p>
+                                                    @schedule.Description    
+                                                    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForEdit, "EditOfficeSchedule", new { professionalOfficeScheduleId = schedule.ProfessionalOfficeScheduleId })
+                                                    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForDelete,"DeleteOfficeSchedule")
+                                                </p>
+                                            </li>
+                                    }
+                                    </ul>
+                            }
+                            </section>
+                        </td>
+                    </tr>
+                }
+            }
+            </table>
+        </td>       
+    </tr>
+</table>
+*@

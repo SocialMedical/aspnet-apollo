@@ -1,0 +1,60 @@
+﻿@model Sic.Apollo.Models.Pro.Professional
+
+@{
+    ViewBag.Inserting = false;
+    ViewBag.Editing = false;
+}
+@Html.HiddenFor(model => model.ProfessionalId)
+           
+<a href='javascript:editOffice(0);'>@Sic.Apollo.Resources.Resources.LabelForAdd</a>        
+
+<table>
+@foreach (var item in Model.ProfessionalOffices)
+{
+<tr>
+    <td>
+        @Html.HiddenFor(modelItem => item.ContactLocationId)
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>                   
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.ContactLocationId }) |                
+        @Html.ActionLink("Delete", "Delete", new { id = item.ContactLocationId })*@
+
+        @*<a href='javascript:RefreshPartialContactLocationEdit(@item.ContactLocationId);'>@Sic.Apollo.Resources.Resources.LabelForEdit</a>*@
+    </td>
+</tr>            
+}
+<tr>
+    <td>
+        <div id="editOffice0">     
+            @if (ViewBag.Inserting || ViewBag.Editing)
+            {            
+                {Html.RenderAction("EditOffice", "Professional");}
+            }
+        </div>
+    </td>
+</tr>
+</table>          
+
+<script>
+    function editOffice(contactLocationId) {
+        if (contactLocationId == 0) {
+            alert("hola");
+            $('#editOffice0').load("/Professional/Offices");            
+        }
+    }
+
+</script>
+
+@*<a href='javascript:RefreshPartialContactLocationAdd(@Model.ProfessionalId);'>@Sic.Apollo.Resources.Resources.LabelForAdd</a>
+<div id="divContactLocationAdd"/>                
+
+<script>
+    function RefreshPartialContactLocationAdd(id) {
+        $('#divContactLocationAdd').load("ContactLocationAdd?id="+id);
+    }
+
+    function RefreshPartialContactLocationEdit(id) {        
+        $("#divContactLocationEdit"+id).load("ContactLocationEdit?id="+id);
+    }
+</script>*@

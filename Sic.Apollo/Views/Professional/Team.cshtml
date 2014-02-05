@@ -1,0 +1,83 @@
+﻿@model Sic.Apollo.Models.Pro.Professional
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForProfessionalTeam;
+    ViewBag.OptionTitle = Sic.Apollo.Resources.Resources.LabelForProfessionalTeam;    
+    Layout = "~/Views/Shared/_ProfessionalProfileLayout.cshtml";
+}
+@section Imports
+{
+    <link href="@Url.Content("~/Content/styles/professionalteam.css")" rel="stylesheet" type="text/css" />
+}
+<div class="content_box">
+    @*<div class="txt_az_18">
+        @Sic.Apollo.Resources.Resources.LabelForProfessionalTeam
+    </div>*@
+    <a href="@Url.Action("CreateTeam","Professional")">
+        <div class="add_bar" >
+                @Sic.Apollo.Resources.Resources.LabelForAdd
+        </div>
+    </a>        
+    <ul class="professionalteam_list">
+        <li class="professionalteam_list_title">
+            <div class="user_logonname">
+                @Sic.Apollo.Resources.Resources.LabelForLogonName
+            </div>
+            <div class="user_name">
+                @Sic.Apollo.Resources.Resources.LabelForName
+            </div>
+            <div class="user_type">
+                @Sic.Apollo.Resources.Resources.LabelForUserType
+            </div>
+            <div class="user_createdate">
+                @Sic.Apollo.Resources.Resources.LabelForRegisterDate
+            </div>
+        </li>
+        @{
+            int i = 0;
+            string style = "lineOne";
+            foreach (var team in Model.ProfessionalTeam.Where(p=>p.Active).OrderBy(p => p.TeamUser.Contact.FullName))
+            {
+                if (i++ % 2 == 0)
+                {
+                    style = "lineOne";
+                }
+                else
+                {
+                    style = "lineTwo";
+                }
+            <li class="professionalteam_item @{@style}">
+                <div class="user_logonname">
+                    <a href="@Url.Action("EditTeam", "Professional", new { professionalTeamId = team.ProfessionalTeamId })">
+                        @team.TeamUser.LogonName</a>
+                </div>                
+                <div class="user_name">
+                    @team.TeamUser.Contact.FullName
+                </div>
+                <div class="user_type">
+                    @team.TeamUser.TypeDisplay
+                </div>
+                <div class="user_createdate">
+                    @team.TeamUser.RegisterDate               
+                </div>
+                <div class="user_action">
+                    @using (Html.BeginForm("DeleteTeam", "Professional", new { professionalTeamId = team.ProfessionalTeamId }, FormMethod.Post, new { id = "deleteProfessionalTeamForm" + team.ProfessionalTeamId }))
+                    { }
+                    <a href="javascript:deleteProfessionalTeam(@{@team.ProfessionalTeamId})">
+                        <div style="cursor: pointer" class="list_content_icondelete_one">
+                        </div>
+                    </a>
+                </div>
+            </li> 
+            }
+        }
+    </ul>
+</div>
+<script>
+    function deleteProfessionalTeam(professionalTeamId) {
+        openDialog("@Html.Raw(Sic.Apollo.Resources.Resources.MessageForDeleteProfessionalTeamConfirmation)", "confirmation", "deleteProfessionalTeamConfirmation(" + professionalTeamId + ")");
+    }
+    function deleteProfessionalTeamConfirmation(professionalTeamId) {
+        closeDialog();
+        $("#deleteProfessionalTeamForm" + professionalTeamId).submit();
+    }
+</script>

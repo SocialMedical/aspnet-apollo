@@ -1,0 +1,19 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOffice         
+<h3>@Sic.Apollo.Resources.Resources.LegendForSetLocationInstructions</h3>
+@using (Html.BeginForm())
+{
+    <input id="LatitudeString" type="hidden"/>
+    <input id="LongitudeString" type="hidden"/>
+    <div id="content_dialog_form">        
+       @* <h4>
+            @Model.Address
+        </h4>*@
+        <div>
+            @{ Html.RenderPartial("EditProfessionalOfficeMap", Model); }            
+        </div>
+        <div class="center_save_button">
+            <input type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" onclick="postSetLocation(@{@Model.ContactLocationId})" />
+            <input type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForCancel" onclick="closeSetLocationDialog()" />
+        </div>
+    </div>
+}

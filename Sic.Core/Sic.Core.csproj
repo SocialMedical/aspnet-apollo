@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0510130-68F0-4637-B3DE-5BE92DDCF67B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sic.Core</RootNamespace>
+    <AssemblyName>Sic.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Sic.Security, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\References\Sic.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="Data\DbConnection\ConnectionInfo.cs" />
+    <Compile Include="Data\DbConnection\DbContextManager.cs" />
+    <Compile Include="Data\DbConnection\DbContextManagerService.cs" />
+    <Compile Include="Data\Entity\AuditableEntityBase.cs" />
+    <Compile Include="Data\Entity\DbContext.cs" />
+    <Compile Include="Data\Entity\DbContextService.cs" />
+    <Compile Include="Data\Entity\EntityBase.cs" />
+    <Compile Include="Data\Entity\IDbContextService.cs" />
+    <Compile Include="Data\Interface\IAuditable.cs" />
+    <Compile Include="Data\Interface\IIdentifiable.cs" />
+    <Compile Include="Data\Entity\Repository.cs" />
+    <Compile Include="Data\Interface\INameable.cs" />
+    <Compile Include="Data\Message\Message.cs" />
+    <Compile Include="Data\Models\General\Contact.cs" />
+    <Compile Include="Data\Models\General\ContactLocation.cs" />
+    <Compile Include="Data\Models\General\ContactUs.cs" />
+    <Compile Include="Data\Models\General\Country.cs" />
+    <Compile Include="Data\Models\Security\OrganizationBase.cs" />
+    <Compile Include="Data\Models\Security\RoleBase.cs" />
+    <Compile Include="Data\Models\Security\UserBase.cs" />
+    <Compile Include="Data\Models\Security\UserLoginAuditBase.cs" />
+    <Compile Include="Data\Models\Security\UserRoleBase.cs" />
+    <Compile Include="Data\Parameter.cs" />
+    <Compile Include="Data\Service.cs" />
+    <Compile Include="Encryptor.cs" />
+    <Compile Include="File\Utils.cs" />
+    <Compile Include="Globalization\Calendar.cs" />
+    <Compile Include="Mail.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\Current.cs" />
+    <Compile Include="Text\Text.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Models\General\View\" />
+    <Folder Include="Data\Service\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,56 @@
+﻿@model Sic.Apollo.Models.Pro.View.Professional          
+@{
+    string emptyPicture = "/Content/images/contacts/DefaultProfessional.jpg";
+    if (ViewBag.LinkAvailable == null)
+    {
+        ViewBag.LinkAvailable = true;
+    }
+    if(ViewBag.ShowBookOnline==null)
+    {
+        ViewBag.ShowBookOnline = true;
+    }
+}
+<div id="cardBodyContent@{ @Model.ContactLocationId }">
+    <table>
+        <tr>
+            <td>
+                @if(ViewBag.LinkAvailable)
+                {
+                    @Html.ActionImage(string.IsNullOrEmpty(Model.Picture) ? emptyPicture : Model.Picture, Model.FullName, "Presentation", "Professional", new { professional = Model.UrlParameter, specializationId = Model.SpecializationId, contactLocationId = Model.ContactLocationId }
+                    , null, new { @class = "triggertooltip" + Model.ContactLocationId.ToString(), @style = "width: 80px; height: 100px;" })
+                }
+                else
+                {
+                    @Html.Image(string.IsNullOrEmpty(Model.Picture) ? emptyPicture : Model.Picture, Model.FullName,
+                                 new { @style = "width: 80px; height: 100px;" });
+                }
+            </td>
+            <td>
+                <p>
+                   @if(ViewBag.LinkAvailable)
+                   {                        
+                        @Html.ActionLink(Model.DescriptionName, "Presentation", "Professional", new { professional = Model.UrlParameter, specializationId = Model.SpecializationId, contactLocationId = Model.ContactLocationId }, new { @class = "triggertooltip" + Model.ContactLocationId.ToString() })
+                   }
+                   else
+                   {
+                       @Model.DescriptionName
+                   }
+                   <br/>
+                   @Html.DisplayFor(modelItem => Model.SpecializationName)<br/>
+                   @Html.DisplayFor(modelItem => Model.Address)<br>
+                   @{ Html.RenderPartial("Scorer", Model.RateScore ?? 0); }
+                
+                    @if (ViewBag.LinkAvailable && ViewBag.ShowBookOnline)
+                    {
+                        if (Model.UserState == null || Model.UserState == (int)Sic.UserState.Active)
+                        {
+                        <text>
+                        <br>@Html.ActionLink(@Sic.Apollo.Resources.Resources.LabelForBookOnline, "PersonalAppointment", "Appointment", new { contactLocationId = Model.ContactLocationId, specializationId = Model.SpecializationId }, null)             
+                        </text>
+                        }
+                    }
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>

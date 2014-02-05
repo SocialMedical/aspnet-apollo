@@ -1,0 +1,86 @@
+﻿@model Sic.Apollo.Models.Appointment.View.AppointmentTransaction
+@{    
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForFinished;
+}
+<link href="@Url.Content("~/Content/styles/book_appointment_flow.css")" rel="stylesheet" type="text/css" />
+
+<div id="margintop_wrapper">
+</div>
+<div id="top_book">
+    <span class="txt_az_18">@Sic.Apollo.Resources.Resources.LabelForBookYourAppointment</span>
+</div>
+<div id="content_book">
+    <div id="info_book">
+        <div id="progres_proces3">
+        </div>
+        <div class="content_text_progress1">
+            <strong><span class="txt_grv_13">@Sic.Apollo.Resources.Resources.LabelForInfoVisit</span></strong></div>
+        <div class="content_text_progress2">
+            <strong><span class="txt_grv_13">@Sic.Apollo.Resources.Resources.LabelForInfoCustomer</span></strong></div>
+        <div class="content_text_progress3">
+            <strong><span class="txt_grv_13">@Sic.Apollo.Resources.Resources.LabelForFinish</span></strong></div>
+        <div id="form_book">
+            <div class="textform_book">
+                <div id="ico_ok">
+                </div>
+                <span class="txt_az_18"><strong>¡Listo!</strong></span></div>
+            <div class="txt_az_15">
+                <strong><span class="txt_az_15">
+                    <br/>@Sic.Apollo.Resources.Resources.LegendForAppointmentBooked</span></strong></div>
+            <div>
+            </div>
+            <br/>
+            <div>
+                Te recordamos los datos de tu cita<br/>
+                <br/>
+            </div>
+            <div>
+                Deberas visitar el consultorio del<span class="txt_grv_13"><strong> 
+                    Dr. @Model.Professional.FullName</strong> el <strong>@Model.AppointmentToStringDateTimeFormat</strong></span></div>
+                    <br />
+            <div>
+                El consultorio se encuentra ubicado en                
+                <strong class="txt_grv_12"><span class="txt_grv_13">@Model.Professional.Address</span></strong>
+               @* (<a href="#" class="txt_az_13">ver mapa</a>)*@
+               </div>
+            @if(Model.InsuranceInstitution != null)
+            {
+            <div>
+                Utilizarás el seguro                
+                <strong><span class="txt_grv_13">@Model.InsuranceInstitution.Contact.FirstName</span></strong>
+            </div>
+            }
+            <br />
+            <div>
+                @Sic.Apollo.Resources.Resources.LegendForAppointmentBookedContact <span class="txt_grv_13"><strong> @String.Format("{0} {1} {2}", Model.Professional.DefaultPhoneNumber, string.IsNullOrWhiteSpace(Model.Professional.DefaultPhoneExtension) ? "" : Sic.Apollo.Resources.Resources.LabelForExtensionPhoneNumber, Model.Professional.DefaultPhoneExtension)</strong></span></strong>
+                , de igual manera se podrán comunicar contigo al <span class="txt_grv_13"><strong>@Model.ContactPhoneNumber</strong>.</span></div>
+            <br />
+            <br />
+            <div>
+                No olvides que si tienes algún inconveniente en visitar al médico en la fecha acordada puedes cancelar o re programar tu cita en cualquier momento.
+            </div>
+        </div>
+    </div>
+    @{ Html.RenderPartial("ProfessionalInfoCard", Model);}
+</div>
+@*
+<h1>@Sic.Apollo.Resources.Resources.LabelForBookYourAppointment</h1>
+<table>
+    <tr>
+        <td>
+            <h2>@Sic.Apollo.Resources.Resources.LegendForAppointmentBooked</h2>
+            <p>@Sic.Apollo.Resources.Resources.LegendForAppointmentBookedContact<b>
+            @String.Format("{0} {1} {2}", Model.Appointment.ProfessionalOffice.DefaultPhoneNumber,
+                                                  string.IsNullOrWhiteSpace(Model.Appointment.ProfessionalOffice.DefaultPhoneExtension) ? "" : Sic.Apollo.Resources.Resources.LabelForExtensionPhoneNumber, 
+                                                  Model.Appointment.ProfessionalOffice.DefaultPhoneExtension)
+            </b></p>
+        </td>
+        <td>
+            @{ Html.RenderAction("ProfessionalCard", "Professional", new { professionalId = Model.Appointment.ProfessionalId, contactLocationId = Model.Appointment.ContactLocationId, showBookOnline = false, linkAvailable = true});}
+        </td>
+    </tr>
+    <tr><td>@Sic.Apollo.Resources.Resources.LabelForAppointmentBookedTweetText @TwitterGoodies.TweetButton(dataCount: TwitterGoodies.DataCount.None,
+            tweetText: String.Format(Sic.Apollo.Resources.Resources.LegendForAppointmentBookedTweetText, Sic.Apollo.Resources.Resources.LabelForApplicationUrl, Model.Appointment.Professional.Contact.FullName, Sic.Apollo.Resources.Resources.LabelForApplicationTwitterAccount),
+        language: TwitterGoodies.Languages.Spanish)</td></tr>
+</table>
+*@

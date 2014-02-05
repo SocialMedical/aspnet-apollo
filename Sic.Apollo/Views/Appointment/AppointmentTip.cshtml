@@ -1,0 +1,220 @@
+﻿@model Sic.Apollo.Models.Appointment.View.ProfessionalAppointment
+@{    
+    int side = 2;//Left
+    if (Model.StartDate < ((DateTime)ViewBag.StartDate).Date.AddDays(3))
+    {
+        side = 1;//Right
+    }
+    int patientId = Model.CustomerId.HasValue ? Model.CustomerId.Value : 0;
+}
+<div class="tooltip" id="tooltip@{@Model.AppointmentTransactionId}" style="z-index:5000">
+    <div class="content_tooltip">
+        <div class="header_date_tooltip">@Model.StartDate.ToString("dddd dd MMMM yyyy / HH:mm - ")
+            @Model.EndDate.ToString("HH:mm")
+            <div class="icon_close_tooltip" onclick="closeTip(@{@Model.AppointmentTransactionId});">
+            </div>
+        </div>
+        @if (side == 1)
+        {
+            <div class="arrow_left">
+            </div>
+        }
+        else
+        {                        
+            <div class="arrow_right">
+            </div>
+        }
+        <div class="info_tooltip">
+            <div class="location_appoinment">
+                @Model.OfficeAddress
+            </div>
+            <div class="info_tooltip_div">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForCustomer: 
+                @if (Model.CustomerId.HasValue)
+                {
+                    <a class="patient_link" style="text-decoration:underline" href="@Url.Action("Epicrisis", "Patient", new { patientId = Model.CustomerId.Value })">@Model.FullName</a>
+                }
+                else
+                {
+                    @Model.FullName
+                }
+                </strong>
+            </div>
+            <div class="info_tooltip_div">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForPhoneNumber:</strong> @Model.ContactPhoneNumber
+            </div>
+            <div class="info_tooltip_div">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForReasonForVisit:</strong> @Model.ReasonForVisit
+            </div>
+            <div class="info_tooltip_div">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForInsurance: </strong>@Model.InsuranceInstitution
+            </div>
+            <div class="info_tooltip_div">
+                <strong>@Sic.Apollo.Resources.Resources.LabelForCustomerNotes: </strong>@Model.CustomerNotes
+            </div>
+            <div>
+                <div class="status_appointment">
+                    @switch (Model.AppointmentState)
+                    {
+                        case Sic.AppointmentState.Obsolete:
+                        <div class="icon_obsolete_appointment">
+                        </div>        
+                            break;
+                        case Sic.AppointmentState.PendingConfirmation:
+                        <div class="icon_for_confirmation_appointment">
+                        </div>                                
+                            break;
+                        case Sic.AppointmentState.Confirmed:                                
+                        <div class="icon_definite_appointment">
+                        </div>                                    
+                            break;
+                        case Sic.AppointmentState.Attended:
+                        <div class="icon_ok_appointment">
+                        </div>                                
+                            break;
+                        case Sic.AppointmentState.NotAttended:
+                        <div class="icon_not_ok_appointment">
+                        </div>               
+                            break;
+                        case Sic.AppointmentState.Canceled:
+                        <div class="icon_cancel_appointment">
+                        </div>
+                            break;
+                        case Sic.AppointmentState.Rated:
+                        <div class="icon_calification_appointment">
+                        </div>
+                            break;
+                    }
+                    @Model.StateDisplay
+                </div>
+            </div>
+            @if (Model.AppointmentState == Sic.AppointmentState.PendingConfirmation ||
+                 Model.AppointmentState == Sic.AppointmentState.Confirmed
+                || (!Model.IsCustomerAppointement && Model.AppointmentState == Sic.AppointmentState.Canceled && Model.StartDate.Date >= ((DateTime)ViewBag.CurrentDateTime).Date))
+            {
+                <div class="info_tooltip_div">
+                    @switch (Model.AppointmentState)
+                    {
+                        case Sic.AppointmentState.PendingConfirmation:
+                            
+                        <div id = "primaryArea@{@Model.AppointmentTransactionId}">
+                            <div class="buttons_tooltip">
+                                <span class="btn_gray" onclick="postConfirmAppToAttend(@{@Model.AppointmentTransactionId},@{@side},@{@patientId},false);">@Sic.Apollo.Resources.Resources.LabelForIWillAttendThisAppointment</span>
+                            </div>
+                            @if (Model.CustomerId.HasValue)
+                            {
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postConfirmAppToAttend(@{@Model.AppointmentTransactionId},@{@patientId},true);">@Sic.Apollo.Resources.Resources.LabelForIWillAttendThisAppointmentAndGoPatient</span>
+                                </div>
+                            }
+                            <div class="buttons_tooltip">
+                                <span class="btn_gray" onclick="showAditionalArea(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForINotWillAttendThisAppointment</span>
+                            </div>
+                            @if(!Model.IsCustomerAppointement)
+                                {
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="showAditionalAreaDelete(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForAppointmentDelete</span>
+                                </div>                                                                               
+                                }                            
+                        </div>
+                    
+                        <div id="aditionalArea@{@Model.AppointmentTransactionId}" style="display:none">
+                            <div class="info_tooltip_div">
+                                <strong>@Sic.Apollo.Resources.Resources.LegendForProfessionalAppointmentCancelConfirmation</strong>
+                            </div>
+                            <div>
+                                <textarea id="transactionNotes@{@Model.AppointmentTransactionId}" cols="45" rows="5" class="input_text_area"></textarea>
+                            </div>
+                            <div class="info_tooltip_div">
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postCancelAppToAttend(@{@Model.AppointmentTransactionId},@{@side});">@Sic.Apollo.Resources.Resources.LabelForYes</span>
+                                </div>
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="hideAditionalArea(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForNo</span>
+                                </div>
+                            </div>
+                        </div>                       
+                            break;
+                        case Sic.AppointmentState.Confirmed:
+                        <div id = "primaryArea@{@Model.AppointmentTransactionId}">
+                            @if (Model.StartDate.Date <= ((DateTime)ViewBag.CurrentDateTime).Date.AddDays(1).Date)
+                            {
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postConfirmAttended(@{@Model.AppointmentTransactionId},@{@side},@{@patientId},false);">@Sic.Apollo.Resources.Resources.LabelForAttended</span>
+                                </div>
+                                if (Model.CustomerId.HasValue)
+                                {
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postConfirmAttended(@{@Model.AppointmentTransactionId},@{@side},@{@patientId},true);">@Sic.Apollo.Resources.Resources.LabelForAttendedAndGoPatient</span>
+                                </div>
+                                }
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postConfirmUnAttended(@{@Model.AppointmentTransactionId},@{@side});">@Sic.Apollo.Resources.Resources.LabelForNotAttended</span>
+                                </div>                                 
+                            }
+                            @if (Model.StartDate.Date >= ((DateTime)ViewBag.CurrentDateTime).Date)
+                            {
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="showAditionalArea(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForAppointmentCancel</span>
+                                </div>
+                                if(!Model.IsCustomerAppointement)
+                                {
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="showAditionalAreaDelete(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForAppointmentDelete</span>
+                                </div>                                                                               
+                                }
+                            }
+                        </div>
+                            if (Model.StartDate.Date >= ((DateTime)ViewBag.CurrentDateTime).Date)
+                            {
+                        <div id="aditionalArea@{@Model.AppointmentTransactionId}" style="display:none">
+                            <div class="info_tooltip_div">
+                                <strong>@Sic.Apollo.Resources.Resources.LegendForProfessionalAppointmentCancelConfirmation</strong>
+                            </div>
+                            <div>
+                                <textarea id="transactionNotes@{@Model.AppointmentTransactionId}" cols="45" rows="5" class="input_text_area"></textarea>
+                            </div>
+                            <div class="info_tooltip_div">
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postCancelAppToAttend(@{@Model.AppointmentTransactionId},@{@side});">@Sic.Apollo.Resources.Resources.LabelForYes</span>
+                                </div>
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="hideAditionalArea(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForNo</span>
+                                </div>
+                            </div>
+                        </div>                        
+                            }
+
+                            break;
+                        default:
+                        <div id = "primaryArea@{@Model.AppointmentTransactionId}">
+                            <div class="buttons_tooltip">
+                                <span class="btn_gray" onclick="showAditionalAreaDelete(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForAppointmentDelete</span>
+                            </div>
+                        </div>
+                            break;
+
+                    }
+                    @if (Model.StartDate.Date >= ((DateTime)ViewBag.CurrentDateTime).Date)
+                    {
+                        
+                        <div id="aditionalAreaDelete@{@Model.AppointmentTransactionId}" style="display:none">
+                            <div class="info_tooltip_div">
+                                <strong>@Sic.Apollo.Resources.Resources.LegendForProfessionalAppointmentDeleteConfirmation</strong>
+                            </div>
+                            <div class="info_tooltip_div">
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="postDeleteAppointment(@{@Model.AppointmentTransactionId},@{@side});">@Sic.Apollo.Resources.Resources.LabelForYes</span>
+                                </div>
+                                <div class="buttons_tooltip">
+                                    <span class="btn_gray" onclick="hideAditionalAreaDelete(@{@Model.AppointmentTransactionId});">@Sic.Apollo.Resources.Resources.LabelForNo</span>
+                                </div>
+                            </div>
+                        </div>
+                                                                                      
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Sic.Apollo.Models.IPicture>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="@Url.ContentVersion("~/Scripts/jquery-1.7.2.min.js")"></script>
+    <link href="@Url.ContentVersion("~/Scripts/ad-gallery/jquery.ad-gallery.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.ContentVersion("~/Scripts/ad-gallery/jquery.ad-gallery.min.js")" type="text/javascript"></script>
+</head>
+<body>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <div class="ad-gallery">
+                        <div class="ad-image-wrapper">
+                        </div>
+                        <div class="ad-controls">
+                        </div>
+                        <div class="ad-nav">
+                            <div class="ad-thumbs">
+                                <ul class="ad-thumb-list">
+                                    @foreach (var picture in Model)
+                                    {
+                                        <li><a href="@picture.Picture">
+                                            <img src="@picture.Thumbnail" title="@picture.Title" alt="@picture.PictureDescription">
+                                        </a></li>
+                                    }                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <script>
+            var galleries = $('.ad-gallery').adGallery({
+                loader_image: '/Scripts/ad-gallery/loader.gif'
+            });
+        </script>
+    </div>
+</body>
+</html>

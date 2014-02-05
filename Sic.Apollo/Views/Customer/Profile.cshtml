@@ -1,0 +1,68 @@
+﻿@model Sic.Apollo.Models.Pro.Customer
+
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForProfile;
+}
+
+@{ Html.RenderPartial("ProfileHeader");}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        
+        <legend>@Sic.Apollo.Resources.Resources.LabelForCustomer</legend>
+
+        @Html.HiddenFor(model => model.CustomerId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.FirstName)
+            @Html.ValidationMessageFor(model => model.Contact.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.LastName)
+            @Html.ValidationMessageFor(model => model.Contact.LastName)
+        </div>                 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.Gender)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(m => m.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male))
+            @Html.ValidationMessageFor(model => model.Contact.Gender)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.BirthDate)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownDayOfMonthListFor(model => model.Contact.BirthDateDay)
+            @Html.DropDownMonthListFor(model => model.Contact.BirthDateMonth)
+            @Html.DropDownYearListFor(model => model.Contact.BirthDateYear)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDateDay)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDateMonth)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDateYear)
+            @Html.ValidationMessageFor(model => model.Contact.BirthDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.Contact.PhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Contact.CellPhone)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Contact.CellPhone)
+            @Html.ValidationMessageFor(model => model.Contact.CellPhone)
+        </div>         
+        <p>
+            <input type="submit" value="@Sic.Apollo.Resources.Resources.LabelForSave" />
+        </p>
+    </fieldset>
+}

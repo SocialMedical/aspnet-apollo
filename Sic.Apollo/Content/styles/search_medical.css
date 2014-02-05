@@ -1,0 +1,217 @@
+@charset "utf-8";
+/* CSS Document */
+
+#content_header_search_medical{
+	background-color:#FFF;
+	width:100%;
+	height:340px
+}
+#content_search_medical
+{
+	width:360px;
+	height:310px;
+	position:relative;
+	float:left;
+	padding:10px;
+}
+
+#content_map_search_medical {
+	width:570px;
+	height:300px;
+	position:relative;
+	float:left;
+	padding:10px
+}
+
+#map_search_medical
+{width:550px; height:310px; background:#FFF; padding:5px; border:1px solid #CCC}
+
+#content_title_search_medical
+{
+	width:925px;
+	height:50px;
+	position:relative;
+	float:left;
+	padding:10px 10px 10px 35px;
+	background-color:#FFF;
+	position:relative;
+	float:left
+}
+.line_title_search_medical
+{border-bottom:1px solid #CCC; height:1px; width:70%; margin-top:2px; margin-bottom:2px}
+
+#content_search_medical_general
+{width:970px; background-color:#FFF; height:auto}
+
+#box_header_calendar
+{
+	width:970px;
+	height:66px;
+	background-color:#333;
+	float:left;
+	position: relative;
+}
+
+#box_header_calendar_left
+{
+width:303px; height:66px; background-color:#666666; position:relative; float:left}
+
+#box_header_calendar_right
+{
+width:567px; height:65px; background-color:#CCC; position:relative; float:left}
+
+.box_search_medical_information
+{
+	width: 970px;
+	height: auto;
+	position: relative;
+	float: left;
+	border-bottom: 1px solid #d8d3d3;
+	background-color: #f6f8f9;
+}
+
+.information_medical
+{
+	width:353px;
+	height:auto;
+	background-color:#f6f8f9;
+	position:relative;
+	float:left
+}
+
+.location_medical_icon_information
+{
+	width:40px;
+	height:auto;
+	position:relative;
+	float:left;
+	padding: 50px 15px 50px 20px;
+}
+
+.img_medical_information
+{
+	width:90px;
+	height:auto;
+	position:relative;
+	float:left;
+	margin: 4px;
+	margin-top: 12px;
+}
+
+.img_profile_information_border
+{
+	width:75px;
+	height:110px;
+	padding:4px;
+	background-color:#FFFFFF;
+	border:1px solid #CCC;
+}
+
+.information_medical_text
+{
+	width:160px;
+	height:auto;
+	position:relative;
+	float:left;
+	padding: 10px 4px 4px 4px;
+}
+
+.content_star_ranking2
+{
+	width:175px;
+	margin:auto;
+	height:20px;
+	position:relative;
+	float:left;
+	padding-top: 10px;
+	
+}
+
+#service_footer_list
+{
+		width: 920px;
+	height: inherit;
+	padding: 15px 20px 20px 30px;
+	position: relative;
+	float: left;
+	overflow: hidden;
+	background-color:#FFFFFF;
+	
+	}
+	
+#services_box_footer1_list
+{
+	width: 410px;
+	height: auto;
+	padding: 5px;
+	position: relative;
+	float: left;
+}	
+
+.box_more_info_medical
+{width:440px; height:140px; background-color:#FFF; border:1px solid #CCC}
+
+.more_info_medical
+{width:150px; height:auto; padding:15px; position:relative; float:left}
+
+.opinion_more_medical
+{width:230px; height:auto; padding:10px; position:relative; float:left}
+
+.title_opinion_more_medical
+{width:50%; position:relative; float:left; padding-top:10px;}
+
+.ranking_opinion_more_medical
+{width:50%; position:relative; float:left}
+
+.title_content_search_medical
+{width:100px; padding:8px; margin:auto}
+.arrow_more_information
+{width:20px; height:13px; background-image:url(../images/arrow_more_information.png); background-repeat:no-repeat; left:105px; top:140px; position:relative; z-index:50}
+
+.column_more
+{
+	width:190px;
+	height:auto;
+	position:relative;
+	float:left
+}
+
+
+div.scr_esp_down{
+			width:100%;
+			height:45px;
+			position:fixed;
+			top:0;
+			left:0;
+			z-index:550;
+			opacity:0.10;
+			filter:alpha(opacity=10);
+			visibility:hidden;
+			overflow:visible;
+			}
+
+div.scr_esp_down div{
+			/*width:100%;
+			height:45px;*/
+			}
+img.img_animate{
+				display:none;
+			}
+
+.content_floating
+{position:relative; float:left; width:100%; height:50px}
+
+.content_floating_wrap
+{width:970px; margin:auto; background-color:#CCC}
+
+#map
+{
+	width: 534px;
+	padding: 7px;
+	background-color: #FFF;
+	height: 294px;
+	border:1px solid #CCC;
+}
+
+.arrow_more_information
+{width:20px; height:13px; background-image:url(../images/style/arrow_more_information.png); background-repeat:no-repeat; left:105px; top:140px; position:relative; z-index:50}

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.AppointmentRate>
+@using Sic.Apollo
+@{
+    if (ViewBag.Resume == null)
+    {
+        ViewBag.Resume = false;
+    }
+}
+@if (Model.Count() > 0)
+{
+    foreach (var item in Model)
+    { 
+    <div class="box_comment">
+        <div>
+            @item.RateDate.Value.ToDefaultDateFormat() @Sic.Apollo.Resources.Resources.LabelForBy
+            <span class="txt_grv_12"><strong><a href="#" class="txt_grv_12">@item.FullName</a></strong></span>
+        </div>
+        <div class="ranking_one">
+            <div class="star_all">
+                @{ Html.RenderPartial("Scorer", item.RateScore1 ?? 0); }
+            </div>
+            <div>
+                <center>@Sic.Apollo.Resources.Resources.LabelForRateScore1</center>
+            </div>
+        </div>
+        <div class="ranking_two">
+            <div class="star_all">
+                @{ Html.RenderPartial("Scorer", item.RateScore2 ?? 0); }
+            </div>
+            <div>
+                <center>@Sic.Apollo.Resources.Resources.LabelForRateScore2</center>
+            </div>
+        </div>
+        <div class="ranking_three">
+            <div class="star_all">
+                @{ Html.RenderPartial("Scorer", item.RateScore3 ?? 0); }
+            </div>
+            <div>
+                <center>@Sic.Apollo.Resources.Resources.LabelForRateScore3</center>
+            </div>
+        </div>
+        <div class="comment">
+            <em>@item.RateComments</em></div>
+    </div>       
+    }
+
+    if (ViewBag.Resume && Model.Count() >= 3)
+    { 
+    <div id="moreCommentsLink">
+        <a href='javascript:moreComments();' class="button_more_comments">@Sic.Apollo.Resources.Resources.LegendForReadMoreComments</a>
+    </div>
+    }
+
+    if (!ViewBag.Resume)
+    { 
+    <div id="moreCommentsLink">
+        <a href='javascript:lessComments();' class="button_more_comments">@Sic.Apollo.Resources.Resources.LegendForReadLessComments</a>
+    </div>                
+    }
+
+}
+else
+{
+    if (ViewBag.Resume)
+    {
+    @Sic.Apollo.Resources.Resources.LabelForNoRateComments
+    }
+}

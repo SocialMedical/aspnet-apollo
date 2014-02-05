@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalOffice>
+@using System.Threading;
+@using System.Globalization;
+@using System.Web.Script.Serialization
+@{           
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+    string mapSelector = "OfficesMap";
+
+    int count = Model.Where(p => p.Active && p.Latitude != null && p.Longitude != null).Count();
+        
+    if (ViewBag.SetClientLocation == null)
+    {
+        ViewBag.SetClientLocation = false;
+    }
+
+    //ViewBag.MapWidth = "700px";
+    //ViewBag.MapHeight = "300px";   
+
+    ViewBag.MapWidth = "600px";
+    ViewBag.MapHeight = "235px";   
+}
+<script language="javascript" type="text/javascript">              
+    $(document).ready(function () {     
+        var bounds = new google.maps.LatLngBounds();    
+        var options = {       
+            zoom : 16,        
+            scrollwheel: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP              
+        };
+    
+        var googleMap = new google.maps.Map($("#@{@mapSelector}")[0],options);    
+
+        @foreach (var marker in Model.Where(p=>p.Active && p.Latitude!=null && p.Longitude != null))
+        {        
+            <text>        
+
+      
+            var point = new google.maps.LatLng(@marker.Latitude, @marker.Longitude);                              
+            bounds.extend(point);      
+
+            var size = new google.maps.Size(30, 42, "px", "px");
+            var origin = new google.maps.Point(@{ @marker.MarkerStart }, 0);
+            var image = new google.maps.MarkerImage("/Content/images/style/sprite_numbers_location.png", size, origin);
+
+            var marker = new google.maps.Marker({
+                position: point,
+                map: googleMap,                            
+                title: '@marker.Address',            
+                icon: image,//'/App_Sprites/markers/number_1.png',
+                zIndex: @{ @marker.MarkerZIndex } ,            
+                draggable: false                
+            });
+
+            //googleMap.fitBounds(bounds);        
+
+            @if(count==1)            
+            {
+                @:googleMap.setCenter(new google.maps.LatLng(@marker.Latitude, @marker.Longitude));      
+            }
+            </text>
+        }    
+  
+        @if (count > 1)
+        {
+            <text>
+                googleMap.fitBounds(bounds);                
+            </text>
+        }         
+       
+});
+</script>
+<div id="@{@mapSelector}" style="width: @ViewBag.MapWidth; height: @ViewBag.MapHeight;"/>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>AspNetSprites-Core</id>
+    <version>0.4</version>
+    <title>AspNetSprites-Core</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://aspnet.codeplex.com/license</licenseUrl>
+    <projectUrl>http://aspnet.codeplex.com/releases/view/65787</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The ASP.NET Sprite core works with the ASP.NET Sprites Web Forms control and Sprite Helper to decrease the amount of time required to request and display a page by performing optimizations on a page's images.</description>
+    <summary>The ASP.NET Sprite core works with the ASP.NET Sprites Web Forms control and Sprite Helper to decrease the amount of time required to request and display a page by performing optimizations on a page's images.</summary>
+    <tags>ASP.NET Sprite Optimization ImageOptimizationFramework</tags>
+  </metadata>
+</package>

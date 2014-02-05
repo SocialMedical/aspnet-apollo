@@ -1,0 +1,15 @@
+﻿@model Sic.Apollo.Models.Appointment.AppointmentTransaction
+
+@using (Html.BeginForm(new { appointmentTransactionId = Model.AppointmentTransactionId, attentionNotes = Model.AttentionNotes }))
+{
+    <h1>@Sic.Apollo.Resources.Resources.LabelForConfirmAttended</h1>
+
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForCustomer: </b>@Model.Customer.Contact.FullName</p>           
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForDate: </b>@Model.Appointment.StartDate</p>   
+    <p><b>@Sic.Apollo.Resources.Resources.LabelForAttentionNotes</b></p>
+    <p>@Html.TextAreaFor(p => p.AttentionNotes)</p>          
+    <p>@Sic.Apollo.Resources.Resources.LegendForConfirmAttended</p>      
+    @*<p>
+        <input type="submit" value="@Sic.Apollo.Resources.Resources.LabelForConfirmAttended" />                
+    </p> *@            
+}

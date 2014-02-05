@@ -1,0 +1,148 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalSchool
+@{
+    ViewBag.ProfessionalSchoolId = Model.ProfessionalSchoolId;
+    ViewBag.ProfessionalId = Model.ProfessionalId;
+    ViewBag.InstitutionId = Model.InstitutionId;
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="list_content_edit_box">
+    @using (Html.BeginForm("", "", FormMethod.Post, new { id="editSchoolForm" }))
+    {
+        @Html.HiddenFor(model => model.InstitutionId)
+        @Html.HiddenFor(model => model.ProfessionalSchoolId)
+
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.Name)</div>
+        <div class="edit_office_content_input">
+            @Html.TextAreaFor(model => model.Name, new { id = "SchoolName", @class = "area_text" })
+            <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.Name)</span>
+            </div>
+        </div>
+        <div>
+            <div class="edit_office_content_text">@Html.LabelFor(model => model.Description)</div>
+            <div class="edit_office_content_input">
+                @Html.TextAreaFor(model => model.Description, new { @class = "area_text medium_height" })
+                <div>
+                    <span class="error_field">@Html.ValidationMessageFor(model => model.Description)</span>
+                </div>
+            </div>
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.StartYear)</div>
+        <div class="edit_office_content_input">
+            @Html.DropDownYearListFor(model => model.StartYear, new { @class = "select_date" })
+            @*<div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.StartYear)</span>
+            </div>*@
+        </div>
+        <div class="edit_office_content_text">@Html.LabelFor(model => model.EndYear)</div>
+        <div class="edit_office_content_input">
+            @Html.DropDownYearListFor(model => model.EndYear, new { @class = "select_date" })
+           @* <div>
+                <span class="error_field">@Html.ValidationMessageFor(model => model.EndYear)</span>
+            </div>*@
+        </div>
+        <div class="contet_buttons_edit">
+            <div class="center_buttons_edit">
+                @{
+        var labelButton = Model.ProfessionalSchoolId == 0 ? Sic.Apollo.Resources.Resources.LabelForAdd : Sic.Apollo.Resources.Resources.LabelForEdit;
+                }
+                <div class="buttons_edit">
+                    <input id="schoolSave" type="button" class="button_save_orange" value="@labelButton" />
+                </div>
+                <div class="buttons_edit">
+                    <input id="schoolCancel" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForCancel" />
+                </div>
+            </div>
+        </div>
+    
+@*<fieldset>
+        @Html.HiddenFor(model => model.InstitutionId)
+        @Html.HiddenFor(model => model.ProfessionalSchoolId)
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Name, new { id = "SchoolName"})
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StartYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownYearListFor(model => model.StartYear)
+            @Html.ValidationMessageFor(model => model.StartYear)            
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EndYear)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownYearListFor(model => model.EndYear)
+            @Html.ValidationMessageFor(model => model.EndYear)            
+        </div>
+        <p>
+            @{
+                var labelButton = Model.ProfessionalSchoolId == 0 ? Sic.Apollo.Resources.Resources.LabelForAdd: Sic.Apollo.Resources.Resources.LabelForEdit;
+            }
+            <input id="schoolSave" type="button" value="@labelButton"/>
+            <input id="schoolCancel" type="button" value="@Sic.Apollo.Resources.Resources.LabelForCancel"/>
+        </p>
+    </fieldset>*@
+    }
+</div>
+<script>          
+    $(function() {                            
+
+        if ($("#SchoolName").val() == "" || $("#SchoolName").val() == null) {
+            $("#SchoolName").focus();
+        }
+        else {
+            $("#Description").focus();
+        }
+    });
+    function refreshSchool() {     
+        sicGet("@Url.Action("SchoolIndex","Professional")", null, function(data){
+           $('#divschoolList').html(data);
+           //$("#institutions").removeAttr("disabled");
+           //$('#institutions').val(""); 
+        });        
+    }    
+    $(function () {       
+     $("#schoolCancel").click(function () {    
+            refreshSchool();               
+          });
+    });
+    $(function () {       
+        $("#schoolSave").click(function () {           
+            if($('#editSchoolForm').valid() == false)   {
+                setMessage('@Sic.Apollo.Resources.Resources.MessageForVerifyIncorrectData', '@Sic.Constants.MessageType.Warning');
+                return;
+            }                       
+            var school = getSchool();                            
+            if (school == null) {                     
+                return;
+            }                         
+            sicPost("@Url.Action("EditSchool", "Professional")", school, function (data) {                
+                refreshSchool();
+                setMessage(data.Message, data.MessageType);
+            });
+        });
+    });
+    function getSchool() {
+        var institutionId = @Html.Raw(Json.Encode(ViewBag.InstitutionId));
+        var professionalId = @Html.Raw(Json.Encode(ViewBag.ProfessionalId));
+        var professionalSchoolId = @Html.Raw(Json.Encode(ViewBag.ProfessionalSchoolId));
+        var name = $("#SchoolName").val();
+        var description = $("#Description").val();
+        var startYear = $("#StartYear").val();
+        var endYear = $("#EndYear").val();                            
+        return (name == "") ? null : { InstitutionId : institutionId, ProfessionalId: professionalId, ProfessionalSchoolId: professionalSchoolId, Name : name, Description: description, StartYear: startYear, EndYear: endYear } 
+    }   
+</script>

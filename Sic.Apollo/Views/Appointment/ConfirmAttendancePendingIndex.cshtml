@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.ProfessionalAppointment>
+<table>
+    <tr>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForDate
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForCustomer
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForInsurance
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForReasonForVisit
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForContactPhoneNumber
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForCustomerNotes
+        </th>
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            @Html.HiddenFor(model => item.AppointmentId)
+            @Html.HiddenFor(model => item.AppointmentTransactionId)
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsuranceInstitution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReasonForVisit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerNotes)
+            </td>
+            <td>
+                <a href="javascript:confirmAttended(@item.AppointmentTransactionId);">@Sic.Apollo.Resources.Resources.LabelForAttended</a>
+                | <a href="javascript:confirmAttended(@item.AppointmentTransactionId);">@Sic.Apollo.Resources.Resources.LabelForNotAttended</a>
+                @*@Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForAttended, "ConfirmAttended", item)
+                |
+                @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForNotAttended, "ConfirmUnAttended", item)*@
+            </td>
+        </tr>
+    }
+</table>    
+<div id="dialogcontainer">
+</div>
+<script>
+    function confirmAttended(appointmentTransactionId) {
+        $("#dialogcontainer").load("@Url.Action("ConfirmAttended", "Appointment")?appointmentTransactionId=" + appointmentTransactionId, function()
+        {            
+            $( "#dialogcontainer" ).dialog({
+			autoOpen: false,
+			height: 300,
+			width: 350,
+			modal: true,
+			buttons: {
+				"Confirm Attended": function() {											
+						$( this ).dialog( "close" );
+					},				
+				Cancel: function() {
+					$( this ).dialog( "close" );
+				}
+			},
+			close: function() {				
+			}		
+        });
+
+        $( "#dialogcontainer" ).dialog( "open" );
+    });
+    }
+</script>

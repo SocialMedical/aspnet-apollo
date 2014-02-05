@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.Specialization>
+
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForIndex;
+}
+@section meta{
+    <meta name="robots" content="noindex,nofollow"/>
+}
+<h2>@Sic.Apollo.Resources.Resources.LabelForIndex</h2>
+
+<p>
+    @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForCreateNew, "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForName
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForPriority
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForProfession
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForProfessionHelp
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForActive
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+          <td>
+            @Html.DisplayFor(modelItem => item.Priority)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Profession)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Help)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>      
+        <td>
+            @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForEdit, "Edit", new { id=item.SpecializationId }) |
+            @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForDetails, "Details", new { id=item.SpecializationId }) |
+            @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForDelete, "Delete", new { id=item.SpecializationId })
+        </td>
+    </tr>
+}
+
+</table>

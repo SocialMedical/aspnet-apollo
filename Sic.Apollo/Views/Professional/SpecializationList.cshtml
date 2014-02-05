@@ -1,0 +1,20 @@
+﻿@model Sic.Apollo.Models.Pro.Professional
+           
+<h2>@Sic.Apollo.Resources.Resources.LabelForSpecialization</h2>
+                
+<table>
+@foreach (var item in Model.ProfessionalSpecializations)
+{
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Specialization.Name)
+    </td>                   
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProfessionalSpecializationId }) |                
+        @Html.ActionLink("Delete", "Delete", new { id = item.ProfessionalSpecializationId })
+    </td>
+</tr>
+<tr>
+</tr>  
+}
+</table>

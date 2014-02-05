@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Sic.Apollo.Models.IPicture>
+<table>
+    <tr>
+        @foreach (var picture in Model.OrderBy(p=>p.Priority))
+        {                
+            <td>            
+                @*<a class="fancybox fancybox.iframe" href="@Url.Content("/Contact/ContactLocationGallery?contactLocationId=" + picture.ParentId.ToString())">
+                    <img src="@picture.Thumbnail" alt="@picture.PictureDescription"/>
+                </a>*@
+                <a class="fancyboxpicture" data-fancybox-group="gallery" href="@picture.Picture" title = "@picture.PictureDescription">
+                    <img src="@picture.Thumbnail" alt="@picture.PictureDescription"/>
+                </a>
+            </td>                    
+        }
+    </tr>
+</table>

@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.View.Professional>
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForProfessionalConfirmation;
+}
+
+<h1>@Sic.Apollo.Resources.Resources.LabelForProfessionalConfirmation</h1>
+
+<table>
+    <tr>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForRegisterDate
+        </th>
+        <th>
+            @Sic.Apollo.Resources.Resources.LabelForProfessional
+        </th>        
+        <th>
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>            
+            <td>
+                @Html.DisplayFor(modelItem => item.RegisterDate)
+            </td>
+            <td>      
+                 @{ Html.RenderPartial("ProfessionalCard", item); }
+            </td>             
+            <td>                           
+                @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForConfirm, "ProfessionalConfirm", item) |
+                @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForSuspend, "ProfessionalSuspend", item)                        
+            </td>             
+        </tr>
+    }
+</table>
