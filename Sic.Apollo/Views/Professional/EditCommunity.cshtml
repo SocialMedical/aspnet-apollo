@@ -38,7 +38,7 @@
         </div>
         <div class="edit_office_content_text">@Html.LabelFor(model => model.EndYear)</div>
         <div class="edit_office_content_input">
-            @Html.DropDownYearListFor(model => model.EndYear, new { @class = "select_date" })
+            @Html.DropDownYearListFor(model => model.EndYear, new { @class = "select_date" }, nullDisplayText : Sic.Apollo.Resources.Resources.LabelForPresent)
             <div>
                 <span class="error_field">@Html.ValidationMessageFor(model => model.EndYear)</span>
             </div>

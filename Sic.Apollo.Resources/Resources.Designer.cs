@@ -2248,6 +2248,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Actualidad.
+        /// </summary>
+        public static string LabelForPresent {
+            get {
+                return ResourceManager.GetString("LabelForPresent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Visualización Previa.
         /// </summary>
         public static string LabelForPreviewVisualization {

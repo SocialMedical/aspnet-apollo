@@ -177,14 +177,14 @@ namespace System.Web.Mvc.Html
         }
 
         public static MvcHtmlString DropDownYearListFor<TModel, TProperty>(this HtmlHelper<TModel> htmlHelper, Expression<Func<TModel,
-            TProperty>> expression, object htmlAttributes = null, string selectedValue = "0")
+            TProperty>> expression, object htmlAttributes = null, string selectedValue = "0", string nullDisplayText = "")
         {
             List<SelectListItem> items = new List<SelectListItem>();
 
             items.Add(new SelectListItem()
             {
                 Value = null,
-                Text = ""
+                Text = nullDisplayText
             });
 
             for (int year = Sic.Web.Mvc.Session.CurrentDateTime.Year;

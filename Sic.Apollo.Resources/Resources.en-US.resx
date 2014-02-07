@@ -1542,4 +1542,7 @@
   <data name="LabelForBirthPlace" xml:space="preserve">
     <value>Birthplace</value>
   </data>
+  <data name="LabelForPresent" xml:space="preserve">
+    <value>Present</value>
+  </data>
 </root>

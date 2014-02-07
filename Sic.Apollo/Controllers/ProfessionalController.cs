@@ -272,6 +272,7 @@ namespace Sic.Apollo.Controllers
                     db.Users.Update(userProfessional);
 
                     db.Professionals.Update(professionalUpdate);
+                    db.Contacts.Update(professionalUpdate.Contact);
                     db.Save();
 
                     ViewBag.Message = Sic.Apollo.Resources.Resources.MessageForSaveOk;
