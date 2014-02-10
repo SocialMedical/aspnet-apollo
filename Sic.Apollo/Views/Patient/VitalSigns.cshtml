@@ -12,7 +12,7 @@
         int lineCount = 0;
         DateTime currentDate = Sic.Web.Mvc.Session.CurrentDateTime.Date;
     }
-    <div class="content_tab2">
+    <div class="content_tab2" vitalsign-edit-content>
           <div id="vitalSignDateLabel" class="txt_az_18 label_input_trigger label_date_trigger">             
                 @currentDate.ToDefaultDateFormat()
          </div>
@@ -30,7 +30,7 @@
                     @vitalSign.VitalSign.Name
                 </div>
                 <div class="box_input_three">                   
-                    @Html.TextBox("vitalSignValue", vitalSign.Value, new { unit = vitalSign.MeasuringUnit, patientVitalSignId = vitalSign.PatientVitalSignId, vitalSignId = vitalSign.VitalSignId, @class = "input_text_three" })
+                    @Html.TextBox("vitalsign-value", vitalSign.Value, new { code = vitalSign.VitalSign.Code, unit = vitalSign.MeasuringUnit, patientVitalSignId = vitalSign.PatientVitalSignId, vitalSignId = vitalSign.VitalSignId, @class = "input_text_three" })
                 </div>
                 <div class="box_text_three_aux">
                     @(((Sic.MeasurementUnit)vitalSign.MeasuringUnit).GetDisplay(typeof(MeasurementUnit)))
@@ -47,69 +47,10 @@
             @:@(new HtmlString("</div>"))
         }
         <div class="center_save_button">
-            <center><input onclick="getVitalSignValues()" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></center>
+            <center><input onclick="getvitalSignValues()" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></center>
         </div>
         <div id="vitalSignHistory">
            @{Html.RenderPartial("VitalSignHistory", Model);}
         </div>
     </div>
 </div>
-<script>
-    $(function(){
-        var currentDate = new Date(@currentDate.Year,@(currentDate.Month-1),@currentDate.Day);
-        $("#vitalSignDateInput").datepicker({ dateFormat: SIC_DATE_DISPLAY_FORMAT, maxDate: currentDate,
-            defaultDate: currentDate});
-        
-        $("#vitalSignDateInput").datepicker("setDate", currentDate)
-
-        $("#vitalSignDateInput").change(function()
-        {
-            $("#vitalSignDateLabel").text($("#vitalSignDateInput").val());
-            clearVitalSignInputs();
-        });
-        
-        $("#vitalSignDateLabel").click(function()
-        {
-            $("#vitalSignDateInput").focus();
-        });
-    });
-
-    function clearVitalSignInputs()
-    {
-        $.each($("input[name=vitalSignValue]"), function (i, val){
-            if($(val).attr("patientVitalSignId")!=0)
-            {
-                $(val).val('');
-                $(val).attr('patientVitalSignId', '0');                
-            }
-        });
-    }
-
-    function getVitalSignValues() {
-        var values = "<vitalSign>";
-        var dateTicks = sicGetTicks($("#vitalSignDateInput").datepicker("getDate"));
-        $.each($("input[name=vitalSignValue]"), function (i, val) {
-            values += '<pee id="' + $(val).attr("patientVitalSignId") + '"';
-            values += ' vid="' + $(val).attr("vitalSignId") + '"';
-            values += ' munit="' + $(val).attr("unit") + '"';
-            values += ' val="' + $(val).val() + '"/>';
-        });
-        values += "</vitalSign>";
-        
-        sicPost("@Url.Action("SaveVitalSign", "Patient")", { patientId : @{@ViewBag.PatientId}, vitalSigns: values, dateTicks: dateTicks} , 
-        function (data) {
-                $("#contentPanelMessage").appendTo("#vitalSignContentMessage");               
-                setMessage(data.Message, data.MessageType);
-                refreshVitalSignHistory(patientId);
-                refreshResumeEpicrisis(patientId,'vitalSign');
-        });
-    }
-
-    function refreshVitalSignHistory(patientId)
-    {
-        sicGet("@Url.Action("VitalSignHistory","Patient")", { patientId : patientId }, function(data)
-        {
-              $("#vitalSignHistory").html(data);
-        });
-    }
-</script>

@@ -42,7 +42,7 @@
         });
         values += "</medicalHistories>";
         
-        sicPost("@Url.Action("SaveMedicalProblem", "Patient")", { patientId : @{@ViewBag.PatientId}, medicalProblems: values} , 
+        sicPost("/Patient/SaveMedicalProblem", { patientId : getCurrentPatientId(), medicalProblems: values} , 
         function (data) {
                 $("#contentPanelMessage").appendTo("#medicalHistoryContentMessage" + type);
                 setMessage(data.Message, data.MessageType);

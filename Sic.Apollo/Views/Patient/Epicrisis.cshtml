@@ -7,38 +7,23 @@
     string defaultProfile = ViewBag.ProfileDefault!=null && Convert.ToBoolean(ViewBag.ProfileDefault)?"tabbertabdefault":"";
 }
 @section Imports{
-<script src="@Url.ContentVersion("~/Scripts/custom/tabber.js")" type="text/javascript"></script>
 <link href="@Url.ContentVersion("~/Content/styles/edit_profile_medical.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.ContentVersion("~/Content/styles/evolution.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.ContentVersion("~/Content/styles/medicalcare.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.ContentVersion("~/Content/styles/tabs.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.ContentVersion("~/Content/styles/medicationprint.css")" rel="stylesheet" type="text/css" />
 
+<script src="@Url.ContentVersion("~/Scripts/custom/tabber.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/apollo/medical-patient.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/apollo/medical-patient-vitalsign.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/custom/datetime.js")" type="text/javascript"></script>
 @*<script src="@Url.Content("~/Scripts/jquery.ui.core.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" type="text/javascript"></script>*@
-<script src="@Url.Content("~/Scripts/custom/datetime.js")" type="text/javascript"></script>
 
- @*<style type="text/css" media="print">
-        @@page 
-        {
-            size: auto;   /* auto is the initial value */
-            margin: 0mm;  /* this affects the margin in the printer settings */
-        }   
-        body 
-        {
-            background-color:#FFFFFF; 
-            border: solid 1px black ;
-            margin: 0px;  /* this affects the margin on the content before sending to printer */
-       }    
-       #myFooter, #myHeader
-  {
-    display: none;
-  }
- </style>*@
 }
 <!--tabs edicion-->
 <script>
-    var patientId = @Model.Patient.PatientId;
+    setCurrentPatientId(@Model.Patient.PatientId);
 </script>
 <div id="content_tabs_edit">
     <div class="tabber">
@@ -67,12 +52,3 @@
        @* }*@
     </div>
 </div>
-<script>
-    function refreshResumeEpicrisis(patientId,type) {
-        sicGet("@Url.Action("Resume", "Patient")",{patientId:patientId},
-            function(contentResume)
-            {
-                $("#resumeEpicrisis").html(contentResume);                                
-            });
-    }
-</script>

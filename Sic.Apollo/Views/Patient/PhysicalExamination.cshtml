@@ -62,11 +62,14 @@ function getPhysicalExaminationValues() {
         });
         values += "</physicalExamination>";
         
-        sicPost("@Url.Action("SavePhysicalExamination", "Patient")", { patientId : @{@ViewBag.PatientId}, physicalExaminatons: values} , 
+        sicPost("/Patient/SavePhysicalExamination", {
+            patientId: getCurrentPatientId(),
+            physicalExaminatons: values
+        },
         function (data) {
                 $("#contentPanelMessage").appendTo("#physicalExaminationContentMessage");               
                 setMessage(data.Message, data.MessageType);
-                refreshResumeEpicrisis(patientId,'physicalExamination');
+                refreshResumeEpicrisis(getCurrentPatientId(), 'physicalExamination');
         });
     }
 </script>

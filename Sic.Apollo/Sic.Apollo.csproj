@@ -228,6 +228,8 @@
     <Content Include="Content\styles\simple_content.css" />
     <Content Include="Content\styles\style.css" />
     <Content Include="Content\styles\tabs.css" />
+    <Content Include="Scripts\apollo\medical-patient-vitalsign.js" />
+    <Content Include="Scripts\apollo\medical-patient.js" />
     <Content Include="Scripts\apollo\professionalBook.js" />
     <Content Include="Scripts\apollo\home.js" />
     <Content Include="Scripts\apollo\professionalProfile.js" />
@@ -308,7 +310,6 @@
     <Content Include="Views\Patient\List.cshtml" />
     <Content Include="Views\Professional\OfficeSchedule.cshtml" />
     <Content Include="Views\Shared\CropImage.cshtml" />
-    <Content Include="Views\Patient\PrescriptionEntryEdit.cshtml" />
     <Content Include="Views\Shared\Dialog.cshtml" />
     <Content Include="Views\Patient\MedicationPrint.cshtml" />
     <None Include="Properties\PublishProfiles\BackCore.pubxml" />

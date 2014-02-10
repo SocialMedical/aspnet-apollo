@@ -20,6 +20,8 @@ namespace Sic.Apollo.Models.Medical
 
 	    public bool Active { get; set; }
 
+        public string Code { get; set; }
+
         public virtual List<PatientVitalSign> PatientVitalSigns { get; set; }
     }
 }

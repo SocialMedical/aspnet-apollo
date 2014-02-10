@@ -59,7 +59,7 @@
     } 
     function deleteMedicalCareConfirmation(medicalCareId){
         closeDialog();
-        sicPost("@Url.Action("DeleteMedicalCare", "Patient")", { MedicalCareId:medicalCareId }, 
+        sicPost("/Patient/DeleteMedicalCare", { MedicalCareId:medicalCareId }, 
             function (data) {              
                 $("#contentPanelMessage").appendTo("#medicalCareContentMessage");               
                 setMessage(data.Message,"success");
@@ -68,7 +68,7 @@
                     $("#medicalCareItem" + medicalCareId).empty();
                     $("#medicalcareitemrow" + medicalCareId).removeClass("medicalcare_item");
                     $("#medicalcareitemrow" + medicalCareId).hide();
-                    refreshResumeEpicrisis(patientId,'medicalCare');
+                    refreshResumeEpicrisis(getCurrentPatientId(), 'medicalCare');
                 }
         });        
     }
@@ -135,7 +135,8 @@
         });
         medications += "</medication>";        
         if ($("#patientEvolutionForm").valid()) {
-            sicPost("@Url.Action("UpdateMedicalCare", "Patient")", { PatientId : patientId, MedicalCareId:medicalCareId, Evolution: evolution, 
+            sicPost("@Url.Action("UpdateMedicalCare", "Patient")", {
+                PatientId: getCurrentPatientId(), MedicalCareId: medicalCareId, Evolution: evolution,
                 Diagnostic: diagnostic, Treatment: treatment, EvolutionDateTicks : dateTicks,
                 MedicationsClientXml : medications }, 
             function (data) {              
@@ -164,7 +165,7 @@
                             }, 200);
 
                         $(divEditMedicalCare).empty();
-                        refreshResumeEpicrisis(patientId,'medicalCare');
+                        refreshResumeEpicrisis(getCurrentPatientId(), 'medicalCare');
                     });
                 }                
             });             
