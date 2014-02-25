@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientFile>
+<h2>Archivos</h2>
+<div class="scrollTabs">
+    <div class="arrow_tab7">
+    </div>
+    <div id="patientfile-message">        
+    </div>
+    <div class="hidden">
+        @using (Html.BeginForm("FileUpload", "Patient",
+                                null,
+                                FormMethod.Post,
+                new
+                {
+                    enctype = "multipart/form-data",
+                    id = "new-patientfile-form",
+                    target = "upload-patinetfile_target",
+                    name = "new-patientfile-form"
+                }))
+        {
+            <input type="file" name="file" id="patientfile-fileinput"/>
+            <input type="hidden" name="patientId"/>
+        }
+    <iframe id="upload-patinetfile_target" name="upload-patinetfile_target" style="position: absolute;
+        left: -999em; top: -999em;"></iframe>       
+    </div>
+    <div id="dialog-form-patient" class="hidden">
+        <div id="new-patientfile-description" class="add_office" style="height:20px">
+            Cargando Archivo...
+        </div>
+    </div>
+    <div class="content_tab2">     
+       @* <div style="width:400px">
+            <div style="float:left; width:200px; position:relative">
+                <input type="text" readonly="true" id="newPatientFileName" style="width:200px; height:22px; padding:5px;"/>
+            </div>
+            <div  style="margin-left:35px;float:left; width:100px">
+                <input id="add-patientfile" type="button" class="button_save_orange" value="@Resources.LabelForAdd" />
+            </div>
+            <div  style="margin-left:35px;float:left; width:100px">
+                <input id="submit-newpatientfile" type="button" class="button_save_orange" value="@Resources.LabelForAdd" />
+            </div>
+        </div>   *@
+        <div id="add-patientfile" class="add_office pointer" style="height:20px">
+            @Resources.LabelForAdd
+        </div>                
+        <br />
+        <div style="margin-top:50px" class="txt_az_18">
+            @Resources.LegendForPreviousPatientFile
+        </div>
+        <br />
+        <ul id="patientfile-list" class="medicalcare_list">
+            <li id="new-patientfile-content" style="padding-top:20px; clear:both"></li>
+            @if (Model.Any())
+            {
+                foreach (var patientFile in Model.OrderByDescending(p=>p.UploadDate))
+                {     
+                <li patientfileid="@patientFile.PatientFileId" id="patientfile-item@{@patientFile.PatientFileId}" style="padding-top:20px; clear:both">                           
+                    @{Html.RenderPartial("_PatientFile", patientFile);}
+                </li>                
+                }
+            }
+        </ul>
+            @if (!Model.Any())
+            {
+                <div class="linebreak"></div>  
+                <div class="box_text_message">
+                    @Sic.Apollo.Resources.Resources.LegendForEmptyPreviousPatientFile</div>
+            }
+        
+    </div>
+</div>

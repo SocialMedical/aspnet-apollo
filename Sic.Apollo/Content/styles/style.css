@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 @charset "utf-8";
@@ -37,6 +37,14 @@ body{
 	color:#a9a2a2;
 	text-align:justify;
 	}
+
+.hidden{
+    display:none;
+}
+
+.pointer{
+    cursor:pointer;
+}
 
 /*Cabecera*/	
 #margintop_wrapper

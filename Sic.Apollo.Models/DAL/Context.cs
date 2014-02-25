@@ -58,6 +58,8 @@ namespace Sic.Apollo.Models
         public DbSet<VitalSign> VitalSigns { get; set; }
         public DbSet<PhysicalExamination> PhysicalExaminations { get; set; }
         public DbSet<PatientPhysicalExamination> PatientPhysicalExaminations { get; set; }
+        public DbSet<PatientFile> PatientFiles { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {                      
@@ -267,6 +269,8 @@ namespace Sic.Apollo.Models
             modelBuilder.Entity<Patient>().HasMany(p => p.MedicalCares).WithRequired(p => p.Patient);
 
             modelBuilder.Entity<Patient>().HasMany(p => p.PatientVitalSigns).WithRequired(p => p.Patient);
+
+            modelBuilder.Entity<Patient>().HasMany(p => p.PatientFiles).WithRequired(p => p.Patient);
 
             modelBuilder.Entity<Professional>().HasMany(p => p.PatientVitalSigns).WithRequired(p => p.Professional);
 

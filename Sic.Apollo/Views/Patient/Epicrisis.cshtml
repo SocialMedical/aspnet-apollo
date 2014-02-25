@@ -13,10 +13,17 @@
 <link href="@Url.ContentVersion("~/Content/styles/tabs.css")" rel="stylesheet" type="text/css" />
 <link href="@Url.ContentVersion("~/Content/styles/medicationprint.css")" rel="stylesheet" type="text/css" />
 
+<link href="@Url.Content("~/Scripts/fancy/jquery.fancybox.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/fancy/jquery.fancybox.pack.js")" type="text/javascript"></script>
+
 <script src="@Url.ContentVersion("~/Scripts/custom/tabber.js")" type="text/javascript"></script>
 <script src="@Url.ContentVersion("~/Scripts/apollo/medical-patient.js")" type="text/javascript"></script>
 <script src="@Url.ContentVersion("~/Scripts/apollo/medical-patient-vitalsign.js")" type="text/javascript"></script>
+<script src="@Url.ContentVersion("~/Scripts/apollo/medical-patient-files.js")" type="text/javascript"></script>
+
 <script src="@Url.Content("~/Scripts/custom/datetime.js")" type="text/javascript"></script>
+
+
 @*<script src="@Url.Content("~/Scripts/jquery.ui.core.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.ui.datepicker.min.js")" type="text/javascript"></script>*@
 
@@ -48,6 +55,9 @@
         </div>        
         <div class="tabbertab">
             @{Html.RenderPartial("PhysicalExamination", Model.Patient.PatientPhysicalExaminations);}
+        </div>
+        <div class="tabbertab">
+            @{Html.RenderPartial("_PatientFiles", Model.Patient.PatientFiles);}
         </div>
        @* }*@
     </div>

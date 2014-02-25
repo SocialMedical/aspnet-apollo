@@ -17,7 +17,7 @@ namespace Sic.Apollo.Controllers
         
         ContextService db = new ContextService();
 
-        private const int maxSizeUploadFile = 2097152;//2 MB;
+        private const int maxSizeUploadFile = 5242880;//2 MB;
         private const string contactImagePath = "~/Content/images/contacts";
         private const string contactImageSavePath = "/Content/images/contacts/";
 
@@ -43,49 +43,7 @@ namespace Sic.Apollo.Controllers
 
         #endregion
 
-        #region Thumbnail
-
-        private string SaveThumbnail(string fileName, int? width = null, int? height = null, string lit = null)
-        {
-            System.Drawing.Image img = System.Drawing.Image.FromFile(fileName);
-
-            if (!width.HasValue)
-            {               
-                width = 70;
-                height = (width * img.Height) / img.Width;                
-                //double maxHeight = 70;                
-
-                //if (img.Height / maxHeight >= img.Width / maxWidth)
-                //{
-                //    factor = maxHeight * 1.0 / img.Height;
-                //}
-                //else
-                //{
-                //    factor = maxWidth * 1.0 / img.Width;
-                //}
-
-                //height = (int)Math.Round(img.Height * factor);
-                //width = (int)Math.Round(img.Width * factor);
-            }
-
-            if (string.IsNullOrEmpty(lit))
-                lit = "min";
-
-            System.Drawing.Image mini = img.GetThumbnailImage(width.Value, height.Value, new System.Drawing.Image.GetThumbnailImageAbort(ThumbnailCallback), IntPtr.Zero);
-
-            string minFileName = Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName) + "_" + lit + Path.GetExtension(fileName));
-
-            mini.Save(minFileName);
-
-            return minFileName;
-        }
-
-        private bool ThumbnailCallback()
-        {
-            return false;
-        }
-
-        #endregion
+        
 
         #region Contact Picture Upload
 
@@ -136,70 +94,84 @@ namespace Sic.Apollo.Controllers
         [HttpPost]
         public WrappedJsonResult UploadProfilePicture(HttpPostedFileWrapper file)
         {
-            if (file == null || file.ContentLength == 0)
+            try
             {
-                return new WrappedJsonResult
+                if (file == null || file.ContentLength == 0)
                 {
-                    Data = new
+                    return new WrappedJsonResult
                     {
-                        IsValid = false,
-                        Message = Sic.Apollo.Resources.Resources.MessageForPictureUploadedFailure,
-                        ImagePath = string.Empty
-                    }
-                };
-            }
-
-            if (file.ContentLength > maxSizeUploadFile)
-            {
-                return new WrappedJsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = false,
-                        Message = String.Format(Sic.Apollo.Resources.Resources.MessageForPictureMaxSizeValidation, (maxSizeUploadFile / 1048576)),
-                        ImagePath = string.Empty
-                    }
-                };
-            }
-
-            var fileName = String.Format("{0}{1}", Guid.NewGuid(), System.IO.Path.GetExtension(file.FileName));
-            var imagePath = Path.Combine(Server.MapPath(Url.Content(contactImagePath)), fileName);            
-
-            //var contact = db.Contacts.GetByID(Sic.Web.Mvc.Session.UserId);
-            //if (contact != null)
-            //{
-            //    if (!string.IsNullOrEmpty(contact.Picture))
-            //    {
-            //        var deleteImagePath = Path.Combine(Server.MapPath(Url.Content(contactImagePath)), Path.GetFileName(contact.Picture));
-            //        var deleteMiniImagePath = Path.Combine(Server.MapPath(Url.Content(contactImagePath)),
-            //            Path.GetFileNameWithoutExtension(contact.Picture) + "_min" + Path.GetExtension(contact.Picture));
-            //        FileInfo FileDetele = new FileInfo(deleteImagePath);
-            //        if (FileDetele.Exists)
-            //            FileDetele.Delete();
-            //        FileInfo FileDeteleMin = new FileInfo(deleteMiniImagePath);
-            //        if (FileDeteleMin.Exists)
-            //            FileDeteleMin.Delete();                    
-            //    }
-
-            //    contact.Picture = contactImageSavePath + fileName;
-            //    db.Contacts.Update(contact);
-            //    db.Save();
-            //}
-                                        
-            file.SaveAs(imagePath);
-            //SaveThumbnail(imagePath);
-
-            return new WrappedJsonResult
-            {
-                Data = new
-                {
-                    IsValid = true,
-                    Message = Sic.Apollo.Resources.Resources.MessageForPictureUploadedOk,
-                    ImagePath = Url.Content(contactImageSavePath + fileName),
-                    Width = ProfilePictureWidth,
-                    Height = ProfilePictureHeight
+                        Data = new
+                        {
+                            IsValid = false,
+                            Message = Sic.Apollo.Resources.Resources.MessageForPictureUploadedFailure,
+                            ImagePath = string.Empty
+                        }
+                    };
                 }
-            };
+
+                if (file.ContentLength > maxSizeUploadFile)
+                {
+                    return new WrappedJsonResult
+                    {
+                        Data = new
+                        {
+                            IsValid = false,
+                            Message = String.Format(Sic.Apollo.Resources.Resources.MessageForPictureMaxSizeValidation, (maxSizeUploadFile / 1048576)),
+                            ImagePath = string.Empty
+                        }
+                    };
+                }
+
+                var fileName = String.Format("{0}{1}", Guid.NewGuid(), System.IO.Path.GetExtension(file.FileName));
+                var imagePath = Path.Combine(Server.MapPath(Url.Content(contactImagePath)), fileName);
+
+                //var contact = db.Contacts.GetByID(Sic.Web.Mvc.Session.UserId);
+                //if (contact != null)
+                //{
+                //    if (!string.IsNullOrEmpty(contact.Picture))
+                //    {
+                //        var deleteImagePath = Path.Combine(Server.MapPath(Url.Content(contactImagePath)), Path.GetFileName(contact.Picture));
+                //        var deleteMiniImagePath = Path.Combine(Server.MapPath(Url.Content(contactImagePath)),
+                //            Path.GetFileNameWithoutExtension(contact.Picture) + "_min" + Path.GetExtension(contact.Picture));
+                //        FileInfo FileDetele = new FileInfo(deleteImagePath);
+                //        if (FileDetele.Exists)
+                //            FileDetele.Delete();
+                //        FileInfo FileDeteleMin = new FileInfo(deleteMiniImagePath);
+                //        if (FileDeteleMin.Exists)
+                //            FileDeteleMin.Delete();                    
+                //    }
+
+                //    contact.Picture = contactImageSavePath + fileName;
+                //    db.Contacts.Update(contact);
+                //    db.Save();
+                //}
+
+                file.SaveAs(imagePath);
+                //SaveThumbnail(imagePath);                
+
+                return new WrappedJsonResult
+                {
+                    Data = new
+                    {
+                        IsValid = true,
+                        Message = Sic.Apollo.Resources.Resources.MessageForFileUploadedSuccess,
+                        ImagePath = Url.Content(contactImageSavePath + fileName),
+                        Width = ProfilePictureWidth,
+                        Height = ProfilePictureHeight
+                    }
+                };
+            }
+            catch
+            {
+                return new WrappedJsonResult
+                {
+                    Data = new
+                    {
+                        IsValid = false,
+                        Message = Sic.Apollo.Resources.Resources.MessageForFileUploadedFailure                        
+                    }
+                };
+            }
         }
 
         [HttpPost]    
@@ -229,8 +201,8 @@ namespace Sic.Apollo.Controllers
                 //fileDelete.Delete();
 
                 target.Save(imagePath);
-                string minFileName = SaveThumbnail(imagePath, ProfilePictuteMinWidth, ProfilePictuteMinHeight, "min");
-                SaveThumbnail(imagePath, ProfilePictuteMedWidth, ProfilePictuteMedHeight, "med");
+                string minFileName = Sic.Web.Mvc.Utility.Thumbnail.SaveThumbnail(imagePath, ProfilePictuteMinWidth, ProfilePictuteMinHeight, "min");
+                Sic.Web.Mvc.Utility.Thumbnail.SaveThumbnail(imagePath, ProfilePictuteMedWidth, ProfilePictuteMedHeight, "med");
 
                 var contact = db.Contacts.GetByID(Sic.Web.Mvc.Session.UserId);
                 if (contact != null)
@@ -407,7 +379,7 @@ namespace Sic.Apollo.Controllers
 
             file.SaveAs(imagePath);
             
-            SaveThumbnail(imagePath);
+            Sic.Web.Mvc.Utility.Thumbnail.SaveThumbnail(imagePath);
 
             db.Save();
 

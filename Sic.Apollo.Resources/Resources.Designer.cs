@@ -3427,6 +3427,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No tiene archivos pasados.
+        /// </summary>
+        public static string LegendForEmptyPreviousPatientFile {
+            get {
+                return ResourceManager.GetString("LegendForEmptyPreviousPatientFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Lo sentimos, ha ocurrido un error mientras procesabamos su requerimiento.
         /// </summary>
         public static string LegendForError {
@@ -3549,6 +3558,15 @@ namespace Sic.Apollo.Resources {
         public static string LegendForPreviousMedicalHistory {
             get {
                 return ResourceManager.GetString("LegendForPreviousMedicalHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Historial.
+        /// </summary>
+        public static string LegendForPreviousPatientFile {
+            get {
+                return ResourceManager.GetString("LegendForPreviousPatientFile", resourceCulture);
             }
         }
         
@@ -4143,6 +4161,33 @@ namespace Sic.Apollo.Resources {
         public static string MessageForDeleteProfessionalTeamConfirmation {
             get {
                 return ResourceManager.GetString("MessageForDeleteProfessionalTeamConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a El tamaño del archivo es muy grande. Solo se permiten {0} MB por archivo..
+        /// </summary>
+        public static string MessageForFileMaxSizeValidation {
+            get {
+                return ResourceManager.GetString("MessageForFileMaxSizeValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se pudo cargar el archivo.
+        /// </summary>
+        public static string MessageForFileUploadedFailure {
+            get {
+                return ResourceManager.GetString("MessageForFileUploadedFailure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Archivo subido correctamente.
+        /// </summary>
+        public static string MessageForFileUploadedSuccess {
+            get {
+                return ResourceManager.GetString("MessageForFileUploadedSuccess", resourceCulture);
             }
         }
         

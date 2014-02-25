@@ -40,6 +40,8 @@ namespace Sic.Apollo.Models.Medical
 
         public virtual List<PatientPhysicalExamination> PatientPhysicalExaminations { get; set; }
 
+        public virtual List<PatientFile> PatientFiles { get; set; }
+
         public override bool Validate(System.Web.Mvc.ModelStateDictionary modelState)
         {
             return Contact.Validate(modelState, true);            

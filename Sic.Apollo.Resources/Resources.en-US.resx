@@ -1545,4 +1545,19 @@
   <data name="LabelForPresent" xml:space="preserve">
     <value>Present</value>
   </data>
+  <data name="LegendForEmptyPreviousPatientFile" xml:space="preserve">
+    <value>Simply Files</value>
+  </data>
+  <data name="LegendForPreviousPatientFile" xml:space="preserve">
+    <value>Historial</value>
+  </data>
+  <data name="MessageForFileMaxSizeValidation" xml:space="preserve">
+    <value>The file size is very large. Only allow {0} MB per file.</value>
+  </data>
+  <data name="MessageForFileUploadedFailure" xml:space="preserve">
+    <value>Could not load file</value>
+  </data>
+  <data name="MessageForFileUploadedSuccess" xml:space="preserve">
+    <value>File uploaded successfully</value>
+  </data>
 </root>

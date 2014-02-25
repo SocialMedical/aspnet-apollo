@@ -96,6 +96,7 @@
     <Compile Include="Medical\MedicalProblem.cs" />
     <Compile Include="Medical\Patient.cs" />
     <Compile Include="Medical\MedicalHistory.cs" />
+    <Compile Include="Medical\PatientFile.cs" />
     <Compile Include="Medical\PatientInsuranceInstitution.cs" />
     <Compile Include="Medical\PatientPhysicalExamination.cs" />
     <Compile Include="Medical\PatientVitalSign.cs" />

@@ -46,7 +46,7 @@
         function (data) {
                 $("#contentPanelMessage").appendTo("#medicalHistoryContentMessage" + type);
                 setMessage(data.Message, data.MessageType);
-                refreshResumeEpicrisis(patientId,'history');
+                refreshResumeEpicrisis(getCurrentPatientId(),'history');
         });
     }
 </script>

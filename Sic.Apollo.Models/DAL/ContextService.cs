@@ -60,7 +60,7 @@ namespace Sic.Apollo.Models
         private Repository<MedicalCareMedication> medicalCareMedicationRepository;
         private Repository<PhysicalExamination> physicalExaminationRepository;
         private Repository<PatientPhysicalExamination> patientPhysicalExaminationRepository;
-
+        private Repository<PatientFile> patientFileRepository;
 
         #region Security Repositories
 
@@ -506,6 +506,16 @@ namespace Sic.Apollo.Models
                     patientPhysicalExaminationRepository = new Repository<PatientPhysicalExamination>(Context);
 
                 return patientPhysicalExaminationRepository;
+            }
+        }
+
+        public Repository<PatientFile> PatientFiles
+        {
+            get
+            {
+                if (patientFileRepository == null)
+                    patientFileRepository = new Repository<PatientFile>(Context);
+                return patientFileRepository;
             }
         }
 

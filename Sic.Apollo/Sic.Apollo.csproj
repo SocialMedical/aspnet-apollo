@@ -228,6 +228,7 @@
     <Content Include="Content\styles\simple_content.css" />
     <Content Include="Content\styles\style.css" />
     <Content Include="Content\styles\tabs.css" />
+    <Content Include="Scripts\apollo\medical-patient-files.js" />
     <Content Include="Scripts\apollo\medical-patient-vitalsign.js" />
     <Content Include="Scripts\apollo\medical-patient.js" />
     <Content Include="Scripts\apollo\professionalBook.js" />
@@ -332,6 +333,8 @@
     <Content Include="Views\Patient\PhysicalExamination.cshtml" />
     <Content Include="Views\Professional\ProfessionalOfficesMapMarker.cshtml" />
     <Content Include="Views\Patient\VitalSignHistory.cshtml" />
+    <Content Include="Views\Patient\_PatientFiles.cshtml" />
+    <Content Include="Views\Patient\_PatientFile.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\WebMatrix.WebData.xml" />
     <None Include="_bin_deployableAssemblies\WebMatrix.WebData.dll" />

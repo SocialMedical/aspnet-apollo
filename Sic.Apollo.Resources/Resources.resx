@@ -1629,4 +1629,19 @@
   <data name="LabelForPresent" xml:space="preserve">
     <value>Actualidad</value>
   </data>
+  <data name="LegendForEmptyPreviousPatientFile" xml:space="preserve">
+    <value>No tiene archivos pasados</value>
+  </data>
+  <data name="LegendForPreviousPatientFile" xml:space="preserve">
+    <value>Historial</value>
+  </data>
+  <data name="MessageForFileMaxSizeValidation" xml:space="preserve">
+    <value>El tamaño del archivo es muy grande. Solo se permiten {0} MB por archivo.</value>
+  </data>
+  <data name="MessageForFileUploadedFailure" xml:space="preserve">
+    <value>No se pudo cargar el archivo</value>
+  </data>
+  <data name="MessageForFileUploadedSuccess" xml:space="preserve">
+    <value>Archivo subido correctamente</value>
+  </data>
 </root>
