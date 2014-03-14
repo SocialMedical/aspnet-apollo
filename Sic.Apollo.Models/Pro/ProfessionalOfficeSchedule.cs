@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Sic.Data.Entity;
 using Sic.Web.Mvc;
 using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro 
 {
@@ -13,7 +14,7 @@ namespace Sic.Apollo.Models.Pro
     public class ProfessionalOfficeSchedule : EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int ProfessionalOfficeScheduleId { get; set; }
 
         public int ContactLocationId { get; set; }

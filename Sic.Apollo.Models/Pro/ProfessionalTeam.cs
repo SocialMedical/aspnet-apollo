@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.Security;
 using Sic.Web.Mvc;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {
@@ -13,7 +14,7 @@ namespace Sic.Apollo.Models.Pro
     public class ProfessionalTeam: Sic.Data.Entity.EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int ProfessionalTeamId { get; set; }
 
         public int ProfessionalId { get; set; }

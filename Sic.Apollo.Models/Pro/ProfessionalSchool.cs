@@ -6,6 +6,7 @@ using Sic.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using Sic.Web.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {
@@ -13,7 +14,7 @@ namespace Sic.Apollo.Models.Pro
     public class ProfessionalSchool: EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int ProfessionalSchoolId { get; set; }
 
 	    public int ProfessionalId { get; set; }

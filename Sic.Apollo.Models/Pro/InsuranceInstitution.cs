@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Sic.Data.Entity;
 using Sic.Apollo.Models.Medical;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {
@@ -15,11 +16,11 @@ namespace Sic.Apollo.Models.Pro
         [Display(ResourceType = typeof(Resources.Resources), Name = "LabelForActive")]
         public bool Active { get; set; }
 
-        public override int Key
+        public override string Key
         {
             get
             {
-                return this.InstitutionId;
+                return this.InstitutionId.ToString();
             }
         }
 

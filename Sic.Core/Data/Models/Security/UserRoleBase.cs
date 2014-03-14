@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Data.Models.Security
 {
@@ -10,7 +11,7 @@ namespace Sic.Data.Models.Security
     public class UserRoleBase: Sic.Data.Entity.EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserRoleId { get; set; }
 
         public int UserId { get; set; }        

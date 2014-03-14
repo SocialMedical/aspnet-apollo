@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sic.Apollo.Models", "Sic.Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sic.Security", "Sic.Security\Sic.Security.csproj", "{2DD72841-6FA3-4498-B676-20A17ABE9DB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sic.Resources", "Sic.Resources\Sic.Resources.csproj", "{D907CC08-B296-4A47-9C5D-4E2A5AB5F514}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{2DD72841-6FA3-4498-B676-20A17ABE9DB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD72841-6FA3-4498-B676-20A17ABE9DB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD72841-6FA3-4498-B676-20A17ABE9DB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D907CC08-B296-4A47-9C5D-4E2A5AB5F514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D907CC08-B296-4A47-9C5D-4E2A5AB5F514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D907CC08-B296-4A47-9C5D-4E2A5AB5F514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D907CC08-B296-4A47-9C5D-4E2A5AB5F514}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

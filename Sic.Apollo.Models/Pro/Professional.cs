@@ -7,13 +7,13 @@ using Sic.Apollo.Models.General;
 using Sic.Data.Entity;
 using System.Web.Mvc;
 using Sic.Web.Mvc.Validation;
-using Sic.Web.Mvc.Entity;
 using Sic.Apollo.Models.Medical;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {    
     [Table("tbProfessional", Schema = "pro")]
-    public class Professional : ModelEntity
+    public class Professional : Sic.Data.Entity.EntityBase
     {               
         [Key]        
         public int ProfessionalId { get; set; }
@@ -126,7 +126,7 @@ namespace Sic.Apollo.Models.Pro
             this.Contact.Gender = (int)Gender.Male;            
         }
 
-        public override bool Validate(ModelStateDictionary modelState)
+        public bool Validate(ModelStateDictionary modelState)
         {
             if (string.IsNullOrWhiteSpace(this.Contact.PhoneNumber) && string.IsNullOrWhiteSpace(this.Contact.CellPhone))
             {

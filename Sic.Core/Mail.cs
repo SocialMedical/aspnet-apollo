@@ -92,12 +92,23 @@ namespace Sic
         public static string MailContactFrom { get; set; }
     }
 
+    public enum MailtoType
+    {
+        Cc,
+        To,
+        Cco
+    }
+
     public class MailContact
     {
         public string Name { get; set; }
         public string Mail { get; set; }
+        public MailtoType MailtoType { get; set; }
 
-        public MailContact() { }
+        public MailContact()
+        {
+            MailtoType = Sic.MailtoType.To;
+        }
 
         public MailContact(string Name, string Mail)
         {

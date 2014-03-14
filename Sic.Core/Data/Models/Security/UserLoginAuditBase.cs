@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Data.Models.Security
 {
     [Table("tbUserLoginAudit", Schema = "sec")]
     public class UserLoginAuditBase: Sic.Data.Entity.EntityBase
     {
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int UserLoginAuditId { get; set; }
 

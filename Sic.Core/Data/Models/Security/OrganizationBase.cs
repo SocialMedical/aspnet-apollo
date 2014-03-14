@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Data.Models.Security
 {
@@ -10,7 +11,7 @@ namespace Sic.Data.Models.Security
     public class OrganizationBase : Sic.Data.Entity.EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int OrganizationId { get; set; }
 
         public virtual string Name { get; set; }

@@ -8,12 +8,12 @@ using Sic.Apollo.Models.General;
 using System.Web.Mvc;
 using Sic.Web.Mvc;
 using Sic.Apollo.Models.Pro;
-using Sic.Web.Mvc.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Security
 {
     [Table("tbUser", Schema = "sec")]
-    public class User : ModelEntity
+    public class User : Sic.Data.Entity.EntityBase
     {
         [Key]
         [ScaffoldColumn(false)]
@@ -41,7 +41,7 @@ namespace Sic.Apollo.Models.Security
         [MinLength(6, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForMinimunLength")]
         [DataType(DataType.Password)]
         [NotMapped]
-        [Compare("Password", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForComparePassword")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForComparePassword")]
         public string ConfirmedPassword
         {
             get
@@ -78,7 +78,7 @@ namespace Sic.Apollo.Models.Security
 
         public string TypeDisplay { get { return this.Type.GetDisplay(typeof(UserType)); } }                
 
-        public override bool Validate(ModelStateDictionary modelState)
+        public bool Validate(ModelStateDictionary modelState)
         {
             ContextService db = new ContextService();
             if (this.UserId == 0)
@@ -93,7 +93,7 @@ namespace Sic.Apollo.Models.Security
                     if (db.Users.UserExists(this.LogonName))
                         modelState.AddModelError("LogonName", Sic.Apollo.Resources.Resources.ValidationForDuplicateAccountLogonName);
             }
-            return base.Validate(modelState);
+            return modelState.IsValid;
         }
     }
 

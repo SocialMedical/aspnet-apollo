@@ -30,7 +30,7 @@ namespace Sic.Apollo.Models.Security.View
         [MaxLength(50, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForMaximunLength")]
         [MinLength(6, ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForMinimunLength")]
         [DataType(DataType.Password)]
-        [Compare("NewPassword", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForComparePassword")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationForComparePassword")]
         public string ConfirmedNewPassword { get; set; }
     }
 }

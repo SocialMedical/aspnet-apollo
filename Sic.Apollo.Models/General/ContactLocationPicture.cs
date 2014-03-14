@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Sic.Data.Entity;
 using System.IO;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.General
 {
@@ -12,7 +13,7 @@ namespace Sic.Apollo.Models.General
     public class ContactLocationPicture: EntityBase, IPicture
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int ContactLocationPictureId { get; set; }
 
         public int ContactLocationId { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Sic.Data.Models.General
@@ -10,11 +11,11 @@ namespace Sic.Data.Models.General
     [Table("tbContactLocation", Schema="gen")]
     public class ContactLocationBase: Sic.Data.Entity.EntityBase
     {
-        public override int Key
+        public override string Key
         {
             get
             {
-                return this.ContactLocationId;
+                return this.ContactLocationId.ToString();
             }
         }
 
@@ -27,7 +28,7 @@ namespace Sic.Data.Models.General
         }
 
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ContactLocationId { get; set; }
 
         public int? ContactId { get; set;}

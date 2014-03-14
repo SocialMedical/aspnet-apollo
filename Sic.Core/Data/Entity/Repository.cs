@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
-using System.Data.Entity;
 using System.Linq.Expressions;
 using System.Collections;
+using System.Data.Entity;
 
 namespace Sic.Data.Entity
 {
@@ -24,6 +24,11 @@ namespace Sic.Data.Entity
             dbSet.Attach(entity);
         }
 
+        public void Detach(TEntity entity)
+        {
+            context.Entry<TEntity>(entity).State = EntityState.Detached;
+        }
+
         public void Load(TEntity entity, string navigationProperty)
         {
             this.context.Entry<TEntity>(entity).Collection(navigationProperty).Load();
@@ -32,6 +37,25 @@ namespace Sic.Data.Entity
         public IQueryable<TEntity> AsQueryable()
         {
             return dbSet;
+        }
+
+        public virtual T GetMaxValue<T>(Expression<Func<TEntity, T>> maxExpression, T defaultValue,
+            Expression<Func<TEntity, bool>> filter = null)
+        {
+            IQueryable<TEntity> query = dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            try
+            {
+                return query.Max(maxExpression);
+            }
+            catch
+            {
+                return defaultValue;
+            }
         }
 
         public virtual IEnumerable<TEntity> Get(
@@ -71,13 +95,18 @@ namespace Sic.Data.Entity
             return dbSet.Find(id);
         }
 
-        public virtual void Insert(TEntity entity)
+        public virtual void AssignInsertAuditableData(TEntity entity)
         {
             if (entity is IAuditable)
             {
                 (entity as IAuditable).DateInsert = Runtime.Current.GetCurrentDateTime();
                 (entity as IAuditable).UserInsertId = Runtime.Current.UserId;
             }
+        }
+
+        public virtual void Insert(TEntity entity)
+        {
+            AssignInsertAuditableData(entity);
             dbSet.Add(entity);
         }
 
@@ -96,14 +125,18 @@ namespace Sic.Data.Entity
             dbSet.Remove(entityToDelete);
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public virtual void AssignUpdateAuditableData(TEntity entityToUpdate)
         {
             if (entityToUpdate is IAuditable)
             {
                 (entityToUpdate as IAuditable).DateUpdate = Runtime.Current.GetCurrentDateTime();
                 (entityToUpdate as IAuditable).UserUpdateId = Runtime.Current.UserId;
             }
+        }
 
+        public virtual void Update(TEntity entityToUpdate)
+        {
+            AssignUpdateAuditableData(entityToUpdate);
             dbSet.Attach(entityToUpdate);
 
             context.Entry(entityToUpdate).State = EntityState.Modified;
@@ -114,16 +147,16 @@ namespace Sic.Data.Entity
             return dbSet.SqlQuery(query, parameters).ToList();
         }
 
-        public void UpdateModel(object source, TEntity target, string[] includeProperties = null, string[] excludeProperties = null)
+        public void Update(object source, TEntity target, string[] includeProperties = null, string[] excludeProperties = null)
         {
             source.CopyTo(target, includeProperties: includeProperties, excludeProperties: excludeProperties);
             Update(target);
         }
 
-        public void UpdateModel(IEnumerable<IIdentifiable> source, IEnumerable<TEntity> target,
+        public void Update(IEnumerable<IIdentifiable> source, IEnumerable<TEntity> target,
             string[] includeProperties = null, string[] excludeProperties = null)
         {
-            HashSet<int> keys = new HashSet<int>(source.Select(p => p.Key));
+            HashSet<string> keys = new HashSet<string>(source.Select(p => p.Key));
 
             //Update Insert Identification
             List<TEntity> insertList = new List<TEntity>();
@@ -180,5 +213,6 @@ namespace Sic.Data.Entity
                     targetList.Remove(entityDelete);
             }
         }
+
     }
 }

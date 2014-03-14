@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.Pro;
 using Sic.Data.Entity;
 using Sic.Apollo.Models.Medical;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Appointment
 {

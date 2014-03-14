@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Sic.Data.Entity;
 using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {
@@ -46,11 +47,11 @@ namespace Sic.Apollo.Models.Pro
 
         public virtual List<SpecializationService> SpecializationServices { get; set; }
 
-        public override int Key
+        public override string Key
         {
             get
             {
-                return this.SpecializationId;
+                return this.SpecializationId.ToString();
             }
         }
 

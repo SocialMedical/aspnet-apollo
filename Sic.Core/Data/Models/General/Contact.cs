@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Sic.Data.Models.Security;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Data.Models.General
 {
     [Table("tbContact",Schema="gen")]
     public class ContactBase: Sic.Data.Entity.EntityBase, INameable
     {
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int ContactId { get; set; }
 

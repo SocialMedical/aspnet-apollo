@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Data.Entity
 {
@@ -11,7 +12,7 @@ namespace Sic.Data.Entity
         #region IIdentifiable Members
 
         [NotMapped()]
-        public virtual int Key { get { return 0; } }
+        public virtual string Key { get { return string.Empty; } }
 
         [NotMapped()]
         public virtual string DescriptionName { get { return string.Empty; } }

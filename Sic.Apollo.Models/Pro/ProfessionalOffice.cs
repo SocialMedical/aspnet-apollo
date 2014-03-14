@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.General;
 using Sic.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {
@@ -15,11 +16,11 @@ namespace Sic.Apollo.Models.Pro
 
 		public bool Active { get; set; }
 
-        public override int Key
+        public override string Key
         {
             get
             {
-                return base.ContactLocationId;
+                return base.ContactLocationId.ToString();
             }
         }
 

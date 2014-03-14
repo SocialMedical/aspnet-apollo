@@ -7,7 +7,7 @@ namespace Sic.Data.Entity
 {
     public interface IIdentifiable
     {
-        int Key { get; }
+        string Key { get; }
         string DescriptionName { get; }
     }
 }

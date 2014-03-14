@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.Pro;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Medical
 {
@@ -11,7 +12,7 @@ namespace Sic.Apollo.Models.Medical
     public class PatientInsuranceInstitution: Sic.Data.Entity.EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int PatientInsuranceInstitutionId { get; set; }
 
         public int PatientId { get; set; }

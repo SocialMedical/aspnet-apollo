@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.General;
-using Sic.Web.Mvc.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Medical
 {
     [Table("tbPatient", Schema="med")]
-    public class Patient : ModelEntity
+    public class Patient : Sic.Data.Entity.EntityBase
     {
         [Key]
         public int PatientId { get; set; }
@@ -42,7 +42,7 @@ namespace Sic.Apollo.Models.Medical
 
         public virtual List<PatientFile> PatientFiles { get; set; }
 
-        public override bool Validate(System.Web.Mvc.ModelStateDictionary modelState)
+        public bool Validate(System.Web.Mvc.ModelStateDictionary modelState)
         {
             return Contact.Validate(modelState, true);            
         }

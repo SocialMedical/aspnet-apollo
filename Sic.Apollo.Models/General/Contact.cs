@@ -10,13 +10,13 @@ using System.Web.Mvc;
 using Sic.Apollo.Models.Security;
 using Sic.Web.Mvc;
 using System.Security.AccessControl;
-using Sic.Web.Mvc.Entity;
 using System.IO;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.General
 {
     [Table("tbContact", Schema = "gen")]
-    public class Contact : ModelEntity
+    public class Contact : Sic.Data.Entity.EntityBase
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

@@ -5,6 +5,7 @@ using System.Web;
 using Sic.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.Medical;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {

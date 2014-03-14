@@ -5,6 +5,7 @@ using System.Web;
 using Sic.Data.Entity;
 using System.ComponentModel.DataAnnotations;
 using Sic.Apollo.Models.Pro;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Appointment
 {
@@ -22,11 +23,11 @@ namespace Sic.Apollo.Models.Appointment
 
         public Specialization Specialization { get; set; }
 
-        public override int Key
+        public override string Key
         {
             get
             {
-                return this.SpecializationAppointmentReasonId;
+                return this.SpecializationAppointmentReasonId.ToString();
             }
         }
 

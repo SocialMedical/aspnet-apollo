@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Sic.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Pro
 {
@@ -11,7 +12,7 @@ namespace Sic.Apollo.Models.Pro
     public class SpecializationService: EntityBase
     {
         [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int SpecializationServiceId { get; set; }
         
         public int SpecializationId { get; set; }

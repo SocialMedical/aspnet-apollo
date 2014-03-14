@@ -17,7 +17,7 @@ namespace Sic.Data
             return string.Format("{0} {1}", nameable.Names, nameable.LastNames);
         }
 
-        private static object GetItem(IEnumerable list, int key)
+        private static object GetItem(IEnumerable list, string key)
         {
             foreach (object item in list)
             {
@@ -119,53 +119,12 @@ namespace Sic.Data
                                     targetInfo.SetValue(target, sourceValue, null);
                                 }
                             }
-                            catch { return false; }
+                            catch {  }
                         }
                     }
                 }
             }
             return true;
-        }
-    }
-}
-
-namespace Sic
-{
-    public static class EnumExtensions
-    {
-        /// <summary>
-        /// Get the description attribute for the enum
-        /// </summary>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        public static string Description(this Enum e)
-        {
-            var da = (DescriptionAttribute[])(e.GetType().GetField(e.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false));
-
-            return da.Length > 0 ? da[0].Description : e.ToString();
-        }
-
-    }
-
-    public static class Extensions
-    {
-        public static string GetDisplay<T>(this T value, Type type)
-        {
-            object item = Enum.Parse(type, value.ToString());
-
-            FieldInfo field = type.GetField(item.ToString());
-
-            if (field != null)
-            {
-                DisplayAttribute attrs = (DisplayAttribute)field.GetCustomAttributes(typeof(DisplayAttribute), false).FirstOrDefault();
-
-                if (attrs != null)
-                    return attrs.GetName();
-                else
-                    return String.Empty;
-            }
-            else
-                return String.Empty;
         }
     }
 }

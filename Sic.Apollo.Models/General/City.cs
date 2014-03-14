@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Sic.Data.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.General
 {
@@ -25,11 +26,11 @@ namespace Sic.Apollo.Models.General
 
         public virtual List<ContactLocation> ContactLocations { get; set; } 
 
-        public override int Key
+        public override string Key
         {
             get
             {
-                return this.CityId;
+                return this.CityId.ToString();
             }           
         }
 

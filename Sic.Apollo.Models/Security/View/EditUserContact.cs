@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using Sic.Web.Mvc;
 using System.Web.Mvc;
 using Sic.Apollo.Models.General;
-using Sic.Web.Mvc.Entity;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Sic.Apollo.Models.Security.View
 {
-    public class EditUserContact: ModelEntity
+    public class EditUserContact
     {
         [Key]
         [ScaffoldColumn(false)]
@@ -32,7 +32,7 @@ namespace Sic.Apollo.Models.Security.View
 
         public Contact Contact { get; set; }
 
-        public override bool Validate(ModelStateDictionary modelState)
+        public bool Validate(ModelStateDictionary modelState)
         {
             ContextService db = new ContextService();
             
@@ -41,7 +41,7 @@ namespace Sic.Apollo.Models.Security.View
                 if (db.Users.UserExists(this.LogonName))
                     modelState.AddModelError("LogonName", Sic.Apollo.Resources.Resources.ValidationForDuplicateAccountLogonName);
             
-            return base.Validate(modelState);
+            return modelState.IsValid;
         }
     }
 }
