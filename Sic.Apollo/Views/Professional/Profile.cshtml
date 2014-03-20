@@ -62,7 +62,7 @@
                 </div>
                 <div class="box_text_form">@Html.LabelFor(model => model.Contact.Gender)</div>
                 <div class="box_input_form">
-                    @Html.DropDownListFor(model => model.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male), new { @class = "select_input_form", id = "newPatientGender" })
+                    @Html.DropDownListFor(model => model.Contact.Gender, Sic.Gender.Male.ToSelectList(), new { @class = "select_input_form", id = "newPatientGender" })
                     <div>
                         <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.Gender)</span>
                     </div>

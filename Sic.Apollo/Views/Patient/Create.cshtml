@@ -44,7 +44,7 @@
                 <div class="box_text_form" style="clear:both">
                     @Sic.Apollo.Resources.Resources.LabelForGender</div>
                 <div class="box_input_form">
-                    @Html.DropDownListFor(model => model.Gender, System.Web.Mvc.Extensions.ToSelectList(Sic.Gender.Male), new { @class = "select_input_form", id = "newPatientGender" })
+                    @Html.DropDownListFor(model => model.Gender, Sic.Gender.Male.ToSelectList(), new { @class = "select_input_form", id = "newPatientGender" })
                     <div>
                         <span class="error_field">@Html.ValidationMessageFor(model => model.Gender)</span>
                     </div>

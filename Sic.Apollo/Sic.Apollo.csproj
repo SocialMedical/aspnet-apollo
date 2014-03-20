@@ -183,6 +183,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Patient\Controllers\FileController.cs" />
+    <Compile Include="Areas\Patient\Controllers\MedicalCareController.cs" />
+    <Compile Include="Areas\Patient\Controllers\MedicalHistoryController.cs" />
+    <Compile Include="Areas\Patient\Controllers\PhysicalExaminationController.cs" />
+    <Compile Include="Areas\Patient\Controllers\VitalSignController.cs" />
+    <Compile Include="Areas\Patient\PatientAreaRegistration.cs" />
     <Compile Include="Reports\DataSource\ApolloDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -196,7 +202,7 @@
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\InsuranceInstitutionController.cs" />
     <Compile Include="Controllers\MedicalController.cs" />
-    <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="Areas\Patient\Controllers\PatientController.cs" />
     <Compile Include="Controllers\ProfessionalController.cs" />
     <Compile Include="Controllers\SpecializationController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -374,6 +380,7 @@
     <Content Include="Views\Shared\CropImage.cshtml" />
     <Content Include="Views\Shared\Dialog.cshtml" />
     <Content Include="Views\Patient\MedicationPrint.cshtml" />
+    <Content Include="Areas\Patient\Views\web.config" />
     <None Include="Properties\PublishProfiles\BackCore.pubxml" />
     <None Include="Reports\DataSource\ApolloDataSet.xsc">
       <DependentUpon>ApolloDataSet.xsd</DependentUpon>
@@ -723,6 +730,13 @@
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Patient\Models\" />
+    <Folder Include="Areas\Patient\Views\Epicrisis\" />
+    <Folder Include="Areas\Patient\Views\File\" />
+    <Folder Include="Areas\Patient\Views\MedicalCare\" />
+    <Folder Include="Areas\Patient\Views\MedicalHistory\" />
+    <Folder Include="Areas\Patient\Views\PhysicalExamination\" />
+    <Folder Include="Areas\Patient\Views\Shared\" />
     <Folder Include="Content\themes\base\ad-gallery\" />
   </ItemGroup>
   <ItemGroup>

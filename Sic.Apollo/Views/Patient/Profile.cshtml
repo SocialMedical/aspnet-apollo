@@ -49,14 +49,14 @@
             </div>
             <div class="box_text_form">@Html.LabelFor(model => model.Contact.Gender)</div>
             <div class="box_input_form">
-                @Html.DropDownListFor(m => m.Contact.Gender, Extensions.ToSelectList(Sic.Gender.Male), new { @class = "select_input_form", id = "patientGender" })
+                @Html.DropDownListFor(m => m.Contact.Gender, Sic.Gender.Male.ToSelectList(), new { @class = "select_input_form", id = "patientGender" })
                 <div>
                     <span class="error_field">@Html.ValidationMessageFor(model => model.Contact.Gender, null, new { data_valmsg_for = "patientGender" })</span>
                 </div>
             </div>
             <div class="box_text_form">@Sic.Apollo.Resources.Resources.LabelForBloodGroup</div>
             <div class="box_input_form">
-                @Html.DropDownListFor(m => m.BloodGroup, Extensions.ToSelectList(Sic.BloodGroup.Unspecified), new { @class = "select_input_form", id = "patientBloodGroup" })
+                @Html.DropDownListFor(m => m.BloodGroup, Sic.BloodGroup.Unspecified.ToSelectList(), new { @class = "select_input_form", id = "patientBloodGroup" })
                 <div>
                     <span class="error_field">@Html.ValidationMessageFor(model => model.BloodGroup, null, new { data_valmsg_for = "patientBloodGroup" })</span>
                 </div>
