@@ -1,0 +1,58 @@
+﻿.patient_list{
+    margin-top:25px;
+    list-style:none;
+    margin-left:-35px;
+}
+.patient_list a
+{
+    color:#6d6e70;
+    text-decoration:underline;
+}
+.patient_list a:visited
+{
+    color:#6d6e70;    
+}
+.patient_list a:hover
+{
+    color:#6d6e70;    
+}
+.patient_item{    
+    padding-top:9px;
+    padding-left:10px;
+    font-size:13px;
+    color:#a9a2a2;
+    height:25px;
+    vertical-align:middle;
+}
+.patient_list_title{    
+    padding-top:9px;
+    padding-left:10px;
+    font-size:13px;
+    color:#a9a2a2;
+    height:25px;           
+}
+.patient_list .patient_name
+{
+    float:left;
+    width:180px;
+    height:20px;
+}
+.patient_list .patient_age
+{
+    float:left;
+    width:100px;
+    height:20px;
+}
+.patient_list .patient_lastdate
+{
+    float:left;
+    width:130px;
+    height:20px;
+}
+.patient_list .patient_action
+{
+    padding-left:30px;
+    float:left;
+    width:50px;
+    height:20px;
+}

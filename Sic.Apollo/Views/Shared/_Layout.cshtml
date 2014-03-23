@@ -4,19 +4,23 @@
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
     @RenderSection("meta", false)
-    <link rel="icon" type="image/png" href="@Url.Content("~/Content/images/favicon.png")" />
-    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Content/images/favicon.ico")" />       
-    <link href="@Url.ContentVersion("~/Content/styles/fonts/stylesheet.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/styles/style.css")" rel="stylesheet" type="text/css" />                            
-    <link href="@Url.ContentVersion("~/Scripts/custom/login.css")" rel="stylesheet" type="text/css" />
 
+    <link rel="icon" type="image/png" href="@Url.ContentImage("favicon.png")" />
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.ContentImage("favicon.ico")" />  
+    
+    @Url.ImportStyleSheet("fonts/stylesheet.css", true)
+    @Url.ImportStyleSheet("style.css", true)
+    @Url.ImportStyleSheet("apollo/public/login.css", true)            
+            
     @RenderSection("LinksImport", false)
-
-    <script src="@Url.ContentVersion("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/jquery-ui-1.8.21.custom.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/custom/login.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/sic/core.js")" type="text/javascript"></script>     
+        
+    @Url.ImportScript("sic/core.js", true)
+    @Url.ImportScript("jquery-1.7.2.min.js")
+    @Url.ImportScript("jquery-ui-1.8.21.custom.min.js")
+    @Url.ImportScript("modernizr-1.7.min.js")
+    @Url.ImportScript("jquery-1.7.2.min.js")
+    @Url.ImportScript("jquery-1.7.2.min.js")
+    @Url.ImportScript("apollo/public/login.js", true)    
     
     @RenderSection("ScriptsImport", false)
 
@@ -34,7 +38,7 @@
                 <div id="logo">
                 </div>
             </a>
-            @{ Html.RenderPartial("LoginButton"); }
+            @{ Html.RenderPartial("_LoginButton"); }
         </div>
     </div>
     <!--FINCabecera-->    
@@ -43,7 +47,7 @@
         <div id="main">
             @RenderBody()
         </div>        
-        @{ Html.RenderPartial("Footer");}
+        @{ Html.RenderPartial("_Footer");}
         <!--wrapperr-->
     </div>
     <!--FINfooter-->

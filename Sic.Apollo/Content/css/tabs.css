@@ -1,0 +1,238 @@
+/* $Id: example.css,v 1.5 2006/03/27 02:44:36 pat Exp $ */
+
+/*-- Deslizante --*/
+#topbar{ position:relative; float:right;  width:320px; height:260px; visibility:hidden; z-index:10000;}
+
+/*--------------------------------------------------
+  REQUIRED to hide the non-active tab content.
+  But do not hide them in the print stylesheet!
+  --------------------------------------------------*/
+.tabberlive .tabbertabhide { display:none; }
+
+/*--------------------------------------------------
+  .tabber = before the tabber interface is set up
+  .tabberlive = after the tabber interface is set up
+  --------------------------------------------------*/
+.tabber {
+	height:auto;
+}
+.tabberlive { width:670px; margin:0px;  }
+
+/*--------------------------------------------------
+  ul.tabbernav = the tab navigation list
+  li.tabberactive = the active tab
+  --------------------------------------------------*/
+ul.tabbernav { 
+ margin:0;  padding: 15px 10px 10px 10px ; font-size:12px;  color:#3c66dc; background-color:#006;
+ background: #3f9eee; /* Old browsers */
+ height:18px;
+ border:1px solid #1980d9;
+/* text-shadow: 1px 1px 3px #000000;*/
+        filter: dropshadow(color=#000000, offx=1, offy=1);
+
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI5JSIgc3RvcC1jb2xvcj0iIzNmOWVlZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijg1JSIgc3RvcC1jb2xvcj0iIzEzNWI5OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgPC9saW5lYXJHcmFkaWVudD4KICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+
+background: -moz-linear-gradient(top,  #3f9eee 9%, #135b99 85%); /* FF3.6+ */
+
+background: -webkit-gradient(linear, left top, left bottom, color-stop(9%,#3f9eee), color-stop(85%,#135b99)); /* Chrome,Safari4+ */
+
+background: -webkit-linear-gradient(top,  #3f9eee 9%,#135b99 85%); /* Chrome10+,Safari5.1+ */
+
+background: -o-linear-gradient(top,  #3f9eee 9%,#135b99 85%); /* Opera 11.10+ */
+
+background: -ms-linear-gradient(top,  #3f9eee 9%,#135b99 85%); /* IE10+ */
+
+background: linear-gradient(to bottom,  #3f9eee 9%,#135b99 85%); /* W3C */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f9eee', endColorstr='#135b99',GradientType=0 ); /* IE6-8 */
+-webkit-border-radius: 4px 4px 0px 0px;
+border-radius: 4px 4px 0px 0px;
+	-moz-border-radius: 4px 4px 0px 0px;;
+
+  }
+*html ul.tabbernav {  padding: 4px 0 2px 0;}
+:first-child+html ul.tabbernav{  padding: 4px 0 2px 0;}
+ul.tabbernav li { list-style:none; margin: 0; display: inline;  }
+ul.tabbernav li a { padding: 0px; margin:0px 10px 2px 10px;  border-bottom: none; text-decoration: none;  font-size:12px; width:60px; }
+ul.tabbernav li a:link { color:#fff; }
+ul.tabbernav li a:visited { color: #fff; }
+ul.tabbernav li a:hover { text-decoration:underline; }
+ul.tabbernav li.tabberactive a {color:#fff; font-weight:bold   /*border-bottom:1px solid #ffdd02;*/}
+ul.tabbernav li.tabberactive a:hover { text-decoration:underline; font-weight:bold }
+
+/*--------------------------------------------------
+  .tabbertab = the tab content
+  Add style only after the tabber interface is set up (.tabberlive)
+  --------------------------------------------------*/
+.tabberlive .tabbertab {   border-top:0; height:auto;  
+ /* If you don't want the tab size changing whenever a tab is changed
+    you can set a fixed height AQUI CAMBIA EL TAMANIO AUTOMATICAMENTE DEL CONTENDOR DE LA INFORMACION*/
+
+ /* height:200px; */
+
+ /* If you set a fix height set overflow to auto and you will get a
+    scrollbar when necessary */
+
+ /* overflow:auto; */
+}
+
+/* If desired, hide the heading since a heading is provided by the tab */
+.tabberlive .tabbertab h2 { display:none;}
+.tabberlive .tabbertab h3 { display:none;}
+
+/* Example of using an ID to set different styles for the tabs on the page */
+.tabberlive#tab1 { height:auto; overflow:auto;}
+.tabberlive#tab2 { height:auto; overflow:auto;}
+.tabberlive#tab2 .tabbertab { height:auto; overflow:auto;}
+.scrollTabs {
+	height:auto;
+	padding:10px;
+	font:11px/16px Tahoma,Arial, Helvetica, sans-serif;
+	background-color: #FFF;
+-webkit-box-shadow:  1px 1px 7px 0px rgba(0, 0, 0, 0.2);
+ box-shadow:  1px 1px 7px 0px rgba(0, 0, 0, 0.2);
+-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	
+}
+.tituloCines {color:#035caa;}
+/*.tituloCines:before { content:"- "}*/
+
+.contenedor_pro{
+	width:693px;
+	padding:10px;
+	position:relative;
+	background-color: #E8E8E8;
+	height: auto;
+	z-index: 500;
+	float: left;
+	
+	}
+	
+.txtbl
+{font-family:Arial, Helvetica, sans-serif;
+font-size:16px;
+color:#666;
+}
+.arrow_tab1
+{width:25px; height:13px;  position:relative; top:-20px; left: 25px; background-image:url(../img/style/arrow_login_box.png)}
+
+.arrow_tab2
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 90px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+
+.arrow_tab3
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 155px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+.arrow_tab4
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left:240px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+.arrow_tab5
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 330px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+.arrow_tab6
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 430px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+.arrow_tab7
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 515px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+
+.profile_arrow_tab1
+{width:25px; height:13px;  position:relative; top:-20px; left: 30px; background-image:url(../img/style/arrow_login_box.png)}
+
+.profile_arrow_tab2
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 105px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+
+.profile_arrow_tab3
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 185px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+
+.profile_arrow_tab4
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 265px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+
+.profile_arrow_tab5
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 340px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+.profile_arrow_tab6
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 425px;
+	background-image:url(../img/style/arrow_login_box.png)
+}
+.profile_arrow_tab7
+{
+	width:25px;
+	height:13px;
+	position:relative;
+	top:-20px;
+	left: 490px;
+	background-image:url(../img/style/arrow_login_box.png)
+}

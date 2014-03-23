@@ -1,0 +1,32 @@
+﻿@model Sic.Apollo.Models.Pro.ProfessionalOffice
+<div id="presentationOffice">
+    <div class="box_location_view">
+        <div id="icon_location">
+            <strong>@Model.MarkerIndex</strong></div>
+        <div>
+            <strong><span class="txt_az_23">@Model.Address</span></strong></div>
+    </div>
+    <div id="content_calendar_gallery">        
+        <div id="content_left_calendar">
+        @{ Html.RenderPartial("_BoxCalendar", new List<Sic.Apollo.Models.IContactLocation> { Model });}
+        </div>
+        <div id="box_gallery">
+            <div class="title_galley">
+                <span class="txt_az_15"><strong>@Sic.Apollo.Resources.Resources.LabelForGallery</strong></span></div>
+            <div id="galler_box">
+                @if (Model.ContactLocationPictures.Any())
+                {
+                    foreach (var picture in Model.ContactLocationPictures)
+                    {
+                    <div class="content_img_gallery">
+                        <a class="fancyboxpicture" data-fancybox-group="gallery" href="@picture.Picture" title = "@picture.PictureDescription">
+                            <img src="@picture.Thumbnail" alt="@picture.PictureDescription"/>
+                        </a>
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@{ Html.RenderAction("Search", "Booking", new { area = "Appointment", locationsId = Model.ContactLocationId, specializationId = ViewBag.SpecializationId, simple = true });}

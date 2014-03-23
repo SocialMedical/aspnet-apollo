@@ -1,0 +1,76 @@
+﻿@model Sic.Apollo.Models.Appointment.View.AppointmentTransaction
+@{
+    string emptyPicture = "/Content/images/contacts/DefaultProfessional.jpg"; 
+}
+<div id="info_medical_book">
+    <div id="shadow_card_medical">
+    </div>
+    <div class="card_medical">
+        <div>
+            <span class="txt_az_18"><strong>@Model.Professional.FullName</strong></span></div>
+        <div>
+            <span class="txt_gris_12">@Model.Professional.SpecializationName</span></div>
+        <div class="img_medical_information_book">
+            <div class="img_profile_information_border_book">
+                @Html.Image(string.IsNullOrEmpty(Model.Professional.Picture) ? emptyPicture : Model.Professional.Picture, Model.Professional.FullName,
+                                 new { @style = "width: 75px; height: 110px;" });
+            </div>
+        </div>
+        <div class="card_info_medical">
+            <div>
+                <span class="txt_gris_12">@Model.Professional.ProfessionalDescription</span>
+            </div>
+            <div>
+                <span class="txt_az_13"><a href="#" class="txt_az_13">@Sic.Apollo.Resources.Resources.LabelForReadMore</a></span></div>
+            <div>
+                <div class="content_star_ranking_book">
+                    @{ Html.RenderPartial("Scorer", Model.Professional.RateScore ?? 0); }
+                </div>
+            </div>
+            <div class="box_location_book_medical">
+                <span class="txt_gris_12">@Model.Professional.Address</span></div>
+        </div>
+        <div id="book_reserve_data">
+            <div>
+                <span class="txt_az_13"><strong>@Sic.Apollo.Resources.Resources.LabelForDateAndHour</strong></span><br />
+                <span class="txt_gris_12">@Model.AppointmentToStringDateTimeFormat</span>
+            </div>
+            <div>
+                <span class="txt_az_13"><strong>@Sic.Apollo.Resources.Resources.LabelForInsurance</strong></span><br />
+                @if (Model.InsuranceInstitution != null)
+                {
+                    <span class="txt_gris_12">@Model.InsuranceInstitution.DescriptionName</span>
+                }
+                else
+                {
+                    if (Model.Step == 1)
+                    {
+                        <span class="txt_gris_12">@Sic.Apollo.Resources.Resources.LabelForPending</span>
+                    }
+                    else
+                    {
+                        <span class="txt_gris_12">@Sic.Apollo.Resources.Resources.LabelForPayCash</span>
+                    }
+                }
+                
+            </div>
+            <div>
+                <span class="txt_az_13"><strong>@Sic.Apollo.Resources.Resources.LabelForReasonForVisit</strong></span> <br />
+                @if (Model.SpecializationAppointmentReason != null)
+                {
+                    <span class="txt_gris_12"> @Model.SpecializationAppointmentReason.DescriptionName</span>
+                }
+                else
+                {                                            
+                    <span class="txt_gris_12">@Sic.Apollo.Resources.Resources.LabelForPending</span>
+                }
+            </div>
+            <div>
+                <span class="txt_az_13"><strong>@Sic.Apollo.Resources.Resources.LabelForCustomer</strong></span><br />                
+                <span class="txt_gris_12"> @Model.Customer.Contact.FullName2</span>
+            </div>
+        </div>
+    </div>
+    <div id="bottom_card_medical">
+    </div>
+</div>

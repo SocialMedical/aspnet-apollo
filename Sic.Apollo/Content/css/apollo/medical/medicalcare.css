@@ -1,0 +1,22 @@
+﻿.medicalcare_list{
+    margin-top:25px;
+    list-style:none;
+    margin-left:-35px;
+    position:relative;
+}
+.medicalcare_item{    
+    padding-top:9px;
+    padding-left:10px;
+    font-size:13px;
+    color:#a9a2a2;
+    min-height:30px;
+    height:auto;
+    vertical-align:middle;
+    position:relative;
+    display:inline-block;
+}
+.box_text_evolution
+{ width:400px; position:relative; float:left;  padding:3px; font-size:13px; margin-left:40px; padding-bottom:5px; text-align:justify;}
+
+.box_text_evolution_medication
+{ width:405px; position:relative; float:left;  padding:3px; font-size:13px; margin-left:100px; padding-bottom:5px; text-align:justify;}

@@ -9,6 +9,13 @@ namespace Sic.Apollo
 {
     public static class Utils
     {
+        public static string DefaultProfessionalPicture
+        {
+            get
+            {
+                return "/Content/img/contacts/DefaultProfessional.jpg";
+            }
+        }
         public static string ToDefaultDateTimeFormat(this DateTime dateTime)
         {
             return string.Format(Sic.Apollo.Resources.Resources.StringFormatForDefaultDateTime, dateTime);
