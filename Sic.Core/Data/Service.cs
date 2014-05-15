@@ -7,6 +7,7 @@ using Sic.Data.Entity;
 using System.Reflection;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
 
 namespace Sic.Data
 {
@@ -125,6 +126,24 @@ namespace Sic.Data
                 }
             }
             return true;
+        }
+
+        public static dynamic Merge(this object item1, object item2)
+        {
+            if (item1 == null || item2 == null)
+                return item1 ?? item2 ?? new ExpandoObject();
+
+            dynamic expando = new ExpandoObject();
+            var result = expando as IDictionary<string, object>;
+            foreach (System.Reflection.PropertyInfo fi in item1.GetType().GetProperties())
+            {
+                result[fi.Name] = fi.GetValue(item1, null);
+            }
+            foreach (System.Reflection.PropertyInfo fi in item2.GetType().GetProperties())
+            {
+                result[fi.Name] = fi.GetValue(item2, null);
+            }
+            return result;
         }
     }
 }

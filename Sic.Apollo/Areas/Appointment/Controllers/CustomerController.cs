@@ -21,6 +21,22 @@ namespace Sic.Apollo.Areas.Appointment.Controllers
         #region CustomerAppointment
 
         [Authorize(UserType.Customer)]
+        public ActionResult CustomerBook()
+        {
+            HomeController.FillSearchCriteria(this, DataBase);
+
+            var viewModel = new Models.Pro.View.Customer()
+            {
+                CustomerId = Sic.Web.Mvc.Session.UserId
+            };
+
+            viewModel.Appointments = DataBase.AppointmentTransactions.GetCustomerAppointments(Sic.Web.Mvc.Session.UserId);
+            viewModel.CustomerProfessionals = DataBase.Customers.GetCustomerProfessionals(Sic.Web.Mvc.Session.UserId);
+
+            return View(viewModel);
+        }
+
+        [Authorize(UserType.Customer)]
         public ActionResult CustomerMyAppointments()
         {
             return View(DataBase.AppointmentTransactions.GetCustomerAppointments(Sic.Web.Mvc.Session.UserId));

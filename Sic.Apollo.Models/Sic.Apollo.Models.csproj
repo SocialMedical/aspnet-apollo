@@ -71,6 +71,7 @@
     <Compile Include="Appointment\SpecializationAppointmentReason.cs" />
     <Compile Include="Appointment\View\AppointmentBook.cs" />
     <Compile Include="Appointment\View\AppointmentEntry.cs" />
+    <Compile Include="Appointment\View\AppointmentParameters.cs" />
     <Compile Include="Appointment\View\AppointmentRate.cs" />
     <Compile Include="Appointment\View\AppointmentTransaction.cs" />
     <Compile Include="Appointment\View\ContactLocationAppointments.cs" />

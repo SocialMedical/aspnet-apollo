@@ -1,0 +1,203 @@
+﻿@model Sic.Apollo.Models.Pro.View.ProfessionalSummary   
+@{
+    int line = 1;
+}
+@functions{    
+    string getStyle(int line)
+    {
+        if (line % 2 == 0)
+        {
+            return "uiSideNav";
+        }
+        else
+        {
+            return "uiSideNavtwo";
+        }
+    }
+}        
+<div id="shadow_profile_medical_menu">
+</div>
+<div id="medical_profile_menu">
+    <div id="medical_profile_info">
+        <div class="img_medical_information_calendar">
+            <div class="img_profile_information_border_calendar">
+                <a class="pictureProfileActions" style="display:none" href="javascript:selectProfileImage();"><div class="edit_profile_picture"></div></a>
+                <a class="pictureProfileActions" style="display:none" href="javascript:deleteProfilePictureImage();"><div class="delete_profile_picture"></div></a>
+                <div id="panelLoadingImageProfile" style="display: none; width:75px;height:110px;">
+                    <img src="@Url.ContentImage("loader.gif")" style="padding-top:40px;padding-left:30px;" alt=""/>
+                </div>
+                @Html.Image(string.IsNullOrEmpty(Model.Picture) ? Utils.DefaultProfessionalPicture : Model.PictureMin, Model.FullName, new { id = "pictureProfile", width = 75, height = 110 })</div>
+                @using (Html.BeginForm("UploadProfilePicture", "Contact",
+                                null,
+                                FormMethod.Post,
+                new
+                {
+                    enctype = "multipart/form-data",
+                    id = "ImgFormProfile",
+                    target = "UploadTargetProfile",
+                    name = "ImgFormProfile"
+                }))
+                {
+                    <input style="display:none" type="file" name="file" onchange="UploadProfileImage()"/>                                                                                                                                
+                }
+        </div>
+        <iframe id="UploadTargetProfile" name="UploadTargetProfile" onload="refreshProfilePicture()" style="position: absolute;
+        left: -999em; top: -999em;"></iframe>
+        <div class="name_medical">
+            <span class="txt_az_13"><strong>@Model.DescriptionName</strong></span>
+            <br />
+            <span class="txt_gris_12">@Model.SpecializationName</span>
+        </div>
+        <div>
+            <center><div class="content_star_ranking"><div class="star_all">
+            @{ Html.RenderPartial("_Scorer", Model.RateScore ?? 0);}
+            </div></div></center>
+        </div>        
+    </div>
+    @{
+        Sic.Apollo.ProfessionalOption option = (Sic.Apollo.ProfessionalOption)ViewBag.ProfessionalOption;
+        string style = "";        
+    }
+    <div id="navigation_medical">
+        <ul>
+            <a href="javascript:openNewPatientDialog();">
+                @{
+                    style = getStyle(line++);
+                    if (option == Sic.Apollo.ProfessionalOption.NewCustomer)
+                    {
+                        style = "uiSideNav_active";
+                    }
+                }
+                <li class="@style">
+                    <div class="icon_new_patient">
+                    </div>
+                    @Sic.Apollo.Resources.Resources.LabelForNewPatient</li>
+            </a><a href="@Url.Action("Profile")">
+                @{
+                    style = getStyle(line++);
+                    if (option == Sic.Apollo.ProfessionalOption.EditProfile)
+                    {
+                        style = "uiSideNav_active";
+                    }
+                }
+                <li class="@style">
+                    <div class="icon_profile">
+                    </div>
+                    @Sic.Apollo.Resources.Resources.LabelForEditProfile
+                </li>
+            </a><a href="@Url.Action("Book", "Appointment")">
+                @{
+                    style = getStyle(line++);
+                    if (option == Sic.Apollo.ProfessionalOption.ProfessionalBook)
+                    {
+                        style = "uiSideNav_active";
+                    }
+                }
+                <li class="@style">
+                    <div class="icon_calendar">
+                    </div>
+                    @Resources.LabelForAppointmentBook<div class="circle_notification">
+                        <span id="appointmentPendingCount">@Model.AppointmentPendingCount</span></div>
+                </li>
+            </a>@*<li class="uiSideNav">
+                <div class="icon_citation">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForAppointmentPendingConfirmation<div class="circle_notification">
+                    @Model.AppointmentPendingConfirmationToAttentionCount</div>
+            </li>*@ @*<li class="uiSideNavtwo">
+                <div class="icon_confirmation">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForConfirmAttended<div class="circle_notification">
+                    @Model.AppointmentPendingCheckAttentionCount</div>
+            </li>*@ @*<li class="uiSideNav">
+                <div class="icon_historical">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForAppointmentsHistorial<div class="circle_notification">
+                    @Model.AppointmentCount</div>
+            </li>*@ @* <li class="uiSideNavtwo">
+                <div class="icon_comments">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForComments<div class="circle_notification">
+                    @Model.CommentsCount</div>
+            </li>*@
+            <a href="@Url.Action("List", "Patient")">
+                @{
+                    style = getStyle(line++);
+                    if (option == Sic.Apollo.ProfessionalOption.Patients
+                        || option == Sic.Apollo.ProfessionalOption.Epicrisis)
+                    {
+                        style = "uiSideNav_active";
+                    }
+                }
+                <li class="@style">
+                    <div class="icon_patients">
+                    </div>
+                    @Sic.Apollo.Resources.Resources.LabelForPatients<div class="circle_notification">
+                                <span id="patientCount">@Model.PatientCount</span></div>
+                </li> 
+            </a>            
+                        @{
+                            style = getStyle(line++);                         
+                        }
+                        <li class="@style" id="patientSearchTrigger" style="cursor:pointer;">
+                            <div class="icon_search">
+                            </div>
+                            @Sic.Apollo.Resources.Resources.LabelForSearchPatient
+                        </li>                    
+                    <a href="@Url.Action("Offices")">
+                        @{
+                            style = getStyle(line++);
+                            if (option == Sic.Apollo.ProfessionalOption.Offices)
+                            {
+                                style = "uiSideNav_active";
+                            }
+                        }
+                        <li class="@style">
+                            <div class="icon_location">
+                            </div>
+                            @Sic.Apollo.Resources.Resources.LabelForOffices<div class="circle_notification">
+                                @Model.OfficeCount</div>
+                        </li>
+                    </a>
+                    @if ((Sic.UserType)Sic.Web.Mvc.Session.UserType == Sic.UserType.Professional)
+                    {
+                        <a href="@Url.Action("Team", "Professional")">
+                            @{
+                        style = getStyle(line++);
+                        if (option == Sic.Apollo.ProfessionalOption.Team)
+                        {
+                            style = "uiSideNav_active";
+                        }
+                            }
+                            <li class="@style">
+                                <div class="icon_patients">
+                                </div>
+                                @Sic.Apollo.Resources.Resources.LabelForProfessionalTeam
+                            </li>
+                        </a>
+                    }
+                    @if ((Sic.UserType)Sic.Web.Mvc.Session.UserType == Sic.UserType.Professional)
+                    {
+                        <a href="@Url.Action("ChangePassword", "Account")">
+                            @{
+                             style = getStyle(line++);                              
+                            }
+                            <li class="@style">
+                                <div class="icon_edit">
+                                </div>
+                                @Sic.Apollo.Resources.Resources.LabelForChangePassword
+                            </li>
+                        </a>
+                     }
+                    @* <li class="uiSideNav">
+                <div class="icon_dashboard">
+                </div>
+                @Sic.Apollo.Resources.Resources.LabelForDashboard
+            </li>*@
+        </ul>
+    </div>
+</div>
+
+@{Html.RenderAction("Create", "Patient");}
+@{Html.RenderPartial("_PatientSearch");}
+@{Html.RenderPartial("_CropImageDialog");}

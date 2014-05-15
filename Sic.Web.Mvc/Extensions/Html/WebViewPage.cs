@@ -8,6 +8,31 @@ namespace Sic.Web.Mvc.Html
 {
     public static class WebViewPageExtensions
     {
+        public static DateTime GetCurrentDateTime(this WebViewPage webViewPage)
+        {
+            return Sic.Web.Mvc.Session.CurrentDateTime;
+        }
+
+        public static int GetUserId(this WebViewPage webViewPage)
+        {
+            return Sic.Web.Mvc.Session.UserId;
+        }
+
+        public static string GetUserFullName(this WebViewPage webViewPage)
+        {
+            return Sic.Web.Mvc.Session.FullName;
+        }
+
+        public static bool GetIsLogged(this WebViewPage webViewPage)
+        {
+            return Sic.Web.Mvc.Session.IsLogged;
+        }
+
+        public static string GetUserLogonName(this WebViewPage webViewPage)
+        {
+            return Sic.Web.Mvc.Session.LogonName;
+        }        
+
         public static void SetTitle(this WebViewPage webViewPage, string title)
         {
             webViewPage.ViewBag.Title = title;

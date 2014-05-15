@@ -1,0 +1,139 @@
+﻿@model Sic.Apollo.Models.Medical.View.Patient                      
+<div id="newPatientDialog" class="tabbertab" style="display: none">
+    @using (Html.BeginForm("Create", "Patient", FormMethod.Post, new { id = "createNewPatientForm" }))
+    {    
+        <div>
+            <div class="content_dialog_form">
+                <div id="messageNewPatient" class="error_content_notification message_panel" style="display: none">
+                    <div class="icon_error_notification">
+                    </div>
+                    <span id="errorMessageCreatePatient"></span>
+                </div>
+                <div class="box_text_form">
+                    @Sic.Apollo.Resources.Resources.LabelForFirstName</div>
+                <div class="box_input_form">
+                    @Html.TextBoxFor(model => model.FirstName, new { @class = "input_text", id = "newPatientFirstName" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.FirstName)</span>
+                    </div>
+                </div>
+                <div class="box_text_form" style="clear:both">
+                    @Sic.Apollo.Resources.Resources.LabelForMiddleName @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+                <div class="box_input_form">
+                    @Html.TextBoxFor(model => model.MiddleName, new { @class = "input_text", id = "newPatientMiddleName" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.MiddleName)</span>
+                    </div>
+                </div>
+                <div class="box_text_form" style="clear:both">
+                    @Sic.Apollo.Resources.Resources.LabelForLastName</div>
+                <div class="box_input_form">
+                    @Html.TextBoxFor(model => model.LastName, new { @class = "input_text", id = "newPatientLastName" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.LastName)</span>
+                    </div>
+                </div>
+                <div class="box_text_form" style="clear:both">
+                    @Sic.Apollo.Resources.Resources.LabelForSecondLastName @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+                <div class="box_input_form">
+                    @Html.TextBoxFor(model => model.SecondLastName, new { @class = "input_text", id = "newPatientSecondLastName" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.SecondLastName)</span>
+                    </div>
+                </div>
+                <div class="box_text_form" style="clear:both">
+                    @Sic.Apollo.Resources.Resources.LabelForGender</div>
+                <div class="box_input_form">
+                    @Html.DropDownListFor(model => model.Gender, Sic.Gender.Male.ToSelectList(), new { @class = "select_input_form", id = "newPatientGender" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.Gender)</span>
+                    </div>
+                </div>
+                <div class="box_text_form" style="clear:both">
+                    @Sic.Apollo.Resources.Resources.LabelForContactPhoneNumber @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+                <div class="box_input_form">
+                    @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "input_text", id = "newPatientPhoneNumber" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.PhoneNumber)</span>
+                    </div>
+                </div>
+                <div class="box_text_form" style="clear:both">
+                    @Sic.Apollo.Resources.Resources.LabelForDefaultCellphone @Sic.Apollo.Resources.Resources.LabelForFieldOptional</div>
+                <div class="box_input_form">
+                    @Html.TextBoxFor(model => model.CellPhone, new { @class = "input_text", id = "newPatientCellPhone" })
+                    <div>
+                        <span class="error_field">@Html.ValidationMessageFor(model => model.CellPhone)</span>
+                    </div>
+                </div>
+                <div class="center_save_button">
+                    <input type="button" class="button_save_orange" onclick="postNewPatient(false);" value="@Sic.Apollo.Resources.Resources.LabelForOnlySave" />
+                    <input type="button" class="button_save_orange" onclick="postNewPatient(true);" value="@Sic.Apollo.Resources.Resources.LabelForSaveAndContinueFill" />
+                    <input type="button" class="button_save_orange" onclick="closeNewPatientDialog();" value="@Sic.Apollo.Resources.Resources.LabelForCancel" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    function openNewPatientDialog() {
+        $("#newPatientFirstName").val(''); 
+        $("#newPatientMiddleName").val('');
+        $("#newPatientLastName").val(''); 
+        $("#newPatientSecondLastName").val('');        
+        $("#newPatientPhoneNumber").val(''); 
+        $("#newPatientCellPhone").val('');
+        $("#newPatientFirstName").focus();
+//        $("#createNewPatientForm").validate().resetForm();        
+        configureNewPatientDialog();
+    }
+
+    function configureNewPatientDialog() {
+        $("#newPatientDialog").dialog({ autoOpen: false,
+            show: "fast",
+            height: "auto",
+            width: "auto",
+            modal: true,
+            title: "@Html.Raw(Sic.Apollo.Resources.Resources.LabelForNewPatient)",
+            resizable: false,
+            close: function () { } 
+        });
+        $("#newPatientDialog").dialog("open");
+    }
+
+    function closeNewPatientDialog() {
+        $("#newPatientDialog").dialog("close");
+    }
+    
+
+    function postNewPatient(continueFill) {         
+        if ($("#createNewPatientForm").valid() == true) 
+        {            
+            var firstName = $("#newPatientFirstName").val(); 
+            var middleName = $("#newPatientMiddleName").val();
+            var lastName = $("#newPatientLastName").val(); 
+            var seconLastName = $("#newPatientSecondLastName").val();
+            var gender = $("#newPatientGender :selected").val();
+            var phoneNumber = $("#newPatientPhoneNumber").val(); 
+            var cellPhone = $("#newPatientCellPhone").val();
+                        
+            var contact = { FirstName: firstName, MiddleName: middleName, LastName: lastName, SecondLastName: seconLastName, Gender: gender, PhoneNumber: phoneNumber, CellPhone: cellPhone };            
+            
+            sicPost("@Url.Action("CreatePatient", "Patient")", contact , 
+            function (data) {             
+            if(data.Success) 
+            { 
+                setMessage(data.Message,"success");
+                closeNewPatientDialog();
+                $("#patientCount").text(data.PatientCount);
+                if(continueFill)
+                    location.href = "@Url.Action("Epicrisis", "Patient")?patientId=" + data.PatientId;
+            } 
+            else
+            {                
+                $("#errorMessageCreatePatient").text(data.Message);
+                $("#messageNewPatient").show('slow');
+            }
+            }); 
+        }           
+    }
+</script>

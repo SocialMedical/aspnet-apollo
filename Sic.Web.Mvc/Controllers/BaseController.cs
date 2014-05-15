@@ -10,26 +10,14 @@ using Sic.Data.Entity;
 using System.Web.Caching;
 using Sic.Data;
 using Sic.Data.DbConnection;
+using System.Text;
+using Sic.Web.Mvc.Models;
 
 namespace Sic.Web.Mvc.Controllers
 {
-    public class BaseController<T> : Controller where T : IDbContextService
+    public abstract class Controller : System.Web.Mvc.Controller
     {
-        private T db;
-        protected virtual T DataBase
-        {
-            get
-            {
-                if (db == null)
-                {
-                    //Type type = typeof(T).MakeGenericType(typeof(C));
-                    db = (T)Activator.CreateInstance(typeof(T));
-                }
-                return db;
-            }
-        }
-
-        internal protected string UserLogonName
+        protected string UserLogonName
         {
             get
             {
@@ -37,7 +25,7 @@ namespace Sic.Web.Mvc.Controllers
             }
         }
 
-        internal protected string UserFullName
+        protected string UserFullName
         {
             get
             {
@@ -45,7 +33,7 @@ namespace Sic.Web.Mvc.Controllers
             }
         }
 
-        internal protected int UserId
+        protected int UserId
         {
             get
             {
@@ -53,15 +41,15 @@ namespace Sic.Web.Mvc.Controllers
             }
         }
 
-        internal protected bool IsLogged
+        protected bool IsLogged
         {
             get
             {
                 return Sic.Web.Mvc.Session.IsLogged;
             }
-        }                
-        
-        internal protected string UrlSecureLastAttempted
+        }
+
+        protected string UrlSecureLastAttempted
         {
             get
             {
@@ -69,9 +57,55 @@ namespace Sic.Web.Mvc.Controllers
             }
         }
 
-        internal protected DateTime GetCurrentDateTime()
+        protected DateTime GetCurrentDateTime()
         {
             return Sic.Runtime.Current.GetCurrentDateTime();
+        }
+
+        protected JsonResult Json()
+        {
+            return base.Json(
+                new JsonData() { Messages = Messages });
+        }
+
+        protected new JsonResult Json(object data, JsonRequestBehavior behavior)
+        {
+            object Content = data;
+            return base.Json(
+                new JsonData() { Messages = Messages, Content = data }, behavior);
+        }
+
+        protected new JsonResult Json(object data)
+        {                                 
+            return base.Json(new JsonData() { Messages = Messages, Content = data });            
+        }
+
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding)
+        {            
+            return base.Json(new JsonData() { Messages = Messages, Content = data },
+                contentType, contentEncoding);
+        }
+
+        protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
+        {
+            return base.Json(new JsonData() { Messages = Messages, Content = data },
+                contentType, contentEncoding, behavior);
+        }
+
+        protected WrappedJsonResult WrappedJson()
+        {            
+            return new WrappedJsonResult()
+            {
+                Data = new JsonData() { Messages = Messages }
+            };
+        }
+
+        protected WrappedJsonResult WrappedJson(object data)
+        {            
+            return new WrappedJsonResult()
+            {
+                Data = new JsonData() { Messages = Messages, Content = data }
+            };
         }
 
         private bool IsSharingMessages = false;
@@ -121,7 +155,7 @@ namespace Sic.Web.Mvc.Controllers
 
         protected override void OnAuthorization(AuthorizationContext filterContext)
         {
-            base.OnAuthorization(filterContext);            
+            base.OnAuthorization(filterContext);
         }
 
         protected override void OnActionExecuted(ActionExecutedContext filterContext)
@@ -129,7 +163,7 @@ namespace Sic.Web.Mvc.Controllers
             if (!this.IsSharingMessages)
                 AddSharedActionMessage();
 
-            ViewBag.Rp3MessageCollection = this.Messages;            
+            ViewBag.Rp3MessageCollection = this.Messages;
 
             // Is it View ?
             ViewResultBase view = filterContext.Result as ViewResultBase;
@@ -231,6 +265,29 @@ namespace Sic.Web.Mvc.Controllers
             Messages.Add(new Data.Message(message, type, title));
         }
 
+        public void AddErrorMessage(string message)
+        {
+            Messages.Add(new Data.Message(message, MessageType.Error));
+        }
+
+        public void AddInformationMessage(string message)
+        {
+            Messages.Add(new Data.Message(message, MessageType.Information));
+        }
+
+        public void AddSuccessMessage(string message)
+        {
+            Messages.Add(new Data.Message(message, MessageType.Success));
+        }
+        public void AddWarningMessage(string message)
+        {
+            Messages.Add(new Data.Message(message, MessageType.Warning));
+        }
+        public void AddConfirmationMessage(string message)
+        {
+            Messages.Add(new Data.Message(message, MessageType.Confirmation));
+        }
+
         public void ClearMessages()
         {
             Messages.Clear();
@@ -253,6 +310,28 @@ namespace Sic.Web.Mvc.Controllers
         {
             return Sic.Data.Service.CopyTo(source, target, includeCollectionProperties, includeProperties, excludeProperties);
         }
+    }
+
+    public class BaseController<T> : Controller where T : IDbContextService
+    {
+        private T db;
+        protected virtual T DataBase
+        {
+            get
+            {
+                if (db == null)
+                {                   
+                    db = (T)Activator.CreateInstance(typeof(T));
+                }
+                return db;
+            }
+        }
+
+        public void ReinitializeDataBase()
+        {
+            db.Dispose();
+            db = default(T);
+        }            
 
     }
 

@@ -8,7 +8,7 @@
             if (Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Professional 
                 || Sic.Web.Mvc.Session.UserType == (int)Sic.UserType.Assistant)
             {                
-                <text> <span class="txt_bl_13"></span> <a class="txt_gr_12" href="@Url.Action("Book", "Professional", new { area = "Appointment" })">@Sic.Apollo.Resources.Resources.LabelForProfessionalOfficeHome</a>
+                <text> <span class="txt_bl_13"></span> <a class="txt_gr_12" href="@Url.Action("Book", "Appointment", new { area = "Professional" })">@Sic.Apollo.Resources.Resources.LabelForProfessionalOfficeHome</a>
                 <span class="txt_bl_13">|</span></text>
             }
             
@@ -16,7 +16,7 @@
             {
                 case Sic.UserType.Professional:
                 case Sic.UserType.Assistant:
-                    ProfileRoute = Url.Action("Profile", "Professional");
+                    ProfileRoute = Url.Action("Profile", "Profile", new { area = "Professional" });
                     break;
                 default:
                     ProfileRoute = Url.Action("Profile", "Customer");

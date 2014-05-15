@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.ProfessionalPatient>
+@{
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForPatients;    
+    ViewBag.OptionTitle = Sic.Apollo.Resources.Resources.LabelForPatients;    
+}
+@section Imports
+{
+    @Url.ImportStyleSheet("apollo/professional/patient_list.css")  
+}
+<div class="content_box">
+    <div class="txt_az_18">
+        @Sic.Apollo.Resources.Resources.LabelForPatientList
+    </div>
+    <ul class="patient_list">
+        <li class="patient_list_title">
+            <div class="patient_name">
+                @Sic.Apollo.Resources.Resources.LabelForName
+            </div>
+            <div class="patient_age">
+                @Sic.Apollo.Resources.Resources.LabelForAge
+            </div>
+            <div class="patient_lastdate">
+                @Sic.Apollo.Resources.Resources.LabelForPatientLastModification
+            </div>
+            <div class="patient_lastdate">
+                @Sic.Apollo.Resources.Resources.LabelForPatientNextAppointment
+            </div>
+        </li>
+        @{
+            int i = 0;
+            string style = "lineOne";
+            foreach (var patient in Model.OrderBy(p => p.Patient.Contact.FullName))
+            {
+                if (i++ % 2 == 0)
+                {
+                    style = "lineOne";
+                }
+                else
+                {
+                    style = "lineTwo";
+                }
+            <li class="patient_item @{@style}">
+                <div class="patient_name">
+                    <a href="@Url.Action("Epicrisis", "Patient", new { patientId = patient.PatientId })">
+                        @patient.Patient.Contact.FullName</a>
+                </div>
+                <div class="patient_age">
+                    @if (patient.Patient.Contact.Age.HasValue)
+                    {
+                        @:@patient.Patient.Contact.Age.Value
+                                                                    }
+                </div>
+                <div class="patient_lastdate">
+                    @if (patient.LastChange.HasValue)
+                    {
+                        @:@patient.LastChange.Value.ToDefaultDateFormat()
+                                                            }
+                </div>
+                <div class="patient_lastdate">
+                    @if (patient.NextAppointmentDate.HasValue)
+                    {
+                        @:@patient.NextAppointmentDate.Value.ToDefaultDateFormat()
+                                                            }
+                </div>
+                <div class="patient_action">
+                    @using (Html.BeginForm("DeletePatient", "Patient", new { professionalPatientId = patient.ProfessionalPatientId }, FormMethod.Post, new { id="deletePatientForm" + patient.ProfessionalPatientId }))
+                    { }
+                    <a href="javascript:deletePatient(@{@patient.ProfessionalPatientId})">                     
+                        <div style="cursor:pointer" class="list_content_icondelete_one">
+                        </div>
+                    </a>                    
+                </div>
+            </li> 
+            }
+        }
+    </ul>
+</div>
+<script>
+    function deletePatient(professionalPatientId) {
+        openDialog("@Html.Raw(Sic.Apollo.Resources.Resources.MessageForDeletePatientConfirmation)", "confirmation", "deletePatientConfirmation(" + professionalPatientId + ")");
+    }
+    function deletePatientConfirmation(professionalPatientId) {
+        closeDialog();
+        $("#deletePatientForm" + professionalPatientId).submit();
+    }
+</script>

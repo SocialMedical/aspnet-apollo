@@ -19,7 +19,7 @@ function sicGet(url, queryData, callback, dataType) {
     });
 }
 
-function sicPost(url, queryData, callback, dataType) {
+function sicPost(url, queryData, callback, dataType) {    
     $.ajax({
         url: url,
         data: queryData,
@@ -30,8 +30,14 @@ function sicPost(url, queryData, callback, dataType) {
             if (data.IsRedirect && data.Url) {
                 location.href = data.Url;
             }
-            else
-                callback(data);
+            else {
+                if (callback)
+                    callback(data);
+                else {
+                    if (data.Message)                        
+                        sicNotifyAsPopup(data.Messages);
+                }
+            }
         }
     });
 }

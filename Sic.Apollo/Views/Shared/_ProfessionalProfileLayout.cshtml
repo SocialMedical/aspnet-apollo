@@ -1,37 +1,40 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <link rel="icon" type="image/png" href="@Url.Content("~/Content/images/favicon.png")" />
-    <link rel="shortcut icon" type="image/x-icon" href="@Url.Content("~/Content/images/favicon.ico")" />
-    <link href="@Url.ContentVersion("~/Content/styles/style.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/styles/base_medical_profile.css")" rel="stylesheet" type="text/css" />    
-    <link href="@Url.ContentVersion("~/Content/styles/fonts/stylesheet.css")" rel="stylesheet" type="text/css" />  
-    <link href="@Url.ContentVersion("~/Scripts/tapmodo-jcrop/jquery.Jcrop.min.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/styles/medical_calendar_book.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Scripts/jquery.tools/tooltip.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/themes/base/jquery.ui.autocomplete.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/themes/base/jquery.ui.core.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/themes/base/jquery.ui.datepicker.css")" rel="stylesheet"  type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/themes/base/jquery.ui.theme.css")" rel="stylesheet" type="text/css" />
-    <link href="@Url.ContentVersion("~/Content/styles/dialog.css")" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="@Url.ContentImage("favicon.png")" />
+    <link rel="shortcut icon" type="image/x-icon" href="@Url.ContentImage("favicon.ico")" />
+    @Url.ImportStyleSheet("style.css",true)
+    @Url.ImportStyleSheet("base_medical_profile.css",true)
+    @Url.ImportStyleSheet("fonts/stylesheet.css",true)
+    @Url.ImportStyleSheet("tapmodo-jcrop/jquery.Jcrop.min.css", true)
+    @Url.ImportStyleSheet("apollo/professional/medical_calendar_book.css", true)
+    @Url.ImportStyleSheet("jquery.tools/jquery.tooltip.css", false)
+    @Url.ImportStyleSheet("themes/base/jquery.ui.autocomplete.css")
+    @Url.ImportStyleSheet("themes/base/jquery.ui.core.css")
+    @Url.ImportStyleSheet("themes/base/jquery.ui.datepicker.css")
+    @Url.ImportStyleSheet("themes/base/jquery.ui.theme.css")
+    @Url.ImportStyleSheet("dialog.css")    
+    @Url.ImportStyleSheet("gen/jquery.gritter.css")    
+        
     @RenderSection("LinksImport", false)
       
-    <script src="@Url.ContentVersion("~/Scripts/jquery-1.7.2.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/jquery-ui-1.8.21.custom.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>   
-    <script src="@Url.ContentVersion("~/Scripts/custom/datetime.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/Custom/customvalidation.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/tapmodo-jcrop/jquery.Jcrop.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/custom/cropimage.js")" type="text/javascript"></script>     
-    <script src="@Url.ContentVersion("~/Scripts/custom/select.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/custom/message.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/jquery.tools/jquery.tools.tooltip.min.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/sic/core.js")" type="text/javascript"></script>
-    <script src="@Url.ContentVersion("~/Scripts/sic/modernizer.js")" type="text/javascript"></script>
-    
-    <script src="@Url.ContentVersion("~/Scripts/apollo/professionalProfile.js")" type="text/javascript"></script>
+    @Url.ImportScript("jquery-1.7.2.min.js")
+    @Url.ImportScript("jquery-ui-1.8.21.custom.min.js")
+    @Url.ImportScript("modernizr-1.7.min.js")
+    @Url.ImportScript("jquery.validate.min.js")
+    @Url.ImportScript("jquery.validate.unobtrusive.min.js")
+    @Url.ImportScript("sic/datetime.js", true)
+    @Url.ImportScript("sic/validation.js", true)
+    @Url.ImportScript("tapmodo-jcrop/jquery.Jcrop.min.js")
+    @Url.ImportScript("apollo/cropimage.js", true)
+    @Url.ImportScript("select.js")
+    @Url.ImportScript("apollo/message.js", true)
+    @Url.ImportScript("jquery.tools/jquery.tools.tooltip.min.js")
+    @Url.ImportScript("sic/core.js", true)
+    @Url.ImportScript("sic/modernizer.js", true)
+    @Url.ImportScript("apollo/professional/professionalProfile.js", true)    
+    @Url.ImportScript("jquery.gritter.min.js")                
+    @Url.ImportScript("sic/ui.js", true)
 
     @RenderSection("ScriptsImport", false)
 
@@ -40,7 +43,7 @@
     @RenderSection("meta", false) 
 </head>
 <body>
-    @{Html.RenderPartial("Dialog");}
+    @{Html.RenderPartial("_Dialog");}
     <!--Header-->
     <div id="header">
         <div id="header_inner">
@@ -48,7 +51,7 @@
                 <div id="logo">
                 </div>
             </a>
-            @{ Html.RenderPartial("LoginButton"); }
+            @{ Html.RenderPartial("_LoginButton"); }
         </div>
     </div>
     <!--FINCabecera-->
@@ -76,13 +79,13 @@
         <div id="content_info">
             <!--inicio left medical-->
             <div id="content_medical_left">
-                @{Html.RenderAction("ProfileOptions", "Professional", new { option = ((int)ViewBag.ProfessionalOption) });}
+                @{Html.RenderAction("Options", "Profile", new { option = ((int)ViewBag.ProfessionalOption) });}
             </div>
             <!--fin left medical-->
             @RenderBody()
         </div>
         <!--reservar cita-->
-        @{ Html.RenderPartial("Footer");}
+        @{ Html.RenderPartial("_Footer");}
         <!--wrapperr-->
     </div>
 </body>

@@ -8,5 +8,6 @@ namespace Sic.Data.Entity
     public interface IDbContextService
     {
         void Save();
+        void Dispose();
     }
 }

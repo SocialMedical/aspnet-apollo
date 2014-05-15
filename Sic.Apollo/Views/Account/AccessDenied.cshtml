@@ -5,7 +5,9 @@
 @section meta{
     <meta name="robots" content="noindex,nofollow"/>
 }
-<link href="@Url.Content("~/Content/styles/simple_content.css")" rel="stylesheet" type="text/css" />
+@section Imports{
+    @Url.ImportStyleSheet("simple_content.css")
+}
 <div id="margintop_wrapper">
 </div>
 <div id="top_header">
@@ -38,9 +40,6 @@
                     @Html.ValidationMessageFor(m => signIn.Password)
                     @Html.HiddenFor(model => signIn.LoginFor, new { id = "login_box_For" })<br />
                 </div>
-@* <div class="textform_book">
-                    <span><a href="#" class="txt_az_13">@Sic.Apollo.Resources.Resources.LabelForForgotYourPassword</a></span><br />
-                </div>*@
                 <div>
                     <br />
                     <input name="button" type="submit" class="btn_next" id="button" value="@Sic.Apollo.Resources.Resources.LabelForSignIn" />
@@ -53,11 +52,11 @@
             else
             {
                 <div>
-                    <span class="txt_az_18">@Html.Raw(Sic.Apollo.Resources.Resources.MessageForUnauthorizedUser)</span>
+                    <span class="txt_az_18">@Html.Raw(Resources.MessageForUnauthorizedUser)</span>
                 </div>                
             }
             <div style="margin-top: 30px;">
-                <a class="txt_az_18" href="/" >@Sic.Apollo.Resources.Resources.LabelForGoToMainPage</a>
+                <a class="txt_az_18" href="/" >@Resources.LabelForGoToMainPage</a>
             </div>
         </div>
     </div>

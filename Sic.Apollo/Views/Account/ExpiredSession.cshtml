@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex,nofollow"/>
 }
 @section Imports{
-    <link href="@Url.Content("~/Content/styles/simple_content.css")" rel="stylesheet" type="text/css" />
+    @Url.ImportStyleSheet("simple_content.css",true)
 }
 <div id="margintop_wrapper">
 </div>
@@ -44,7 +44,7 @@
                 </div>*@
                 <div>
                     <br />
-                    <input name="button" type="submit" class="btn_next" id="button" value="@Sic.Apollo.Resources.Resources.LabelForSignIn" />
+                    <input name="button" type="submit" class="btn_next" id="button" value="@Resources.LabelForSignIn" />
                 </div>
                 <div>
                     <label class="txt_az_15" id="loginMessage" />
@@ -55,11 +55,11 @@
             else
             {
                 <div>
-                    <span class="txt_az_18">@Html.Raw(Sic.Apollo.Resources.Resources.MessageForUnauthorizedUser)</span>
+                    <span class="txt_az_18">@Html.Raw(Resources.MessageForUnauthorizedUser)</span>
                 </div>                
             }
             <div style="margin-top: 30px;">
-                <a class="txt_az_18" href="/">@Sic.Apollo.Resources.Resources.LabelForGoToMainPage</a>
+                <a class="txt_az_18" href="/">@Resources.LabelForGoToMainPage</a>
             </div>
         </div>
     </div>

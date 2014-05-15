@@ -170,31 +170,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\bootstrap-theme.css" />
+    <Content Include="Content\css\bootstrap-theme.min.css" />
+    <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\fonts.css" />
+    <Content Include="Content\css\fonts\Icons.svg" />
+    <Content Include="Content\css\gen\jquery.gritter.css" />
+    <Content Include="Content\css\info_person.css" />
+    <Content Include="Content\css\shortcodes.css" />
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\favicon.png" />
+    <Content Include="Content\img\style\gritter-close.png" />
     <Content Include="Content\img\style\icons_edit.png" />
+    <Content Include="Content\img\style\icon_error.png" />
+    <Content Include="Content\img\style\icon_info.png" />
+    <Content Include="Content\img\style\icon_success.png" />
+    <Content Include="Content\img\style\icon_warning.png" />
     <Content Include="Content\img\style\print.png" />
     <Content Include="Content\css\base_medical_profile.css" />
-    <Content Include="Content\css\apollo\medical\evolution.css" />
-    <Content Include="Content\css\apollo\medical\medicalcare.css" />
-    <Content Include="Content\css\apollo\medical\medicationprint.css" />
-    <Content Include="Content\css\apollo\medical\patient_list.css" />
+    <Content Include="Content\css\apollo\professional\evolution.css" />
+    <Content Include="Content\css\apollo\professional\medicalcare.css" />
+    <Content Include="Content\css\apollo\professional\medicationprint.css" />
+    <Content Include="Content\css\apollo\professional\patient_list.css" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Appointment\AppointmentAreaRegistration.cs" />
-    <Compile Include="Areas\Appointment\Controllers\BookingController.cs" />
-    <Compile Include="Areas\Appointment\Controllers\ProfessionalController.cs" />
+    <Compile Include="Areas\Professional\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\Professional\ProfessionalAreaRegistration.cs" />
+    <Compile Include="Areas\Public\Controllers\BookingController.cs" />
+    <Compile Include="Areas\Professional\Controllers\AppointmentController.cs" />
     <Compile Include="Areas\Appointment\Controllers\ScheduleController.cs" />
-    <Compile Include="Areas\Appointment\Utils.cs" />
     <Compile Include="Areas\Public\GeneralAreaRegistration.cs" />
-    <Compile Include="Areas\Medical\Controllers\FileController.cs" />
-    <Compile Include="Areas\Medical\Controllers\MedicalCareController.cs" />
-    <Compile Include="Areas\Medical\Controllers\MedicalHistoryController.cs" />
-    <Compile Include="Areas\Medical\Controllers\PhysicalExaminationController.cs" />
-    <Compile Include="Areas\Medical\Controllers\VitalSignController.cs" />
-    <Compile Include="Areas\Medical\MedicalAreaRegistration.cs" />
+    <Compile Include="Areas\Professional\Controllers\PatientFilesController.cs" />
+    <Compile Include="Areas\Professional\Controllers\MedicalCareController.cs" />
+    <Compile Include="Areas\Professional\Controllers\MedicalHistoryController.cs" />
+    <Compile Include="Areas\Professional\Controllers\PhysicalExaminationController.cs" />
+    <Compile Include="Areas\Professional\Controllers\VitalSignController.cs" />
     <Compile Include="Reports\DataSource\ApolloDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -208,7 +224,7 @@
     <Compile Include="Areas\Public\Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\InsuranceInstitutionController.cs" />
     <Compile Include="Controllers\MedicalController.cs" />
-    <Compile Include="Areas\Medical\Controllers\PatientController.cs" />
+    <Compile Include="Areas\Professional\Controllers\PatientController.cs" />
     <Compile Include="Areas\Public\Controllers\ProfessionalController.cs" />
     <Compile Include="Controllers\SpecializationController.cs" />
     <Compile Include="Areas\Public\Controllers\AccountController.cs" />
@@ -286,7 +302,7 @@
     <Content Include="Content\css\calendar.css" />
     <Content Include="Content\css\dialog.css" />
     <Content Include="Content\css\edit_profile_medical.css" />
-    <Content Include="Content\css\apollo\public\medical_calendar_book.css" />
+    <Content Include="Content\css\apollo\professional\medical_calendar_book.css" />
     <Content Include="Content\css\medical_profile.css" />
     <Content Include="Content\img\style\border-radius.htc" />
     <Content Include="Content\css\fonts\Lato-Bla-webfont.svg" />
@@ -302,22 +318,22 @@
     <Content Include="Content\css\fonts\stylesheet.css" />
     <Content Include="Content\css\apollo\public\home.css" />
     <Content Include="Content\img\style\ie-css3.htc" />
-    <Content Include="Content\css\apollo\appointment\book_appointment_flow.css" />
-    <Content Include="Content\css\apollo\medical\professionalteam.css" />
+    <Content Include="Content\css\apollo\public\book_appointment_flow.css" />
+    <Content Include="Content\css\apollo\professional\professionalteam.css" />
     <Content Include="Content\css\apollo\public\register.css" />
     <Content Include="Content\css\apollo\public\search_box.css" />
     <Content Include="Content\css\apollo\public\search_medical.css" />
     <Content Include="Content\css\simple_content.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\tabs.css" />
-    <Content Include="Content\js\apollo\appointment\horary.js" />
-    <Content Include="Content\js\apollo\medical\medical-patient-files.js" />
-    <Content Include="Content\js\apollo\medical\medical-patient-vitalsign.js" />
-    <Content Include="Content\js\apollo\medical\medical-patient.js" />
-    <Content Include="Content\js\apollo\appointment\professionalBook.js" />
+    <Content Include="Content\js\apollo\horary.js" />
+    <Content Include="Content\js\apollo\professional\medical-patient-files.js" />
+    <Content Include="Content\js\apollo\professional\medical-patient-vitalsign.js" />
+    <Content Include="Content\js\apollo\professional\medical-patient.js" />
+    <Content Include="Content\js\apollo\professional\professionalBook.js" />
     <Content Include="Content\js\apollo\public\home.js" />
     <Content Include="Content\js\apollo\public\presentation.js" />
-    <Content Include="Content\js\apollo\public\professionalProfile.js" />
+    <Content Include="Content\js\apollo\professional\professionalProfile.js" />
     <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\FilterAttribute\AuthorizeAttribute.cs" />
     <Compile Include="Utils\Mail.cs" />
@@ -328,7 +344,12 @@
     <Content Include="Content\js\apollo\public\login.js" />
     <Content Include="Content\js\apollo\message.js" />
     <Content Include="Content\js\apollo\cropimage.js" />
-    <Content Include="Content\js\customvalidation.js" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\bootstrap.min.js" />
+    <Content Include="Content\js\jquery.gritter.js" />
+    <Content Include="Content\js\jquery.gritter.min.js" />
+    <Content Include="Content\js\sic\ui.js" />
+    <Content Include="Content\js\sic\validation.js" />
     <Content Include="Content\js\sic\datetime.js" />
     <Content Include="Content\js\infoBubble.js" />
     <Content Include="Content\js\jquery.localscroll.js" />
@@ -349,6 +370,12 @@
     <Content Include="Content\img\mail\letter\btm.png" />
     <Content Include="Content\img\mail\letter\top.png" />
     <Content Include="Content\js\sic\numeric.js" />
+    <Content Include="Content\css\fonts\Icons.eot" />
+    <Content Include="Content\css\fonts\Icons.ttf" />
+    <Content Include="Content\css\fonts\Icons.woff" />
+    <Content Include="Content\css\bootstrap-theme.css.map" />
+    <Content Include="Content\css\bootstrap.css.map" />
+    <None Include="Content\js\_references.js" />
     <Content Include="Content\templates\mail\letter.html" />
     <Content Include="Content\js\ad-gallery\ad_next.png" />
     <Content Include="Content\js\ad-gallery\ad_prev.png" />
@@ -365,39 +392,43 @@
     <Content Include="Content\js\sic\core.js" />
     <Content Include="Content\js\sic\modernizer.js" />
     <Content Include="Content\js\sic\security.js" />
-    <Content Include="Content\js\tapmodo-jcrop\Jcrop.gif" />
+    <Content Include="Content\css\tapmodo-jcrop\Jcrop.gif" />
     <Content Include="Content\js\tapmodo-jcrop\jquery.color.js" />
-    <Content Include="Content\js\tapmodo-jcrop\jquery.Jcrop.css" />
+    <Content Include="Content\css\tapmodo-jcrop\jquery.Jcrop.css" />
     <Content Include="Content\js\tapmodo-jcrop\jquery.Jcrop.js" />
-    <Content Include="Content\js\tapmodo-jcrop\jquery.Jcrop.min.css" />
+    <Content Include="Content\css\tapmodo-jcrop\jquery.Jcrop.min.css" />
     <Content Include="Content\js\tapmodo-jcrop\jquery.Jcrop.min.js" />
-    <Content Include="Views\Appointment\AppointmentBookItem.cshtml" />
-    <Content Include="Views\Appointment\AppointmentBookItemForNew.cshtml" />
-    <Content Include="Views\Shared\NotificationMessages.cshtml" />
-    <Content Include="Areas\Medical\Views\Patient\Create.cshtml" />
-    <Content Include="Views\Shared\PatientSearch.cshtml" />
-    <Content Include="Areas\Medical\Views\Shared\Epicrisis.cshtml" />
-    <Content Include="Areas\Medical\Views\Patient\Profile.cshtml" />
-    <Content Include="Areas\Medical\Views\MedicalCare\MedicalCares.cshtml" />
-    <Content Include="Areas\Medical\Views\MedicalCare\EditMedicalCare.cshtml" />
-    <Content Include="Areas\Medical\Views\MedicalCare\MedicalCare.cshtml" />
-    <Content Include="Areas\Medical\Views\VitalSign\VitalSigns.cshtml" />
-    <Content Include="Areas\Medical\Views\MedicalHistory\MedicalHistory.cshtml" />
-    <Content Include="Areas\Medical\Views\Shared\Resume.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\_BookItem.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\_BookItemForNew.cshtml" />
+    <Content Include="Views\Shared\_NotificationMessages.cshtml" />
+    <Content Include="Areas\Professional\Views\Patient\_Create.cshtml" />
+    <Content Include="Areas\Professional\Views\Shared\_PatientSearch.cshtml" />
+    <Content Include="Areas\Professional\Views\Shared\Epicrisis.cshtml" />
+    <Content Include="Areas\Professional\Views\Patient\_EditProfile.cshtml" />
+    <Content Include="Areas\Professional\Views\MedicalCare\_MedicalCares.cshtml" />
+    <Content Include="Areas\Professional\Views\MedicalCare\_EditMedicalCare.cshtml" />
+    <Content Include="Areas\Professional\Views\MedicalCare\_MedicalCare.cshtml" />
+    <Content Include="Areas\Professional\Views\VitalSign\_VitalSigns.cshtml" />
+    <Content Include="Areas\Professional\Views\MedicalHistory\_MedicalHistory.cshtml" />
+    <Content Include="Areas\Professional\Views\Patient\_EpicrisisResume.cshtml" />
     <Content Include="Views\Account\ExpiredSession.cshtml" />
-    <Content Include="Areas\Medical\Views\Patient\List.cshtml" />
+    <Content Include="Areas\Professional\Views\Patient\List.cshtml" />
     <Content Include="Views\Professional\OfficeSchedule.cshtml" />
-    <Content Include="Views\Shared\_CropImage.cshtml" />
+    <Content Include="Views\Shared\_CropImageDialog.cshtml" />
     <Content Include="Views\Shared\_Dialog.cshtml" />
-    <Content Include="Areas\Medical\Views\MedicalCare\MedicationPrint.cshtml" />
-    <Content Include="Areas\Medical\Views\web.config" />
-    <Content Include="Areas\Appointment\Views\web.config" />
+    <Content Include="Areas\Professional\Views\MedicalCare\_MedicationPrint.cshtml" />
+    <Content Include="Areas\Appointment\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Public\Views\web.config" />
-    <Content Include="Areas\Medical\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Public\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Appointment\Views\_ViewStart.cshtml" />
     <Content Include="App_Code\Facebook.cshtml" />
     <Content Include="App_Code\TwitterGoodies.cshtml" />
+    <Content Include="Areas\Professional\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Professional\Views\_ViewStart.cshtml" />
     <None Include="Properties\PublishProfiles\BackCore.pubxml" />
     <None Include="Reports\DataSource\ApolloDataSet.xsc">
       <DependentUpon>ApolloDataSet.xsd</DependentUpon>
@@ -415,11 +446,11 @@
     <Content Include="Views\Professional\User.cshtml" />
     <Content Include="Views\Professional\EditUser.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Areas\Medical\Views\PhysicalExamination\PhysicalExamination.cshtml" />
+    <Content Include="Areas\Professional\Views\PhysicalExamination\_PhysicalExamination.cshtml" />
     <Content Include="Views\Professional\ProfessionalOfficesMapMarker.cshtml" />
-    <Content Include="Areas\Medical\Views\VitalSign\VitalSignHistory.cshtml" />
-    <Content Include="Areas\Medical\Views\File\_PatientFiles.cshtml" />
-    <Content Include="Areas\Medical\Views\File\_PatientFile.cshtml" />
+    <Content Include="Areas\Professional\Views\VitalSign\_VitalSignHistory.cshtml" />
+    <Content Include="Areas\Professional\Views\PatientFiles\_PatientFiles.cshtml" />
+    <Content Include="Areas\Professional\Views\PatientFiles\_PatientFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\cancel.png" />
@@ -532,36 +563,36 @@
     <Content Include="Content\img\rate\star-half.png" />
     <Content Include="Content\img\rate\star-off.png" />
     <Content Include="Content\img\rate\star-on.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\css\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\css\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\css\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\css\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\css\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\css\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\css\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\css\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
-    <Content Include="Content\themes\base\chosen\chosen-sprite.png" />
-    <Content Include="Content\themes\base\chosen\chosen.css" />
+    <Content Include="Content\css\themes\base\chosen\chosen-sprite.png" />
+    <Content Include="Content\css\themes\base\chosen\chosen.css" />
     <Content Include="Content\js\chosen\chosen.jquery.js" />
     <Content Include="Content\js\chosen\chosen.jquery.min.js" />
     <Content Include="Content\css\jquery.fancybox\blank.gif" />
@@ -694,7 +725,7 @@
     <Content Include="Views\Account\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Shared\_DayOfWeek.cshtml" />
+    <Content Include="Views\Shared\_DayOfWeek.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\Home\ChangeCulture.cshtml" />
@@ -715,13 +746,13 @@
     <Content Include="Views\Shared\ProfessionalCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Shared\_Horary.cshtml" />
+    <Content Include="Views\Shared\_Horary.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Professional\PersonalAppointment.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\PersonalAppointment.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Booking\Start.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\Start.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Professional\Offices.cshtml" />
@@ -729,28 +760,32 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Appointment\Models\" />
-    <Folder Include="Areas\Medical\Models\" />
-    <Folder Include="Areas\Medical\Views\Epicrisis\" />
+    <Folder Include="Areas\Appointment\Views\Professional\" />
+    <Folder Include="Areas\Appointment\Views\Shared\" />
+    <Folder Include="Areas\Professional\Models\" />
+    <Folder Include="Areas\Professional\Views\Profile\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Public\Views\Contact\" />
     <Folder Include="Areas\Public\Views\Customer\" />
     <Folder Include="Areas\Public\Views\Error\" />
     <Folder Include="Areas\Public\Views\Institution\" />
-    <Folder Include="Content\themes\base\ad-gallery\" />
+    <Folder Include="Content\css\apollo\medical\" />
+    <Folder Include="Content\css\themes\base\ad-gallery\" />
+    <Folder Include="Content\js\apollo\medical\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Patient\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Booking\SignIn.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\SignIn.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Booking\NewCustomer.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\NewCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Booking\Details.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Booking\Finished.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\Finished.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\SelectUserType.cshtml" />
@@ -773,7 +808,7 @@
     <Content Include="Areas\Appointment\Views\Customer\CustomerMyAppointmentsList.cshtml" />
     <Content Include="Views\Appointment\PendingConfirmToAttention.cshtml" />
     <Content Include="Views\Appointment\PendingConfirmToAttentionList.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalCanceled.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalCanceled.cshtml" />
     <Content Include="Views\Professional\CommunityIndex.cshtml" />
     <Content Include="Views\Professional\Communities.cshtml" />
     <Content Include="Areas\Public\Views\Professional\_ProfessionalOfficeMapSync.cshtml" />
@@ -787,11 +822,11 @@
     <Content Include="Views\Shared\ProfilePicture.cshtml" />
     <Content Include="Views\Professional\ProfessionalProfilePicture.cshtml" />
     <Content Include="Views\Appointment\ConfirmAttended.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalAttended.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalConfirmNotAttended.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalNotAttended.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalAppointmentsHistorial.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalAppointmentsHistorialList.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalAttended.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalConfirmNotAttended.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalNotAttended.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalAppointmentsHistorial.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalAppointmentsHistorialList.cshtml" />
     <Content Include="Areas\Appointment\Views\Customer\CustomerPendingRatings.cshtml" />
     <Content Include="Views\Customer\Profile.cshtml" />
     <Content Include="Views\Customer\ProfileHeader.cshtml" />
@@ -843,7 +878,7 @@
     <Content Include="Views\Shared\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Public\Views\Professional\OfficePresentation.cshtml" />
+    <Content Include="Areas\Public\Views\Professional\_OfficePresentation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\ThumbnailPictures.cshtml" />
@@ -852,10 +887,10 @@
     <Content Include="Areas\Public\Views\Professional\_PresentationTip.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalBook.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\Book.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalBookDetails.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\_BookDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LoginPopup.cshtml" />
@@ -867,13 +902,13 @@
     <Content Include="Views\Account\AccessDenied.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Appointment\AppointmentTip.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\_AppointmentTip.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Error\ResourceNotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\Appointment\Views\Booking\NotAvailable.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\NotAvailable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Public\Views\Home\ExpiredSession.cshtml" />
@@ -920,11 +955,11 @@
     <Content Include="Areas\Public\Views\Shared\_BoxProfessionalCalendar.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_SearchCriteriaResult.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_BoxHeaderProfessionalCalendar.cshtml" />
-    <Content Include="Areas\Appointment\Views\Professional\ProfessionalInfoCard.cshtml" />
+    <Content Include="Areas\Professional\Views\Appointment\ProfessionalInfoCard.cshtml" />
     <Content Include="Views\Shared\_ProfessionalProfileLayout.cshtml" />
-    <Content Include="Views\Professional\ProfileOptions.cshtml" />
-    <Content Include="Areas\Appointment\Views\Shared\_BoxCalendarAppointmentBook.cshtml" />
-    <Content Include="Areas\Appointment\Views\Booking\Login.cshtml" />
+    <Content Include="Areas\Professional\Views\Shared\_ProfileOptions.cshtml" />
+    <Content Include="Views\Shared\_BoxCalendarAppointmentBook.cshtml" />
+    <Content Include="Areas\Public\Views\Booking\Login.cshtml" />
     <Content Include="Areas\Appointment\Views\Customer\CustomerBook.cshtml" />
     <Content Include="Areas\Appointment\Views\Customer\CustomerMyAppointmentsBook.cshtml" />
   </ItemGroup>

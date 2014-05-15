@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Appointment.View.ProfessionalAppointment>
+@using Sic.Apollo.Models.Appointment.View
+@{
+    AppointmentParameters parameters = (AppointmentParameters)ViewBag.AppointmentParameters;    
+    DateTime Time = parameters.StartTime;
+    DateTime start = parameters.StartDate.Date;
+    DateTime currentDateTime = Sic.Web.Mvc.Session.CurrentDateTime;
+    ViewBag.CurrentDateTime = currentDateTime;
+
+    ViewBag.StartDate = parameters.StartDate;//For Child Views
+}
+<div id="divcalendar">
+        
+    @while (Time <= parameters.EndTime)
+    {
+        DateTime EvaluateDate = parameters.StartDate;
+        
+        if(parameters.Schedules.Any(p=> Time >= p.StartTime && Time <= p.EndTime))
+        {
+          
+        <div class="grid_hours">
+            <div class="hour">@Time.ToString("t")</div>
+            <div class="hours_content_table">
+                @for (int i = 0; i < 7; i++)
+                {
+                    DateTime startDate = EvaluateDate.Date.AddHours(Time.Hour).AddMinutes(Time.Minute);
+                    DateTime endDate = startDate.AddMinutes(parameters.Duration);
+                    var apposAll = Model.Where(p => (p.StartDate >= startDate && p.StartDate < endDate) || (p.EndDate > startDate && p.EndDate <= endDate));
+                    int side = startDate.Date < start.AddDays(3) ? 1 : 2;
+
+
+                    var appos = apposAll.Where(p => (p.StartDate >= startDate && p.StartDate < endDate));
+
+                    if (appos.Any())
+                    {
+                    <div class="hours">
+                        @foreach (var appo in appos)
+                        {                            
+                            <div id="appointmentInfo@{@appo.AppointmentTransactionId}">
+                                @{ Html.RenderPartial("_BookItem", appo); }
+                            </div>                                                                                             
+                        }
+                        <div id="appointmentForNew@{@startDate.Ticks.ToString()}">
+                        </div>
+                    </div>
+                    }
+                    else if (startDate.Date >= currentDateTime.Date)
+                    {                    
+                    <div id="appointmentForNew@{@startDate.Ticks.ToString()}" isEmpty="true" class="hours_nones" onclick="javascript:openNewAppointmentDialog(@startDate.Ticks, @endDate.Ticks, '@(startDate.ToDefaultDateTimeFormat())',@side,false);">
+                        <div class="inner">
+                            <a>@Resources.LabelForAdd</a>
+                        </div>
+                    </div>   
+                    }
+                    else
+                    {
+                    <div class="hours">
+                    </div>
+                    }
+
+                    EvaluateDate = EvaluateDate.AddDays(1);
+
+                }
+            </div>
+        </div>
+        }
+    
+                Time = Time.AddMinutes(parameters.Duration);
+    }
+    <script type="text/javascript">  
+    
+    setCurrentProfessionalBook(@parameters.ContactLocationId, 
+        @Html.Raw(parameters.StartDate.Ticks.ToString()), 
+        @Html.Raw(parameters.Duration.ToString()),
+        @Html.Raw(parameters.StartTime.Ticks.ToString()),
+        @Html.Raw(parameters.EndTime.Ticks.ToString()),
+        0);
+    
+    @{
+        int d = 1;
+        foreach (Sic.Apollo.Models.Appointment.View.DayOfWeek day in parameters.DaysOfWeek)
+        {            
+        <text> $(".dayName@{@d}").text('@Html.Raw(day.DayName)'); $(".date@{@d}").text('@Html.Raw(day.Date.ToDefaultDateFormat())');
+        </text>
+            d++;
+        }
+        <text> $(".prev_calendarLink").attr('href','javascript:loadCalendar(@parameters.ContactLocationId,@parameters.StartDate.AddDays(-7).Ticks,@parameters.Duration,@parameters.StartTime.Ticks,@parameters.EndTime.Ticks)')
+        $(".next_calendarLink").attr('href','javascript:loadCalendar(@parameters.ContactLocationId,@parameters.StartDate.AddDays(7).Ticks,@parameters.Duration,@parameters.StartTime.Ticks,@parameters.EndTime.Ticks)')
+        </text>
+    }
+    
+    @foreach (var item in Model.Where(p => p.StartDate < start.AddDays(3)))
+    {
+            <text>
+            setConfigurationTip(@item.AppointmentTransactionId,1);
+            </text>
+    }
+
+@foreach (var item in Model.Where(p => p.StartDate >= start.AddDays(3)))
+{
+        <text>
+        setConfigurationTip(@item.AppointmentTransactionId,2);
+        </text>
+}
+    </script>
+</div>

@@ -1,0 +1,54 @@
+﻿@model Sic.Apollo.Models.Medical.ProfessionalPatient
+@{
+    ViewBag.Title = Model.Patient.Contact.FullName;
+    ViewBag.OptionTitle = Model.Patient.Contact.FullName;
+    Layout = "~/Views/Shared/_ProfessionalProfileLayout.cshtml";
+    
+    string defaultProfile = ViewBag.ProfileDefault!=null && Convert.ToBoolean(ViewBag.ProfileDefault)?"tabbertabdefault":"";
+}
+@section Imports{
+    @Url.ImportStyleSheet("edit_profile_medical.css", true)
+    @Url.ImportStyleSheet("apollo/professional/evolution.css", true)    
+    @Url.ImportStyleSheet("apollo/professional/medicalcare.css", true)
+    @Url.ImportStyleSheet("tabs.css", true)
+    @Url.ImportStyleSheet("apollo/professional/medicationprint.css", true)
+    @Url.ImportStyleSheet("jquery.fancybox/jquery.fancybox.css", true)
+
+    @Url.ImportScript("fancy/jquery.fancybox.pack.js", true)
+    @Url.ImportScript("tabber.js", true)
+    @Url.ImportScript("apollo/professional/medical-patient.js", true)
+    @Url.ImportScript("apollo/professional/medical-patient-vitalsign.js", true)
+    @Url.ImportScript("apollo/professional/medical-patient-files.js", true)
+    @Url.ImportScript("sic/datetime.js", true)
+}
+<!--tabs edicion-->
+<script>
+    setCurrentPatientId(@Model.Patient.PatientId);
+</script>
+<div id="content_tabs_edit">
+    <div class="tabber">
+        <div class="tabbertab">
+            <div id="resumeEpicrisis">
+                @{Html.RenderPartial("_EpicrisisResume", Model.Patient);}
+            </div>                      
+        </div>
+        <div class="tabbertab @defaultProfile">
+            @{Html.RenderPartial("_EditProfile", Model.Patient);}
+        </div>       
+        <div class="tabbertab">
+            @{Html.RenderPartial("~/Areas/Professional/Views/MedicalHistory/_MedicalHistory.cshtml", Model.Patient.MedicalHistories);}
+        </div>
+        <div class="tabbertab">
+            @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSigns.cshtml", Model.Patient.PatientVitalSigns);}
+        </div>
+        <div class="tabbertab">
+            @{Html.RenderPartial("~/Areas/Professional/Views/MedicalCare/_MedicalCares.cshtml", Model.Patient.MedicalCares);}
+        </div>        
+        <div class="tabbertab">
+            @{Html.RenderPartial("~/Areas/Professional/Views/PhysicalExamination/_PhysicalExamination.cshtml", Model.Patient.PatientPhysicalExaminations);}
+        </div>
+        <div class="tabbertab">
+            @{Html.RenderPartial("~/Areas/Professional/Views/PatientFiles/_PatientFiles.cshtml", Model.Patient.PatientFiles);}
+        </div>       
+    </div>
+</div>

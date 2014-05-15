@@ -63,47 +63,4 @@
     </div>
     }
     
-    <script>
-        $("#login_box_LogonName").keyup(function (event) {
-            if (event.keyCode == 13) {
-                $("#login_box_Password").focus();
-            }
-        });
-        $("#login_box_Password").keyup(function (event) {
-            if (event.keyCode == 13) {
-                $("#loginsubmit").click();
-            }
-        });
-        $("#loginsubmit").click(
-                function () {
-                    sicPost("/Account/LoginVerify",
-                        {
-                            logonName: $('#login_box_LogonName').val(),
-                            password: $('#login_box_Password').val(),
-                            loginFor: $('#login_box_For').val(),
-                        },
-                        function (data, status, xhr) {
-                            if (data.Success) {                                
-                                if (data.Location != '') {
-                                    location.href = data.Location;
-                                }
-                                else {
-                                    $('#login_box').hide();
-                                    sicGet("@Url.Action("LoginButton","Account")",null,function(data)
-                                    {
-                                        $('#LoginSection').html(data);
-                                    });
-                                    sicGet("@Url.Action("Menu","Account")",null,function(data)
-                                    {
-                                        $('#MenuSection').html(data);
-                                    });
-                                }
-                            } else {
-                                $('#loginMessage').text(data.Message);
-                            }
-                        });
-                }
-
-                        );
-    </script>            
 }

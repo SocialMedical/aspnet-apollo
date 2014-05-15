@@ -33,12 +33,20 @@ namespace Sic.Data
 
         public Message(string textMessage, MessageType messageType, string title)
         {
-            this.TextMessage = textMessage;
+            this.Text = textMessage;
             this.MessageType = messageType;
             this.Title = title;
         }
 
-        public string TextMessage { get; set; }
+        public string Text { get; set; }
+
+        public string TextMessage
+        {
+            get
+            {
+                return Text;
+            }
+        }
 
         public MessageType MessageType { get; set; }
 
@@ -65,7 +73,7 @@ namespace Sic.Data
             foreach (Message message in this)
             {
                 messageString.AppendFormat("<li class=\"sicMessage sicMessageType\">{1}</li>",
-                    (short)message.MessageType, message.TextMessage);
+                    (short)message.MessageType, message.Text);
             }
             messageString.Append("</ul>");
 

@@ -1,0 +1,172 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Pro.ProfessionalOffice>
+@{       
+    ViewBag.Title = Sic.Apollo.Resources.Resources.LabelForAppointmentBook;
+    ViewBag.OptionTitle = Sic.Apollo.Resources.Resources.LabelForAppointmentBook;
+    DateTime startDate = this.GetCurrentDateTime();    
+}
+@section LinksImport{
+
+}
+@section ScriptsImport{
+    @Url.ImportScript("jquery.ui.core.min.js")
+    @Url.ImportScript("sic/datetime.js", true)
+    @Url.ImportScript("apollo/professional/professionalBook.js", true)    
+}
+<!--calendario cabecera-->
+<div id="content_header_medical">
+    <!--contenedor izq -->
+    <!--dia fecha-->
+    <div id="content_left_date">
+        <div id="content_day_today">
+            <div id="content_day_date">
+                @(startDate.ToString("dd"))</div>
+            <div id="content_date_complete">
+                <div>
+                    <span class="txt_az_18">@(startDate.ToString("dddd"))</span></div>
+                <div>
+                    @(startDate.ToString("MMMM yyyy"))</div>
+            </div>
+        </div>
+        <!--dia fecha-->
+        <div id="content_icons_caption">
+            <div class="content_icons_reference">
+                <ul class="ul_icons_reference">
+                    <li class="li_icons_reference">
+                        <div class="icon_for_confirmation_appointment">
+                        </div>
+                        @Sic.AppointmentState.PendingConfirmation.GetDisplay(typeof(AppointmentState))</li>
+                    <li class="li_icons_reference">
+                        <div class="icon_definite_appointment">
+                        </div>
+                        @Sic.AppointmentState.Confirmed.GetDisplay(typeof(AppointmentState))</li>
+                    <li class="li_icons_reference">
+                        <div class="icon_cancel_appointment">
+                        </div>
+                        @Sic.AppointmentState.Canceled.GetDisplay(typeof(AppointmentState))</li>
+                </ul>
+            </div>
+            <div class="content_icons_reference">
+                <ul class="ul_icons_reference">
+                    <li class="li_icons_reference">
+                        <div class="icon_for_confirmation_appointment">
+                        </div>
+                        @Sic.AppointmentState.ReSchedule.GetDisplay(typeof(AppointmentState))</li>
+                    <li class="li_icons_reference">
+                        <div class="icon_ok_appointment">
+                        </div>
+                        @Sic.AppointmentState.Attended.GetDisplay(typeof(AppointmentState))</li>
+                    <li class="li_icons_reference">
+                        <div class="icon_calification_appointment">
+                        </div>
+                        @Sic.AppointmentState.Rated.GetDisplay(typeof(AppointmentState))</li>
+                </ul>
+            </div>
+            <div class="content_icons_reference">
+                <ul class="ul_icons_reference">
+                    <li class="li_icons_reference">
+                        <div class="icon_obsolete_appointment">
+                        </div>
+                        @Sic.AppointmentState.Obsolete.GetDisplay(typeof(AppointmentState)) </li>
+                    <li class="li_icons_reference">
+                        <div class="icon_not_ok_appointment">
+                        </div>
+                        @Sic.AppointmentState.NotAttended.GetDisplay(typeof(AppointmentState))</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--contenedor izq -->
+    <!--contenedor der-->
+    <div id="content_datepicker">
+        <div id="inner_datepicker">
+            <div id="datepicker">
+            </div>
+        </div>
+        @*<span class="txt_az_15">Recientes</span>
+        <ul id="last_news_items">
+            <li class="last_news_items_li">Noticia 1</li>
+            <li class="last_news_items_li">Noticia 1</li>
+            <li class="last_news_items_li">Noticia 1</li>
+        </ul>*@
+    </div>
+    <!--contenedor der-->
+</div>
+<!--calendario  cabecera fin-->
+<!--consultorios-->
+<div id="office">
+    <a href="javascript:refreshOffice(0);">
+        <div id="officeButton0" class="office_active">
+            @Sic.Apollo.Resources.Resources.LabelForAll</div>
+    </a>
+    @foreach (var office in Model)
+    {
+        <a href="javascript:refreshOffice(@office.ContactLocationId);">
+            <div id="officeButton@{@office.ContactLocationId}" class="office_inactive">
+                <span id="address@{@office.ContactLocationId}">@office.Address</span></div>
+        </a>
+    }
+</div>
+<div id="all_calendar">
+    @{Html.RenderPartial("_NotificationMessages");}
+    @{Html.RenderPartial("_BoxCalendarAppointmentBook");}    
+    @{Html.RenderAction("BookDetails", new { contactLocationId = 0 }); }
+</div>
+<div id="newAppointmentDialog" style="display: none">
+    <form action="/" id="newAppointmentForm" method="post">
+    <input type="hidden" id="newAppointmentStartDate" />
+    <input type="hidden" id="newAppointmentEndDate" />
+    <input type="hidden" id="newAppointmentSide" />
+    <input type="hidden" id="newAppointmentPatientId" />
+    <div class="content_dialog_form_new_app">
+        <div class="info_tooltip_div">
+            <center><strong>@Resources.LabelForDateAndHour</strong> <span id="newAppointmentDateTime">
+            </span></center>
+        </div>
+        <br />
+        <div class="info_tooltip_div">
+            <div class="box_text_form_min">
+                <strong>@Resources.LabelForOffice</strong>
+            </div>
+            <div class="box_input_form">                
+                @Html.DropDownList("newAppointmentOfficeSelect", Model.ToSelectList(), new { @class = "select_input_form" })
+            </div>
+        </div>
+        <div class="info_tooltip_div">
+            <div class="box_text_form_min">
+                <strong>@Resources.LabelForCustomer</strong></div>
+            <div class="box_input_form">
+                <input id="newAppointmentReference" name="newAppointmentReference" type="text" class="input_text" data-val="true" data-val-required="@Sic.Apollo.Resources.Resources.ValidationFieldRequired"/>
+                <div>                    
+                    <span class="error_field">
+                        <span class="field-validation-valid" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="saveAsNewPatient" class="info_tooltip_div">
+            <div class="box_text_form_min">
+                <input id="newAppointmentReferenceSaveAsNewPatient" type="checkbox" /></div>
+            <div class="box_input_form">
+                <span>@Resources.LegendForSaveNewPatientAs</span>
+            </div>
+        </div>
+        <div class="info_tooltip_div">
+            <div class="box_text_form_min">
+                <strong>@Resources.LabelForCustomerNotes</strong></div>
+            <div class="box_input_form">
+                <textarea name="textarea" cols="45" rows="5" class="input_text_area_form" id="newAppointmentNotes"></textarea></div>
+        </div>
+        <div class="info_tooltip_div">     
+            <div class="box_text_form_min"></div>
+            <div class="box_input_form">
+            <div class="buttons_tooltip" onclick="postCreateNewApp();">
+                <span class="btn_gray">@Resources.LabelForSave</span></div>
+            <div class="buttons_tooltip" onclick="closeNewAppointmentDialog();">
+                <span class="btn_gray">@Resources.LabelForCancel
+                </span>
+            </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</div>

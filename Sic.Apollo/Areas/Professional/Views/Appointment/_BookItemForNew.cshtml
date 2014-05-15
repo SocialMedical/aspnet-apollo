@@ -1,0 +1,6 @@
+﻿@model Sic.Apollo.Models.Appointment.View.ProfessionalAppointment
+<div id="appointmentInfo@{@Model.AppointmentTransactionId}">
+    @{ Html.RenderPartial("_BookItem", Model); }   
+</div>
+<div id="appointmentForNew@{@Model.StartDate.Ticks.ToString()}">
+</div>

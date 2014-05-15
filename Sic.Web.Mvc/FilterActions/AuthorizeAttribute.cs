@@ -11,7 +11,7 @@ namespace Sic.Web.Mvc
         protected string AccessDeniedPage {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["AccessDeniedPage"];
+                return Sic.Configuration.SicConfigurationSection.Current.AccessDeniedRedirect.Url;
             }
         }        
 
@@ -19,7 +19,7 @@ namespace Sic.Web.Mvc
         {
             get
             {
-                return System.Configuration.ConfigurationManager.AppSettings["ExpiredSessionPage"];
+                return Sic.Configuration.SicConfigurationSection.Current.ExpiredSessionRedirect.Url;
             }
         }
 
