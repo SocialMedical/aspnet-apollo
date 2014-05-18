@@ -184,6 +184,7 @@
     <Content Include="Content\img\favicon.ico" />
     <Content Include="Content\img\favicon.png" />
     <Content Include="Content\img\style\gritter-close.png" />
+    <Content Include="Content\img\style\ico-search-input.png" />
     <Content Include="Content\img\style\icons_edit.png" />
     <Content Include="Content\img\style\icon_error.png" />
     <Content Include="Content\img\style\icon_info.png" />

@@ -32,24 +32,46 @@ namespace Sic.Apollo.Areas.Professional.Controllers
         }
 
         [HttpPost]
-        [Authorize(UserType.Professional, UserType.Assistant)]
-        [ActionName("Epicrisis")]
-        public ActionResult Profile(Models.Medical.Patient patient, int patientId)
+        [Authorize(UserType.Professional, UserType.Assistant)]        
+        public ActionResult EditProfile(Models.Medical.View.Patient patient, int patientId)
         {
             ViewBag.ProfileDefault = true;
             Models.Medical.Patient patientUpdate = null;            
             try
             {
-                patientUpdate = DataBase.Patients.Get(p => p.PatientId == patient.PatientId,
+                patientUpdate = DataBase.Patients.Get(p => 
+                        p.ProfessionalPatients.Any(pp=> pp.ProfessionalId == Apollo.Session.ProfessionalId) &&
+                        p.PatientId == patient.PatientId,
                         includeProperties: "Contact,PatientInsuranceInstitutions").Single();
 
                 var insuranceList = patientUpdate.PatientInsuranceInstitutions.ToList();
 
-                TryUpdateModel(patientUpdate, null, null, new string[] { "PatientInsuranceInstitutions" });
+                if (patient.BirthDateYear.HasValue && patient.BirthDateMonth.HasValue && patient.BirthDateDay.HasValue)
+                    patient.BirthDate = new DateTime(patient.BirthDateYear.Value, patient.BirthDateMonth.Value, patient.BirthDateDay.Value);
+                else
+                    patient.BirthDateDay = null;
 
-                 
+                this.CopyTo(patient, patientUpdate, includeProperties: new string[]
+                {                    
+                    "Comments",
+                    "BloodGroup"
+                });
 
-                patientUpdate.Validate(ModelState);
+                this.CopyTo(patient, patientUpdate.Contact, includeProperties: new string[]
+                {
+                    "PatientId",
+                    "FirstName",
+                    "LastName",
+                    "MiddleName",
+                    "SecondLastName",
+                    "Gender",
+                    "BirthDate",
+                    "Email",
+                    "PhoneNumber",
+                    "Address",
+                    "BirthPlace",
+                    "CellPhone"                    
+                });                                 
 
                 //News
                 foreach (var insurance in patient.PatientInsuranceInstitutions.Where(p =>
@@ -73,6 +95,8 @@ namespace Sic.Apollo.Areas.Professional.Controllers
                             insuranceUpdate.InsuranceInstitutionId = insuranceUpdate.InsuranceInstitution.InstitutionId;
                             insuranceUpdate.InsuranceInstitutionPlanName = insurance.InsuranceInstitutionPlanName;
                             insuranceUpdate.RegistrationCode = insurance.RegistrationCode;
+
+                            DataBase.PatientInsuranceInstitutions.Update(insuranceUpdate);
                         }
                         else
                         {
@@ -84,20 +108,19 @@ namespace Sic.Apollo.Areas.Professional.Controllers
 
                 DataBase.Contacts.Update(patientUpdate.Contact);
                 DataBase.Patients.Update(patientUpdate);
-                DataBase.Save();                
-                ViewBag.Message = Sic.Apollo.Resources.Resources.MessageForSaveOk;
-                ViewBag.MessageType = Sic.Constants.MessageType.Success;
+                DataBase.Save();
+
+                AddDefaultSuccessMessage();
             }
             catch (Exception)
-            {                
-                ViewBag.Message = Sic.Apollo.Resources.Resources.MessageForSaveFailure;
-                ViewBag.MessageType = Sic.Constants.MessageType.Error;                
+            {
+                AddDefaultErrorMessage();                
             }            
 
-            var returnPatient = GetPatient(patient.PatientId);
-            PrepareEpicrisis(returnPatient.Patient);
-            return View("Epicrisis",returnPatient);
-            //return RedirectToAction("Epicrisis", new { patientId = patientUpdate.PatientId, op = success });
+            //var returnPatient = GetPatient(patient.PatientId);
+            //PrepareEpicrisis(returnPatient);
+            //return View("Epicrisis",returnPatient);            
+            return RedirectToAction("Epicrisis", new { patientId = patient.PatientId });
         }
 
 
@@ -199,7 +222,7 @@ namespace Sic.Apollo.Areas.Professional.Controllers
             if(patient==null)
                 return RedirectToAction("ResourceNotFound", "Error");
 
-            PrepareEpicrisis(patient.Patient);           
+            PrepareEpicrisis(patient);           
             return View(patient);
         }
 
@@ -210,19 +233,54 @@ namespace Sic.Apollo.Areas.Professional.Controllers
             var patient = GetPatient(patientId);
             if (patient == null)
                 return RedirectToAction("ResourceNotFound", "Error");
-            PrepareEpicrisis(patient.Patient);           
-            return PartialView(patient.Patient);
+            PrepareEpicrisis(patient);           
+            return PartialView(patient);
         }        
 
-        private ProfessionalPatient GetPatient(int patientId)
+        private Models.Medical.View.Patient GetPatient(int patientId)
         {
             byte active = (byte)PatientState.Active;
-            return DataBase.ProfessionalPatients.Get(p => p.PatientId == patientId && 
+            ProfessionalPatient pPatient = DataBase.ProfessionalPatients.Get(p => p.PatientId == patientId && 
                 p.ProfessionalId == Sic.Apollo.Session.ProfessionalId && p.State == active, 
                 includeProperties: "Patient.Contact,Patient.PatientInsuranceInstitutions,Patient.PatientVitalSigns,Patient.PatientFiles").SingleOrDefault();
+
+            Models.Medical.View.Patient patient = new Models.Medical.View.Patient();
+
+            this.CopyTo(pPatient.Patient, patient, includeProperties: new string[]
+                {
+                    "PatientId",
+                    "Comments",
+                    "BloodGroup"
+                });
+
+            this.CopyTo(pPatient.Patient.Contact, patient, includeProperties: new string[]
+                {
+                    "PatientId",
+                    "FirstName",
+                    "LastName",
+                    "MiddleName",
+                    "SecondLastName",
+                    "Gender",
+                    "BirthDate",
+                    "Email",
+                    "PhoneNumber",
+                    "Address",
+                    "BirthPlace",
+                    "CellPhone"                    
+                });                        
+
+            patient.MedicalCares = pPatient.Patient.MedicalCares;
+            patient.MedicalHistories = pPatient.Patient.MedicalHistories;
+            patient.PatientInsuranceInstitutions = pPatient.Patient.PatientInsuranceInstitutions;
+            patient.PatientPhysicalExaminations = pPatient.Patient.PatientPhysicalExaminations;
+            patient.PatientVitalSigns = pPatient.Patient.PatientVitalSigns;
+            patient.PatientFiles = pPatient.Patient.PatientFiles;
+            patient.PatientModel = pPatient.Patient;
+
+            return patient;
         }
 
-        private void PrepareEpicrisis(Models.Medical.Patient patient)
+        private void PrepareEpicrisis(Models.Medical.View.Patient patient)
         {
             DateTime currentDate = Sic.Web.Mvc.Session.CurrentDateTime;
             ViewBag.ProfessionalOption = ProfessionalOption.Epicrisis;
@@ -233,7 +291,7 @@ namespace Sic.Apollo.Areas.Professional.Controllers
 
             /*For Medical Print*/
             ViewBag.Professional = pro;
-            ViewBag.PatientName = patient.Contact.FullName;
+            ViewBag.PatientName = patient.FullName;
 
             #region Insurance
 
@@ -317,7 +375,7 @@ namespace Sic.Apollo.Areas.Professional.Controllers
                 {
                     MedicalProblem = problem,
                     MedicalProblemId = problem.MedicalProblemId,
-                    Patient = patient,
+                    Patient = patient.PatientModel,
                     PatientId = patient.PatientId,
                     ProfessionalId = Sic.Apollo.Session.ProfessionalId                    
                 });

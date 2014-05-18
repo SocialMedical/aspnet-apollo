@@ -1,17 +1,18 @@
-﻿@model Sic.Apollo.Models.Medical.ProfessionalPatient
+﻿@model Sic.Apollo.Models.Medical.View.Patient
 @{
-    ViewBag.Title = Model.Patient.Contact.FullName;
-    ViewBag.OptionTitle = Model.Patient.Contact.FullName;
+    ViewBag.Title = Model.FullName;
+    ViewBag.OptionTitle = Model.FullName;
     Layout = "~/Views/Shared/_ProfessionalProfileLayout.cshtml";
-    
-    string defaultProfile = ViewBag.ProfileDefault!=null && Convert.ToBoolean(ViewBag.ProfileDefault)?"tabbertabdefault":"";
+
+    string defaultProfile = ViewBag.ProfileDefault != null && Convert.ToBoolean(ViewBag.ProfileDefault) ? "tabbertabdefault" : "";
 }
 @section Imports{
-    @Url.ImportStyleSheet("edit_profile_medical.css", true)
-    @Url.ImportStyleSheet("apollo/professional/evolution.css", true)    
-    @Url.ImportStyleSheet("apollo/professional/medicalcare.css", true)
-    @Url.ImportStyleSheet("tabs.css", true)
-    @Url.ImportStyleSheet("apollo/professional/medicationprint.css", true)
+    @Url.ImportStyleSheet("info_person.css", true)
+    @*@Url.ImportStyleSheet("edit_profile_medical.css", true)
+        @Url.ImportStyleSheet("apollo/professional/evolution.css", true)
+        @Url.ImportStyleSheet("apollo/professional/medicalcare.css", true)
+        @Url.ImportStyleSheet("tabs.css", true)
+        @Url.ImportStyleSheet("apollo/professional/medicationprint.css", true)*@
     @Url.ImportStyleSheet("jquery.fancybox/jquery.fancybox.css", true)
 
     @Url.ImportScript("fancy/jquery.fancybox.pack.js", true)
@@ -23,32 +24,82 @@
 }
 <!--tabs edicion-->
 <script>
-    setCurrentPatientId(@Model.Patient.PatientId);
+    setCurrentPatientId(@Model.PatientId);
 </script>
-<div id="content_tabs_edit">
-    <div class="tabber">
-        <div class="tabbertab">
-            <div id="resumeEpicrisis">
-                @{Html.RenderPartial("_EpicrisisResume", Model.Patient);}
-            </div>                      
+<div id="content">
+    <div class="content_info_person">
+        <div class="header_content_info_person">
+            <div class="header_content_info_person_text">
+                <div>Paciente</div>
+                <div class="header_content_info_person_text_name">@Model.FullName</div>
+                <div>Ultima Visita 13/12/2013</div>
+            </div>
+            <div class="header_content_info_person_img"><img width="60" height="60" src="/Content/img/contacts/DefaultProfessional.jpg" class="img-circle"></div>
         </div>
-        <div class="tabbertab @defaultProfile">
-            @{Html.RenderPartial("_EditProfile", Model.Patient);}
-        </div>       
-        <div class="tabbertab">
-            @{Html.RenderPartial("~/Areas/Professional/Views/MedicalHistory/_MedicalHistory.cshtml", Model.Patient.MedicalHistories);}
+
+        <!-- Start Tabs -->
+        <div class="tabbable">
+
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#tab1" data-toggle="tab">@TitleFor.EpicrisisPatientResume</a></li>
+                <li><a href="#tab2" data-toggle="tab">@TitleFor.EpicrisisPatientProfile</a></li>
+                <li><a href="#tab3" data-toggle="tab">@TitleFor.EpicrisisPatientMedicalHistories</a></li>
+                <li><a href="#tab4" data-toggle="tab">@TitleFor.EpicrisisPatientVitalSigns</a></li>
+                <li><a href="#tab5" data-toggle="tab">@TitleFor.EpicrisisPatientMedicalCares</a></li>
+                <li><a href="#tab6" data-toggle="tab">@TitleFor.EpicrisisPatientPhysicalExamination</a></li>
+                <li><a href="#tab7" data-toggle="tab">@TitleFor.EpicrisisPatientFiles</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1">
+                   @{Html.RenderPartial("_EpicrisisResume", Model);}
+                </div>
+                <div class="tab-pane fade in" id="tab2">                    
+                    @{Html.RenderPartial("~/Areas/Professional/Views/Patient/_EditProfile.cshtml", Model);}
+                </div>
+                <div class="tab-pane fade in" id="tab3">
+                    @{Html.RenderPartial("~/Areas/Professional/Views/MedicalHistory/_MedicalHistory.cshtml", Model.MedicalHistories);}
+                </div>
+                <div class="tab-pane fade in" id="tab4">
+                    @{Html.RenderPartial("_EpicrisisResume", Model);}
+                </div>
+                <div class="tab-pane fade in" id="tab5">
+                    @{Html.RenderPartial("_EpicrisisResume", Model);}
+                </div>
+                <div class="tab-pane fade in" id="tab6">
+                    @{Html.RenderPartial("_EpicrisisResume", Model);}
+                </div>
+                <div class="tab-pane fade in" id="tab7">
+                    @{Html.RenderPartial("_EpicrisisResume", Model);}
+                </div>
+            </div>
         </div>
-        <div class="tabbertab">
-            @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSigns.cshtml", Model.Patient.PatientVitalSigns);}
-        </div>
-        <div class="tabbertab">
-            @{Html.RenderPartial("~/Areas/Professional/Views/MedicalCare/_MedicalCares.cshtml", Model.Patient.MedicalCares);}
-        </div>        
-        <div class="tabbertab">
-            @{Html.RenderPartial("~/Areas/Professional/Views/PhysicalExamination/_PhysicalExamination.cshtml", Model.Patient.PatientPhysicalExaminations);}
-        </div>
-        <div class="tabbertab">
-            @{Html.RenderPartial("~/Areas/Professional/Views/PatientFiles/_PatientFiles.cshtml", Model.Patient.PatientFiles);}
-        </div>       
     </div>
 </div>
+
+@*<div id="content_tabs_edit">
+        <div class="tabber">
+            <div class="tabbertab">
+                <div id="resumeEpicrisis">
+                    @{Html.RenderPartial("_EpicrisisResume", Model.Patient);}
+                </div>
+            </div>
+            <div class="tabbertab @defaultProfile">
+                @{Html.RenderPartial("_EditProfile", Model.Patient);}
+            </div>
+            <div class="tabbertab">
+                @{Html.RenderPartial("~/Areas/Professional/Views/MedicalHistory/_MedicalHistory.cshtml", Model.Patient.MedicalHistories);}
+            </div>
+            <div class="tabbertab">
+                @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSigns.cshtml", Model.Patient.PatientVitalSigns);}
+            </div>
+            <div class="tabbertab">
+                @{Html.RenderPartial("~/Areas/Professional/Views/MedicalCare/_MedicalCares.cshtml", Model.Patient.MedicalCares);}
+            </div>
+            <div class="tabbertab">
+                @{Html.RenderPartial("~/Areas/Professional/Views/PhysicalExamination/_PhysicalExamination.cshtml", Model.Patient.PatientPhysicalExaminations);}
+            </div>
+            <div class="tabbertab">
+                @{Html.RenderPartial("~/Areas/Professional/Views/PatientFiles/_PatientFiles.cshtml", Model.Patient.PatientFiles);}
+            </div>
+        </div>
+    </div>*@

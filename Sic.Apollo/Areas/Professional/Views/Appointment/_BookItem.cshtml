@@ -47,16 +47,16 @@
     </div>
     @{ Html.RenderPartial("_AppointmentTip", Model); }
     @if (((DateTime)ViewBag.StartDate).Date >= ((DateTime)ViewBag.CurrentDateTime).Date)
+{
+    int side = 2;//Left
+    if (Model.StartDate < ((DateTime)ViewBag.StartDate).Date.AddDays(3))
     {
-        int side = 2;//Left
-        if (Model.StartDate < ((DateTime)ViewBag.StartDate).Date.AddDays(3))
-        {
-            side = 1;//Right
-        }        
-        <div class="tooltip" id="tooltipOverFlow@{@Model.AppointmentTransactionId}" onclick="javascript:openNewAppointmentDialog(@Model.StartDate.Ticks, @Model.EndDate.Ticks, '@(Model.StartDate.ToDefaultDateTimeFormat())',@side,true);">
-            <div class="patient_hour">
-                @Sic.Apollo.Resources.Resources.LabelForOverTurn
-            </div>
-        </div>
+        side = 1;//Right
     }
+    <div class="tools_tooltip" id="tooltipOverFlow@{@Model.AppointmentTransactionId}" onclick="javascript:openNewAppointmentDialog(@Model.StartDate.Ticks, @Model.EndDate.Ticks, '@(Model.StartDate.ToDefaultDateTimeFormat())',@side,true);">
+        <div class="patient_hour">
+            @Sic.Apollo.Resources.Resources.LabelForOverTurn
+        </div>
+    </div>
+}
 </div>

@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TitleAppointmentAttended" xml:space="preserve">
-    <value>Cita Concretada</value>
-  </data>
-  <data name="TitleAppointmentCanceled" xml:space="preserve">
-    <value>Cita Cancelada</value>
-  </data>
-  <data name="TitleAppointmentCreated" xml:space="preserve">
-    <value>Cita Agendada</value>
-  </data>
-  <data name="TitleAppointmentDeleted" xml:space="preserve">
-    <value>Cita Eliminada</value>
-  </data>
-  <data name="TitleAppointmentForAttentionConfirmed" xml:space="preserve">
-    <value>Cita Confirmada</value>
-  </data>
-  <data name="TitleAppointmentNotAttended" xml:space="preserve">
-    <value>Cita no Concretada</value>
-  </data>
-  <data name="ValidationFieldForDataType" xml:space="preserve">
-    <value>Valor Incorrecto</value>
-  </data>
-  <data name="ValidationFieldRequired" xml:space="preserve">
-    <value>Dato Requerido</value>
+  <data name="InformationNotRegistered" xml:space="preserve">
+    <value>No ha registrado información</value>
   </data>
 </root>

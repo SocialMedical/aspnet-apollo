@@ -22,14 +22,14 @@ namespace Sic.Apollo.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MessageFor {
+    public class TitleFor {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MessageFor() {
+        internal TitleFor() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Sic.Apollo.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sic.Apollo.Resources.MessageFor", typeof(MessageFor).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Sic.Apollo.Resources.TitleFor", typeof(TitleFor).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,65 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cita Concretada.
+        ///   Looks up a localized string similar to Archivos.
         /// </summary>
-        public static string TitleAppointmentAttended {
+        public static string EpicrisisPatientFiles {
             get {
-                return ResourceManager.GetString("TitleAppointmentAttended", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientFiles", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cita Cancelada.
+        ///   Looks up a localized string similar to Evoluciones.
         /// </summary>
-        public static string TitleAppointmentCanceled {
+        public static string EpicrisisPatientMedicalCares {
             get {
-                return ResourceManager.GetString("TitleAppointmentCanceled", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientMedicalCares", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cita Agendada.
+        ///   Looks up a localized string similar to Antecedentes.
         /// </summary>
-        public static string TitleAppointmentCreated {
+        public static string EpicrisisPatientMedicalHistories {
             get {
-                return ResourceManager.GetString("TitleAppointmentCreated", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientMedicalHistories", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cita Eliminada.
+        ///   Looks up a localized string similar to Examen Físico.
         /// </summary>
-        public static string TitleAppointmentDeleted {
+        public static string EpicrisisPatientPhysicalExamination {
             get {
-                return ResourceManager.GetString("TitleAppointmentDeleted", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientPhysicalExamination", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cita Confirmada.
+        ///   Looks up a localized string similar to Perfil.
         /// </summary>
-        public static string TitleAppointmentForAttentionConfirmed {
+        public static string EpicrisisPatientProfile {
             get {
-                return ResourceManager.GetString("TitleAppointmentForAttentionConfirmed", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientProfile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cita no Concretada.
+        ///   Looks up a localized string similar to Resumen.
         /// </summary>
-        public static string TitleAppointmentNotAttended {
+        public static string EpicrisisPatientResume {
             get {
-                return ResourceManager.GetString("TitleAppointmentNotAttended", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientResume", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Valor Incorrecto.
+        ///   Looks up a localized string similar to Signos Vitales.
         /// </summary>
-        public static string ValidationFieldForDataType {
+        public static string EpicrisisPatientVitalSigns {
             get {
-                return ResourceManager.GetString("ValidationFieldForDataType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Dato Requerido.
-        /// </summary>
-        public static string ValidationFieldRequired {
-            get {
-                return ResourceManager.GetString("ValidationFieldRequired", resourceCulture);
+                return ResourceManager.GetString("EpicrisisPatientVitalSigns", resourceCulture);
             }
         }
     }

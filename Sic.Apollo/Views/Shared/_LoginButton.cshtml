@@ -25,7 +25,7 @@
             <text> <a class="txt_gr_12" href="@ProfileRoute">@Sic.Web.Mvc.Session.FullName</a>                   
                    <span class="txt_bl_13">|                   
                    </span> 
-                   <a id="logoutButton" class="txt_gr_12" href="@Url.Action("Logout", "Account")">@Sic.Apollo.Resources.Resources.LabelForSignOut</a>                   
+                   <a id="logoutButton" class="txt_gr_12" href="@Url.Action("Logout", "Account", new { area = "Public" })">@Sic.Apollo.Resources.Resources.LabelForSignOut</a>                   
                    </text>            
         }
         else

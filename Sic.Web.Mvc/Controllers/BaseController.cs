@@ -121,9 +121,34 @@ namespace Sic.Web.Mvc.Controllers
             }
         }
 
+
+        protected new RedirectToRouteResult RedirectToAction(string actionName, object routeValues)
+        {
+            if (this.Messages.Any()) SharedActionMessage();
+            return base.RedirectToAction(actionName, routeValues);
+        }
+
+        protected new RedirectToRouteResult RedirectToAction(string actionName, string controller)
+        {
+            if (this.Messages.Any()) SharedActionMessage();
+            return base.RedirectToAction(actionName, controller);
+        }
+
+        protected new RedirectToRouteResult RedirectToAction(string actionName, System.Web.Routing.RouteValueDictionary routeValues)
+        {
+            if (this.Messages.Any()) SharedActionMessage();
+            return base.RedirectToAction(actionName, routeValues);
+        }
+
+        protected override RedirectToRouteResult RedirectToAction(string actionName, string controllerName, System.Web.Routing.RouteValueDictionary routeValues)
+        {
+            if (this.Messages.Any()) SharedActionMessage();
+            return base.RedirectToAction(actionName, controllerName, routeValues);
+        }
+
         protected RedirectToRouteResult RedirectToAction(string actionName, string controllerName, object routeValues, bool sharedMessage)
         {
-            if (sharedMessage && this.Messages.Any()) SharedActionMessage();
+            if (this.Messages.Any()) SharedActionMessage();
             return base.RedirectToAction(actionName, controllerName, routeValues);
         }
 
@@ -163,7 +188,7 @@ namespace Sic.Web.Mvc.Controllers
             if (!this.IsSharingMessages)
                 AddSharedActionMessage();
 
-            ViewBag.Rp3MessageCollection = this.Messages;
+            ViewBag.MessageCollection = this.Messages;
 
             // Is it View ?
             ViewResultBase view = filterContext.Result as ViewResultBase;
@@ -237,12 +262,12 @@ namespace Sic.Web.Mvc.Controllers
 
         public void AddDefaultErrorMessage()
         {
-            this.AddMessage(Sic.Resources.MessageFor.DefaultErrorTransactionMessage, MessageType.Error);
+            this.AddMessage(Sic.Resources.MessageFor.DefaultErrorTransactionMessage, MessageType.Error, Sic.Resources.MessageFor.DefaultTitleErrorTransactionMessage);
         }
 
         public void AddDefaultSuccessMessage()
         {
-            this.AddMessage(Sic.Resources.MessageFor.DefaultSuccessTransactionMessage, MessageType.Error);
+            this.AddMessage(Sic.Resources.MessageFor.DefaultSuccessTransactionMessage, MessageType.Success, Sic.Resources.MessageFor.DefaultTitleSuccessTransactionMessage);
         }
 
         public void AddMessage(Sic.Data.Message message)

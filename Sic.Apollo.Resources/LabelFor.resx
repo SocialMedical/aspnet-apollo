@@ -117,28 +117,76 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TitleAppointmentAttended" xml:space="preserve">
-    <value>Cita Concretada</value>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
   </data>
-  <data name="TitleAppointmentCanceled" xml:space="preserve">
-    <value>Cita Cancelada</value>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Fecha de Nacimiento</value>
   </data>
-  <data name="TitleAppointmentCreated" xml:space="preserve">
-    <value>Cita Agendada</value>
+  <data name="BirthPlace" xml:space="preserve">
+    <value>Lugar de Nacimiento</value>
   </data>
-  <data name="TitleAppointmentDeleted" xml:space="preserve">
-    <value>Cita Eliminada</value>
+  <data name="BloodGroup" xml:space="preserve">
+    <value>Grupo Sanguíneo</value>
   </data>
-  <data name="TitleAppointmentForAttentionConfirmed" xml:space="preserve">
-    <value>Cita Confirmada</value>
+  <data name="CellPhone" xml:space="preserve">
+    <value>Celular</value>
   </data>
-  <data name="TitleAppointmentNotAttended" xml:space="preserve">
-    <value>Cita no Concretada</value>
+  <data name="Comments" xml:space="preserve">
+    <value>Comentarios</value>
   </data>
-  <data name="ValidationFieldForDataType" xml:space="preserve">
-    <value>Valor Incorrecto</value>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="ValidationFieldRequired" xml:space="preserve">
-    <value>Dato Requerido</value>
+  <data name="FieldOptional" xml:space="preserve">
+    <value>(Opcional)</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Primer Nombre</value>
+  </data>
+  <data name="HintSearchMedicalHistory" xml:space="preserve">
+    <value>Buscar Antecedente</value>
+  </data>
+  <data name="HumanGender" xml:space="preserve">
+    <value>Género</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="MedicalDiagnostic" xml:space="preserve">
+    <value>Diagnóstico</value>
+  </data>
+  <data name="MedicalEvolution" xml:space="preserve">
+    <value>Evolución</value>
+  </data>
+  <data name="MedicalInsurance" xml:space="preserve">
+    <value>Seguro Médico</value>
+  </data>
+  <data name="MedicalInsurancePlan" xml:space="preserve">
+    <value>Plan de Seguro Médico</value>
+  </data>
+  <data name="MedicalInsurancePlanShortcut" xml:space="preserve">
+    <value>Plan</value>
+  </data>
+  <data name="MedicalInsuranceRegistrationCode" xml:space="preserve">
+    <value>No. de Afiliado</value>
+  </data>
+  <data name="MedicalTreatment" xml:space="preserve">
+    <value>Tratamiento</value>
+  </data>
+  <data name="MiddleName" xml:space="preserve">
+    <value>Segundo Nombre</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="SaveAction" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SecondLastName" xml:space="preserve">
+    <value>Segundo Apellido</value>
   </data>
 </root>

@@ -1,145 +1,180 @@
-﻿@model Sic.Apollo.Models.Medical.Patient
-@using Sic.Apollo
-@using Sic.Web.Mvc
-@using Sic
-<h2>@Sic.Apollo.Resources.Resources.LabelForResume</h2>
-<div class="scrollTabs">
-    <div class="arrow_tab1">
-    </div>
-    <div id="resumeContentMessage">        
-    </div>
-    <div class="content_tab2">
-        <div id="resumeVitalSigns">
-            <div class="txt_az_18">
-                @Sic.Apollo.Resources.Resources.LabelForPatientVitalSigns
-            </div>
-            @if (Model.ResumePatientVitalSigns.Any())
-            {
-                foreach (var patientVitalSign in Model.ResumePatientVitalSigns.OrderBy(p => p.VitalSign.Priority))
-                {            
-                <div class="resume_line">
-                    <div class="box_text_resume_entry">@patientVitalSign.VitalSign.Name</div>
-                    <div class="box_text_resume_value">
-                        @patientVitalSign.Value.ToJSNumericValue() @(((Sic.MeasurementUnit)patientVitalSign.MeasuringUnit).GetDisplay(typeof(MeasurementUnit)))
-                    </div>
-                </div>    
-                <div class="linebreak">
-                </div>            
+﻿@model Sic.Apollo.Models.Medical.View.Patient
+
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div class="title_box_info"><h5>@TitleFor.EpicrisisPatientVitalSigns</h5></div>
+
+    @if (Model.ResumePatientVitalSigns.Any())
+    {
+        <table class="table table-condensed">
+            <tbody>
+                @foreach (var patientVitalSign in Model.ResumePatientVitalSigns.OrderBy(p => p.VitalSign.Priority))
+                {
+                    <tr>
+                        <td>@patientVitalSign.VitalSign.Name</td>
+                        <td>@patientVitalSign.Value.ToJSNumericValue() @(((Sic.MeasurementUnit)patientVitalSign.MeasuringUnit).GetDisplay(typeof(MeasurementUnit)))</td>
+                    </tr>
                 }
-            }
-            else
-            {
-                <div class="box_text_message">
-                    <center>@Sic.Apollo.Resources.Resources.LegendForInformationHasNotYetRegistered</center>
-                </div>
-            }
-        </div>
-        <div class="line_med_sep">
-        </div>
-        <div id="resumeMedicalCares">
-            <div class="txt_az_18">
-                @Sic.Apollo.Resources.Resources.LabelForMedicalHistories
-            </div>
-            @if (Model.MedicalCares.Any())
-            {
-                foreach (var medicalCare in Model.ResumeMedicalCares.Where(p=>!p.IsEmptyHeader).OrderByDescending(p => p.EvolutionDate))
-                {                             
-                        <div class="resume_line">
-                            <div class="box_text_resume_entry">@medicalCare.EvolutionDate.ToDefaultDateFormat()</div>
-                            @if(!string.IsNullOrWhiteSpace(medicalCare.Evolution))
-                            {                            
-                            <div class="box_text_resume_value">
-                                @Sic.Apollo.Resources.Resources.LabelForMedicalCareEvolution: @medicalCare.Evolution
-                            </div>
-                            <div class="box_text_resume_entry"></div>
-                            }
-                            @if (!string.IsNullOrWhiteSpace(medicalCare.Diagnostic))
-                            {
-                                <div class="box_text_resume_value">
-                                    @Sic.Apollo.Resources.Resources.LabelForMedicalCareDiagnostic: @medicalCare.Diagnostic
-                                </div>
-                                <div class="box_text_resume_entry"></div>
-                            }
-                            @if (!string.IsNullOrWhiteSpace(medicalCare.Treatment))
-                            {
-                                <div class="box_text_resume_value">
-                                    @Sic.Apollo.Resources.Resources.LabelForMedicalCareTreatment: @medicalCare.Treatment
-                                </div>
-                            }
-                        </div>                        
-                    <div class="linebreak">
-                    </div>            
-                }
-            }
-            else
-            {
-                <div class="box_text_message">
-                    <center>@Sic.Apollo.Resources.Resources.LegendForInformationHasNotYetRegistered</center>
-                </div>
-            }
-        </div>
-        <div class="line_med_sep">
-        </div>
-        <div id="resumeMedicalHistory">           
-            @if (Model.ResumeMedicalHistories.Any())
-            {
-                foreach(var medicalProblemType in Model.ResumeMedicalHistories.Select(p=>p.MedicalProblem.MedicalProblemType).Distinct().OrderBy(p=>(int)p))
-                {      
-                    <div class="txt_az_18" style="margin-top:15px;">
-                        @medicalProblemType.GetDisplay(typeof(MedicalProblemType))
-                    </div>  
-                  @*  <div class="linebreak">
-                    </div>   *@                          
-                    foreach (var medicalHistory in Model.ResumeMedicalHistories.
-                        Where(p => p.MedicalProblem.MedicalProblemType == medicalProblemType).OrderByDescending(p => p.RecordDate))
-                    {            
-                    <div class="resume_line">
-                        <div class="box_text_resume_entry">@medicalHistory.MedicalProblem.Name</div>
-                        <div class="box_text_resume_value">
-                            @medicalHistory.Description
-                        </div>
-                    </div>    
-                    <div class="linebreak">
-                    </div>            
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th style="background-color: #fcfde2">@LegendFor.InformationNotRegistered</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    }
+</div>
+
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div class="title_box_info"><h5>@TitleFor.EpicrisisPatientMedicalCares</h5></div>
+    @if (Model.MedicalCares.Any())
+    {
+        foreach (var medicalCare in Model.ResumeMedicalCares.Where(p => !p.IsEmptyHeader).OrderByDescending(p => p.EvolutionDate))
+        {
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="background-color: #fcfde2">@medicalCare.EvolutionDate.ToDefaultDateFormat()</th>
+                    </tr>
+                <tbody>
+
+                    @if (!string.IsNullOrWhiteSpace(medicalCare.Evolution))
+                    {
+                        <tr>
+                            <td>@LabelFor.MedicalEvolution</td>
+                            <td>@medicalCare.Evolution</td>
+                        </tr>
                     }
-                }
-            }
-            else
-            {
-                <div class="txt_az_18">
-                    @Sic.Apollo.Resources.Resources.LabelForMedicalHistory
-                </div>
-                <div class="box_text_message">
-                    <center>@Sic.Apollo.Resources.Resources.LegendForInformationHasNotYetRegistered</center>
-                </div>
-            }
-        </div>
-        <div class="line_med_sep">
-        </div>
-        <div id="resumePhysicalExamination">
-            <div class="txt_az_18">
-                @Sic.Apollo.Resources.Resources.LabelForPhysicalExamination
-            </div>
-            @if (Model.ResumePatientPhysicalExamination.Any())
-            {
-                foreach (var patientPhysicalExamination in Model.ResumePatientPhysicalExamination.OrderBy(p => p.PhysicalExamination.Priority))
-                {            
-                <div class="resume_line">
-                    <div class="box_text_resume_entry">@patientPhysicalExamination.PhysicalExamination.Name</div>
-                    <div class="box_text_resume_value">
-                        @patientPhysicalExamination.Examination
-                    </div>
-                </div>    
-                <div class="linebreak">
-                </div>            
-                }
-            }
-            else
-            {
-                <div class="box_text_message">
-                    <center>@Sic.Apollo.Resources.Resources.LegendForInformationHasNotYetRegistered</center>
-                </div>
-            }
-        </div>
+                    @if (!string.IsNullOrWhiteSpace(medicalCare.Diagnostic))
+                    {
+                        <tr>
+                            <td>@LabelFor.MedicalDiagnostic</td>
+                            <td>@medicalCare.Diagnostic</td>
+                        </tr>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(medicalCare.Treatment))
+                    {
+                        <tr>
+                            <td>@LabelFor.MedicalTreatment</td>
+                            <td>@medicalCare.Treatment</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+            @*<table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th width="35%">MEDICAMENTO</th>
+                            <th width="31%">POSOLOGÍA</th>
+                            <th width="34%">CANTIDAD</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Aspirina</td>
+                            <td>1 en la mañana</td>
+                            <td>10 tab</td>
+                        </tr>
+                        <tr>
+                            <td>Colufase</td>
+                            <td>1 c/8horas</td>
+                            <td>5 capsulas</td>
+                        </tr>
+                        <tr>
+                            <td>Hepabionta</td>
+                            <td>1 despues de c/comida</td>
+                            <td>2 cajas</td>
+                        </tr>
+                    </tbody>
+                </table>*@
+        }
+    }
+    else
+    {
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th style="background-color: #fcfde2">@LegendFor.InformationNotRegistered</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    }
+</div>
+
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div class="title_box_info"><h5>@TitleFor.EpicrisisPatientMedicalHistories</h5></div>
+    @if (Model.ResumeMedicalHistories.Any())
+    {
+        foreach (var medicalProblemType in Model.ResumeMedicalHistories.Select(p => p.MedicalProblem.MedicalProblemType).Distinct().OrderBy(p => (int)p))
+        {
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="background-color: #fcfde2">@medicalProblemType.GetDisplay()</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var medicalHistory in Model.ResumeMedicalHistories.Where(p => p.MedicalProblem.MedicalProblemType == medicalProblemType).OrderByDescending(p => p.RecordDate))
+                    {
+                        <tr>
+                            <td>@medicalHistory.MedicalProblem.Name</td>
+                            <td>No</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+    else
+    {
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th style="background-color: #fcfde2">@LegendFor.InformationNotRegistered</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    }
+</div>
+
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div class="title_box_info">
+        <h5>@TitleFor.EpicrisisPatientPhysicalExamination</h5>
     </div>
+    @if (Model.ResumePatientPhysicalExamination.Any())
+    {
+        <table class="table table-condensed">
+            <thead>
+            </thead>
+            <tbody>
+                @foreach (var patientPhysicalExamination in Model.ResumePatientPhysicalExamination.OrderBy(p => p.PhysicalExamination.Priority))
+                {
+                    <tr>
+                        <td>@patientPhysicalExamination.PhysicalExamination.Name</td>
+                        <td>@patientPhysicalExamination.Examination</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th style="background-color: #fcfde2">@LegendFor.InformationNotRegistered</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    }
 </div>

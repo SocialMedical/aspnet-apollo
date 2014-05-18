@@ -96,6 +96,7 @@ background-image:url(../../../img/style/bg_book_medical.jpg); background-repeat:
 
 #navigation_medical
 {
+    margin-top:10px;
 	width:100%;
 	height:340px;
 }
@@ -119,7 +120,9 @@ padding: 0;}
 	
 .li_icons_reference
 {
-	width: 120px;
+    line-height: initial;
+    color:#a9a2a2;
+	width: 122px;
 	list-style: none;
 	height: 12px;
 	padding-bottom: 13px;
@@ -140,8 +143,8 @@ padding: 0;}
 
 .uiSideNav
 {
-	margin-left: -30px;
-	width: 100%;
+	margin-left: -25px;
+	width: 188px;
 	list-style:none;
 	height:10px;
 	padding:10px;
@@ -157,8 +160,8 @@ a:hover
 
 .uiSideNavtwo
 {
-	margin-left: -30px;
-	width: 100%;
+	margin-left: -25px;
+	width: 188px;
 	list-style:none;
 	height:10px;
 	padding:10px;
@@ -179,8 +182,8 @@ a:hover
 
 .uiSideNav_active
 {
-	margin-left: -30px;
-	width: 98%;
+	margin-left: -25px;
+	width: 184px;
 	list-style:none;
 	height:10px;
 	padding:10px;
@@ -212,7 +215,7 @@ a:hover
 }
 
 #content_day_date
-{width:50px; height:50px; padding:10px; position:relative; float:left; font-family: Helvetica, Arial, sans-serif; font-size:36px; font-weight:bold; color:#338bd5}
+{line-height: initial; width:50px; height:50px; padding:10px; position:relative; float:left; font-family: Helvetica, Arial, sans-serif; font-size:36px; font-weight:bold; color:#338bd5}
 
 #content_date_complete
 {width:300px; height:45px; padding:13px; position:relative; float:left; border-left:1px solid #dddfdf}
@@ -226,13 +229,13 @@ a:hover
 }
 
 #content_icons_caption
-{
+{    
 	width: 390px;
-	height: 75px;
+	height: 80px;
 	background-color: #f1f4f4;
 	border: 1px solid #dddfdf;
 	margin-top: 15px;
-	padding: 11px;
+	padding: 11px 9px 6px 9px;        
 	-webkit-border-radius: 4px;
 	border-radius: 4px;
 	-moz-border-radius: 4px;
@@ -294,6 +297,7 @@ margin-top:7px;
 
 .day
 {
+	line-height:initial;    
 	width: 71px;
 	height: auto;
 	position: relative;
@@ -343,7 +347,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f9eee', end
 .day_none2
 {
 	width: 50px;
-	height: 33px;
+	height: 35px;
 	color: #FFF;
 	background-color: #2C83CB;
 	border-top:1px solid #1980d9;
@@ -384,7 +388,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f9eee', end
 .day_none_rigth2
 {
 	width: 50px;
-	height: 33px;
+	height: 35px;
 	color: #FFF;
 	background-color: #2C83CB;
 	border-top:1px solid #1980d9;
@@ -423,6 +427,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f9eee', end
 
 .date
 {
+    line-height:12px;
 	width: 72px;
 	height: auto;
 	margin-left:auto;
@@ -543,7 +548,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f5f8', end
 
 
 #prev_calendar
-{
+{    
 	width:35px;
 	height:22px;
 	margin-top: 5px;
@@ -602,6 +607,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f5f8', end
 
 .grid_hours
 {
+    color:#a9a2a2;
 	width: 737px;
 	height: auto;
 	position: relative;
@@ -626,8 +632,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f5f8', end
 	#top: 50%;
 }
 .inner{
-    #position:relative;
-    #top:-50%;
+    position:relative;
+    top:-50%;
 	text-align:center;
 	
 }
@@ -672,7 +678,7 @@ width: 73px;
 
 
 .hours_content_table
-{width: 690px; height: auto; position: relative}
+{width: 690px; height: auto; position: relative; line-height: initial; }
 
 
 
@@ -708,7 +714,8 @@ width: 73px;
 {
 	width: 20px;
 	margin: auto;
-	height: 16px
+	height: 16px;
+    padding-top:2px;
 }	
 
 
@@ -1006,6 +1013,7 @@ input.styled {  } select.styled { position: relative; width: 290px; opacity: 0; 
 #inner_datepicker
 {
     margin: -4px 0px 0px 20px;
+    line-height: 12px;
 }
 
 .content_insurance_plans

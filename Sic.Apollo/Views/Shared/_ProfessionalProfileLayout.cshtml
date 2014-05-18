@@ -1,9 +1,17 @@
 ﻿<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if (IE 9)]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> 
 <html>
 <head>
     <link rel="icon" type="image/png" href="@Url.ContentImage("favicon.png")" />
     <link rel="shortcut icon" type="image/x-icon" href="@Url.ContentImage("favicon.ico")" />
     @Url.ImportStyleSheet("style.css",true)
+    @Url.ImportStyleSheet("font-awesome.min.css")
+    @Url.ImportStyleSheet("bootstrap.min.css")
+
     @Url.ImportStyleSheet("base_medical_profile.css",true)
     @Url.ImportStyleSheet("fonts/stylesheet.css",true)
     @Url.ImportStyleSheet("tapmodo-jcrop/jquery.Jcrop.min.css", true)
@@ -14,12 +22,13 @@
     @Url.ImportStyleSheet("themes/base/jquery.ui.datepicker.css")
     @Url.ImportStyleSheet("themes/base/jquery.ui.theme.css")
     @Url.ImportStyleSheet("dialog.css")    
-    @Url.ImportStyleSheet("gen/jquery.gritter.css")    
-        
+    @Url.ImportStyleSheet("gen/jquery.gritter.css")        
+    @Url.ImportStyleSheet("shortcodes.css") @*tab animation*@    
     @RenderSection("LinksImport", false)
       
     @Url.ImportScript("jquery-1.7.2.min.js")
     @Url.ImportScript("jquery-ui-1.8.21.custom.min.js")
+    @Url.ImportScript("bootstrap.min.js",true)    
     @Url.ImportScript("modernizr-1.7.min.js")
     @Url.ImportScript("jquery.validate.min.js")
     @Url.ImportScript("jquery.validate.unobtrusive.min.js")
@@ -41,6 +50,7 @@
     @RenderSection("Imports", false)
     <title>@ViewBag.Title</title>
     @RenderSection("meta", false) 
+    @{Html.RenderPartial("_NotificationMessages");}
 </head>
 <body>
     @{Html.RenderPartial("_Dialog");}

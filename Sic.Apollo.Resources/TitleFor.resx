@@ -117,28 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="TitleAppointmentAttended" xml:space="preserve">
-    <value>Cita Concretada</value>
+  <data name="EpicrisisPatientFiles" xml:space="preserve">
+    <value>Archivos</value>
   </data>
-  <data name="TitleAppointmentCanceled" xml:space="preserve">
-    <value>Cita Cancelada</value>
+  <data name="EpicrisisPatientMedicalCares" xml:space="preserve">
+    <value>Evoluciones</value>
   </data>
-  <data name="TitleAppointmentCreated" xml:space="preserve">
-    <value>Cita Agendada</value>
+  <data name="EpicrisisPatientMedicalHistories" xml:space="preserve">
+    <value>Antecedentes</value>
   </data>
-  <data name="TitleAppointmentDeleted" xml:space="preserve">
-    <value>Cita Eliminada</value>
+  <data name="EpicrisisPatientPhysicalExamination" xml:space="preserve">
+    <value>Examen Físico</value>
   </data>
-  <data name="TitleAppointmentForAttentionConfirmed" xml:space="preserve">
-    <value>Cita Confirmada</value>
+  <data name="EpicrisisPatientProfile" xml:space="preserve">
+    <value>Perfil</value>
   </data>
-  <data name="TitleAppointmentNotAttended" xml:space="preserve">
-    <value>Cita no Concretada</value>
+  <data name="EpicrisisPatientResume" xml:space="preserve">
+    <value>Resumen</value>
   </data>
-  <data name="ValidationFieldForDataType" xml:space="preserve">
-    <value>Valor Incorrecto</value>
-  </data>
-  <data name="ValidationFieldRequired" xml:space="preserve">
-    <value>Dato Requerido</value>
+  <data name="EpicrisisPatientVitalSigns" xml:space="preserve">
+    <value>Signos Vitales</value>
   </data>
 </root>

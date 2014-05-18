@@ -548,7 +548,7 @@
 {width:16px; height:16px;  margin-right:5px; position:relative; float:left; background:url(../img/style/icons_navigation_medical.png) 160px 16px;}
 
 .circle_notification
-{position:relative; background-color:#2e88d4; border-radius: 400px; -moz-border-radius: 400px; -webkit-border-radius: 400px; float:right; width:20px; height:16px; color:#FFF; font-size:10px; text-align:center; font-family:Arial, Helvetica, sans-serif; padding-top: 3px;}
+{line-height: initial; position:relative; background-color:#2e88d4; border-radius: 400px; -moz-border-radius: 400px; -webkit-border-radius: 400px; float:right; width:20px; height:16px; color:#FFF; font-size:10px; text-align:center; font-family:Arial, Helvetica, sans-serif; padding-top: 3px;}
 
 .list_content_iconedit
 {width:16px; height:16px; background:url(../img/style/icons_edit.png) 0px 16px; position:relative; float:left; margin-right:5px}
@@ -609,3 +609,14 @@ opacity: 1;
     border-radius: 5px;
     -moz-border-radius: 5px;
 }	
+
+.content_select_date{
+    float: left;
+    margin-right: 3px;
+}
+.content_select_date select.short {
+    width: 65px;    
+}
+.content_select_date select.month {
+    width: 90px;    
+}

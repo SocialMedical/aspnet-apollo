@@ -119,7 +119,7 @@ namespace Sic.Web.Mvc
         {
             
             return String.Format(CultureInfo.CurrentCulture, base.ErrorMessageString, name,
-                nameOtherProperty,Criteria.Description());
+                nameOtherProperty,Criteria.GetDescription());
         }
 
         private string nameOtherProperty;
@@ -151,7 +151,7 @@ namespace Sic.Web.Mvc
             };
 
             clientValidationRule.ValidationParameters.Add("otherproperty", OtherProperty);
-            clientValidationRule.ValidationParameters.Add("comparer", Criteria.Description());
+            clientValidationRule.ValidationParameters.Add("comparer", Criteria.GetDescription());
 
             return new[] { clientValidationRule };                      
         }
