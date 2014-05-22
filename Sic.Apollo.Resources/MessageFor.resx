@@ -135,6 +135,9 @@
   <data name="TitleAppointmentNotAttended" xml:space="preserve">
     <value>Cita no Concretada</value>
   </data>
+  <data name="ValidationEditProfessionalPatientNotFound" xml:space="preserve">
+    <value>El Paciente no es válido</value>
+  </data>
   <data name="ValidationFieldForDataType" xml:space="preserve">
     <value>Valor Incorrecto</value>
   </data>

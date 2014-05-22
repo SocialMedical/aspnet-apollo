@@ -21,7 +21,7 @@ namespace Sic.Apollo.Models.Repositories
         public override Sic.Apollo.Models.Pro.Professional GetByID(object id)
         {
             int key = Convert.ToInt32(id);
-            return Get(p => p.ProfessionalId == key, null, "Contact").SingleOrDefault();
+            return Get(p => p.ProfessionalId == key, "Contact").SingleOrDefault();
         }
 
         public ProfessionalScore GetScore(int professionalId)

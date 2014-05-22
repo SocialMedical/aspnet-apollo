@@ -11,6 +11,15 @@ namespace Sic.Apollo.Models.Medical
     [Table("tbMedicalHistory", Schema="med")]
     public class MedicalHistory: Sic.Data.Entity.EntityBase
     {
+        public override string Key
+        {
+            get
+            {
+                //Compare Based in ProblemId
+                return this.MedicalProblemId.ToString();
+            }
+        }
+
         [Key]
         [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public long MedicalHistoryId { get; set; }

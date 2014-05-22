@@ -1,35 +1,68 @@
 ﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientVitalSign>
-@using Sic.Apollo
-@using Sic.Web.Mvc
-@using Sic
-<h2>@Sic.Apollo.Resources.Resources.LabelForPatientVitalSigns</h2>
+
+<div style="margin-top:15px;"><input type="text2" class="input-block-level img_search_input" 
+                                     placeholder="@LabelFor.HintSearchVitalSign"></div>
+
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div class="title_box_info"><h5>Signos Vitales</h5></div>
+    <div class="content_signs">
+        <div class="box_signs">
+            <div class="txt_signs_vitals">Peso </div>
+            <div class="input_signs_vitals"><input type="text" class="form-control input-mini" placeholder=""></div>
+            <div class="unit_signs_vitals">Kg </div>
+
+            <div class="txt_signs_vitals">Presion Arterial Sistolica </div>
+            <div class="input_signs_vitals"><input type="text" class="form-control input-mini" placeholder=""></div>
+            <div class="unit_signs_vitals">MMgm </div>
+
+            <div class="txt_signs_vitals">Temperatura Axilar </div>
+            <div class="input_signs_vitals"><input type="text" class="form-control input-mini" placeholder=""></div>
+            <div class="unit_signs_vitals">Cº </div>
+        </div>
+        <div class="line_separator_vitalsign"></div>
+
+        <div class="content_buttom_box"><button type="button" class="btn btn-warning btn-medium">Guardar</button></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>@Sic.Apollo.Resources.Resources.LabelForPatientVitalSigns</h2>
 <div class="scrollTabs">
     <div class="arrow_tab4">
     </div>
-    <div id="vitalSignContentMessage">        
+    <div id="vitalSignContentMessage">
     </div>
     @{
         int lineCount = 0;
         DateTime currentDate = Sic.Web.Mvc.Session.CurrentDateTime.Date;
     }
     <div class="content_tab2" vitalsign-edit-content>
-          <div id="vitalSignDateLabel" class="txt_az_18 label_input_trigger label_date_trigger">             
-                @currentDate.ToDefaultDateFormat()
-         </div>
-          <input type="text" id="vitalSignDateInput" style="display:none"/>
-         <br />
+        <div id="vitalSignDateLabel" class="txt_az_18 label_input_trigger label_date_trigger">
+            @currentDate.ToDefaultDateFormat()
+        </div>
+        <input type="text" id="vitalSignDateInput" style="display:none" />
+        <br />
         @foreach (var vitalSign in Model.Where(p => p.VitalSignDate.Date == currentDate).OrderBy(p => p.VitalSign.Priority))
         {
             lineCount++;
             if (lineCount == 1)
             {
-            @:@(new HtmlString("<div class=\"row_vital_sign\">"))
+                @:@(new HtmlString("<div class=\"row_vital_sign\">"))
             }
             <div>
                 <div class="box_text_three">
                     @vitalSign.VitalSign.Name
                 </div>
-                <div class="box_input_three">                   
+                <div class="box_input_three">
                     @Html.TextBox("vitalsign-value", vitalSign.Value, new { code = vitalSign.VitalSign.Code, unit = vitalSign.MeasuringUnit, patientVitalSignId = vitalSign.PatientVitalSignId, vitalSignId = vitalSign.VitalSignId, @class = "input_text_three" })
                 </div>
                 <div class="box_text_three_aux">
@@ -38,7 +71,7 @@
             </div>
             if (lineCount == 3)
             {
-            @:@(new HtmlString("</div>"))
+                @:@(new HtmlString("</div>"))
                                                                         lineCount = 0;
             }
         }
@@ -50,7 +83,7 @@
             <center><input onclick="getvitalSignValues()" type="button" class="button_save_orange" value="@Sic.Apollo.Resources.Resources.LabelForSave" /></center>
         </div>
         <div id="vitalSignHistory">
-           @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSignHistory.cshtml", Model);}
+            @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSignHistory.cshtml", Model);}
         </div>
     </div>
-</div>
+</div>*@

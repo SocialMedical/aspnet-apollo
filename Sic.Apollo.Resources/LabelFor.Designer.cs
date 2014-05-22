@@ -97,6 +97,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        public static string CancelAction {
+            get {
+                return ResourceManager.GetString("CancelAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Celular.
         /// </summary>
         public static string CellPhone {
@@ -147,6 +156,15 @@ namespace Sic.Apollo.Resources {
         public static string HintSearchMedicalHistory {
             get {
                 return ResourceManager.GetString("HintSearchMedicalHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buscar Signo Vital.
+        /// </summary>
+        public static string HintSearchVitalSign {
+            get {
+                return ResourceManager.GetString("HintSearchVitalSign", resourceCulture);
             }
         }
         
@@ -264,6 +282,15 @@ namespace Sic.Apollo.Resources {
         public static string SaveAction {
             get {
                 return ResourceManager.GetString("SaveAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardar Todos.
+        /// </summary>
+        public static string SaveAllAction {
+            get {
+                return ResourceManager.GetString("SaveAllAction", resourceCulture);
             }
         }
         

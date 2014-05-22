@@ -212,6 +212,7 @@
     <Compile Include="Areas\Professional\Controllers\MedicalHistoryController.cs" />
     <Compile Include="Areas\Professional\Controllers\PhysicalExaminationController.cs" />
     <Compile Include="Areas\Professional\Controllers\VitalSignController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Reports\DataSource\ApolloDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -329,6 +330,7 @@
     <Content Include="Content\css\tabs.css" />
     <Content Include="Content\js\apollo\horary.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-files.js" />
+    <Content Include="Content\js\apollo\professional\medical-patient-history.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-vitalsign.js" />
     <Content Include="Content\js\apollo\professional\medical-patient.js" />
     <Content Include="Content\js\apollo\professional\professionalBook.js" />
@@ -773,6 +775,7 @@
     <Folder Include="Content\css\apollo\medical\" />
     <Folder Include="Content\css\themes\base\ad-gallery\" />
     <Folder Include="Content\js\apollo\medical\" />
+    <Folder Include="Views\Base\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Views\Patient\" />
   </ItemGroup>

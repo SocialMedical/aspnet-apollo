@@ -42,6 +42,14 @@ function sicPost(url, queryData, callback, dataType) {
     });
 }
 
+function sicJSONDataGet(url, queryData, callback) {
+    sicGet(url, JSON.stringify(queryData), callback, "application/json");
+}
+
+function sicJSONDataPost(url, queryData, callback) {    
+    sicPost(url, JSON.stringify(queryData), callback, "application/json");
+}
+
 function sicConvertToInt(value) {
     try {
         if (sicIsNumeric(value))

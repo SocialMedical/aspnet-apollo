@@ -13,18 +13,20 @@ namespace Sic.Apollo.Models.Repositories
         {
         }
 
-        public override IEnumerable<InsuranceInstitution> Get(System.Linq.Expressions.Expression<Func<InsuranceInstitution, bool>> filter = null, Func<IQueryable<InsuranceInstitution>, IOrderedQueryable<InsuranceInstitution>> orderBy = null, string includeProperties = "")
+        public override IEnumerable<InsuranceInstitution> Get(System.Linq.Expressions.Expression<Func<InsuranceInstitution, bool>> filter = null, 
+            string includeProperties = "",
+            Func<IQueryable<InsuranceInstitution>, IOrderedQueryable<InsuranceInstitution>> orderBy = null)
         {
             if (string.IsNullOrEmpty(includeProperties))
                 includeProperties = "Contact";
 
-            return base.Get(filter, orderBy, includeProperties);
+            return base.Get(filter, includeProperties, orderBy);
         }
 
         public override InsuranceInstitution GetByID(object id)
         {
             int key = Convert.ToInt32(id);
-            return Get(p => p.InstitutionId == key, null, "Contact").SingleOrDefault();
+            return Get(p => p.InstitutionId == key, "Contact").SingleOrDefault();
         }       
     }
 }

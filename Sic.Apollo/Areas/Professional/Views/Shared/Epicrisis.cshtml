@@ -20,6 +20,7 @@
     @Url.ImportScript("apollo/professional/medical-patient.js", true)
     @Url.ImportScript("apollo/professional/medical-patient-vitalsign.js", true)
     @Url.ImportScript("apollo/professional/medical-patient-files.js", true)
+    @Url.ImportScript("apollo/professional/medical-patient-history.js", true)
     @Url.ImportScript("sic/datetime.js", true)
 }
 <!--tabs edicion-->
@@ -41,34 +42,34 @@
         <div class="tabbable">
 
             <ul class="nav nav-tabs" id="myTab">
-                <li class="active"><a href="#tab1" data-toggle="tab">@TitleFor.EpicrisisPatientResume</a></li>
-                <li><a href="#tab2" data-toggle="tab">@TitleFor.EpicrisisPatientProfile</a></li>
-                <li><a href="#tab3" data-toggle="tab">@TitleFor.EpicrisisPatientMedicalHistories</a></li>
-                <li><a href="#tab4" data-toggle="tab">@TitleFor.EpicrisisPatientVitalSigns</a></li>
-                <li><a href="#tab5" data-toggle="tab">@TitleFor.EpicrisisPatientMedicalCares</a></li>
-                <li><a href="#tab6" data-toggle="tab">@TitleFor.EpicrisisPatientPhysicalExamination</a></li>
-                <li><a href="#tab7" data-toggle="tab">@TitleFor.EpicrisisPatientFiles</a></li>
+                <li class="active"><a href="#epicrisis_resume" data-toggle="tab">@TitleFor.EpicrisisPatientResume</a></li>
+                <li><a href="#epicrisis_profile" data-toggle="tab">@TitleFor.EpicrisisPatientProfile</a></li>
+                <li><a href="#epicrisis_medical_history" data-toggle="tab">@TitleFor.EpicrisisPatientMedicalHistories</a></li>
+                <li><a href="#epicrisis_vitalsign" data-toggle="tab">@TitleFor.EpicrisisPatientVitalSigns</a></li>
+                <li><a href="#epicrisis_medicalcares" data-toggle="tab">@TitleFor.EpicrisisPatientMedicalCares</a></li>
+                <li><a href="#epicrisis_physical_ex" data-toggle="tab">@TitleFor.EpicrisisPatientPhysicalExamination</a></li>
+                <li><a href="#epicrisis_patient_files" data-toggle="tab">@TitleFor.EpicrisisPatientFiles</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade in active" id="tab1">
+                <div class="tab-pane fade in active" id="epicrisis_resume">
                    @{Html.RenderPartial("_EpicrisisResume", Model);}
                 </div>
-                <div class="tab-pane fade in" id="tab2">                    
+                <div class="tab-pane fade in" id="epicrisis_profile">                    
                     @{Html.RenderPartial("~/Areas/Professional/Views/Patient/_EditProfile.cshtml", Model);}
                 </div>
-                <div class="tab-pane fade in" id="tab3">
+                <div class="tab-pane fade in" id="epicrisis_medical_history">
                     @{Html.RenderPartial("~/Areas/Professional/Views/MedicalHistory/_MedicalHistory.cshtml", Model.MedicalHistories);}
                 </div>
-                <div class="tab-pane fade in" id="tab4">
+                <div class="tab-pane fade in" id="epicrisis_vitalsign">
+                    @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSigns.cshtml", Model.PatientVitalSigns);}
+                </div>
+                <div class="tab-pane fade in" id="epicrisis_medicalcares">
                     @{Html.RenderPartial("_EpicrisisResume", Model);}
                 </div>
-                <div class="tab-pane fade in" id="tab5">
+                <div class="tab-pane fade in" id="epicrisis_physical_ex">
                     @{Html.RenderPartial("_EpicrisisResume", Model);}
                 </div>
-                <div class="tab-pane fade in" id="tab6">
-                    @{Html.RenderPartial("_EpicrisisResume", Model);}
-                </div>
-                <div class="tab-pane fade in" id="tab7">
+                <div class="tab-pane fade in" id="epicrisis_patient_files">
                     @{Html.RenderPartial("_EpicrisisResume", Model);}
                 </div>
             </div>

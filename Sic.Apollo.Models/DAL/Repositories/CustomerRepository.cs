@@ -17,7 +17,7 @@ namespace Sic.Apollo.Models.Repositories
         public override Customer GetByID(object id)
         {
             int key = Convert.ToInt32(id);
-            return Get(p => p.CustomerId == key, null, "Contact").SingleOrDefault();
+            return Get(p => p.CustomerId == key, "Contact").SingleOrDefault();
         }
 
         public List<Pro.View.Professional> GetCustomerProfessionals(int CustomerId)

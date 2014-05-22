@@ -17,7 +17,7 @@ namespace Sic.Apollo.Models.Repositories
         public override User GetByID(object id)
         {
             int key = Convert.ToInt32(id);
-            return Get(p => p.UserId == key, null, "Contact").SingleOrDefault();
+            return Get(p => p.UserId == key, "Contact").SingleOrDefault();
         }
 
         public User GetByLogonName(string logonName)

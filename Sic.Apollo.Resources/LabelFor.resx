@@ -129,6 +129,9 @@
   <data name="BloodGroup" xml:space="preserve">
     <value>Grupo Sanguíneo</value>
   </data>
+  <data name="CancelAction" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
   <data name="CellPhone" xml:space="preserve">
     <value>Celular</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="HintSearchMedicalHistory" xml:space="preserve">
     <value>Buscar Antecedente</value>
+  </data>
+  <data name="HintSearchVitalSign" xml:space="preserve">
+    <value>Buscar Signo Vital</value>
   </data>
   <data name="HumanGender" xml:space="preserve">
     <value>Género</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="SaveAction" xml:space="preserve">
     <value>Guardar</value>
+  </data>
+  <data name="SaveAllAction" xml:space="preserve">
+    <value>Guardar Todos</value>
   </data>
   <data name="SecondLastName" xml:space="preserve">
     <value>Segundo Apellido</value>

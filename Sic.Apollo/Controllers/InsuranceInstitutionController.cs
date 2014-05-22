@@ -19,7 +19,7 @@ namespace Sic.Apollo.Controllers
         [Authorize(UserType.Administrator)]
         public ViewResult Index()
         {            
-            return View(db.InsuranceInstitutions.Get(p => p.Active, null, "Contact").ToList());  
+            return View(db.InsuranceInstitutions.Get(p => p.Active, "Contact").ToList());  
         }
 
         //

@@ -59,9 +59,9 @@ namespace Sic.Data.Entity
         }
 
         public virtual IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+            Expression<Func<TEntity, bool>> filter = null,            
+            string includeProperties = "",
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
         {
             IQueryable<TEntity> query = dbSet;
 
@@ -88,6 +88,11 @@ namespace Sic.Data.Entity
 
                 return query.ToList();
             }
+        }
+
+        public virtual bool Exists(Expression<Func<TEntity, bool>> expression = null)
+        {
+            return dbSet.Any(expression);
         }
 
         public virtual TEntity GetByID(object id)

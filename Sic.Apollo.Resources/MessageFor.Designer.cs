@@ -115,6 +115,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El Paciente no es válido.
+        /// </summary>
+        public static string ValidationEditProfessionalPatientNotFound {
+            get {
+                return ResourceManager.GetString("ValidationEditProfessionalPatientNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valor Incorrecto.
         /// </summary>
         public static string ValidationFieldForDataType {
