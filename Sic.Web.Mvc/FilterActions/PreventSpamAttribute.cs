@@ -35,7 +35,7 @@ namespace Sic.Web.Mvc
         //This stores the time between Requests (in seconds)
         public int DelayRequest = 10;
         //The Error Message that will be displayed in case of excessive Requests
-        public string ErrorMessage = "Excessive Request Attempts Detected.";
+        public string ErrorMessage = Sic.Resources.MessageFor.DefaultErrorPreventSpamMessage;
         //This will store the URL to Redirect errors to
         public string RedirectURL = "";       
 
@@ -62,7 +62,7 @@ namespace Sic.Web.Mvc
             if (cache[hashValue] != null)
             {
                 //Adds the Error Message to the Model and Redirect
-                ((BaseController)filterContext.Controller).AddMessage(ErrorMessage, Data.MessageType.Error);
+                ((Sic.Web.Mvc.Controllers.Controller)filterContext.Controller).AddMessage(ErrorMessage, Data.MessageType.Error);
                 if (!string.IsNullOrEmpty(RedirectURL))
                     filterContext.Result = new RedirectResult(RedirectURL);
             }

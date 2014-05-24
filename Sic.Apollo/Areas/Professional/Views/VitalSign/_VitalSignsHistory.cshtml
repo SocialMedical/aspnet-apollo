@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientVitalSign>
+@{
+    DateTime currentDate = this.GetCurrentDateTime();
+}
+
+<div class="line_separation_title">
+    <div class="title_bg_med"><h4>@TitleFor.EpicrisisVitalSignHistory</h4></div>
+</div>
+
+@foreach (var vitalSign in Model.Select(p => p.VitalSign).OrderBy(p => p.Priority).Distinct())
+{
+    var list = Model.Where(p => p.VitalSignDate.Date != currentDate && p.VitalSignId ==
+                    vitalSign.VitalSignId && !string.IsNullOrWhiteSpace(p.Value)).OrderByDescending(p => p.VitalSignDate);
+
+    <div vsc class="box_info_person">
+        <div class="circle_title_box_info"></div><div class="title_box_info"><h5 vs>@vitalSign.Name</h5></div>
+        @if (list.Any())
+        {
+            <table class="table table-condensed">
+                <thead>
+                </thead>
+                <tbody>
+                    @foreach (var patientVitalSign in list)
+                    {
+                        <tr>
+                            <td width="17%">@patientVitalSign.VitalSignDate.ToDefaultDateFormat()</td>
+                            <td>
+                                @patientVitalSign.Value.ToJSNumericValue() @(((Sic.MeasurementUnit)patientVitalSign.MeasuringUnit).GetDisplay(typeof(MeasurementUnit)))
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>@LegendFor.InformationNotRegistered</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        }
+    </div>
+}

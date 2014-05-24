@@ -1,7 +1,73 @@
 ﻿@model Sic.Apollo.Models.Medical.MedicalCare
-@using Sic.Apollo
 
-    <div style="position:relative" id="medicalCareItem@{@Model.MedicalCareId}">
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div class="title_box_info">
+        <h5 class="float">@Model.EvolutionDate.ToDefaultDateFormat()</h5>
+        <div class="float content_ico_edit_title" style="cursor:pointer">
+            <i class="fa fa-pencil"></i>
+        </div>
+        <div class="float content_ico_edit_title" style="cursor:pointer">
+            <i class="fa fa-print"></i>
+        </div>
+        <div class="float content_ico_edit_title" style="cursor:pointer">
+            <i class="fa fa-trash-o"></i>
+        </div>
+    </div>
+
+    <table class="table table-condensed">
+        <thead>
+        </thead>
+        <tbody>
+            @if (!string.IsNullOrWhiteSpace(Model.Evolution))
+            {
+                <tr>
+                    <td width="18%">@LabelFor.MedicalCareEvolution</td>
+                    <td width="74%">@Model.Evolution</td>
+                </tr>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Diagnostic))
+            {
+                <tr>
+                    <td width="18%">@LabelFor.MedicalCareDiagnostic</td>
+                    <td width="74%">@Model.Diagnostic</td>
+                </tr>
+            }
+            @if (!string.IsNullOrWhiteSpace(Model.Treatment))
+            {
+                <tr>
+                    <td width="18%">@LabelFor.MedicalCareTreatment</td>
+                    <td width="74%">@Model.Treatment</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (Model.MedicalCareMedications.Any())
+    {
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th width="30%">@LabelFor.Medicine</th>
+                    <th width="50%">@LabelFor.Posology</th>
+                    <th width="20%">@LabelFor.Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var medicine in Model.MedicalCareMedications)
+                {
+                    <tr>
+                        <td>@medicine.MedicationName</td>
+                        <td>@medicine.Posology</td>
+                        <td>@medicine.Quantity</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+
+
+@*<div style="position:relative" id="medicalCareItem@{@Model.MedicalCareId}">
         <div class="box_text_med">@Model.EvolutionDate.ToDefaultDateFormat()</div>
         @if(!string.IsNullOrWhiteSpace(Model.Evolution))
         {
@@ -32,9 +98,9 @@
             <div style="float:left; margin-left:10px;">
                 <a href="javascript:editMedicalCare(@{@Model.MedicalCareId})">
                     <div class="list_content_iconedit_one">
-                    </div>    
-               </a>      
-               <a href="javascript:printMedications(@{@Model.MedicalCareId})">                     
+                    </div>
+               </a>
+               <a href="javascript:printMedications(@{@Model.MedicalCareId})">
                     <div medicalCareId="@{@Model.MedicalCareId}" style="cursor:pointer" class="list_content_iconprint_one printMedicationButton">
                     </div>
                 </a>
@@ -53,9 +119,9 @@
                     <li>@medicine.MedicationName</li>
                 }
             </ul>
-        </div>    
+        </div>
         <div class="linebreak"></div>
-    <div class="evolutioneditcontent" id="editMedicalCare@{@Model.MedicalCareId}">            
+    <div class="evolutioneditcontent" id="editMedicalCare@{@Model.MedicalCareId}">
     </div>
     </div>
     @*<div id="medicationprintlist@{@Model.MedicalCareId}" style="display:none">
@@ -64,14 +130,14 @@
         {
             <li class="item">
             <div class="q">
-                @(medication.Quantity>0?medication.Quantity.ToJSNumericValue():"") 
+                @(medication.Quantity>0?medication.Quantity.ToJSNumericValue():"")
             </div>
             <div class="medication">@medication.MedicationName
             </div>
             <div class="posology">@medication.Posology
-            </div>            
+            </div>
             </li>
-            <div class="print_line_break"></div>    
+            <div class="print_line_break"></div>
         }
         </ul>
     </div>*@

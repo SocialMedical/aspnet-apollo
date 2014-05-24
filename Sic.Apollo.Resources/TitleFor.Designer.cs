@@ -122,5 +122,14 @@ namespace Sic.Apollo.Resources {
                 return ResourceManager.GetString("EpicrisisPatientVitalSigns", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historial.
+        /// </summary>
+        public static string EpicrisisVitalSignHistory {
+            get {
+                return ResourceManager.GetString("EpicrisisVitalSignHistory", resourceCulture);
+            }
+        }
     }
 }

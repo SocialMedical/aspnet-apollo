@@ -159,6 +159,15 @@
   <data name="LastName" xml:space="preserve">
     <value>Apellido</value>
   </data>
+  <data name="MedicalCareDiagnostic" xml:space="preserve">
+    <value>Diagnóstico</value>
+  </data>
+  <data name="MedicalCareEvolution" xml:space="preserve">
+    <value>Evolución</value>
+  </data>
+  <data name="MedicalCareTreatment" xml:space="preserve">
+    <value>Tratamiento</value>
+  </data>
   <data name="MedicalDiagnostic" xml:space="preserve">
     <value>Diagnóstico</value>
   </data>
@@ -180,11 +189,23 @@
   <data name="MedicalTreatment" xml:space="preserve">
     <value>Tratamiento</value>
   </data>
+  <data name="Medicine" xml:space="preserve">
+    <value>Medicina</value>
+  </data>
   <data name="MiddleName" xml:space="preserve">
     <value>Segundo Nombre</value>
   </data>
+  <data name="Patient" xml:space="preserve">
+    <value>Paciente</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Teléfono</value>
+  </data>
+  <data name="Posology" xml:space="preserve">
+    <value>Posología</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Cantidad</value>
   </data>
   <data name="Resume" xml:space="preserve">
     <value>Resumen</value>
@@ -194,6 +215,9 @@
   </data>
   <data name="SaveAllAction" xml:space="preserve">
     <value>Guardar Todos</value>
+  </data>
+  <data name="SaveAndPrintAction" xml:space="preserve">
+    <value>Guardar e Imprimir</value>
   </data>
   <data name="SecondLastName" xml:space="preserve">
     <value>Segundo Apellido</value>

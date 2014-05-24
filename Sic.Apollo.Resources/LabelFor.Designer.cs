@@ -189,6 +189,33 @@ namespace Sic.Apollo.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Diagnóstico.
         /// </summary>
+        public static string MedicalCareDiagnostic {
+            get {
+                return ResourceManager.GetString("MedicalCareDiagnostic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Evolución.
+        /// </summary>
+        public static string MedicalCareEvolution {
+            get {
+                return ResourceManager.GetString("MedicalCareEvolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tratamiento.
+        /// </summary>
+        public static string MedicalCareTreatment {
+            get {
+                return ResourceManager.GetString("MedicalCareTreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagnóstico.
+        /// </summary>
         public static string MedicalDiagnostic {
             get {
                 return ResourceManager.GetString("MedicalDiagnostic", resourceCulture);
@@ -250,6 +277,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Medicina.
+        /// </summary>
+        public static string Medicine {
+            get {
+                return ResourceManager.GetString("Medicine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Segundo Nombre.
         /// </summary>
         public static string MiddleName {
@@ -259,11 +295,38 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Paciente.
+        /// </summary>
+        public static string Patient {
+            get {
+                return ResourceManager.GetString("Patient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Teléfono.
         /// </summary>
         public static string PhoneNumber {
             get {
                 return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Posología.
+        /// </summary>
+        public static string Posology {
+            get {
+                return ResourceManager.GetString("Posology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cantidad.
+        /// </summary>
+        public static string Quantity {
+            get {
+                return ResourceManager.GetString("Quantity", resourceCulture);
             }
         }
         
@@ -291,6 +354,15 @@ namespace Sic.Apollo.Resources {
         public static string SaveAllAction {
             get {
                 return ResourceManager.GetString("SaveAllAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardar e Imprimir.
+        /// </summary>
+        public static string SaveAndPrintAction {
+            get {
+                return ResourceManager.GetString("SaveAndPrintAction", resourceCulture);
             }
         }
         

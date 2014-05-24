@@ -228,13 +228,13 @@ namespace Sic.Apollo.Areas.Professional.Controllers
 
         [ChildAction]
         [Authorize(UserType.Professional, UserType.Assistant)]
-        public ActionResult Resume(int patientId)
+        public ActionResult EpicrisisResume(int patientId)
         {
             var patient = GetPatient(patientId);
             if (patient == null)
                 return RedirectToAction("ResourceNotFound", "Error");
-            PrepareEpicrisis(patient);           
-            return PartialView(patient);
+            PrepareEpicrisis(patient);
+            return PartialView("_EpicrisisResume", patient);
         }        
 
         private Models.Medical.View.Patient GetPatient(int patientId)

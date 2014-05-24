@@ -1,233 +1,555 @@
 ﻿@charset "UTF-8";
 /* CSS Document */
 
-.content_info_person
-{width:705px; height:auto; overflow:visible; margin-left:25px; float:left;
-	
-	}
-
-
-
-.header_content_info_person
-{
-	width: 340px;
-	margin: auto;
-	padding: 5px;
-	height: 70px;
+.content_info_person {
+    width: 705px;
+    height: auto;
+    overflow: visible;
+    margin-left: 25px;
+    float: left;
 }
-.header_content_info_person_text
-{
-width:70%; height:70px; position:relative; float:left; color:#999;
-}
-.header_content_info_person_text_name
-{
-color:#000; font-size:20px; font-weight:bold; line-height:25px;
-}
-.header_content_info_person_text_img
-{
-width:30%; height:70px; position:relative; float:right
+.datepickerhiddeitem {
+    margin-left: 189px !important;
+    padding: 0px !important;
+    height: 0px !important;
+    width: 0px !important;
+    border: 0px !important;
 }
 
-.img_search_input
-{ background-image:url(../img/style/ico-search-input.png); background-repeat:no-repeat;}
+.header_content_info_person {
+    width: 340px;
+    margin: auto;
+    padding: 5px;
+    height: 70px;
+}
+
+table th {
+    background-color: #fcfde2;
+}
+
+.title_section_content {
+    color: #2e88d4;
+    font-size: 18px;
+    margin-left: 20px;
+    margin: 10px 0;
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 20px;
+    text-rendering: optimizelegibility;
+}
+
+.header_content_info_person_text {
+    width: 70%;
+    height: 70px;
+    position: relative;
+    float: left;
+    color: #999;
+}
+
+.header_content_info_person_text_name {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.header_content_info_person_text_img {
+    width: 30%;
+    height: 70px;
+    position: relative;
+    float: right;
+}
+
+.img_search_input {
+    background-image: url(../img/style/ico-search-input.png);
+    background-repeat: no-repeat;
+}
 
 .patient_profile input, .patient_profile select, .patient_profile textarea {
-    width: 220px;    
+    width: 220px;
 }
 
-.box_info_person
-{
-	width: 660px;
-	padding: 10px 10px 15px 10px;
-	/*background-color: #f3f5f5;*/
-	height: auto;
-	overflow: visible;
-	margin-left: 15px;
-	margin-top: 15px;
-	border-bottom: 3px solid #999;	
-	}
-
-.box_info_person h5
-{
-	color:#2e88d4; font-size:18px; margin-left:20px; 
-	
-	}
-.title_box_info
-{position:relative; float:left; width:400px; margin-top:-30px;}	
-	
-.circle_title_box_info
-{width: 25px; height: 25px; border: 3px solid #FFF; background-color: #2E88D4; -webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%; position:relative; left:-25px; top:3px}
-
-.circle_title_toogle_head
-{width:26px; height:26px; position:relative; background-color:#2E88D4; top: -5px; left: -32px; float: left; border: 3px solid #FFF;  -webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;}		
-
-.content_form_tabs
-{width:550px; height:35px; margin-top:20px; margin-left:25px }
-
-.content_form_tabs_textarea
-{width:550px; height:70px; margin-top:20px; margin-left:25px }
-
-.content_text_tabs
-{
-	width:180px; height:auto; position:relative; float:left; font-weight:bold; /*text-align:right;*/}
-	
-.content_inputs_tabs
-{
-	width:230px; height:auto; position:relative; float:left; margin-left:7px;}
-.content_inputs_tabs_textarea
-{
-width:300px; height:70px; position:relative; float:left; margin-left:7px	}	
-
-.title_seguro_medico
-{width:500px; height:35px; margin-top:25px; margin-left:25px;}
-
-.txt_seguro_medico
-
-{width:150px; height:35px; position:relative; float:left; font-size:18px; font-weight:bold; color:#333}
-
-.line_seguro_medico
-{width:350px; border-top:1px solid #dddddd; height:1px; position:relative; float:left; margin-top:10px}
-.line_separator_vitalsign{
-    width:1px; border-right:1px solid #ddd; position:relative; float:left; height:200px; margin-right:5px;
-}
-.line_seguros
-{width:100%; height:1px; border-bottom:1px dotted #ddd; position:relative; float:left}
-
-.line_separation_title
-{width:100%; border-bottom:1px solid #ddd; margin-bottom:30px; margin-top:30px; height:1px}
-
-.title_bg_white
-{width:auto; position:relative; float:left; background-color:#FFF; top:-23px; padding:5px 10px 5px 5px; color:rgb(46, 136, 212);}
-
-.content_buttom_box
-{ width:150px; margin:auto; height:auto; margin-top:25px; margin-bottom:20px;  clear:both; }
-
-.box_historic_patient_large
-{width:640px; position:relative; float:left}
-
-.box_historic_patient
-{width:190px; height:auto; overflow:visible; position:relative; float:left; margin-left:10px;}
-
-.box_physical_examination
-{width:190px; height:auto; overflow:visible; position:relative; float:left; margin-left:21px;}
-
-.title_physical_examination
-{color:rgb(51, 139, 213); font-size:24px; padding:10px}
-
-.separation_box_historic_patient
-{width:100%; border-bottom:1px solid #ddd; height:2px; margin-bottom:5px; margin-top:15px; position:relative; float:left}
-
-.button_historic_patient_save
-{width:70px; position:relative; float:left}
-
-.button_historic_patient_cancel
-{width:70px; position:relative; float:left; margin-left:10px;}
-
-
-.content_signs
-{width:660px;  height:auto; margin-top:20px;}
-
-.box_signs
-{width:210px; position:relative; float:left; height:200px}
-
-.txt_signs_vitals
-{
-	width:65px; position:relative; float:left; margin-top:15px; line-height:13px; text-align:right; font-size:12px;}
-
-.input_signs_vitals
-{width:90px; position:relative; float:left;margin-top:15px; margin-left:5px}	
-
-.unit_signs_vitals
-{width:30px; position:relative; float:left; margin-top:15px; font-size:12px; margin-left:-10px}
-
-.box_edit_evolution1
-{width:320px; height:100px; position:relative; float:left}
-
-.box_edit_txt_evolution1
-{width:auto; height:70px; position:relative; float:left; margin-right:5px}
-
-.box_edit_input_evolution1
-{width:200px; height:100px; position:relative; float:left}
-
-
-.medication_content_edit
-{
-	width: 600px;
-	height: auto;
-	overflow: hidden;
-	margin:auto;
-
+.box_info_person {
+    width: 660px;
+    padding: 10px 10px 15px 10px;
+    /*background-color: #f3f5f5;*/
+    height: auto;
+    overflow: visible;
+    margin-left: 15px;
+    margin-top: 15px;
+    border-bottom: 3px solid #999;
 }
 
-.medication_box
-{width:40%; position:relative; float:left; margin-top:8px}
+    .box_info_person h5 {
+        color: #2e88d4;
+        font-size: 18px;
+        margin-left: 20px;
+    }
 
-.medication_box_quantity
-{
-width:20%; position:relative; float:left; margin-top:8px;}
+    .box_info_person.noborder{
+        border-bottom: 0px;
+    }   
+.title_box_info {
+    position: relative;
+    float: left;
+    width: 400px;
+    margin-top: -30px;
+}
 
-.content_ico_edit_title
-{width:30px; height:30px; position:relative; float:left; margin-top:10px; font-size:20px; margin-left:15px; text-align:center; color:#2e88d4}
+.circle_title_box_info {
+    width: 25px;
+    height: 25px;
+    border: 3px solid #FFF;
+    background-color: #2E88D4;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    position: relative;
+    left: -25px;
+    top: 3px;
+}
 
-.content_buttons_medication_save
-{width:500px; margin:auto; margin-top:20px}
+.circle_title_toogle_head {
+    width: 26px;
+    height: 26px;
+    position: relative;
+    background-color: #2E88D4;
+    top: -5px;
+    left: -32px;
+    float: left;
+    border: 3px solid #FFF;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.content_form_tabs {
+    width: 550px;
+    height: 35px;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.content_form_tabs_textarea {
+    width: 550px;
+    height: 70px;
+    margin-top: 20px;
+    margin-left: 25px;
+}
+
+.content_text_tabs {
+    width: 180px;
+    height: auto;
+    position: relative;
+    float: left;
+    font-weight: bold; /*text-align:right;*/
+}
+
+.content_inputs_tabs {
+    width: 230px;
+    height: auto;
+    position: relative;
+    float: left;
+    margin-left: 7px;
+}
+
+.content_inputs_tabs_textarea {
+    width: 300px;
+    height: 70px;
+    position: relative;
+    float: left;
+    margin-left: 7px;
+}
+
+.title_seguro_medico {
+    width: 500px;
+    height: 35px;
+    margin-top: 25px;
+    margin-left: 25px;
+}
+
+.txt_seguro_medico {
+    width: 150px;
+    height: 35px;
+    position: relative;
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.line_seguro_medico {
+    width: 350px;
+    border-top: 1px solid #dddddd;
+    height: 1px;
+    position: relative;
+    float: left;
+    margin-top: 10px;
+}
+
+.line_separator_vitalsign {
+    width: 1px;
+    border-right: 1px solid #ddd;
+    position: relative;
+    float: left;
+    height: 200px;
+    margin-right: 5px;
+}
+
+.line_seguros {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dotted #ddd;
+    position: relative;
+    float: left;
+}
+
+.line_separation_title {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    height: 1px;
+}
+
+.title_edit_box {
+    border-style: solid;
+    cursor:pointer;
+    border-width: 1px;
+    color: #2E88D4;
+    margin-left: 10px;
+    border-color: #e0e0d7;
+    padding-right: 17px;
+    border-radius: 5px;
+}
+
+.title_bg_med {
+    color: #2e88d4;
+    width: auto;
+    position: relative;
+    float: left;
+    top: -23px;
+    background-color: #f8f8f8;
+    padding: 5px 10px 5px;
+}
+
+.title_bg_white {
+    width: auto;
+    position: relative;
+    float: left;
+    background-color: #FFF;
+    top: -23px;
+    padding: 5px 10px 5px 5px;
+    color: rgb(46, 136, 212);
+}
+
+.content_buttom_box {
+    width: 150px;
+    margin: auto;
+    height: auto;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.box_historic_patient_large {
+    width: 640px;
+    position: relative;
+    float: left;
+}
+
+.box_historic_patient {
+    width: 190px;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    float: left;
+    margin-left: 10px;
+}
+
+.box_physical_examination {
+    width: 190px;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    float: left;
+    margin-left: 21px;
+}
+
+.title_physical_examination {
+    color: rgb(51, 139, 213);
+    font-size: 24px;
+    padding: 10px;
+}
+
+.separation_box_historic_patient {
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    height: 2px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+}
+
+.button_historic_patient_save {
+    width: 70px;
+    position: relative;
+    float: left;
+}
+
+.button_historic_patient_cancel {
+    width: 70px;
+    position: relative;
+    float: left;
+    margin-left: 10px;
+}
+
+.vital_sign_entry {
+    width: 220px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.content_signs {
+    width: 660px;
+    height: auto;
+}
+
+.box_signs {
+    width: 210px;
+    position: relative;
+    float: left;
+}
+
+.txt_signs_vitals {
+    width: 65px;
+    position: relative;
+    float: left;
+    margin-top: 15px;
+    line-height: 13px;
+    text-align: right;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.input_signs_vitals {
+    width: 90px;
+    position: relative;
+    float: left;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+.unit_signs_vitals {
+    width: 30px;
+    position: relative;
+    float: left;
+    margin-top: 15px;
+    font-size: 12px;
+    margin-left: -10px;
+}
+
+.box_edit_evolution1 {
+    width: 320px;
+    height: 100px;
+    position: relative;
+    float: left;
+}
+
+.box_edit_txt_evolution1 {
+    width: 100px;
+    height: 70px;
+    position: relative;
+    float: left;    
+    font-weight:bold;
+    margin-left:10px;
+}
+
+.box_edit_input_evolution1 {
+    width: 550px;
+    height: 100px;
+    position: relative;
+    float: left;    
+}
+
+
+.medication_content_edit {
+    width: 600px;
+    height: auto;
+    overflow: hidden;
+    margin-left: 11px;
+}
+
+.medication_box {
+    width: 40%;
+    position: relative;
+    float: left;
+    margin-top: 8px;
+    font-weight:bold;
+}
+
+.medication_box_quantity {
+    width: 20%;
+    position: relative;
+    float: left;
+    margin-top: 8px;
+}
+
+.content_ico_edit_title {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 15px;
+    text-align: center;
+    color: #2e88d4;
+}
+
+.content_buttons_medication_save {
+    width: 500px;
+    margin: auto;
+    margin-top: 30px;
+    clear: both;
+}
 
 
 /*FILES*/
-.content_files
-{width:610px; height:auto; background-color:#FFF; border:1px solid #ddd; padding:10px; overflow:visible; margin-top:20px}
+.content_files {
+    width: 610px;
+    height: auto;
+    background-color: #FFF;
+    border: 1px solid #ddd;
+    padding: 10px;
+    overflow: visible;
+    margin-top: 20px;
+}
 
-.box_file{
-	width:600px;  border-bottom:1px dotted #ddd; height:90px; padding:5px; overflow:visible;}
-	
-.box_file_edit{
-	width:600px;  border-bottom:1px dotted #ddd; height:230px; padding:5px; overflow:visible; background-color:#f0f5f7;}	
-	
-.box_file:hover
-{
-	background-color:#e7f2f7;}	
-	
-.box_file_icon
-{width:75px; position:relative; float:left;  height:60px; margin-left:10px}	
+.box_file {
+    width: 600px;
+    border-bottom: 1px dotted #ddd;
+    height: 90px;
+    padding: 5px;
+    overflow: visible;
+}
 
-.box_file_description
-{width:300px; position:relative; height:60px; float:left; margin-left:10px; font-size:12px;}
+.box_file_edit {
+    width: 600px;
+    border-bottom: 1px dotted #ddd;
+    height: 230px;
+    padding: 5px;
+    overflow: visible;
+    background-color: #f0f5f7;
+}
 
-.box_file_date
-{width:120px; position:relative; height:60px; float:left; margin-left:10px}
+.box_file:hover {
+    background-color: #e7f2f7;
+}
 
-.box_file_delete
-{width:60px; position:relative; height:60px; float:left; margin-left:10px; font-size:20px;}
+.box_file_icon {
+    width: 75px;
+    position: relative;
+    float: left;
+    height: 60px;
+    margin-left: 10px;
+}
 
-.box_file_search{
-	width:400px; position:relative; margin-top:120px; margin-left:95px;}
-	
-.box_file_buttons
-{width:400px; position:relative; margin-top:20px; margin-left:95px;}	
+.box_file_description {
+    width: 300px;
+    position: relative;
+    height: 60px;
+    float: left;
+    margin-left: 10px;
+    font-size: 12px;
+}
 
-.box_file_add_button
-{width:125px; font-weight:bold; height:auto; padding:10px; color:#FFF; background-color:#30485c; position:relative; margin-top:8px; margin-bottom:15px; -webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;}
+.box_file_date {
+    width: 120px;
+    position: relative;
+    height: 60px;
+    float: left;
+    margin-left: 10px;
+}
 
-.box_add_file
-{width:630px; height:auto; overflow:visible; background-color:#f6f9fc; position:relative; margin-top:20px; border:2px solid #ddd; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;}
+.box_file_delete {
+    width: 60px;
+    position: relative;
+    height: 60px;
+    float: left;
+    margin-left: 10px;
+    font-size: 20px;
+}
 
-.box_add_file_title
-{width:610px; height:30px; padding:10px; background-color:#FFF; border-bottom:1px solid #ddd;
--webkit-border-top-left-radius: 5px;
--webkit-border-top-right-radius: 5px;
--moz-border-radius-topleft: 5px;
--moz-border-radius-topright: 5px;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
-color:#338bd5;}
+.box_file_search {
+    width: 400px;
+    position: relative;
+    margin-top: 120px;
+    margin-left: 95px;
+}
 
-.box_add_file_content
-{
-	width:610px; height:auto; overflow:visible; padding:10px;}
-	
-.box_file_close_icon
-{position:relative; float:right; margin-top:-35px; font-size:20px; color:#CCC}	
-	
-	
+.box_file_buttons {
+    width: 400px;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 95px;
+}
+
+.box_file_add_button {
+    width: 125px;
+    font-weight: bold;
+    height: auto;
+    padding: 10px;
+    color: #FFF;
+    background-color: #30485c;
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.box_add_file {
+    width: 630px;
+    height: auto;
+    overflow: visible;
+    background-color: #f6f9fc;
+    position: relative;
+    margin-top: 20px;
+    border: 2px solid #ddd;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.box_add_file_title {
+    width: 610px;
+    height: 30px;
+    padding: 10px;
+    background-color: #FFF;
+    border-bottom: 1px solid #ddd;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    color: #338bd5;
+}
+
+.box_add_file_content {
+    width: 610px;
+    height: auto;
+    overflow: visible;
+    padding: 10px;
+}
+
+.box_file_close_icon {
+    position: relative;
+    float: right;
+    margin-top: -35px;
+    font-size: 20px;
+    color: #CCC;
+}

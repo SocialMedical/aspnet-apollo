@@ -1,4 +1,5 @@
-﻿using Sic.Apollo.Models;
+﻿using Sic.Apollo.Controllers;
+using Sic.Apollo.Models;
 using Sic.Apollo.Models.Medical;
 using Sic.Web.Mvc;
 using System;
@@ -10,14 +11,14 @@ using System.Web.Mvc;
 
 namespace Sic.Apollo.Areas.Professional.Controllers
 {
-    public class VitalSignController : Sic.Web.Mvc.Controllers.BaseController<ContextService>
+    public class VitalSignController : BaseController
     {
         [ChildAction]
         [Authorize(UserType.Professional, UserType.Assistant)]
         [ValidateInput(false)]
-        public ActionResult VitalSignHistory(int patientId)
+        public ActionResult VitalSignsHistory(int patientId)
         {
-            return PartialView(DataBase.PatientVitalSigns.Get(p => p.ProfessionalId == Sic.Apollo.Session.ProfessionalId
+            return PartialView("_VitalSignsHistory", DataBase.PatientVitalSigns.Get(p => p.ProfessionalId == Sic.Apollo.Session.ProfessionalId
                 && p.PatientId == patientId, includeProperties: "VitalSign"));
         }
 
@@ -25,86 +26,68 @@ namespace Sic.Apollo.Areas.Professional.Controllers
         [HttpPost]
         [ChildAction]
         [Authorize(UserType.Professional, UserType.Assistant)]
-        [ValidateInput(false)]
-        public JsonResult SaveVitalSign(int patientId, string vitalSigns, long dateTicks)
+        [PreventSpam(2)]
+        public JsonResult UpdateVitalSigns(int patientId, List<PatientVitalSign> vitalSigns, long dateTicks)
         {
             try
             {
-                DateTime date = new DateTime(dateTicks);
-
-                //var patient = db.Patients.Get(p=>p.PatientId == patientId, includeProperties:"PatientVitalSigns").SingleOrDefault();
-                System.IO.StringReader sr = new System.IO.StringReader(vitalSigns);
-                DataSet ds = new DataSet();
-                ds.EnforceConstraints = false;
-                ds.ReadXml(sr);
-
-                List<PatientVitalSign> vitalSignValues = new List<PatientVitalSign>();
-                foreach (DataRow row in ds.Tables[0].Rows)
+                if (IsValidProfesionalPatient(patientId, true))
                 {
-                    vitalSignValues.Add(new PatientVitalSign()
+                    DateTime dateEdit = new DateTime(dateTicks);                                  
+                   
+                    foreach (PatientVitalSign v in vitalSigns)
                     {
-                        VitalSignId = Convert.ToInt32(row["vid"]),
-                        MeasuringUnit = Convert.ToInt16(row["munit"]),
-                        PatientId = patientId,
-                        PatientVitalSignId = Convert.ToInt64(row["id"]),
-                        ProfessionalId = Sic.Apollo.Session.ProfessionalId,
-                        Value = row["val"].ToString()
-                    });
-                }
-
-                DateTime currentDateTime = Sic.Web.Mvc.Session.CurrentDateTime;
-                DateTime currentDate = date;
-
-                List<PatientVitalSign> currentVitalSigns = DataBase.PatientVitalSigns.Get(p => p.PatientId == patientId &&
-                    p.RecordDate == currentDate).ToList();
-
-                foreach (var patientVitalSign in vitalSignValues)
-                {
-                    PatientVitalSign patientVitalSignUpdate = currentVitalSigns.FirstOrDefault(p => p.VitalSignId == patientVitalSign.VitalSignId);
-
-                    if (patientVitalSignUpdate == null)
-                        patientVitalSignUpdate = patientVitalSign;
-                    else
-                        patientVitalSignUpdate.Value = patientVitalSign.Value;
-
-                    if (patientVitalSignUpdate.PatientVitalSignId == 0 && !string.IsNullOrWhiteSpace(patientVitalSignUpdate.Value))
-                    {
-                        patientVitalSignUpdate.VitalSignDate = date;
-                        patientVitalSignUpdate.RecordDate = currentDateTime;
-                        DataBase.PatientVitalSigns.Insert(patientVitalSignUpdate);
+                        v.PatientId = patientId;
+                        v.ProfessionalId = this.ProfessionalId;                  
                     }
-                    else if (patientVitalSignUpdate.PatientVitalSignId != 0)
+
+                    DateTime currentDateTime = this.GetCurrentDateTime();                    
+
+                    List<PatientVitalSign> currentVitalSigns = DataBase.PatientVitalSigns.Get(p => p.PatientId == patientId &&
+                        p.VitalSignDate == dateEdit.Date).ToList();
+
+                    foreach (var patientVitalSign in vitalSigns)
                     {
-                        if (!string.IsNullOrWhiteSpace(patientVitalSignUpdate.Value))
-                        {
-                            DataBase.PatientVitalSigns.Update(patientVitalSignUpdate);
-                            patientVitalSignUpdate.VitalSignDate = date;
-                            patientVitalSignUpdate.RecordDate = currentDateTime;
-                        }
+                        PatientVitalSign patientVitalSignUpdate = currentVitalSigns.FirstOrDefault(p => p.VitalSignId == patientVitalSign.VitalSignId);
+
+                        if (patientVitalSignUpdate == null)
+                            patientVitalSignUpdate = patientVitalSign;
                         else
-                            DataBase.PatientVitalSigns.Delete(patientVitalSignUpdate);
+                            patientVitalSignUpdate.Value = patientVitalSign.Value;
+
+                        if (patientVitalSignUpdate.PatientVitalSignId == 0 && !string.IsNullOrWhiteSpace(patientVitalSignUpdate.Value))
+                        {
+                            patientVitalSignUpdate.VitalSignDate = dateEdit;
+                            patientVitalSignUpdate.RecordDate = currentDateTime;
+                            if (!DataBase.PatientVitalSigns.Exists(p => p.PatientId == patientId && p.VitalSignDate == dateEdit.Date && 
+                                p.VitalSignId == patientVitalSignUpdate.VitalSignId))
+                                DataBase.PatientVitalSigns.Insert(patientVitalSignUpdate);
+                            else
+                                DataBase.PatientVitalSigns.Update(patientVitalSignUpdate);
+                        }
+                        else if (patientVitalSignUpdate.PatientVitalSignId != 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(patientVitalSignUpdate.Value))
+                            {
+                                DataBase.PatientVitalSigns.Update(patientVitalSignUpdate);
+                                patientVitalSignUpdate.VitalSignDate = dateEdit;
+                                patientVitalSignUpdate.RecordDate = currentDateTime;
+                            }
+                            else
+                                DataBase.PatientVitalSigns.Delete(patientVitalSignUpdate);
+                        }
                     }
+
+                    DataBase.Save();
+
+                    this.AddDefaultSuccessMessage();
                 }
-
-                DataBase.Save();
-
-                return new JsonResult()
-                {
-                    Data = new
-                    {
-                        Success = true,
-                        Message = Sic.Apollo.Resources.Resources.MessageForSaveOk,
-                        MessageType = Sic.Constants.MessageType.Success
-                    }
-                };
             }
             catch
             {
-                return new JsonResult()
-                {
-                    Data = new { Success = false, Message = Sic.Apollo.Resources.Resources.MessageForSaveFailure, MessageType = Sic.Constants.MessageType.Error }
-                };
+                this.AddDefaultErrorMessage();
             }
+            return Json();
         }
     }
 }

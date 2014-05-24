@@ -1,10 +1,14 @@
 ﻿@charset "utf-8";
 /* CSS Document */
 
-#content_info
-{background-color:#f8f8f8; width:970px; height:auto;  position:relative; float:left;
-
-background-image:url(../../../img/style/bg_book_medical.jpg); background-repeat:repeat-y;}
+#content_info {
+    background-color: #f8f8f8;
+    width: 970px;
+    height: auto;
+    position: relative;
+    float: left;
+    /*background-image:url(../../../img/style/bg_book_medical.jpg); background-repeat:repeat-y;*/
+}
 
 .top_book_medical
 {

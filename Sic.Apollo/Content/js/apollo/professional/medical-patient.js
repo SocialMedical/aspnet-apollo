@@ -9,9 +9,9 @@ function getCurrentPatientId() {
 }
 
 function refreshResumeEpicrisis(patientId, type) {
-    sicGet("/Patient/Resume", { patientId: patientId },
+    sicGet("/Professional/Patient/EpicrisisResume", { patientId: patientId },
 function (contentResume) {
-    $("#resumeEpicrisis").html(contentResume);
+    $("#epicrisis_resume").html(contentResume);
 });
 }
 

@@ -329,8 +329,10 @@
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\tabs.css" />
     <Content Include="Content\js\apollo\horary.js" />
+    <Content Include="Content\js\apollo\professional\medical-patient-evolution.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-files.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-history.js" />
+    <Content Include="Content\js\apollo\professional\medical-patient-physicalex.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-vitalsign.js" />
     <Content Include="Content\js\apollo\professional\medical-patient.js" />
     <Content Include="Content\js\apollo\professional\professionalBook.js" />
@@ -451,7 +453,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Areas\Professional\Views\PhysicalExamination\_PhysicalExamination.cshtml" />
     <Content Include="Views\Professional\ProfessionalOfficesMapMarker.cshtml" />
-    <Content Include="Areas\Professional\Views\VitalSign\_VitalSignHistory.cshtml" />
+    <Content Include="Areas\Professional\Views\VitalSign\_VitalSignsHistory.cshtml" />
     <Content Include="Areas\Professional\Views\PatientFiles\_PatientFiles.cshtml" />
     <Content Include="Areas\Professional\Views\PatientFiles\_PatientFile.cshtml" />
   </ItemGroup>
@@ -774,6 +776,7 @@
     <Folder Include="Areas\Public\Views\Institution\" />
     <Folder Include="Content\css\apollo\medical\" />
     <Folder Include="Content\css\themes\base\ad-gallery\" />
+    <Folder Include="Content\fonts\" />
     <Folder Include="Content\js\apollo\medical\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Home\" />

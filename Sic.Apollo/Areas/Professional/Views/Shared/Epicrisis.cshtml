@@ -21,7 +21,8 @@
     @Url.ImportScript("apollo/professional/medical-patient-vitalsign.js", true)
     @Url.ImportScript("apollo/professional/medical-patient-files.js", true)
     @Url.ImportScript("apollo/professional/medical-patient-history.js", true)
-    @Url.ImportScript("sic/datetime.js", true)
+    @Url.ImportScript("apollo/professional/medical-patient-physicalex.js", true)
+    @Url.ImportScript("apollo/professional/medical-patient-evolution.js", true)    
 }
 <!--tabs edicion-->
 <script>
@@ -31,7 +32,7 @@
     <div class="content_info_person">
         <div class="header_content_info_person">
             <div class="header_content_info_person_text">
-                <div>Paciente</div>
+                <div>@LabelFor.Patient</div>
                 <div class="header_content_info_person_text_name">@Model.FullName</div>
                 <div>Ultima Visita 13/12/2013</div>
             </div>
@@ -64,7 +65,7 @@
                     @{Html.RenderPartial("~/Areas/Professional/Views/VitalSign/_VitalSigns.cshtml", Model.PatientVitalSigns);}
                 </div>
                 <div class="tab-pane fade in" id="epicrisis_medicalcares">
-                    @{Html.RenderPartial("_EpicrisisResume", Model);}
+                    @{Html.RenderPartial("~/Areas/Professional/Views/MedicalCare/_MedicalCares.cshtml", Model.MedicalCares);}
                 </div>
                 <div class="tab-pane fade in" id="epicrisis_physical_ex">
                     @{Html.RenderPartial("_EpicrisisResume", Model);}
