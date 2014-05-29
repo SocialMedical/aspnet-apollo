@@ -342,12 +342,12 @@ namespace Sic.Apollo.Areas.Professional.Controllers
             #region Physical Examination
 
             var physicalExaminations = DataBase.PhysicalExaminations.Get(p => p.Active).OrderBy(p => p.Priority);
-            var currentPhysicalExamination = patient.PatientPhysicalExaminations.Where(p =>p.RecordDate.Date == currentDate.Date);
+            var currentPhysicalExamination = patient.PatientPhysicalExaminations.Where(p =>p.ExaminationDate.Date == currentDate.Date);
 
             foreach (var physicalExamination in physicalExaminations)
             {
                 var lastPhysicalExamination = patient.PatientPhysicalExaminations.Where(p => p.PhysicalExaminationId == physicalExamination.PhysicalExaminationId).
-                    OrderByDescending(p => p.RecordDate).FirstOrDefault();
+                    OrderByDescending(p => p.ExaminationDate).FirstOrDefault();
 
                 if (lastPhysicalExamination != null)
                     patient.ResumePatientPhysicalExamination.Add(lastPhysicalExamination);
@@ -358,7 +358,7 @@ namespace Sic.Apollo.Areas.Professional.Controllers
                         PhysicalExaminationId = physicalExamination.PhysicalExaminationId,
                         PatientId = patient.PatientId,
                         PhysicalExamination = physicalExamination,                        
-                        RecordDate = currentDate
+                        ExaminationDate = currentDate
                     });
             }
 

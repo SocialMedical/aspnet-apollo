@@ -160,6 +160,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Buscar examen físico.
+        /// </summary>
+        public static string HintSearchPhysicalExamination {
+            get {
+                return ResourceManager.GetString("HintSearchPhysicalExamination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Buscar Signo Vital.
         /// </summary>
         public static string HintSearchVitalSign {
@@ -187,6 +196,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Detalle.
+        /// </summary>
+        public static string MedicalCareDetailSection {
+            get {
+                return ResourceManager.GetString("MedicalCareDetailSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diagnóstico.
         /// </summary>
         public static string MedicalCareDiagnostic {
@@ -201,6 +219,15 @@ namespace Sic.Apollo.Resources {
         public static string MedicalCareEvolution {
             get {
                 return ResourceManager.GetString("MedicalCareEvolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Receta.
+        /// </summary>
+        public static string MedicalCareMedicationSection {
+            get {
+                return ResourceManager.GetString("MedicalCareMedicationSection", resourceCulture);
             }
         }
         
@@ -318,6 +345,15 @@ namespace Sic.Apollo.Resources {
         public static string Posology {
             get {
                 return ResourceManager.GetString("Posology", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imprimir.
+        /// </summary>
+        public static string PrintAction {
+            get {
+                return ResourceManager.GetString("PrintAction", resourceCulture);
             }
         }
         

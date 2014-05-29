@@ -12,6 +12,8 @@ using Sic.Data;
 using Sic.Data.DbConnection;
 using System.Text;
 using Sic.Web.Mvc.Models;
+using Sic.Web.Mvc.Report;
+using Microsoft.Reporting.WebForms;
 
 namespace Sic.Web.Mvc.Controllers
 {
@@ -65,30 +67,30 @@ namespace Sic.Web.Mvc.Controllers
         protected JsonResult Json()
         {
             return base.Json(
-                new JsonData() { Messages = Messages });
+                new JsonData() { HasError = Messages.HasError(), Messages = Messages });
         }
 
         protected new JsonResult Json(object data, JsonRequestBehavior behavior)
         {
             object Content = data;
             return base.Json(
-                new JsonData() { Messages = Messages, Content = data }, behavior);
+                new JsonData() { HasError = Messages.HasError(), Messages = Messages, Content = data }, behavior);
         }
 
         protected new JsonResult Json(object data)
         {                                 
-            return base.Json(new JsonData() { Messages = Messages, Content = data });            
+            return base.Json(new JsonData() { HasError = Messages.HasError(), Messages = Messages, Content = data });            
         }
 
         protected override JsonResult Json(object data, string contentType, Encoding contentEncoding)
-        {            
-            return base.Json(new JsonData() { Messages = Messages, Content = data },
+        {
+            return base.Json(new JsonData() { HasError = Messages.HasError(), Messages = Messages, Content = data },
                 contentType, contentEncoding);
         }
 
         protected override JsonResult Json(object data, string contentType, Encoding contentEncoding, JsonRequestBehavior behavior)
         {
-            return base.Json(new JsonData() { Messages = Messages, Content = data },
+            return base.Json(new JsonData() { HasError = Messages.HasError(), Messages = Messages, Content = data },
                 contentType, contentEncoding, behavior);
         }
 
@@ -96,7 +98,7 @@ namespace Sic.Web.Mvc.Controllers
         {            
             return new WrappedJsonResult()
             {
-                Data = new JsonData() { Messages = Messages }
+                Data = new JsonData() { HasError = Messages.HasError(), Messages = Messages }
             };
         }
 
@@ -335,6 +337,52 @@ namespace Sic.Web.Mvc.Controllers
         {
             return Sic.Data.Service.CopyTo(source, target, includeCollectionProperties, includeProperties, excludeProperties);
         }
+
+        protected virtual void RenderReport(WebFormReportSettings report)
+        {
+            var localReport = new LocalReport { ReportPath = report.ReportPath };
+
+            //Give the collection a name (EmployeeCollection) so that we can reference it in our report designer            
+            foreach (ReportDataSource ds in report.DataSources)
+                localReport.DataSources.Add(ds);
+
+            foreach (ReportParameter pr in report.Parameters)
+                localReport.SetParameters(pr);
+
+            var reportType = "PDF";
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+
+            //The DeviceInfo settings should be changed based on the reportType
+            //http://msdn2.microsoft.com/en-us/library/ms155397.aspx
+            var deviceInfo =
+                //string.Format("<DeviceInfo><OutputFormat>{0}</OutputFormat><PageWidth>8.5in</PageWidth><PageHeight>11in</PageHeight><MarginTop>0.5in</MarginTop><MarginLeft>1in</MarginLeft><MarginRight>1in</MarginRight><MarginBottom>0.5in</MarginBottom></DeviceInfo>", reportType);
+                string.Format("<DeviceInfo><OutputFormat>{0}</OutputFormat></DeviceInfo>", reportType);
+
+            Warning[] warnings;
+            string[] streams;
+
+            //Render the report
+            var renderedBytes = localReport.Render(
+                reportType,
+                deviceInfo,
+                out mimeType,
+                out encoding,
+                out fileNameExtension,
+                out streams,
+                out warnings);
+
+            //Clear the response stream and write the bytes to the outputstream
+            //Set content-disposition to "attachment" so that user is prompted to take an action
+            //on the file (open or save)
+            Response.Clear();
+            Response.ContentType = mimeType;
+            //Response.AddHeader("content-disposition", "attachment; filename=foo." + fileNameExtension);
+            Response.AddHeader("content-disposition", "inline; filename=foo." + fileNameExtension);
+            Response.BinaryWrite(renderedBytes);
+            Response.End();
+        }        
     }
 
     public class BaseController<T> : Controller where T : IDbContextService

@@ -328,6 +328,7 @@
     <Content Include="Content\css\simple_content.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\tabs.css" />
+    <Content Include="Content\js\apollo\base.js" />
     <Content Include="Content\js\apollo\horary.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-evolution.js" />
     <Content Include="Content\js\apollo\professional\medical-patient-files.js" />

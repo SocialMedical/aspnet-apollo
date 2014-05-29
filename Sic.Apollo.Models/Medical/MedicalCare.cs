@@ -18,12 +18,10 @@ namespace Sic.Apollo.Models.Medical
 
 	    public int ProfessionalId { get; set;}
 
-        [Required(ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationFieldRequired")]
 	    public DateTime RecordDate { get; set;}
         
         public DateTime? UpdateRecordDate { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(Resources.Resources), ErrorMessageResourceName = "ValidationFieldRequired")]
+    
         public DateTime EvolutionDate { get; set; }
 
         [NotMapped]
@@ -45,16 +43,13 @@ namespace Sic.Apollo.Models.Medical
                     && string.IsNullOrWhiteSpace(this.Diagnostic)
                     && string.IsNullOrWhiteSpace(this.Treatment);
                 }
-        }
+        }        
 
 	    public string Evolution { get; set; }
         
         public string Diagnostic { get; set; }
 
         public string Treatment { get; set; }
-
-        [NotMapped]
-        public string MedicationsClientXml { get; set; }
 
         public virtual Patient Patient { get; set; }
 

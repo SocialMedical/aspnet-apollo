@@ -55,6 +55,11 @@ namespace Sic.Data
 
     public class MessageCollection : List<Message>
     {
+        public bool HasError()
+        {
+            return this.Any(p => p.MessageType == MessageType.Error);
+        }
+
         //private List<Message> messages;
         //public List<Message> Messages
         //{

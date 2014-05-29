@@ -276,6 +276,14 @@ table th {
     margin-left: 21px;
 }
 
+.box_physical_examination .title_header {
+    font-size:14px;    
+    font-weight: bold;
+    line-height: 20px;
+    margin-bottom:6px;
+    margin-top:6px;
+}
+
 .title_physical_examination {
     color: rgb(51, 139, 213);
     font-size: 24px;
@@ -373,27 +381,38 @@ table th {
     float: left;    
 }
 
-
 .medication_content_edit {
-    width: 600px;
-    height: auto;
-    overflow: hidden;
+    width: 650px;
+    height: 320px;
+    overflow: auto;
     margin-left: 11px;
 }
 
-.medication_box {
-    width: 40%;
+
+
+.medication_box_name{
+    width: 250px;
     position: relative;
     float: left;
     margin-top: 8px;
     font-weight:bold;
 }
 
-.medication_box_quantity {
-    width: 20%;
+.medication_box_posology{
+    width: 300px;
     position: relative;
     float: left;
     margin-top: 8px;
+    font-weight:bold;
+}
+
+
+.medication_box_quantity {
+    width: 70px;
+    position: relative;
+    float: left;
+    margin-top: 8px;
+    font-weight:bold;
 }
 
 .content_ico_edit_title {
@@ -409,12 +428,18 @@ table th {
 }
 
 .content_buttons_medication_save {
-    width: 500px;
+    width: 250px;
     margin: auto;
     margin-top: 30px;
     clear: both;
 }
+.edit_medicalcare_content{
+    height: 420px;
+}
 
+.edit_medicalcare_content .box_info_person {
+    height: 350px;
+}
 
 /*FILES*/
 .content_files {

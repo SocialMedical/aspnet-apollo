@@ -1,14 +1,18 @@
-﻿$(function () {
+﻿var medicalHistory_parent_selector = "#epicrisis_medical_history";
+
+$(function () {
+
+   
+
     $("#searchMedicalHistory").keyup(function () {
         var word = $(this).val().trim();
         if (word.length > 0) {
-            $("#epicrisis_medical_history .accordion-body").collapse('show');
-            $("#epicrisis_medical_history .accordion-toggle, #epicrisis_medical_history .accordion-inner").hide();
-
-            $("#epicrisis_medical_history [medicalProblemContent], #epicrisis_medical_history .separation_box_historic_patient, #epicrisis_medical_history button[sectionbutton]").hide();
+            $(medicalHistory_parent_selector + " .accordion-body").collapse('show');
+            $(medicalHistory_parent_selector + " .accordion-toggle," + medicalHistory_parent_selector + " .accordion-inner").hide();
+            $(medicalHistory_parent_selector + " [medicalProblemContent], .separation_box_historic_patient, " + medicalHistory_parent_selector + " [sectionbutton]").hide();
             
 
-            $.each($("#epicrisis_medical_history [medicalProblemContent]"), function (i, val) {
+            $.each($(medicalHistory_parent_selector + " [medicalProblemContent]"), function (i, val) {
                 if ($(val).attr('medicalProblemContent').toLowerCase().indexOf(word.toLowerCase()) != -1) {
                     $(val).show();                    
                     $(val).parents(".accordion-group").find(".accordion-toggle").show();
@@ -17,23 +21,23 @@
             });            
         }
         else {
-            $("#epicrisis_medical_history [medicalProblemContent], #epicrisis_medical_history .separation_box_historic_patient, #epicrisis_medical_history button[sectionbutton]").show();
-            $("#epicrisis_medical_history .accordion-toggle, #epicrisis_medical_history .accordion-inner").show();
-            $("#epicrisis_medical_history .accordion-body").collapse('hide');
+            $(medicalHistory_parent_selector + " [medicalProblemContent], " + medicalHistory_parent_selector + " .separation_box_historic_patient, " + medicalHistory_parent_selector + " [sectionbutton]").show();
+            $(medicalHistory_parent_selector + " .accordion-toggle, " + medicalHistory_parent_selector + " .accordion-inner").show();
+            $(medicalHistory_parent_selector + " .accordion-body").collapse('hide');
         }
     });
 
-    $("#epicrisis_medical_history button[sectionbutton]").click(function () {
+    $(medicalHistory_parent_selector + " [sectionbutton] button").click(function () {
         var type = $(this).attr("medicalproblemtype");
         updateMedicalHistories(type);
     });
 
 
-    $("#epicrisis_medical_history textarea[name=medicalproblem]").keypress(function () {
+    $(medicalHistory_parent_selector + " textarea[name=medicalproblem]").keypress(function () {
         $(this).parents("[medicalproblemcontent]").find("[mpa]").show();
     });
 
-    $("#epicrisis_medical_history [medicalproblemcontent] button[save]").click(function () {
+    $(medicalHistory_parent_selector + " [medicalproblemcontent] button[save]").click(function () {
         var obj = $(this).parents("[medicalproblemcontent]").find("textarea[name=medicalproblem]");
         var medicalProblemId = obj.attr("medicalproblemid");
         var description = obj.val();
@@ -42,11 +46,10 @@
         $(this).parents("[medicalproblemcontent]").find("[mpa]").hide();
     });
 
-    $("#epicrisis_medical_history [medicalproblemcontent] button[cancel]").click(function () {
+    $(medicalHistory_parent_selector + " [medicalproblemcontent] button[cancel]").click(function () {
         $(this).parents("[medicalproblemcontent]").find("[mpa]").hide();        
     });
 });
-
 
 function updateMedicalHistory(medicalProblemId, description) {
     sicPost("/Professional/MedicalHistory/UpdateMedicalProblem", { patientId: getCurrentPatientId(), medicalProblemId: medicalProblemId, description: description },
@@ -59,7 +62,7 @@ function updateMedicalHistory(medicalProblemId, description) {
 function updateMedicalHistories(type) {
     var values = new Array();
 
-    $.each($("#epicrisis_medical_history [name=medicalproblem][medicalproblemtype=" + type + "]"), function (i, val) {
+    $.each($(medicalHistory_parent_selector + " [name=medicalproblem][medicalproblemtype=" + type + "]"), function (i, val) {
 
         var medicalHistoryId = $(val).attr("medicalhistoryid");
         var medicalProblemId = $(val).attr("medicalproblemid");

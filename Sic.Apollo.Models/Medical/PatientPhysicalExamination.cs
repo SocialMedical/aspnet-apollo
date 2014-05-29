@@ -21,6 +21,8 @@ namespace Sic.Apollo.Models.Medical
 
         public DateTime RecordDate { get; set; }
 
+        public DateTime ExaminationDate { get; set; }
+
         public int PhysicalExaminationId { get; set; }
 
         public string Examination { get; set; }

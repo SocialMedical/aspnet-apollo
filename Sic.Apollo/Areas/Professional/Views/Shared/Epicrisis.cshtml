@@ -68,7 +68,7 @@
                     @{Html.RenderPartial("~/Areas/Professional/Views/MedicalCare/_MedicalCares.cshtml", Model.MedicalCares);}
                 </div>
                 <div class="tab-pane fade in" id="epicrisis_physical_ex">
-                    @{Html.RenderPartial("_EpicrisisResume", Model);}
+                    @{Html.RenderPartial("~/Areas/Professional/Views/PhysicalExamination/_PhysicalExamination.cshtml", Model.PatientPhysicalExaminations);}
                 </div>
                 <div class="tab-pane fade in" id="epicrisis_patient_files">
                     @{Html.RenderPartial("_EpicrisisResume", Model);}

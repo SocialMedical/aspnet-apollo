@@ -115,6 +115,7 @@
     <Compile Include="Medical\ProfessionalPatient.cs" />
     <Compile Include="Medical\ProfessionalVademecum.cs" />
     <Compile Include="Medical\Vademecum.cs" />
+    <Compile Include="Medical\View\MedicalCareEdit.cs" />
     <Compile Include="Medical\View\MedicationPrint.cs" />
     <Compile Include="Medical\View\Patient.cs" />
     <Compile Include="Medical\View\Vademecum.cs" />

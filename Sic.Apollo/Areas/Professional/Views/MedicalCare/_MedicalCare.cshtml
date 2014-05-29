@@ -1,15 +1,16 @@
 ﻿@model Sic.Apollo.Models.Medical.MedicalCare
 
 <div class="box_info_person">
-    <div class="circle_title_box_info"></div><div class="title_box_info">
+    <div class="circle_title_box_info"></div>
+    <div mcid="@Model.MedicalCareId" class="title_box_info">
         <h5 class="float">@Model.EvolutionDate.ToDefaultDateFormat()</h5>
-        <div class="float content_ico_edit_title" style="cursor:pointer">
+        <div mc_action_edit class="float content_ico_edit_title" style="cursor:pointer">
             <i class="fa fa-pencil"></i>
         </div>
-        <div class="float content_ico_edit_title" style="cursor:pointer">
+        <div mc_action_print class="float content_ico_edit_title" style="cursor:pointer">
             <i class="fa fa-print"></i>
         </div>
-        <div class="float content_ico_edit_title" style="cursor:pointer">
+        <div mc_action_delete class="float content_ico_edit_title" style="cursor:pointer">
             <i class="fa fa-trash-o"></i>
         </div>
     </div>

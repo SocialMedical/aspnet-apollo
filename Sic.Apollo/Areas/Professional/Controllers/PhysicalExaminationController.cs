@@ -1,4 +1,5 @@
-﻿using Sic.Apollo.Models;
+﻿using Sic.Apollo.Controllers;
+using Sic.Apollo.Models;
 using Sic.Apollo.Models.Medical;
 using Sic.Web.Mvc;
 using System;
@@ -10,86 +11,122 @@ using System.Web.Mvc;
 
 namespace Sic.Apollo.Areas.Professional.Controllers
 {
-    public class PhysicalExaminationController : Sic.Web.Mvc.Controllers.BaseController<ContextService>
+    public class PhysicalExaminationController : BaseController
     {
         [HttpPost]
         [ChildAction]
         [Authorize(UserType.Professional, UserType.Assistant)]
-        [ValidateInput(false)]
-        public JsonResult SavePhysicalExamination(int patientId, string physicalExaminatons)
+        public JsonResult Update(long dateTicks, PatientPhysicalExamination physicalExamination)
         {
             try
             {
-                System.IO.StringReader sr = new System.IO.StringReader(physicalExaminatons);
-                DataSet ds = new DataSet();
-                ds.EnforceConstraints = false;
-                ds.ReadXml(sr);
-
-                List<PatientPhysicalExamination> patientPhysicalExaminations = new List<PatientPhysicalExamination>();
-                foreach (DataRow row in ds.Tables[0].Rows)
+                if (IsValidProfesionalPatient(physicalExamination.PatientId, true))
                 {
-                    patientPhysicalExaminations.Add(new PatientPhysicalExamination
+                    DateTime dateSet = new DateTime(dateTicks).Date;
+
+                    PatientPhysicalExamination physicalExaminationUpdate = DataBase.PatientPhysicalExaminations.Get(p => 
+                            p.ProfessionalId == this.ProfessionalId
+                        && p.PatientId == physicalExamination.PatientId 
+                        && p.PhysicalExaminationId == physicalExamination.PhysicalExaminationId
+                        && p.ExaminationDate.Date >= dateSet).SingleOrDefault();
+
+                    if (physicalExaminationUpdate == null)
                     {
-                        PatientPhysicalExaminationId = Convert.ToInt32(row["id"]),
-                        PatientId = patientId,
-                        PhysicalExaminationId = Convert.ToInt32(row["peid"]),
-                        ProfessionalId = Sic.Apollo.Session.ProfessionalId,
-                        Examination = Convert.ToString(row["val"])
-                    });
-                }
-
-                DateTime currentDateTime = Sic.Web.Mvc.Session.CurrentDateTime;
-                DateTime currentDate = currentDateTime.Date;
-
-                List<PatientPhysicalExamination> currentPhysicalExaminations = DataBase.PatientPhysicalExaminations.Get(p => p.PatientId == patientId &&
-                    p.RecordDate >= currentDate).ToList();
-
-                foreach (var patientPhysicalExamination in patientPhysicalExaminations)
-                {
-                    PatientPhysicalExamination patientPhysicalExaminationUpdate = currentPhysicalExaminations.FirstOrDefault(p => p.PhysicalExaminationId == patientPhysicalExamination.PhysicalExaminationId);
-
-                    if (patientPhysicalExaminationUpdate == null)
-                        patientPhysicalExaminationUpdate = patientPhysicalExamination;
+                        physicalExaminationUpdate = new PatientPhysicalExamination();
+                        physicalExaminationUpdate.ProfessionalId = this.ProfessionalId;
+                        physicalExaminationUpdate.PatientId = physicalExamination.PatientId;                        
+                        physicalExaminationUpdate.ExaminationDate = dateSet;
+                        DataBase.PatientPhysicalExaminations.Insert(physicalExaminationUpdate);
+                    }
                     else
-                        patientPhysicalExaminationUpdate.Examination = patientPhysicalExamination.Examination;
+                    {
+                        DataBase.PatientPhysicalExaminations.Update(physicalExaminationUpdate);
+                    }
 
-                    if (patientPhysicalExaminationUpdate.PatientPhysicalExaminationId == 0 &&
-                        !string.IsNullOrWhiteSpace(patientPhysicalExaminationUpdate.Examination))
-                    {
-                        patientPhysicalExaminationUpdate.RecordDate = currentDateTime;
-                        DataBase.PatientPhysicalExaminations.Insert(patientPhysicalExaminationUpdate);
-                    }
-                    else if (patientPhysicalExaminationUpdate.PatientPhysicalExaminationId != 0)
-                    {
-                        if (!string.IsNullOrWhiteSpace(patientPhysicalExaminationUpdate.Examination))
-                        {
-                            DataBase.PatientPhysicalExaminations.Update(patientPhysicalExaminationUpdate);
-                            patientPhysicalExaminationUpdate.RecordDate = currentDateTime;
-                        }
-                        else
-                            DataBase.PatientPhysicalExaminations.Delete(patientPhysicalExaminationUpdate);
-                    }
+                    physicalExaminationUpdate.RecordDate = this.GetCurrentDateTime();
+                    physicalExaminationUpdate.Examination = physicalExamination.Examination;
+
+                    DataBase.Save();
+
+                    this.AddDefaultSuccessMessage();
                 }
-
-                DataBase.Save();
-
-                return new JsonResult()
-                {
-                    Data = new
-                    {
-                        Success = true,
-                        Message = Sic.Apollo.Resources.Resources.MessageForSaveOk,
-                        MessageType = Sic.Constants.MessageType.Success
-                    }
-                };
+                
             }
             catch
             {
-                return new JsonResult()
-                {
-                    Data = new { Success = false, Message = Sic.Apollo.Resources.Resources.MessageForSaveFailure, MessageType = Sic.Constants.MessageType.Error }
-                };
+                this.AddDefaultErrorMessage();
             }
+            return Json();
+        }
+
+        [HttpPost]
+        [ChildAction]
+        [Authorize(UserType.Professional, UserType.Assistant)]        
+        public JsonResult UpdateAll(int patientId, long dateTicks, List<PatientPhysicalExamination> physicalExaminations)
+        {
+            try
+            {
+                if (IsValidProfesionalPatient(patientId, true))
+                {
+                    List<PatientPhysicalExamination> patientPhysicalExaminations = new List<PatientPhysicalExamination>();
+                    foreach (PatientPhysicalExamination row in physicalExaminations)
+                    {
+                        patientPhysicalExaminations.Add(new PatientPhysicalExamination
+                        {
+                            PatientPhysicalExaminationId = row.PatientPhysicalExaminationId,
+                            PatientId = patientId,
+                            PhysicalExaminationId = row.PhysicalExaminationId,
+                            ProfessionalId = this.ProfessionalId,
+                            Examination = row.Examination
+                        });
+                    }
+
+                    DateTime currentDateTime = this.GetCurrentDateTime();
+                    DateTime dateSet = new DateTime(dateTicks).Date;
+
+                    List<PatientPhysicalExamination> currentPhysicalExaminations = DataBase.PatientPhysicalExaminations.Get(p => p.PatientId == patientId &&
+                        p.ExaminationDate.Date >= dateSet).ToList();
+
+                    foreach (var patientPhysicalExamination in patientPhysicalExaminations)
+                    {
+                        PatientPhysicalExamination patientPhysicalExaminationUpdate = currentPhysicalExaminations.FirstOrDefault(p => p.PhysicalExaminationId == patientPhysicalExamination.PhysicalExaminationId);
+
+                        if (patientPhysicalExaminationUpdate == null)
+                            patientPhysicalExaminationUpdate = patientPhysicalExamination;
+                        else
+                            patientPhysicalExaminationUpdate.Examination = patientPhysicalExamination.Examination;
+
+                        if (patientPhysicalExaminationUpdate.PatientPhysicalExaminationId == 0 &&
+                            !string.IsNullOrWhiteSpace(patientPhysicalExaminationUpdate.Examination))
+                        {
+                            patientPhysicalExaminationUpdate.ExaminationDate = dateSet;
+                            patientPhysicalExaminationUpdate.RecordDate = currentDateTime;
+                            DataBase.PatientPhysicalExaminations.Insert(patientPhysicalExaminationUpdate);
+                        }
+                        else if (patientPhysicalExaminationUpdate.PatientPhysicalExaminationId != 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(patientPhysicalExaminationUpdate.Examination))
+                            {
+                                DataBase.PatientPhysicalExaminations.Update(patientPhysicalExaminationUpdate);
+                                patientPhysicalExaminationUpdate.ExaminationDate = dateSet;
+                                patientPhysicalExaminationUpdate.RecordDate = currentDateTime;
+                            }
+                            else
+                                DataBase.PatientPhysicalExaminations.Delete(patientPhysicalExaminationUpdate);
+                        }
+                    }
+
+                    DataBase.Save();
+
+                    this.AddDefaultSuccessMessage();
+                }
+            }
+            catch
+            {
+                this.AddDefaultErrorMessage();
+            }
+
+            return Json();
         }
 	}
 }

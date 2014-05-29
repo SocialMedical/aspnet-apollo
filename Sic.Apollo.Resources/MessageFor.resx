@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="SelectOfficePrintMedication" xml:space="preserve">
+    <value>Seleccione el Consultorio con el que desea imprimir la receta</value>
+  </data>
   <data name="TitleAppointmentAttended" xml:space="preserve">
     <value>Cita Concretada</value>
   </data>
@@ -143,5 +146,8 @@
   </data>
   <data name="ValidationFieldRequired" xml:space="preserve">
     <value>Dato Requerido</value>
+  </data>
+  <data name="VerifyIncorrectData" xml:space="preserve">
+    <value>Por favor, verifique que los datos esten completos e ingresados correctamente</value>
   </data>
 </root>

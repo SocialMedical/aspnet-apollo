@@ -61,6 +61,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Seleccione el Consultorio con el que desea imprimir la receta.
+        /// </summary>
+        public static string SelectOfficePrintMedication {
+            get {
+                return ResourceManager.GetString("SelectOfficePrintMedication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cita Concretada.
         /// </summary>
         public static string TitleAppointmentAttended {
@@ -138,6 +147,15 @@ namespace Sic.Apollo.Resources {
         public static string ValidationFieldRequired {
             get {
                 return ResourceManager.GetString("ValidationFieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Por favor, verifique que los datos esten completos e ingresados correctamente.
+        /// </summary>
+        public static string VerifyIncorrectData {
+            get {
+                return ResourceManager.GetString("VerifyIncorrectData", resourceCulture);
             }
         }
     }

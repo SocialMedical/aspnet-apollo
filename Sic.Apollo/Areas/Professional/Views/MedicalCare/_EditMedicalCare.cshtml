@@ -1,13 +1,10 @@
 ﻿@model Sic.Apollo.Models.Medical.MedicalCare
-@{
-    DateTime currentDate = Sic.Web.Mvc.Session.CurrentDateTime.Date;
-}
 
-<div class="tabbable" style="height:420px">
+<div mceditcontent day="@Model.EvolutionDate.Day" month="@Model.EvolutionDate.Month" year="@Model.EvolutionDate.Year" class="tabbable edit_medicalcare_content" style="height:420px">
 
     <ul class="nav nav-tabs" id="myTabEvolution">
-        <li class="active"><a href="#tabevolution" data-toggle="tab">@TitleFor.EpicrisisPatientResume</a></li>
-        <li><a href="#tabmedicine" data-toggle="tab">@TitleFor.EpicrisisPatientProfile</a></li>
+        <li class="active"><a href="#tabevolution" data-toggle="tab">@LabelFor.MedicalCareDetailSection</a></li>
+        <li><a href="#tabmedicine" data-toggle="tab">@LabelFor.MedicalCareMedicationSection</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane fade in active" id="tabevolution">
@@ -18,29 +15,23 @@
                         <div class="float content_ico_edit_title">
                             <i class="fa fa-calendar"></i>
                         </div>
-                        <div id="medicalCareDateLabel" class="float title_section_content">@currentDate.ToDefaultDateFormat() </div>
-                    </div>
+                        <div id="medicalCareDateLabel" class="float title_section_content">@Model.EvolutionDate.ToDefaultDateFormat() </div>
+                    </div>                    
                 </div>
-
-                <div style="width: auto; height: 290px; position: relative; margin-top: 35px;">
+                <input type="text" id="medicalCareDateInput" class="datepickerhiddeitem" style="clear:both;" />
+                <div style="width: auto; position: relative; margin-top: 20px;">
 
                     <div class="box_edit_txt_evolution1">@LabelFor.MedicalCareEvolution</div>
                     <div class="box_edit_input_evolution1">
-                        <textarea id="newEvolution" class="form-control input-xxlarge" rows="3">
-                            @Model.Treatment
-                        </textarea>
+                        <textarea id="newEvolution" class="form-control input-xxlarge" rows="3">@Model.Evolution</textarea>
                     </div>
                     <div class="box_edit_txt_evolution1">@LabelFor.MedicalCareDiagnostic</div>
                     <div class="box_edit_input_evolution1">
-                        <textarea id="newDiagnostic" class="form-control input-xxlarge" rows="3">
-                            @Model.Treatment
-                        </textarea>
+                        <textarea id="newDiagnostic" class="form-control input-xxlarge" rows="3">@Model.Diagnostic</textarea>
                     </div>
                     <div class="box_edit_txt_evolution1">@LabelFor.MedicalCareTreatment</div>
                     <div class="box_edit_input_evolution1">
-                        <textarea id="newTreatment" class="form-control input-xxlarge" rows="3">
-                            @Model.Treatment
-                        </textarea>
+                        <textarea id="newTreatment" class="form-control input-xxlarge" rows="3">@Model.Treatment</textarea>
                     </div>
                 </div>
 
@@ -55,29 +46,27 @@
                         <i class="fa fa-medkit"></i>
                     </div>
                     <div id="medicalCareDateLabel" class="float title_section_content">@LabelFor.Medicine </div>
-                    <button type="button" style="margin-left:20px" class="float btn btn-info btn-medium"><i class="fa fa-print"></i></button>
-                    
+                    <button print type="button" style="margin-left:20px" class="float btn btn-info btn-medium"><i class="fa fa-print"></i></button>
+
                 </div>
 
-                <div class="medication_content_edit" style="height:290px">
-                    <div class="medication_box">@LabelFor.Medicine</div>
-                    <div class="medication_box">@LabelFor.Posology</div>
+                <div class="medication_content_edit">
+                    <div class="medication_box_name">@LabelFor.Medicine</div>
+                    <div class="medication_box_posology">@LabelFor.Posology</div>
                     <div class="medication_box_quantity">@LabelFor.Quantity</div>
 
                     @{
                         foreach (var medication in Model.MedicalCareMedications.OrderBy(p => p.Priority))
                         {
-                            <div class="medication_box">
-                                <textarea name="medicineName" class="form-control input-large vademecumSearch" rows="3">
-                                    @medication.MedicationName
-                                </textarea>
+                            <div medicineitem="@{@medication.Priority}" medicineid="@medication.MedicalCareMedicationId">
+                                <div class="medication_box_name">
+                                    <textarea name="medicineName" class="form-control input-large vademecumSearch" rows="3">@medication.MedicationName</textarea>
+                                </div>
+                                <div class="medication_box_posology">
+                                    <textarea name="posology" class="form-control input-xlarge" rows="3">@medication.Posology</textarea>
+                                </div>
+                                <div class="medication_box_quantity"><input type="text" name="quantity" class="form-control input-mini" value="@(medication.Quantity > 0 ? medication.Quantity.ToJSNumericValue() : "")"></div>
                             </div>
-                            <div class="medication_box">
-                                <textarea name="posology" class="form-control input-large" rows="3">
-                                    @medication.Posology
-                                </textarea>
-                            </div>
-                            <div class="medication_box_quantity"><input type="text" name="quantity" class="form-control input-mini" value="@(medication.Quantity > 0 ? medication.Quantity.ToJSNumericValue() : "")"></div>
                         }
                     }
                 </div>
@@ -87,9 +76,9 @@
 </div>
 
 <div class="content_buttons_medication_save">
-    <button type="button" class="btn btn-warning btn-medium">@LabelFor.SaveAction</button>
+    <button type="button" save class="btn btn-warning btn-medium">@LabelFor.SaveAction</button>
     @*<button type="button" class="btn btn-info btn-medium">Guardar e Imprimir</button>*@
-    <button type="button" class="btn btn-primary btn-medium">@LabelFor.CancelAction</button>
+    <button type="button" cancel class="btn btn-primary btn-medium">@LabelFor.CancelAction</button>
 </div>
 
 @*@using (Html.BeginForm("MedicalCare", "Patient", FormMethod.Post, new { id = "patientEvolutionForm" }))

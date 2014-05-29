@@ -9,6 +9,8 @@ namespace Sic.Web.Mvc.Models
 {
     public class JsonData
     {
+        public bool HasError { get; set; }
+
         public MessageCollection Messages { get; set; }
 
         public Message Message

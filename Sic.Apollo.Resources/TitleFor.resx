@@ -138,6 +138,9 @@
   <data name="EpicrisisPatientVitalSigns" xml:space="preserve">
     <value>Signos Vitales</value>
   </data>
+  <data name="EpicrisisPhysicalExaminationHistory" xml:space="preserve">
+    <value>Historial</value>
+  </data>
   <data name="EpicrisisVitalSignHistory" xml:space="preserve">
     <value>Historial</value>
   </data>
