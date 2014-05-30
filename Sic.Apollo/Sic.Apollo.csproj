@@ -381,6 +381,7 @@
     <Content Include="Content\css\fonts\Icons.woff" />
     <Content Include="Content\css\bootstrap-theme.css.map" />
     <Content Include="Content\css\bootstrap.css.map" />
+    <Content Include="Areas\Professional\Views\PhysicalExamination\_History.cshtml" />
     <None Include="Content\js\_references.js" />
     <Content Include="Content\templates\mail\letter.html" />
     <Content Include="Content\js\ad-gallery\ad_next.png" />

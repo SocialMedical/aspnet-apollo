@@ -28,21 +28,25 @@ $(function () {
     });
 
     $("#searchVitalSign").keyup(function () {
-        var word = $(this).val().trim();
-        if (word.length > 0) {
-            $("#epicrisis_vitalsign [vsc]").hide();
-            $.each($("#epicrisis_vitalsign [vs]"), function (i, val) {
-                if ($(val).text().toLowerCase().indexOf(word.toLowerCase()) != -1) {
-                    $(val).parents("[vsc]").show();
-                }
-            });
-        }
-        else {
-            $("#epicrisis_vitalsign [vsc]").show();
-        }
+        filterVitalSign();
     });
 
 });
+
+function filterVitalSign() {
+    var word = $("#searchVitalSign").val().trim();
+    if (word.length > 0) {
+        $("#epicrisis_vitalsign [vsc]").hide();
+        $.each($("#epicrisis_vitalsign [vs]"), function (i, val) {
+            if ($(val).text().sicContainWords(word)) {
+                $(val).parents("[vsc]").show();
+            }
+        });
+    }
+    else {
+        $("#epicrisis_vitalsign [vsc]").show();
+    }
+}
 
 function clearVitalSignInputs() {
     $.each($("#epicrisis_vitalsign input[name=vitalsign-value]"), function (i, val) {
@@ -72,13 +76,14 @@ function updateVitalSignValues() {
 		function (data) {		    
 		    sicNotifyAsPopup(data.Messages);
 		    refreshVitalSignHistory(getCurrentPatientId());
-		    refreshResumeEpicrisis(getCurrentPatientId(), 'vitalSign');
+		    refreshResumeEpicrisis(getCurrentPatientId(), 'vitalSign');		    
 		});
 }
 
 function refreshVitalSignHistory(patientId) {
     sicGet("/Professional/VitalSign/VitalSignsHistory", { patientId: patientId }, function (data) {
         $("#vitalSignHistory").html(data);
+        filterVitalSign();
     });
 }
 

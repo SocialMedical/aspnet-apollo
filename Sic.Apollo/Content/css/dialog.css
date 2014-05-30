@@ -153,3 +153,71 @@
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#fff89406', endColorstr='#fffbb450', GradientType=0);
   filter: progid:dximagetransform.microsoft.gradient(enabled=false);
 }
+
+
+.dialog-content {
+    width: 500px;    
+    padding: 10px 10px 15px 10px;    
+    height: auto;
+    overflow: visible;
+    margin-left: 15px;
+    margin-top: 15px;    
+    margin-bottom: 15px;
+    margin-right: 15px;
+    background-color:#f0f5f7;
+}
+.dialog-content .dialog-inner{
+    margin-left:40px;
+}
+.dialog-content .dialog-title-circle{
+    width: 25px;
+height: 25px;
+border: 3px solid #FFF;
+background-color: #2E88D4;
+-webkit-border-radius: 50%;
+-moz-border-radius: 50%;
+border-radius: 50%;
+position: relative;
+left: -25px;
+top: 3px;
+}
+.dialog-content .dialog-title-text{
+    color: #2e88d4;
+    font-size: 18px;
+    margin-left: 20px;    
+    font-family: inherit;
+    font-weight: bold;
+    line-height: 20px;
+    text-rendering: optimizelegibility;
+}
+
+.dialog-content .dialog-title{
+    position: relative;
+    width:auto;
+float: left;
+width: 400px;
+margin-top: -30px;
+}
+
+.dialog-content .dialog-buttons{ 
+    width: 165px;
+    margin: auto;
+    margin-top: 30px;
+    clear: both;
+}
+
+.dialog-content .dialog-buttons button{
+    margin-left:10px;
+}
+
+.dialog-content .dialog-content-ico{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    float: left;
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 15px;
+    text-align: center;
+    color: #2e88d4;
+}

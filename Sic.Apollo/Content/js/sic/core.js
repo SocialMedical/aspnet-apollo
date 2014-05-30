@@ -78,3 +78,50 @@ function sicMathRound(value, decimals) {
     var roundeValue = sicConvertToFloat(value);
     return roundeValue.toFixed(decimals);
 }
+
+
+$(function () {
+    var accent_map = {
+        'á': 'a',
+        'à': 'a',
+        'â': 'a',
+        'å': 'a',
+        'ä': 'a',
+        'a': 'a',
+        'ã': 'a',
+        'ç': 'c',
+        'é': 'e',
+        'è': 'e',
+        'ê': 'e',
+        'ë': 'e',
+        'í': 'i',
+        'ì': 'i',
+        'î': 'i',
+        'ï': 'i',
+        'ñ': 'n',
+        'ó': 'o',
+        'ò': 'o',
+        'ô': 'o',
+        'ö': 'o',
+        'õ': 'o',
+        'ú': 'u',
+        'ù': 'u',
+        'û': 'u',
+        'ü': 'u',
+    };
+
+
+    String.prototype.sicReplaceAccentsChars = function () {
+        var ret = '', s = this.toString();
+        if (!s) { return ''; }
+        for (var i = 0; i < s.length; i++) {
+            ret += accent_map[s.charAt(i)] || s.charAt(i);
+        }
+        return ret;
+    };
+
+    String.prototype.sicContainWords = function (words) {
+        return this.toString().toLowerCase().sicReplaceAccentsChars().indexOf(words.toLowerCase().sicReplaceAccentsChars()) != -1;
+        
+    };
+});

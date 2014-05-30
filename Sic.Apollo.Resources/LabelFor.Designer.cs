@@ -124,6 +124,24 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string ConfirmationNegative {
+            get {
+                return ResourceManager.GetString("ConfirmationNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sí.
+        /// </summary>
+        public static string ConfirmationPositive {
+            get {
+                return ResourceManager.GetString("ConfirmationPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string Email {

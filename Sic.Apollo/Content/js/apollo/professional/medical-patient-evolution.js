@@ -20,12 +20,12 @@ function medicalCareEditOpenDialog(id) {
             $("#dialog_edit_medical_care").dialog({
                 autoOpen: false,
                 show: {
-                    effect: "drop",
+                    effect: "fade",
                     duration: 400,
                     direction: "up"
                 },
                 hide: {
-                    effect: "drop",
+                    effect: "fade",
                     duration: 400,
                     direction: "down"
                 },
@@ -99,8 +99,8 @@ function medicalCareEditOpenDialog(id) {
                     else
                         $(this).val(ui.item.label);
 
-                    var pos = $(this).parent('[medicineitem]').find("[name='posology']")
-                    var quantity = $(this).parent('[medicineitem]').find("[name='quantity']")
+                    var pos = $(this).parents('[medicineitem]').find("[name='posology']")
+                    var quantity = $(this).parents('[medicineitem]').find("[name='quantity']")
                     $(pos).val(ui.item.pos);
 
                     var pvid = ui.item.id;
@@ -109,8 +109,8 @@ function medicalCareEditOpenDialog(id) {
                         pvid = '0';
                     if (gid === undefined)
                         gid = '0';
-                    $(this).parent('[medicineitem]').attr('pvid', pvid);
-                    $(this).parent('[medicineitem]').attr('gid', gid);
+                    $(this).parents('[medicineitem]').attr('pvid', pvid);
+                    $(this).parents('[medicineitem]').attr('gid', gid);
 
                     $(quantity).val(1);
                     $(pos).focus();
@@ -160,7 +160,7 @@ $(function () {
 });
 
 function deleteMedicalCare(medicalCareId, patientId) {
-    sicDialogYesNoConfirmation(LABEL_DELETE_MEDICALCARE_MESSAGE, LABEL_DELETE_MEDICALCARE_MESSAGE_TITLE, true, function () {
+    dialogConfirmation(LABEL_DELETE_MEDICALCARE_MESSAGE, function () {
         deleteMedicalCareConfirmation(medicalCareId);
     });    
 }

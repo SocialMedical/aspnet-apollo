@@ -236,7 +236,7 @@ namespace Sic.Apollo.Areas.Professional.Controllers
             var result = vademecums.Select(p => new { label = p.Name, gid = p.VademecumId, id = p.ProfessionalVademecumId, pos = (p.Posology ?? string.Empty) }).Take(15);
 
             // Return the result set as JSON
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return new JsonResult() { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         [Authorize(UserType.Professional, UserType.Assistant)]

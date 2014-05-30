@@ -9,7 +9,7 @@ $(function () {
         defaultDate: currentDate
     });
 
-    $("#physicalExaminationDateInput").datepicker("setDate", currentDate)
+    $("#physicalExaminationDateInput").datepicker("setDate", currentDate);
 
     $("#physicalExaminationDateInput").change(function () {
         $("#physicalExaminationDateLabel").text($("#physicalExaminationDateInput").val());
@@ -22,19 +22,7 @@ $(function () {
 
 
     $("#searchPhysicalExamination").keyup(function () {
-        var word = $(this).val().trim();
-        if (word.length > 0) {
-            $(physicalex_parent_selector + " [pec]," + physicalex_parent_selector + " [sectionbutton]").hide();
-
-            $.each($(physicalex_parent_selector + " [pen]"), function (i, val) {
-                if ($(val).text().toLowerCase().indexOf(word.toLowerCase()) != -1) {                    
-                    $(val).parents("[pec]").show();
-                }
-            });
-        }
-        else {
-            $(physicalex_parent_selector + " [pec]," + physicalex_parent_selector + " [sectionbutton]").show();
-        }
+        filterPhysicalExamination();
     });
 
     $(physicalex_parent_selector + " [sectionbutton] button").click(function () {       
@@ -60,6 +48,22 @@ $(function () {
     });
 });
 
+function filterPhysicalExamination() {
+    var word = $("#searchPhysicalExamination").val().trim();
+    if (word.length > 0) {
+        $(physicalex_parent_selector + " [pec]," + physicalex_parent_selector + " [sectionbutton]").hide();
+
+        $.each($(physicalex_parent_selector + " [pen]"), function (i, val) {
+            if ($(val).text().sicContainWords(word)) {
+                $(val).parents("[pec]").show();
+            }
+        });
+    }
+    else {
+        $(physicalex_parent_selector + " [pec]," + physicalex_parent_selector + " [sectionbutton]").show();
+    }
+}
+
 function clearPhysicalExaminations() {
     $.each($(physicalex_parent_selector + " textarea[name=physicalExaminationValue]"), function (i, val) {
         if ($(val).attr("patientPhysicalExaminationId") != 0) {
@@ -69,21 +73,38 @@ function clearPhysicalExaminations() {
     });
 }
 
-function updatePhysicalExamination(pid,id,value) {
-    sicJSONDataPost("/Professional/PhysicalExamination/Update",
-        { dateTicks: 100,  physicalExamination: { PatientId: getCurrentPatientId(), PatientPhysicalExaminationId: id, PhysicalExaminationId: pid, Examination: value }
+function updatePhysicalExamination(pid, id, value) {
+    var dateTicks = sicGetTicks($("#physicalExaminationDateInput").datepicker("getDate"));
+
+    sicJSONDataPost("/Professional/PhysicalExamination/Update",{
+            dateTicks: dateTicks, physicalExamination: { PatientId: getCurrentPatientId(), PatientPhysicalExaminationId: id, PhysicalExaminationId: pid, Examination: value }
     },
     function (data) {
         sicNotifyAsPopup(data.Messages);
-        if(!data.HasError)
+        if (!data.HasError) {
+            refreshPhysicalExaminationHistory();
             refreshResumeEpicrisis(getCurrentPatientId(), 'physicalExamination');
+        }
     });
+}
+
+function refreshPhysicalExaminationHistory() {
+    sicGet("/Professional/PhysicalExamination/History", { patientId: getCurrentPatientId() }, function (data) {        
+        if (!data.HasError) {
+            $("#physicalExaminationHistory").html(data);
+            filterPhysicalExamination();
+        }
+        else
+            sicNotifyAsPopup(data.Messages);
+    });    
 }
 
 function updatePhysicalExaminations() {
     var values = Array();
+    var dateTicks = sicGetTicks($("#physicalExaminationDateInput").datepicker("getDate"));
+
     $.each($(physicalex_parent_selector + " textarea[name=physicalExaminationValue]"), function (i, val) {
-        var peid = $(val).attr("physicalExaminationId");
+        var pid = $(val).attr("physicalExaminationId");
         var id = $(val).attr("patientPhysicalExaminationId");
         var value = $(val).val();
         values.push({PatientPhysicalExaminationId : id, PhysicalExaminationId : pid,  Examination : value});
@@ -92,7 +113,7 @@ function updatePhysicalExaminations() {
 
     sicJSONDataPost("/Professional/PhysicalExamination/UpdateAll", {
         patientId: getCurrentPatientId(),
-        dateTicks : 100,
+        dateTicks: dateTicks,
         physicalExaminations: values
     },
     function (data) {

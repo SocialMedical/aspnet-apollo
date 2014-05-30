@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientPhysicalExamination>
+@{
+    DateTime currentDate = this.GetCurrentDateTime().Date;
+}
+@foreach (var physicalExamination in Model.Select(p => p.PhysicalExamination).OrderBy(p => p.Priority).Distinct())
+{
+    var list = Model.Where(p => p.ExaminationDate.Date != currentDate && p.PhysicalExaminationId == physicalExamination.PhysicalExaminationId).OrderByDescending(p => p.ExaminationDate);
+    <div pec class="box_info_person">
+        <div class="circle_title_box_info"></div><div class="title_box_info"><h5 pen>@physicalExamination.Name</h5></div>
+        @if (list.Any())
+        {
+            <table class="table table-condensed">
+                <thead>
+                </thead>
+                <tbody>
+                    @foreach (var patientPhyscialExamination in list)
+                    {
+                        <tr>
+                            <td width="18%">@patientPhyscialExamination.ExaminationDate.ToDefaultDateFormat()</td>
+                            <td width="74%">@patientPhyscialExamination.Examination</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>@LegendFor.InformationNotRegistered</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        }
+    </div>
+}

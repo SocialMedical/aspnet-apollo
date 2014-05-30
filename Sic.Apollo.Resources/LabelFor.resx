@@ -138,6 +138,12 @@
   <data name="Comments" xml:space="preserve">
     <value>Comentarios</value>
   </data>
+  <data name="ConfirmationNegative" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ConfirmationPositive" xml:space="preserve">
+    <value>Sí</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
