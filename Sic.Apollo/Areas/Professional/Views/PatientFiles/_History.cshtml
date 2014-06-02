@@ -1,0 +1,159 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientFile>
+<div class="box_file_add_button"><i class="fa fa-plus-square"></i> @LabelFor.AddFile</div>
+
+<div class="line_separation_title">
+    <div class="title_bg_med"><h4>@LabelFor.PatientFilesHistory</h4></div>
+</div>
+
+<div class="box_info_person">
+    @*<div class="circle_title_box_info"></div><div class="title_box_info"><h5>Historial</h5></div>*@
+    <div class="content_files">
+        @if (Model.Any())
+        {
+            foreach (var patientFile in Model.OrderByDescending(p => p.UploadDate))
+            {
+                <div patientfileid="@patientFile.PatientFileId" id="patientfile-item@{@patientFile.PatientFileId}">
+                    @{Html.RenderPartial("~/Areas/Professional/Views/PatientFiles/_PatientFile.cshtml", patientFile);}
+                </div>
+            }
+        }
+        else
+        {
+             <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>@LegendFor.EmptyPreviousPatientFile</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        }        
+
+    </div>
+
+</div>
+
+
+<div class="box_add_file">
+    <div class="box_add_file_title"><h4>Agregar archivos</h4><div class="box_file_close_icon"><i class="fa fa-times"></i></div></div>
+    <div class="box_add_file_content">
+        <div class="hidden">
+            @using (Html.BeginForm("FileUpload", "Patient",
+                                null,
+                                FormMethod.Post,
+                new
+                {
+                    enctype = "multipart/form-data",
+                    id = "new-patientfile-form",
+                    target = "upload-patinetfile_target",
+                    name = "new-patientfile-form"
+                }))
+            {
+                <input type="file" name="file" id="patientfile-fileinput" />
+                <input type="hidden" name="patientId" />
+            }
+            <iframe id="upload-patinetfile_target" name="upload-patinetfile_target" style="position: absolute;
+        left: -999em; top: -999em;"></iframe>
+        </div>
+        <div><h6></h6></div>
+        <div><input type="file" class="form-control input-large" placeholder=""></div>
+        <div><input type="text" class="form-control input-large" placeholder="Titulo"></div>
+        <div><textarea class="form-control input-large" rows="3" placeholder="Descripcion"></textarea></div>
+        <div>
+            <button type="button" class="btn btn-info btn-lg">Guardar</button>
+            <button type="button" class="btn btn-primary btn-lg">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>
+
+<!--add file-->
+<!--add file loading-->
+
+<div class="box_add_file">
+    <div class="box_add_file_title"><h4>Agregar archivos</h4> <div class="box_file_close_icon"><i class="fa fa-times"></i></div></div>
+    <div class="box_add_file_content">
+        <div><h4>Subiendo archivo</h4></div>
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 100%;"></div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<h2>Archivos</h2>
+<div class="scrollTabs">
+    <div class="arrow_tab7">
+    </div>
+    <div id="patientfile-message">
+    </div>
+    <div class="hidden">
+        @using (Html.BeginForm("FileUpload", "Patient",
+                                null,
+                                FormMethod.Post,
+                new
+                {
+                    enctype = "multipart/form-data",
+                    id = "new-patientfile-form",
+                    target = "upload-patinetfile_target",
+                    name = "new-patientfile-form"
+                }))
+        {
+        <input type="file" name="file" id="patientfile-fileinput" />
+        <input type="hidden" name="patientId" />
+        }
+        <iframe id="upload-patinetfile_target" name="upload-patinetfile_target" style="position: absolute;
+        left: -999em; top: -999em;"></iframe>
+    </div>
+    <div id="dialog-form-patient" class="hidden">
+        <div id="new-patientfile-description" class="add_office" style="height:20px">
+            Cargando Archivo...
+        </div>
+    </div>
+    <div class="content_tab2">
+        @* <div style="width:400px">
+                <div style="float:left; width:200px; position:relative">
+                    <input type="text" readonly="true" id="newPatientFileName" style="width:200px; height:22px; padding:5px;"/>
+                </div>
+                <div  style="margin-left:35px;float:left; width:100px">
+                    <input id="add-patientfile" type="button" class="button_save_orange" value="@Resources.LabelForAdd" />
+                </div>
+                <div  style="margin-left:35px;float:left; width:100px">
+                    <input id="submit-newpatientfile" type="button" class="button_save_orange" value="@Resources.LabelForAdd" />
+                </div>
+            </div>   *@
+        <div id="add-patientfile" class="add_office pointer" style="height:20px">
+            @Resources.LabelForAdd
+        </div>
+        <br />
+        <div style="margin-top:50px" class="txt_az_18">
+            @Resources.LegendForPreviousPatientFile
+        </div>
+        <br />
+        <ul id="patientfile-list" class="medicalcare_list">
+            <li id="new-patientfile-content" style="padding-top:20px; clear:both"></li>
+            @if (Model.Any())
+            {
+                foreach (var patientFile in Model.OrderByDescending(p => p.UploadDate))
+                {
+                    <li patientfileid="@patientFile.PatientFileId" id="patientfile-item@{@patientFile.PatientFileId}" style="padding-top:20px; clear:both">
+                        @{Html.RenderPartial("~/Areas/Professional/Views/PatientFiles/_PatientFile.cshtml", patientFile);}
+                    </li>
+                }
+            }
+        </ul>
+        @if (!Model.Any())
+        {
+            <div class="linebreak"></div>
+            <div class="box_text_message">
+                @Sic.Apollo.Resources.Resources.LegendForEmptyPreviousPatientFile
+            </div>
+        }
+
+    </div>
+</div>

@@ -61,6 +61,15 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No hay Archivos.
+        /// </summary>
+        public static string EmptyPreviousPatientFile {
+            get {
+                return ResourceManager.GetString("EmptyPreviousPatientFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No ha registrado información.
         /// </summary>
         public static string InformationNotRegistered {

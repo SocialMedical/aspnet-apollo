@@ -456,7 +456,7 @@
     <Content Include="Areas\Professional\Views\PhysicalExamination\_PhysicalExamination.cshtml" />
     <Content Include="Views\Professional\ProfessionalOfficesMapMarker.cshtml" />
     <Content Include="Areas\Professional\Views\VitalSign\_VitalSignsHistory.cshtml" />
-    <Content Include="Areas\Professional\Views\PatientFiles\_PatientFiles.cshtml" />
+    <Content Include="Areas\Professional\Views\PatientFiles\_History.cshtml" />
     <Content Include="Areas\Professional\Views\PatientFiles\_PatientFile.cshtml" />
   </ItemGroup>
   <ItemGroup>

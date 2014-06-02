@@ -61,6 +61,24 @@ namespace Sic.Apollo.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agregar Archivo.
+        /// </summary>
+        public static string AddFile {
+            get {
+                return ResourceManager.GetString("AddFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agregar Archivos.
+        /// </summary>
+        public static string AddFiles {
+            get {
+                return ResourceManager.GetString("AddFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dirección.
         /// </summary>
         public static string Address {
@@ -345,6 +363,24 @@ namespace Sic.Apollo.Resources {
         public static string Patient {
             get {
                 return ResourceManager.GetString("Patient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivos.
+        /// </summary>
+        public static string PatientFiles {
+            get {
+                return ResourceManager.GetString("PatientFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Archivos Adjuntados.
+        /// </summary>
+        public static string PatientFilesHistory {
+            get {
+                return ResourceManager.GetString("PatientFilesHistory", resourceCulture);
             }
         }
         
