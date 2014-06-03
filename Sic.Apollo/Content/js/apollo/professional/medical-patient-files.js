@@ -1,4 +1,6 @@
-﻿function uploadNewPatientFile() {
+﻿var parent_epicrisis_patient_files = "#epicrisis_patient_files";
+
+function uploadNewPatientFile() {
     $("#new-patientfile-description").html("Cargando " + $("#patientfile-fileinput").val() + "...");
     $("#dialog-form-patient").dialog("open");
 
@@ -59,7 +61,7 @@ function cancelUpdatePatientFile(patientfileId) {
 function uploadPatientFileFinish() {
     $("#patientfile-fileinput").val('');
 
-    var newfile = $.parseJSON($("#upload-patinetfile_target").contents().find("#jsonResult")[0].innerHTML);
+    var newfile = $.parseJSON($("#upload-patientfile_target").contents().find("#jsonResult")[0].innerHTML);
     if (newfile.IsValid == true) {
         sicGet("/Patient/PatientFile", { patientFileId: newfile.PatientFileId }, function (data) {
             $("#new-patientfile-content").html(data);
@@ -90,7 +92,7 @@ $(function () {
         $("#patientfile-fileinput").click();
     });
 
-    $(".fancybox_patientfile").fancybox();
+    $(parent_epicrisis_patient_files + " .fancybox_patientfile").fancybox();
 
     $("#patientfile-fileinput").change(function () {
         uploadNewPatientFile();
@@ -100,6 +102,22 @@ $(function () {
         uploadPatientFileFinish();
     });
 
+    $(parent_epicrisis_patient_files + " [edit-patient-file]").click(function () {
+        var patientfileId = $(this).attr('edit-patient-file');
+        $(parent_epicrisis_patient_files + " [readonly-content-patientfile='" + patientfileId + "']").hide();
+        $(parent_epicrisis_patient_files + " [edit-content-patientfile='" + patientfileId + "']").show();
+    });
+
+    $(parent_epicrisis_patient_files + " [edit-content-patientfile] button[save]").click(function () {
+
+    });
+
+    $(parent_epicrisis_patient_files + " [edit-content-patientfile] button[cancel]").click(function () {
+        var parentcontent = $(this).parents("[edit-content-patientfile]");
+        var id = parentcontent.attr('edit-content-patientfile');
+        parentcontent.hide();
+        $(parent_epicrisis_patient_files + " [readonly-content-patientfile='" + id + "']").show();
+    });
 
     $("#dialog-form-patient").dialog({
         autoOpen: false,
@@ -111,4 +129,5 @@ $(function () {
         resizable: false,
         close: function () { }
     });
+    $("#dialog-form-patient").parents(".ui-dialog.ui-widget").find(".ui-dialog-titlebar").hide();
 });
