@@ -1,0 +1,40 @@
+﻿@model Sic.Apollo.Models.Pro.View.Professional
+<!--caja doctor ranking-->
+<div id="tooltip@{@Model.ContactLocationId}"  class="box_more_info_medical tooltip">
+    <div class="more_info_medical">
+        <div>
+            <span class="txt_az_12_medico_profile"><strong>@Model.DescriptionName</strong></span></div>
+        <div>
+            <span class="txt_gris_12">@Model.SpecializationName</span></div>
+        <br />
+        <div class="txt_az_12_medico_profile">
+            @Html.ActionLink(Sic.Apollo.Resources.Resources.LabelForMoreInformation, "Presentation", new { professional = Model.UrlParameter, specializationId = Model.SpecializationId, contactLocationId = Model.ContactLocationId }, new { @class = "txt_az_12_medico_profile" })
+        </div>
+    </div>
+    <div class="opinion_more_medical">
+        <div class="title_opinion_more_medical">
+            @Sic.Apollo.Resources.Resources.LabelForRateScore1</div>
+        <div class="ranking_opinion_more_medical">
+            <div class="content_star_ranking2">
+                @{Html.RenderPartial("_Scorer", Model.RateScore1 ?? 0);}
+            </div>
+        </div>
+        <div class="title_opinion_more_medical">
+            @Sic.Apollo.Resources.Resources.LabelForRateScore2</div>
+        <div class="ranking_opinion_more_medical">
+            <div class="content_star_ranking2">
+                @{Html.RenderPartial("_Scorer", Model.RateScore2 ?? 0);}
+            </div>
+        </div>
+        <div class="title_opinion_more_medical">
+            @Sic.Apollo.Resources.Resources.LabelForRateScore3</div>
+        <div class="ranking_opinion_more_medical">
+            <div class="content_star_ranking2">
+                @{Html.RenderPartial("_Scorer", Model.RateScore3 ?? 0);}
+            </div>
+        </div>
+    </div>
+    <div class="arrow_more_information">
+    </div>
+</div>
+<!--caja doctor ranking-->

@@ -1,0 +1,218 @@
+﻿@{    
+    this.SetTitle(String.Format("{0} - {1}", Sic.Apollo.Resources.Resources.TitleForHome, Sic.Apollo.Resources.Resources.LabelForApplicationName));
+    /*var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower();*/
+    ViewBag.LoginPopUp = true;
+}
+@section meta{       
+    @Html.MetaDescription(Resources.DescriptionForHome)    
+}
+@section LinksImport
+{    
+    @Url.ImportStyleSheet("apollo/public/home.css",true)
+    @Url.ImportStyleSheet("apollo/public/search_box.css", true)
+}
+@section ScriptsImport
+{
+    @Url.ImportScript("select.js")
+    @Url.ImportScript("apollo/public/home.js")
+}
+<!--Box_search_home-->
+<div id="box_search_home">
+    <div>
+        @Html.Image(Url.ContentImage("style/galery.jpg"), "", new { width = 970, height = 410 })        
+    </div>
+    <div id="content_box_search_home">
+        <!--Box_search_home_form-->
+        @{ Html.RenderPartial("_SearchCriteria"); }
+    </div>
+    <div id="box_text_banner">
+        <div>
+            <span class="txt_az_23">@Sic.Apollo.Resources.Resources.TitlePageForHome</span>
+        </div>
+        <div class="txt_italic">@Sic.Apollo.Resources.Resources.LegendForSlogan</div>
+    </div>
+    <!--Box_search_home-->
+</div>
+<!--Box_search_home-->
+<!--Box_sservice-->
+<div id="box_services">
+    <div class="icons_services">
+    </div>
+    <div class="services1">
+        <div class="center_p1_main"><span class="txt_bl_18">NO HABIA SIDO TAN FACIL OBTENER UNA CITA MEDICA</span></div>
+        <div class="center_p2_main"><span class="txt_bl_22">Social Medical facilita el proceso</span></div>
+    </div>    
+</div>
+<!--Box_serqvice-->       
+<!--Box_info-->
+        <div id="info">
+            <div id="destacado_medico">
+                <div id="blockquote_img">
+                </div>
+                <div id="content_medico_destacado">
+                    <span class="txt_az_15">
+                        <br />
+                        @Resources.TitleForProfessionalJoinUs</span><br />
+                    @String.Format(Resources.LegendForProfessionalJoinUs, Resources.LabelForApplicationName)
+                </div>
+                <br />
+                <div>
+                    <center><input name="" type="button" class="button_blue" value="@Resources.LabelForEnrollNow" onclick="window.location='/Account/RegisterProfessional'" /></center>
+                </div>
+            </div>
+            <div id="destacados_home">
+                <div id="contendor_destacado_home">
+                    <div class="class_img_destacados">
+                    <iframe class="class_img_destacados"
+                        src="http://www.youtube.com/embed/jTjPMwHsR8I?feature=player_detailpage">
+                        </iframe>                    
+                        @*<img src="/Content/images/style/destacado1.png" width="201" height="138" />*@
+                    </div>
+                    <div class="sailing_center">
+                        <span class="txt_az_15">SOCIAL MEDICAL</span></div>
+                </div>
+                <div id="contendor_destacado_home">
+                    <div class="class_img_destacados">
+                        <iframe class="class_img_destacados"
+                        src="http://www.youtube.com/embed/_iBV9KPWzwE?feature=player_detailpage">
+                        </iframe>
+                        @*<img src="/Content/images/style/destacado2.png" width="201" height="138" />*@
+                    </div>
+                    <div class="sailing_center">
+                        <span class="txt_az_15">SEPARAR CITAS ONLINE</span></div>
+                </div>
+                <div id="contendor_destacado_home">
+                    <div class="class_img_destacados">
+                        <iframe class="class_img_destacados"
+                        src="http://www.youtube.com/embed/sk1XI1W2cbo?feature=player_detailpage">
+                    </iframe>
+                        @*<img src="/Content/images/style/destacado3.png" width="201" height="138" />*@
+                        </div>
+                    <div class="sailing_center">
+                        <span class="txt_az_15">AGENDA E HISTORIAS CLINICAS</span></div>
+                </div>
+            </div>
+            <div id="twitter_home">
+                <div class="tweet1">
+                    <span class="txt_bla_helvetica_13">Acercándote con el médico que necesitas, muy pronto con ustedes...@* <a href="#" class="txt_bla_helvetica_13">http://ejemplo link</a>*@</span></div>
+                <div class="tweet2">
+                    <span class="txt_bla_helvetica_13"><a href="http://@Resources.LabelForApplicationTwitterPage" class="txt_bla_helvetica_13"><strong>@Sic.Apollo.Resources.Resources.LabelForApplicationTwitterAccount</strong></a></span></div>
+            </div>
+            <div id="services_footer">
+                <div class="services_box_footer1">
+                    <span class="txt_az_18"><strong>@Resources.LabelForSpecializations</strong></span><br />
+                    <br />
+                    @{
+                        int countItems = 0;
+                    }
+                    @foreach (var item in (IEnumerable<Sic.Apollo.Models.Pro.Specialization>)ViewBag.Specializations)
+                    {
+                        countItems++;
+                        if (countItems == 13)
+                        {
+                        <div class="linkToggleMoreSearchCriteria">
+                            <span class="txt_az_13"><a class="txt_az_13" href="#">@Resources.LabelForMore</a>
+                            </span>
+                            <br />
+                        </div>
+                        @(new HtmlString((String)"<div class=\"moreSearchCriteria\" style=\"display: none;\">"))
+                        }                        
+                        <span class="txt_gr_13">
+                            @Html.ActionLink(item.ProfessionInPlural, "SearchByDescription", "Professional",
+                                new { professionInPlural = item.ProfessionInPlural.ToUrlStringParameter() }, new { @class = "txt_gr_13" })
+                        </span>
+                        <br />                       
+                    }
+                    @if (countItems >= 13)
+                    {
+                        <div class="linkToggleMoreSearchCriteria">
+                            <span class="txt_az_13"><a class="txt_az_13" href="#">@Resources.LabelForLess</a>
+                            </span>
+                            <br />
+                        </div>
+                        @(new HtmlString((String)"</div>"))            
+                    }
+                </div>
+                <div class="line_sep">
+                </div>
+                <div class="services_box_footer1">
+                    <span class="txt_az_18"><strong>@Resources.LabelForInsurances</strong></span><br />
+                    <br />
+                    @{
+                        countItems = 0;
+                    }
+                    @foreach (var item in (IEnumerable<Sic.Apollo.Models.Pro.InsuranceInstitution>)ViewBag.InsuranceInstitutions)
+                    {
+                        countItems++;
+                        if (countItems == 13)
+                        {
+                        <div class="linkToggleMoreSearchCriteria">
+                            <span class="txt_az_13"><a class="txt_az_13" href="#">@Resources.LabelForMore</a>
+                            </span>
+                            <br />
+                        </div>
+                        @(new HtmlString((String)"<div class=\"moreSearchCriteria\" style=\"display: none;\">"))
+                        }
+                        <span class="txt_gr_13">
+                            @Html.ActionLink(item.Contact.FirstName, "SearchByDescription", "Professional",
+                                  new { professionInPlural = ((string)ViewBag.ProfessionName).ToUrlStringParameter(),
+                                        cityOrInsuranceInstitution = item.Contact.FirstName.ToUrlStringParameter()
+                                  }, new { @class = "txt_gr_13" })
+                        </span>
+                        <br />                        
+                    }
+                    @if (countItems >= 13)
+                    {
+                        <div class="linkToggleMoreSearchCriteria">
+                            <span class="txt_az_13"><a class="txt_az_13" href="#">@Resources.LabelForLess</a>
+                            </span>
+                            <br />
+                        </div>
+                        @(new HtmlString((String)"</div>"))            
+                    }
+                </div>
+                <div class="line_sep">
+                </div>
+                <div class="services_box_footer2">
+                    <span class="txt_az_18"><strong>¿Como separar tu cita?</strong></span><br />
+                    <div class="img_consejo_medico">
+                        <div class="class_img_consejo_medico">
+                            <img src="@Url.ContentImage("style/noticia1.jpg")" width="70" height="60" /></div>
+                    </div>
+                    <div class="content_text_consejo_medico">
+                        <span class="txt_az_13"><strong>
+                        @*<a href="#" class="txt_az_15">*@
+                        Encuentra el médico que necesitas
+                        @*</a>*@
+                        </strong></span><br />
+                        Empieza tu búsqueda, puedes hacerla por: especialidad, ciudad, seguro médico o por el nombre del doctor.
+                    </div>
+                    <div class="img_consejo_medico">
+                        <div class="class_img_consejo_medico">
+                            <img src="@Url.ContentImage("style/noticia2.jpg")" width="70" height="60" /></div>
+                    </div>
+                    <div class="content_text_consejo_medico">
+                        <span class="txt_az_13"><strong>
+                        @*<a href="#" class="txt_az_15">*@
+                        Agenda tu cita
+                       @* </a>*@
+                        </strong></span><br />
+                        Tendrás a tu disposición el calendario de citas disponibles de tu médico, y podrás elegir la hora que más te convenga.
+                    </div>
+                    <div class="img_consejo_medico">
+                        <div class="class_img_consejo_medico">
+                            <img src="@Url.ContentImage("style/noticia3.jpg")" width="70" height="60" /></div>
+                    </div>
+                    <div class="content_text_consejo_medico">
+                        <span class="txt_az_13"><strong>
+                        @*<a href="#" class="txt_az_15">*@
+                        Visita su consultorio
+                        @*</a>*@
+                        </strong></span><br />
+                        Luego de separar tu cita, recibirás la información de contacto de tu médico, y debes visitarlo el día y hora que elegiste.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Box_info-->
+@*@TwitterGoodies.Search(Sic.Apollo.Resources.Resources.LabelForApplicationTwitterAccount)*@

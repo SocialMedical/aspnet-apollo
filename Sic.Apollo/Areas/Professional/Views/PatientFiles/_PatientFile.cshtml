@@ -1,0 +1,107 @@
+﻿@model Sic.Apollo.Models.Medical.PatientFile
+
+<div readonly-content-patientfile="@Model.PatientFileId" class="box_file" id="patientFileItem@{@Model.PatientFileId}">
+    <div class="box_file_icon">
+        <a class="@(Model.IsImageType?"fancybox_patientfile":"")"
+           target="_blank"
+           href="@Url.Content(Model.UrlContent)">
+            @if (Model.IsImageType)
+            {
+                <img src="@Url.Content(Model.UrlContentPictureMin)" style="float:left; width: 70px;" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/images/style/photo_small_example.jpg")" style="float:left; width: 70px;" />
+            }
+        </a>
+    </div>
+
+    <div class="box_file_description">
+        <div edit-patient-file="@Model.PatientFileId" class="content_ico_edit_title"><i class="fa fa-pencil"></i></div><h6>
+            <a name="patientfile_name" class="txt_az_18 @(Model.IsImageType?"fancybox_patientfile":"")"
+               target="_blank"
+               href="@Url.Content(Model.UrlContent)">@Model.Name</a>
+        </h6>
+        <div name="patientfile_comment">@Model.Comment</div>
+    </div>
+    <div class="box_file_date">@Model.UploadDate.ToDefaultDateFormat()</div>
+    <div class="box_file_delete"><i class="fa fa-trash-o"></i></div>
+
+</div>
+<div class="box_file_edit" edit-content-patientfile="@Model.PatientFileId" style="display:none">
+    <div class="box_file_icon">
+        <a class="@(Model.IsImageType?"fancybox_patientfile":"")"
+           target="_blank"
+           href="@Url.Content(Model.UrlContent)">
+            @if (Model.IsImageType)
+            {
+                <img src="@Url.Content(Model.UrlContentPictureMin)" style="float:left; width: 70px;" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/images/style/photo_small_example.jpg")" style="float:left; width: 70px;" />
+            }
+        </a>
+    </div>
+    <div class="box_file_description">
+        <input type="text" class="form-control input-xlarge" name="patientfile_name" value="@Model.Name">
+        <div><textarea class="form-control input-xlarge" rows="3" name="patientfile_comment">@Model.Comment</textarea>  </div>
+    </div>
+    @*<div class="box_file_date"><input type="text" class="form-control input-small" placeholder=""></div>*@
+    @*<div class="box_file_search">buscar archivo</div>*@
+   
+        <div class="box_file_buttons" style="clear:both; margin-top:130px">
+            <button type="button" save class="btn btn-info btn-lg" save>@LabelFor.SaveAction</button>
+            <button type="button" cancel class="btn btn-primary btn-lg" cancel>@LabelFor.CancelAction</button>
+        </div>
+   
+</div>
+
+
+
+
+@*<div style="position:relative" id="patientFileItem@{@Model.PatientFileId}">
+        <a class="@(Model.IsImageType?"fancybox_patientfile":"")"
+           target="_blank"
+           href="@Url.Content(Model.UrlContent)">
+            @if (Model.IsImageType)
+            {
+                <img src="@Url.Content(Model.UrlContentPictureMin)" style="float:left; width: 70px;" />
+            }
+            else
+            {
+                <img src="@Url.Content("~/Content/images/style/photo_small_example.jpg")" style="float:left; width: 70px;" />
+            }
+        </a>
+        <div style="margin-left:30px; width:330px;  float:left" readonly-content-patientfile="@Model.PatientFileId">
+            <div style="float: left">
+                <div>
+                    <a name="patientfile_name" class="txt_az_18 @(Model.IsImageType?"fancybox_patientfile":"")"
+                       target="_blank"
+                       href="@Url.Content(Model.UrlContent)">@Model.Name</a>
+                </div>
+                <div name="patientfile_comment">
+                    @Model.Comment
+                </div>
+            </div>
+        </div>
+        <div style="margin-left:30px; width:330px; float:left" class="hidden" edit-content-patientfile="@Model.PatientFileId">
+            <input class="input_text" name="patientfile_name" type="text" value="@Model.Name" />
+            <textarea style="margin-top:10px; min-height:100px; margin-bottom:4px;" class="area_text_problem" name="patientfile_comment">@Model.Comment</textarea>
+            <div style="width:250px; height:30px">
+                <input onclick="updateEditPatientFile(@Model.PatientFileId)" type="button" class="button_save_orange" value="Guardar">
+                <input onclick="cancelUpdatePatientFile(@Model.PatientFileId)" type="button" class="button_save_orange" value="Cancelar">
+            </div>
+        </div>
+        <div class="box_text_med">@Model.UploadDate.ToDefaultDateFormat()</div>
+        <div style="float: left; margin-left: 10px;">
+            <a href="javascript:editPatientFile(@{@Model.PatientFileId})">
+                <div class="list_content_iconedit_one">
+                </div>
+            </a>
+            <a href="javascript:deletePatientFile(@{@Model.PatientFileId})">
+                <div class="list_content_icondelete_one">
+                </div>
+            </a>
+        </div>
+    </div>*@

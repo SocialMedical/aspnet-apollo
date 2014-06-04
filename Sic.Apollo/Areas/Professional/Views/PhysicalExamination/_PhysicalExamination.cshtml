@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.PatientPhysicalExamination>
+@{
+    DateTime currentDate = this.GetCurrentDateTime().Date;
+}
+<div style="margin-top:15px;">
+    <input id="searchPhysicalExamination" type="text2" class="input-block-level img_search_input" placeholder="@LabelFor.HintSearchPhysicalExamination">
+</div>
+
+<div class="box_info_person">
+    <div class="circle_title_box_info"></div><div style="margin-left:20px; width:600px" class="title_box_info">
+        <div class="float title_section_content">@TitleFor.EpicrisisPatientPhysicalExamination</div>
+        <div id="physicalExDateTrigger" class="float title_edit_box">
+            <div class="float content_ico_edit_title">
+                <i class="fa fa-calendar"></i>
+            </div>
+            <div id="physicalExaminationDateLabel" class="float title_section_content">@currentDate.ToDefaultDateFormat() </div>
+        </div>
+        
+    </div>
+    
+    <input type="text" id="physicalExaminationDateInput" class="datepickerhiddeitem" />    
+    <div class="row" style="clear:both"></div>
+    @{
+        int irowCount = 0;
+    }
+    @foreach (var item in Model.Where(p => p.ExaminationDate.Date == currentDate).OrderBy(p => p.PhysicalExamination.Priority))
+    {
+        if (++irowCount == 1)
+        {
+            new HtmlString("<div class=\"box_historic_patient_large\">");
+        }
+        <div class="box_historic_patient" pec physicalexaminationcontent="@item.PhysicalExaminationId">
+
+            <div class="box_physical_examination">
+                <div pen class="title_header">@item.PhysicalExamination.Name</div>
+                @Html.TextArea("physicalExaminationValue", item.Examination, new
+       {
+           @class = "form-control",
+           rows = 3,
+           patientPhysicalExaminationId = item.PatientPhysicalExaminationId,
+           physicalExaminationId = item.PhysicalExaminationId
+       })
+            </div>
+
+            <div pea style="margin-left:40px; display:none">
+                <div class="button_historic_patient_save"><button type="button" save class="btn btn-info btn-lg">@LabelFor.SaveAction</button></div>
+                <div class="button_historic_patient_cancel"><button type="button" cancel class="btn btn-primary btn-lg">@LabelFor.CancelAction</button></div>
+            </div>
+        </div>
+
+        if (irowCount == 3)
+        {
+            irowCount = 0;
+            new HtmlString("</div>");
+            <div class="separation_box_historic_patient"></div>
+        }
+    }
+    <div class="row" style="clear:both">
+        <div class="col-lg-12">
+            <div sectionbutton class="content_buttom_box"><button type="button" class="btn btn-warning btn-medium">@LabelFor.SaveAction</button></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="line_separation_title">
+    <div class="title_bg_med"><h4>@TitleFor.EpicrisisVitalSignHistory</h4></div>
+</div><!--box1-->
+<!--box1-->
+<div id="physicalExaminationHistory">
+    @{Html.RenderPartial("~/Areas/Professional/Views/PhysicalExamination/_History.cshtml", Model);}
+</div>

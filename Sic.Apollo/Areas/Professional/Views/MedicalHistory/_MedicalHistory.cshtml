@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Sic.Apollo.Models.Medical.MedicalHistory>
+
+<div style="margin-top:15px;">
+    <input id="searchMedicalHistory" type="text2" class="input-block-level img_search_input" placeholder="@LabelFor.HintSearchMedicalHistory">
+</div>
+<!-- Start Toggle -->
+<div class="accordion" id="toggleArea">
+    @foreach (var problem in Model.Select(p => p.MedicalProblem.MedicalProblemType).Distinct().OrderBy(p => (int)p))
+    {
+
+        <div class="accordion-group">
+            <div class="accordion-heading togglize">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#" href="#collapseProblem@{@problem}">
+                    <div class="circle_title_toogle_head"></div>
+                    @problem.GetDisplay(typeof(MedicalProblemType))
+                    <span class="font-icon-plus"></span>
+                    <span class="font-icon-minus"></span>
+                </a>
+            </div>
+            <div id="collapseProblem@{@problem}" class="accordion-body collapse">
+                <div class="accordion-inner">
+                    <div class="box_historic_patient_large">
+                        @{
+        int i = 1;
+        foreach (var item in Model.Where(p => p.MedicalProblem.MedicalProblemType == problem).OrderBy(p => p.MedicalProblem.Priority))
+        {
+            <div class="box_historic_patient" medicalproblemcontent="@item.MedicalProblem.Name">
+                <h5>@item.MedicalProblem.Name</h5>
+                @Html.TextArea("medicalproblem", item.Description, new
+                            {
+                                @class = "form-control",
+                                id = item.MedicalProblemId,
+                                rows = "3",
+                                medicalproblemid = item.MedicalProblemId,
+                                medicalproblemtype = (int)problem,
+                                medicalhistoryid = item.MedicalHistoryId
+                            })
+                <div mpa style="display:none">
+                    <div class="button_historic_patient_save"><button type="button" save class="btn btn-info btn-lg">@LabelFor.SaveAction</button></div>
+                    <div class="button_historic_patient_cancel"><button type="button" cancel class="btn btn-primary btn-lg">@LabelFor.CancelAction</button></div>
+                </div>
+            </div>
+            if (i++ % 3 == 0)
+            {
+                <div class="separation_box_historic_patient"></div>
+            }
+        }
+                        }
+                    </div>
+
+                    <div class="content_buttom_box" sectionbutton>
+                        <button medicalproblemtype="@((int)problem)" type="button"
+                                class="btn btn-warning btn-medium" style="margin-top:15px">
+                            @LabelFor.SaveAction
+                        </button>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+    }
+</div>
