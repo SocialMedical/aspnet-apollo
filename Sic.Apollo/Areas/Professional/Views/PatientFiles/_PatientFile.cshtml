@@ -1,6 +1,6 @@
 ﻿@model Sic.Apollo.Models.Medical.PatientFile
 
-<div readonly-content-patientfile="@Model.PatientFileId" class="box_file" id="patientFileItem@{@Model.PatientFileId}">
+<div readonly-content-patientfile="@Model.PatientFileId" class="box_file">
     <div class="box_file_icon">
         <a class="@(Model.IsImageType?"fancybox_patientfile":"")"
            target="_blank"
@@ -11,13 +11,13 @@
             }
             else
             {
-                <img src="@Url.Content("~/Content/images/style/photo_small_example.jpg")" style="float:left; width: 70px;" />
+                <img src="@Url.ContentImage("style/photo_small_example.jpg")" style="float:left; width: 70px;" />
             }
         </a>
     </div>
 
     <div class="box_file_description">
-        <div edit-patient-file="@Model.PatientFileId" class="content_ico_edit_title"><i class="fa fa-pencil"></i></div><h6>
+        <div edit-patient-file="@Model.PatientFileId" style="cursor:pointer" class="content_ico_edit_title"><i class="fa fa-pencil"></i></div><h6>
             <a name="patientfile_name" class="txt_az_18 @(Model.IsImageType?"fancybox_patientfile":"")"
                target="_blank"
                href="@Url.Content(Model.UrlContent)">@Model.Name</a>
@@ -25,7 +25,7 @@
         <div name="patientfile_comment">@Model.Comment</div>
     </div>
     <div class="box_file_date">@Model.UploadDate.ToDefaultDateFormat()</div>
-    <div class="box_file_delete"><i class="fa fa-trash-o"></i></div>
+    <div delete-patient-file="@Model.PatientFileId" style="cursor:pointer" class="box_file_delete"><i class="fa fa-trash-o"></i></div>
 
 </div>
 <div class="box_file_edit" edit-content-patientfile="@Model.PatientFileId" style="display:none">

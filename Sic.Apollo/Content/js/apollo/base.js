@@ -51,12 +51,15 @@ function dialogConfirmation(message, positiveCallback, negativeCallback) {
     $("#confirmationDialog").parents(".ui-dialog.ui-widget").find(".ui-dialog-titlebar").hide();
     $("#confirmationDialog").dialog("open");
 
+    $("#confirmationDialog button[positive]").unbind('click');
+
     $("#confirmationDialog button[positive]").click(function () {
         $("#confirmationDialog").dialog("close");
         if (positiveCallback)
             positiveCallback();
     });
 
+    $("#confirmationDialog button[negative]").unbind('click');
     $("#confirmationDialog button[negative]").click(function () {
         $("#confirmationDialog").dialog("close");
         if (negativeCallback)

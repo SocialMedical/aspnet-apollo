@@ -24,28 +24,14 @@ namespace Sic.Apollo.Areas.Professional.Controllers
             {
                 if (file == null || file.ContentLength == 0)
                 {
-                    return new WrappedJsonResult
-                    {
-                        Data = new
-                        {
-                            IsValid = false,
-                            Message = Sic.Apollo.Resources.Resources.MessageForPictureUploadedFailure,
-                            ImagePath = string.Empty
-                        }
-                    };
+                    this.AddErrorMessage(Sic.Apollo.Resources.Resources.MessageForPictureUploadedFailure);
+                    return WrappedJson();
                 }
 
                 if (file.ContentLength > maxSizeUploadFile)
                 {
-                    return new WrappedJsonResult
-                    {
-                        Data = new
-                        {
-                            IsValid = false,
-                            Message = String.Format(Sic.Apollo.Resources.Resources.MessageForFileMaxSizeValidation, (maxSizeUploadFile / 1048576)),
-                            ImagePath = string.Empty
-                        }
-                    };
+                    this.AddErrorMessage(String.Format(Sic.Apollo.Resources.Resources.MessageForFileMaxSizeValidation, (maxSizeUploadFile / 1048576)));
+                    return WrappedJson();
                 }
 
                 var fileName = String.Format("{0}.{1}{2}", Path.GetFileNameWithoutExtension(file.FileName), Guid.NewGuid(), System.IO.Path.GetExtension(file.FileName));
@@ -70,33 +56,21 @@ namespace Sic.Apollo.Areas.Professional.Controllers
 
                 DataBase.Save();
 
-                return new WrappedJsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = true,
-                        Message = Sic.Apollo.Resources.Resources.MessageForFileUploadedSuccess,
-                        PatientFileId = patientFile.PatientFileId
-                    }
-                };
+                this.AddSuccessMessage(Sic.Apollo.Resources.Resources.MessageForFileUploadedSuccess);
+                
+                return WrappedJson(new {PatientFileId = patientFile.PatientFileId});                
             }
             catch
             {
-                return new WrappedJsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = false,
-                        Message = Sic.Apollo.Resources.Resources.MessageForFileUploadedFailure
-                    }
-                };
-            }
+                this.AddErrorMessage(Sic.Apollo.Resources.Resources.MessageForFileUploadedFailure);
+                return WrappedJson();                
+            }            
         }
 
         [Authorize(UserType.Professional, UserType.Assistant)]
         [ChildAction()]
         [HttpPost]
-        public ActionResult EditPatientFile(int patientFileId, string name, string comment = null)
+        public ActionResult Edit(int patientFileId, string name, string comment = null)
         {
             try
             {
@@ -107,44 +81,28 @@ namespace Sic.Apollo.Areas.Professional.Controllers
                 DataBase.PatientFiles.Update(patientFile);
                 DataBase.Save();
 
-                return new JsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = true,
-                        Message = Sic.Apollo.Resources.Resources.MessageForSaveOk
-                    }
-                };
+                this.AddDefaultSuccessMessage();
             }
             catch
             {
-                return new JsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = false,
-                        Message = Sic.Apollo.Resources.Resources.MessageForSaveFailure
-                    }
-                };
+                this.AddDefaultErrorMessage();
             }
-
+            return Json();
         }
 
         [Authorize(UserType.Professional, UserType.Assistant)]
         [ChildAction]
-        public ActionResult PatientFile(int patientFileId)
+        public ActionResult Detail(int patientFileId)
         {
             PatientFile patientFile = DataBase.PatientFiles.GetByID(patientFileId);
 
             return PartialView("_PatientFile", patientFile);
         }
 
-
-
         [Authorize(UserType.Professional, UserType.Assistant)]
         [ChildAction]
         [HttpPost]
-        public ActionResult DeletePatientFile(int patientFileId)
+        public ActionResult Delete(int patientFileId)
         {
             try
             {
@@ -172,26 +130,14 @@ namespace Sic.Apollo.Areas.Professional.Controllers
                         FileDeteleMin.Delete();
                 }
 
-                return new JsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = true,
-                        Message = Sic.Apollo.Resources.Resources.MessageForSaveOk
-                    }
-                };
+                this.AddDefaultSuccessMessage();                
             }
             catch
             {
-                return new JsonResult
-                {
-                    Data = new
-                    {
-                        IsValid = false,
-                        Message = Sic.Apollo.Resources.Resources.MessageForSaveFailure
-                    }
-                };
+                this.AddDefaultErrorMessage();
             }
+
+            return Json();
         }
 	}
 }
